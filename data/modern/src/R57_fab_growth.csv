@@ -1,0 +1,20 @@
+item,scope,metric,value,vintage,source,label,source_file_line
+capacity,world,2021/2022/2023F growth,+7.4% / +7.7% / +5.3%,2022-09-27,SEMI PR,sourced,a_semi_fabequip2022.md:16
+capacity,world,2023F level,29 M wpm 200mm-eq,2022-09-27,SEMI PR,sourced,a_semi_fabequip2022.md:16
+capacity,world,2020/2021/2022 level,~23.8 / ~25.6 / ~27.5 M wpm,2022-09-27,SEMI PR,derived,a_semi_fabequip2022.md:16
+capacity,world ICs,end-2021,21.6 M wpm,2022-02,Knometa press,secondary,notes_a
+capacity share,300mm 2021,KR/TW/CN/JP/Americas/EuMe/SEA,25/22/19/15/8/6/5 %,2022,SEMI PR,sourced/secondary,notes_a
+new fabs,world,starts 2021/2022,19 / 10; up to 2.6 M wpm (~90k per fab derived); CN 8 TW 8 Americas 6 EuMe 3 JP 2 KR 2,2021-06-22,SEMI PR,sourced,a_semi_newfabs2021.md:6-10
+capacity (V24 check),world,2022 restated / 2023 / 2025F,~28.1 / 29.6 / 33.7 M wpm,2024,SEMI PR,sourced/derived,notes_a
+capex/revenue,world,2010/2013/2016/2017/2018/2019/2020/2021,16 / 17.8 / 19.9 / 22.6 / 22.6 / 24.9 / 25.7 / 27.7 %,2011-2022,IC Insights + SIA/WSTS,sourced (2010) / derived,notes_b:44-56; b_icins_quake2011.md:24
+capex/revenue,world,means,pre-pandemic 20.6%; 9-year 23.2%,-,-,derived,notes_b:58
+capex,world,2019/2020/2021 US$ bn,102.5 / ~113 / ~153.9,2022-03,IC Insights press,sourced/derived,notes_b:30-31
+equipment sales,CN/KR/TW,2021 US$ bn of 102.6,29.6 / 25.0 / 24.9,2022,SEMI PR,sourced,notes_b
+CHIPS fund outlay profile,US,FY22-31 % of 52.7 bn,0/4.2/10.3/14.7/17.3/15.4/12.3/9.4/7.1/5.2 (46.5% by FY26; 95.9% by FY31),2022-07-21,CBO (US gov),sourced projection / derived,b_cbo_hr4346.txt:99-100
+Big Fund I payout,CN,by Sep 2018,~100 of 138.7 bn CNY (~72% in 4 yr),2018,press,secondary,notes_b
+public share of TCO,US / KR-TW-SG / CN,10-yr TCO,10-15 / 25-30 / 30-40 %,2020-09,SIA/BCG,sourced,R56 f_siabcg2020.txt
+public share of capex,US / Asia / CN,capex only,~10-12 / ~33-38 / ~49-54 %,2020-09,SIA/BCG,derived,notes_b
+build time,world,construction start to production,682 days (JP 584; US 2010-20 918),2021-10,CSET,sourced,R53 d_cset_nopermits.txt:202-216
+ramp,world,tool-in to full output,NOT FOUND (example ~10 months + ~3 quarters),2013,blog,secondary,
+utilisation,world ICs,2016/17/18/19/20/21/22F,90.3 / ~92.3 / 93.7 / 85.8 / 85.5 / 93.8 / 93.0F %,2022-04-22,IC Insights press,secondary,a_icins_capacity2022.md:15-33
+rule (theory),world,capex,kappa 0.21 x revenue (band 0.16-0.28); equipment 0.67; ramp 9 months; utilisation 0.86 (max 0.95),-,-,theory,report Part 2-3

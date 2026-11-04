@@ -1,0 +1,13 @@
+{
+ "note": "BLUEPRINT_v2 1 and 6 (S4'): seeded shocks from sourced frequencies. Each entry is a yearly draw per crop from a declared distribution fitted to a published series (the fit is to the series, never to a check). Drawn by keyed deterministic hashes (sim/earth_core/keyed.gd) from (seed, year, crop), so a seed repeats and seeds differ; this is the run-to-run spread the done test needs. Declared loss events (a disaster hitting an actor's cash) come from a yearly frequency.",
+ "yield": {
+  "rice": {"form": "lognormal", "sigma": 0.045, "bad_year_p": 0.067, "bad_year_factor": 0.85, "label": "S/D", "source": "MAFF 水稲 作況指数 1990-2024 (S): 1993 74, 2003 90, otherwise 95-106; the ordinary years give sigma ~0.045 (D); a bad year (below 90) twice in 30 years = 0.067 a year (D) at 0.85 (the two years' mean, D)"},
+  "wheat": {"form": "lognormal", "sigma": 0.12, "bad_year_p": 0.05, "bad_year_factor": 0.75, "label": "D/T", "source": "MAFF 小麦 作付面積・収穫量 1990-2024: yield swings about 12% (D); a very bad year T"},
+  "soybeans": {"form": "lognormal", "sigma": 0.12, "bad_year_p": 0.05, "bad_year_factor": 0.75, "label": "T", "source": "as wheat (T)"},
+  "vegetables": {"form": "lognormal", "sigma": 0.06, "bad_year_p": 0.05, "bad_year_factor": 0.85, "label": "T", "source": "野菜 生産量 1990-2024 swings about 6% (D); a bad year T"}
+ },
+ "cash_loss": {
+  "food_manufacturing_JPN": {"p_per_year": 0.05, "size_bn": 3000.0, "label": "T", "source": "T: a disaster or a large recall once in 20 years at 3 tn (the 2011 earthquake's damage to the food industry was of that order, 中小企業庁 推計, rounded)"},
+  "crop_farming_JPN": {"p_per_year": 0.1, "size_bn": 1000.0, "label": "T", "source": "T: a typhoon year once in 10 years at 1 tn of farm damage (MAFF 農林水産関係被害 2019 台風19号 約4,900億円 (S) as the scale)"}
+ }
+}

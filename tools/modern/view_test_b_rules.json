@@ -1,0 +1,38 @@
+{
+ "view": "test_b",
+ "provisional": true,
+ "rule": "TEST FIXTURE for the leak test only (MODERN_PLAN 4): not any real state's view. Every entity is a state except Western Sahara (a region) and the dependent territories (territory); Kosovo is not in this view at all (unknown: no name, no token); English names (R54's entity names); the disputed areas under other labels.",
+ "language": "en",
+ "states_extra": [
+  "TWN",
+  "PSE",
+  "VAT",
+  "COK",
+  "NIU",
+  "HKG",
+  "MAC"
+ ],
+ "regions": [
+  "ESH"
+ ],
+ "claims": [
+  {
+   "area": "northern_territories",
+   "administered_by": "RUS",
+   "view_holder": null,
+   "label": "Southern Kurils",
+   "aliases": [],
+   "source": "test fixture"
+  },
+  {
+   "area": "takeshima",
+   "administered_by": "KOR",
+   "view_holder": null,
+   "label": "Dokdo",
+   "aliases": [],
+   "source": "test fixture"
+  }
+ ],
+ "source": "fixture",
+ "holder": null
+}

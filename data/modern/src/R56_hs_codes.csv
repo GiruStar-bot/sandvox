@@ -1,0 +1,31 @@
+group,hs2017,description,hs2022_change,source_file_line
+"Semis, discrete",8541.10,"Diodes, other than photosensitive or LED",none (same text in HS22),d_hs17_8541.md:367; d_hs22_8541.md:416
+"Semis, discrete",8541.21,"Transistors (not photosensitive), dissipation < 1 W",none,d_hs17_8541.md:455; d_hs22_8541.md:504
+"Semis, discrete",8541.29,"Transistors, other",none,d_hs17_8541.md:499; d_hs22_8541.md:548
+"Semis, discrete",8541.30,"Thyristors, diacs and triacs (not photosensitive)",none,d_hs17_8541.md:543; d_hs22_8541.md:592
+"Semis, photo/PV/LED",8541.40,"Photosensitive semiconductor devices incl. PV cells, modules, panels; LEDs","SPLIT into 8541.41 LED, 8541.42 PV cells not in modules, 8541.43 PV cells in modules/panels, 8541.49 other (all ""ex8541.40"")","d_hs17_8541.md:587; d_hs22_8541.md:680,724,768,812; d_wco_table1.txt:1460-1466"
+"Semis, other",8541.50,Other semiconductor devices,"SPLIT into 8541.51 semiconductor-based transducers (new; may pull goods from 84.xx, 85.xx, 90.xx, 93.xx, 95.04) and 8541.59 other. Heading text widened to ""Semiconductor devices (for example, diodes, transistors, semiconductor-based transducers)""","d_hs17_8541.md:631; d_hs22_8541.md:372,900,944; d_wco_table1.txt:1467-1474"
+Semis,8541.60,Mounted piezo-electric crystals,none,d_hs17_8541.md:675; d_hs22_8541.md:988
+Semis,8541.90,Parts,none,d_hs17_8541.md:719; d_hs22_8541.md:1032
+ICs,8542.31,"Processors and controllers, whether or not combined with memories, converters, logic, amplifiers, clock/timing or other circuits",none (no 8542 row in Table I; same text),d_hs17_8542.md:411; d_hs22_8542.md:460
+ICs,8542.32,Memories,none,d_hs17_8542.md:455; d_hs22_8542.md:504
+ICs,8542.33,Amplifiers,none,d_hs17_8542.md:499; d_hs22_8542.md:548
+ICs,8542.39,Other,none,d_hs17_8542.md:543; d_hs22_8542.md:592
+ICs,8542.90,Parts,none,d_hs17_8542.md:587; d_hs22_8542.md:636
+Chip tools,8486.10,Machines for the manufacture of boules or wafers,none,d_hs17_8486.md:415; d_hs22_8486.md:427
+Chip tools,8486.20,Machines for the manufacture of semiconductor devices or electronic ICs,"none: same text and no 8486 subheading row in Table I. The idea that ""8486.20 changed in HS2022"" is NOT supported by these files",d_hs17_8486.md:459; d_hs22_8486.md:471
+Chip tools,8486.30,Machines for the manufacture of flat panel displays,none at code level. Flat panel display MODULES that were in 84.86 (and many other headings) may move to new heading 85.24,d_hs17_8486.md:503; d_hs22_8486.md:515; d_wco_table1.txt:1404-1410
+Chip tools,8486.40,Machines specified in Note 9 (C) to Ch. 84,same goods; the note is renumbered to Note 11 (C),d_hs17_8486.md:547; d_hs22_8486.md:559
+Chip tools,8486.90,Parts and accessories,none,d_hs17_8486.md:591; d_hs22_8486.md:603
+"Gallium, germanium",8112.92,"(8112.9 ""Other"") Unwrought; waste and scrap; powders. Heading 81.12 names germanium and gallium; no Ga- or Ge-only subheading","Scope narrowed: hafnium moves to new 8112.31/.39 and rhenium to new 8112.41/.49. Ga and Ge STAY in 8112.92/8112.99 (they still share with In, Nb, V). Cadmium (old 81.07) goes to new 8112.61/.69, not into .92/.99","d_hs17_8112.md:271,887; d_hs22_8112.md:299,1311; d_wco_table1.txt:1096-1111,1134-1139"
+"Gallium, germanium",8112.99,"(8112.9 ""Other"") Other",same as 8112.92,d_hs17_8112.md:931; d_hs22_8112.md:1355; d_wco_table1.txt:1134-1136
+Rare earths,2805.30,"Rare-earth metals, scandium and yttrium, whether or not intermixed or interalloyed",none (no row),d_hs17_2805.md:503
+Rare earths,2846.10,Cerium compounds,none (no row),d_hs17_2846.md:327
+Rare earths,2846.90,"Other (compounds of rare-earth metals, Y, Sc)",none (no row),d_hs17_2846.md:371
+Magnets,8505.11,"Permanent magnets, of metal (rare-earth magnets have no separate HS6; also includes non-rare-earth metal magnets)",none (no row),d_hs17_8505.md:411
+Crude oil,2709.00,"Petroleum oils and oils from bituminous minerals, crude",none (no row),d_hs17_2709.md:271
+Refined,2710.12,Light oils and preparations,none (no row),d_hs17_2710.md:315
+Refined,2710.19,"Other (non-light oils, not waste, no biodiesel)",none (no row),d_hs17_2710.md:359
+Refined,2710.20,"Petroleum oils ... containing biodiesel, other than waste oils",none (no row),d_hs17_2710.md:403
+LNG,2711.11,"Natural gas, liquefied",none (no row),d_hs17_2711.md:315
+Pipeline gas,2711.21,"Natural gas, in gaseous state",none (no row),d_hs17_2711.md:579

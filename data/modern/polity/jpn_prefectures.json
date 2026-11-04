@@ -1,0 +1,193 @@
+{
+ "note": "Japan's 47 prefectures with their population on 2023-10-01 in thousands (S): 総務省統計局 人口推計 2023年10月1日現在 第10表 都道府県、年齢(5歳階級)、男女別人口 総人口 総数 (statInfId 000040166082, published 2024-04-12), via research-notes R81_pref_age_estimates.csv. The 2024-10-01 edition (published 2025-04-14) it replaces is look-ahead under D477 (the PM, TO_E 21:11 1(a)); the start ages this base to 2025-01 with in-window flows (the Python start port's rule, D). Earlier note: Statistics Bureau 人口推計 2024-10-01 第2表 都道府県別人口 (05k2024-2.xlsx), thousands (S)",
+ "prefectures": {
+  "01": {
+   "name": "北海道",
+   "pop_thousand": 5092
+  },
+  "02": {
+   "name": "青森県",
+   "pop_thousand": 1184
+  },
+  "03": {
+   "name": "岩手県",
+   "pop_thousand": 1163
+  },
+  "04": {
+   "name": "宮城県",
+   "pop_thousand": 2264
+  },
+  "05": {
+   "name": "秋田県",
+   "pop_thousand": 914
+  },
+  "06": {
+   "name": "山形県",
+   "pop_thousand": 1026
+  },
+  "07": {
+   "name": "福島県",
+   "pop_thousand": 1767
+  },
+  "08": {
+   "name": "茨城県",
+   "pop_thousand": 2825
+  },
+  "09": {
+   "name": "栃木県",
+   "pop_thousand": 1897
+  },
+  "10": {
+   "name": "群馬県",
+   "pop_thousand": 1902
+  },
+  "11": {
+   "name": "埼玉県",
+   "pop_thousand": 7331
+  },
+  "12": {
+   "name": "千葉県",
+   "pop_thousand": 6257
+  },
+  "13": {
+   "name": "東京都",
+   "pop_thousand": 14086
+  },
+  "14": {
+   "name": "神奈川県",
+   "pop_thousand": 9229
+  },
+  "15": {
+   "name": "新潟県",
+   "pop_thousand": 2126
+  },
+  "16": {
+   "name": "富山県",
+   "pop_thousand": 1007
+  },
+  "17": {
+   "name": "石川県",
+   "pop_thousand": 1109
+  },
+  "18": {
+   "name": "福井県",
+   "pop_thousand": 744
+  },
+  "19": {
+   "name": "山梨県",
+   "pop_thousand": 796
+  },
+  "20": {
+   "name": "長野県",
+   "pop_thousand": 2004
+  },
+  "21": {
+   "name": "岐阜県",
+   "pop_thousand": 1931
+  },
+  "22": {
+   "name": "静岡県",
+   "pop_thousand": 3555
+  },
+  "23": {
+   "name": "愛知県",
+   "pop_thousand": 7477
+  },
+  "24": {
+   "name": "三重県",
+   "pop_thousand": 1727
+  },
+  "25": {
+   "name": "滋賀県",
+   "pop_thousand": 1407
+  },
+  "26": {
+   "name": "京都府",
+   "pop_thousand": 2535
+  },
+  "27": {
+   "name": "大阪府",
+   "pop_thousand": 8763
+  },
+  "28": {
+   "name": "兵庫県",
+   "pop_thousand": 5370
+  },
+  "29": {
+   "name": "奈良県",
+   "pop_thousand": 1296
+  },
+  "30": {
+   "name": "和歌山県",
+   "pop_thousand": 892
+  },
+  "31": {
+   "name": "鳥取県",
+   "pop_thousand": 537
+  },
+  "32": {
+   "name": "島根県",
+   "pop_thousand": 650
+  },
+  "33": {
+   "name": "岡山県",
+   "pop_thousand": 1847
+  },
+  "34": {
+   "name": "広島県",
+   "pop_thousand": 2738
+  },
+  "35": {
+   "name": "山口県",
+   "pop_thousand": 1298
+  },
+  "36": {
+   "name": "徳島県",
+   "pop_thousand": 695
+  },
+  "37": {
+   "name": "香川県",
+   "pop_thousand": 926
+  },
+  "38": {
+   "name": "愛媛県",
+   "pop_thousand": 1291
+  },
+  "39": {
+   "name": "高知県",
+   "pop_thousand": 666
+  },
+  "40": {
+   "name": "福岡県",
+   "pop_thousand": 5103
+  },
+  "41": {
+   "name": "佐賀県",
+   "pop_thousand": 795
+  },
+  "42": {
+   "name": "長崎県",
+   "pop_thousand": 1267
+  },
+  "43": {
+   "name": "熊本県",
+   "pop_thousand": 1709
+  },
+  "44": {
+   "name": "大分県",
+   "pop_thousand": 1096
+  },
+  "45": {
+   "name": "宮崎県",
+   "pop_thousand": 1042
+  },
+  "46": {
+   "name": "鹿児島県",
+   "pop_thousand": 1549
+  },
+  "47": {
+   "name": "沖縄県",
+   "pop_thousand": 1468
+  }
+ }
+}

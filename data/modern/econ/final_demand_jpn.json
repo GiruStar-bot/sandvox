@@ -1,0 +1,34 @@
+{
+ "monthly": {
+  "rice": {
+   "value": 238361.436,
+   "unit": "t/month",
+   "label": "D",
+   "source": "D: the start rule from the model's own flows (the PM's ruling on M038b, math-reports 620e8168): the crop's monthly use, crop 6798600 t (crop_farming_jpn.json: 令和6年産 主食用, MAFF published 2024-12-10) x (1 - reserve_share 0.03, T: crop_farming_jpn.json, set in 1d15aa4f) / 12 = 549554 t, less food manufacturing's bid at capacity 2424.9 bn (311192 t); tools/modern/start_flows.py. It replaces the old crop's split (0.48528) carried onto the new crop"
+  },
+  "vegetables": {
+   "value": 850540.2666666666,
+   "unit": "t/month",
+   "label": "D",
+   "source": "野菜 国内生産 約11.0 Mt + 輸入 約2.7 Mt (食料需給表), less food manufacturing's intermediate use at the IO coefficient, / 12 (the start balanced by construction)"
+  },
+  "wheat": {
+   "value": 95924.324,
+   "unit": "t/month",
+   "label": "D",
+   "source": "D: the start rule from the model's own flows (the PM, TO_E 21:11 item 2): (the crop 1023672 t (crop_farming_jpn.json: 令和6年産, MAFF published 2024-11-26) x (1 - reserve_share 0.02, T) + the state's imports 5000000 t/yr (trading_house_jpn.json's wheat in transit x 12: MAFF 食料需給表 令和5年度, published 2024-08-08)) / 12, less food manufacturing's bid at capacity (404342 t); tools/modern/start_flows.py. The 1.006 Mt it replaces matched no release (R96e: NF)"
+  },
+  "soybeans": {
+   "value": 37123.059,
+   "unit": "t/month",
+   "label": "D",
+   "source": "D: the start rule from the model's own flows (the PM, TO_E 21:11 item 2): (the crop 261443 t (crop_farming_jpn.json: 令和5年産, MAFF published 2024-04-10) x (1 - reserve_share 0.02, T) + the year's imports 3155521 t (trading_house_jpn.json's imports_t_yr: 財務省 貿易統計 2023 確定, published 2024-11-13)) / 12, less food manufacturing's bid at capacity (247188 t); tools/modern/start_flows.py. The 3.3 Mt it replaces matched no release (R96e)"
+  },
+  "food_products": {
+   "value": 1891.1475833333334,
+   "unit": "bn JPY/month",
+   "label": "D",
+   "source": "soumu 産業連関表 2020 取引基本表 生産者価格 統合中分類 (modern-data raw/jpn_official/io2020_medium_000954302.xlsx), 百万円: 食料品 国内生産額 less its own intermediate use (6,405,392), / 12 (households, other sectors and exports together until E3/E4)"
+  }
+ }
+}

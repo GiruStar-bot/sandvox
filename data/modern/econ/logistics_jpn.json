@@ -1,0 +1,25 @@
+{
+ "note": "BLUEPRINT_v2 E3 first cut: a monthly cap on the quantity the ports and carriers move for each commodity (domestic trades plus imports, T from 港湾統計 grain and food handling; a shortfall above the cap is unmet this month and stays in inventory).",
+ "cap_t_month": {
+  "rice": {
+   "value": 1500000.0,
+   "label": "T",
+   "source": "T: well above normal monthly trade (583k); binds only in a surge"
+  },
+  "wheat": {
+   "value": 700000.0,
+   "label": "T",
+   "source": "T"
+  },
+  "soybeans": {
+   "value": 450000.0,
+   "label": "T",
+   "source": "T"
+  },
+  "vegetables": {
+   "value": 1500000.0,
+   "label": "T",
+   "source": "T"
+  }
+ }
+}

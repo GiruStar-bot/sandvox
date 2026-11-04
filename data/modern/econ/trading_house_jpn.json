@@ -1,0 +1,68 @@
+{
+ "id": "trading_houses_JPN",
+ "kind": "industry",
+ "jurisdiction": "JPN",
+ "note": "BLUEPRINT_v2 E4-2: the aggregate trading houses. Foreign prices: World Bank Commodity Price Data (Pink Sheet) 2024 annual averages (public domain); FX: BoJ 2024 average; freight: T; tariffs: 関税定率法 / 関税暫定措置法 (S); foreign capacity: T from world export volumes (USDA PSD) as a monthly share available to Japan; lead 1 month (T). want = last month's unmet domestic demand (T); start_in_transit_t = the first month's arrival, the published import flow / 12 (D). state_trading: true = the state imports the gap up to the quota regardless of the private margin (wheat, MA rice).",
+ "stocks": {
+  "cash_bn_jpy": 3000.0
+ },
+ "stocks_source": {
+  "cash_bn_jpy": "T: declared working cash"
+ },
+ "fx_jpy_usd": {
+  "value": 157.89,
+  "label": "D",
+  "source": "BoJ FM08 FXERD04, US.Dollar/Yen Spot Rate at 17:00 JST, Tokyo Market, 2024-12-30 (the last in-window business day): the level held from 2025-01 (the PM, TO_E 20:01; researcher4's raw file)"
+ },
+ "goods": {
+  "rice": {
+   "foreign_price_usd_t": 511.0,
+   "freight_usd_t": 60.0,
+   "tariff_jpy_t": 0.0,
+   "foreign_capacity_t_month": 64000.0,
+   "lead_months": 1,
+   "label": "S/T",
+   "source": "World Bank Pink Sheet monthly, \"Rice, Thai 5%\" ($/mt), 2024M11; CMO-Historical-Data-Monthly.xlsx sheet Monthly Prices; published 2024-12-03 (2024-11, the last in-window month)",
+   "start_in_transit_t": 0.0,
+   "start_in_transit_source": "MA rice is the state's, not the trading houses'",
+   "state_trading": true,
+   "to_state_stock": true
+  },
+  "wheat": {
+   "foreign_price_usd_t": 253.75,
+   "freight_usd_t": 50.0,
+   "tariff_jpy_t": 17000.0,
+   "foreign_capacity_t_month": 600000.0,
+   "lead_months": 1,
+   "label": "S/T",
+   "source": "World Bank Pink Sheet monthly, \"Wheat, US HRW\" ($/mt), 2024M11; CMO-Historical-Data-Monthly.xlsx sheet Monthly Prices; published 2024-12-03 (2024-11, the last in-window month)",
+   "start_in_transit_t": 416666.6666666667,
+   "start_in_transit_source": "MAFF 食料需給表 令和5年度 小麦 輸入 約5.0 Mt/yr / 12 (D)",
+   "state_trading": true
+  },
+  "soybeans": {
+   "foreign_price_usd_t": 435.64,
+   "freight_usd_t": 50.0,
+   "tariff_jpy_t": 0.0,
+   "foreign_capacity_t_month": 400000.0,
+   "lead_months": 1,
+   "label": "S/T",
+   "source": "World Bank Pink Sheet monthly, \"Soybeans\" ($/mt), 2024M11; CMO-Historical-Data-Monthly.xlsx sheet Monthly Prices; published 2024-12-03 (2024-11, the last in-window month)",
+   "start_in_transit_t": 262524.345,
+   "start_in_transit_source": "D: the model's own month-0 import need (the start rule; the PM's ruling on TO_PM 126): food manufacturing's bid at capacity 2424.9 bn (247188 t) + the held final demand (37123 t) - the crop / 12 (21787 t); tools/modern/start_flows.py. It replaces the published import flow, which ran above this need (M038)",
+   "imports_t_yr": 3155521.0,
+   "imports_source": "S: 財務省 貿易統計 2023暦年 確定 大豆 輸入 3,155,521 t (published 2024-11-13; R96c group B, the CIF unit value's denominator)"
+  },
+  "vegetables": {
+   "foreign_price_usd_t": 900.0,
+   "freight_usd_t": 150.0,
+   "tariff_jpy_t": 0.0,
+   "foreign_capacity_t_month": 300000.0,
+   "lead_months": 1,
+   "label": "T",
+   "source": "T: fresh and frozen vegetables, average import unit value ~$0.9/kg (customs 2024, D); tariff ~3% treated as 0 (T); capacity T (imports ~2.7 Mt/yr)",
+   "start_in_transit_t": 241018.959,
+   "start_in_transit_source": "D: the model's own month-0 import need (the start rule; the PM's ruling on TO_PM 126): food manufacturing's bid at capacity 2424.9 bn (307095 t) + the held final demand (850540 t) - the crop / 12 (916617 t); tools/modern/start_flows.py. It replaces the published import flow, which ran above this need (M038)"
+  }
+ }
+}

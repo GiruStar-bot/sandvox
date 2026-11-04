@@ -1,0 +1,66 @@
+{
+ "not_inputs": "world DC capacity in MW before 2023 is NOT FOUND (R58); the grid waits dated 2022 (Dublin, Northern Virginia) are not modelled per site",
+ "r58_sha256": "416200a4a1687360c67952e7771c590556d96f69189722c71ddd05e5b0e255a0",
+ "years": {
+  "2022": {
+   "lead_days_dc": {
+    "data_year": 2022,
+    "label": "2nd (one contractor quote, January 2022); T: no grid wait added",
+    "published": 2022,
+    "source": "R58 notes.md",
+    "value": 548
+   },
+   "pue": {
+    "CN": {
+     "data_year": 2021,
+     "label": "2nd (broker report, June 2022)",
+     "published": 2022,
+     "source": "R58 a_cn_broker_jun22.txt:53",
+     "value": 1.49
+    },
+    "EU": {
+     "data_year": 2020,
+     "label": "S (Uptime 2020, Europe)",
+     "published": 2020,
+     "source": "R58 a_uptime_byregion.md:12,18",
+     "value": 1.46
+    },
+    "JP": {
+     "data_year": 2021,
+     "label": "S (Uptime 2021, world); T: R58 gives no value of its own for it",
+     "published": 2021,
+     "source": "R58 a_uptime21_pr.md:27; a_uptime22_icio.md:15",
+     "value": 1.57
+    },
+    "KR": {
+     "data_year": 2021,
+     "label": "S (Uptime 2021, world); T: R58 gives no value of its own for it",
+     "published": 2021,
+     "source": "R58 a_uptime21_pr.md:27; a_uptime22_icio.md:15",
+     "value": 1.57
+    },
+    "ROW": {
+     "data_year": 2021,
+     "label": "S (Uptime 2021, world); T: R58 gives no value of its own for it",
+     "published": 2021,
+     "source": "R58 a_uptime21_pr.md:27; a_uptime22_icio.md:15",
+     "value": 1.57
+    },
+    "TW": {
+     "data_year": 2021,
+     "label": "S (Uptime 2021, world); T: R58 gives no value of its own for it",
+     "published": 2021,
+     "source": "R58 a_uptime21_pr.md:27; a_uptime22_icio.md:15",
+     "value": 1.57
+    },
+    "US": {
+     "data_year": 2020,
+     "label": "D (Uptime 2020: Europe 'almost 5% lower')",
+     "published": 2020,
+     "source": "R58 a_uptime_byregion.md:12,18",
+     "value": 1.53
+    }
+   }
+  }
+ }
+}

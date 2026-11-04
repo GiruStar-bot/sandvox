@@ -1,0 +1,120 @@
+{
+ "view": "jpn",
+ "holder": "JPN",
+ "provisional": false,
+ "source": "r54",
+ "rule": "R54's Japan view table (R54_japan_view.csv, MOFA). The name shown is MOFA's short form where MOFA gives one, else its name; MOFA's formal form, R54's general-usage aliases and NE's names in other languages are aliases. Status: recognised state -> state; Japan -> self; region (地域) -> region; not recognised (UN member) -> not_recognised; not listed -> not_listed with MOFA's text name. The 13 dependent territories are territory of their administering state, named as MOFA names them (R55_territory_names.csv, 10 of 13; its first form); CUW, ABW and TCA in general usage, marked not MOFA. Rows that are no field entity (topics, de-facto entities inside their host, Crimea, Kashmir) are kept as notes.",
+ "language": "ja",
+ "r54_names": {
+  "Bolivia": "BOL",
+  "Brunei": "BRN",
+  "Cape Verde": "CPV",
+  "Czech Republic": "CZE",
+  "Côte d'Ivoire": "CIV",
+  "Holy See (Vatican City)": "VAT",
+  "Iran": "IRN",
+  "Kyrgyz Republic": "KGZ",
+  "Laos": "LAO",
+  "Micronesia": "FSM",
+  "Moldova": "MDA",
+  "Nauru": "NRU",
+  "Netherlands": "NLD",
+  "Republic of Congo": "COG",
+  "Republic of South Africa": "ZAF",
+  "Republic of Türkiye": "TUR",
+  "Russia": "RUS",
+  "Saint Christopher and Nevis": "KNA",
+  "Saint Vincent": "VCT",
+  "Syria": "SYR",
+  "Tanzania": "TZA",
+  "United Kingdom": "GBR",
+  "Venezuela": "VEN",
+  "North Korea": "PRK",
+  "Palestine": "PSE"
+ },
+ "territories": {
+  "PRI": "プエルトリコ",
+  "PYF": "フランス領ポリネシア",
+  "NCL": "ニューカレドニア",
+  "CUW": "キュラソー",
+  "GUM": "グアム",
+  "ABW": "アルバ",
+  "CYM": "ケイマン諸島",
+  "VIR": "バージン諸島",
+  "IMN": "マン島",
+  "BMU": "バミューダ諸島",
+  "GRL": "グリーンランド",
+  "FRO": "フェロー諸島",
+  "TCA": "タークス・カイコス諸島"
+ },
+ "claims": [
+  {
+   "area": "northern_territories",
+   "administered_by": "RUS",
+   "view_holder": "JPN",
+   "label": "北方領土",
+   "aliases": [
+    "択捉島",
+    "国後島",
+    "色丹島",
+    "歯舞群島",
+    "Southern Kurils",
+    "Южные Курилы"
+   ],
+   "wording": "我が国固有の領土 (under illegal occupation)",
+   "source": "R54 Part 3 (MOFA; Russia's position secondary, TASS)"
+  },
+  {
+   "area": "takeshima",
+   "administered_by": "KOR",
+   "view_holder": "JPN",
+   "label": "竹島",
+   "aliases": [
+    "Dokdo",
+    "독도"
+   ],
+   "wording": "我が国固有の領土 (occupied by the ROK with no basis in international law)",
+   "source": "R54 Part 3 (MOFA; ROK)"
+  },
+  {
+   "area": "senkaku",
+   "administered_by": "JPN",
+   "view_holder": "JPN",
+   "label": "尖閣諸島",
+   "aliases": [
+    "Diaoyu",
+    "Diaoyutai",
+    "钓鱼岛",
+    "釣魚臺"
+   ],
+   "wording": "inherent territory; no issue of territorial sovereignty",
+   "source": "R54 Part 3 (MOFA; PRC white paper 2012; ROC)"
+  }
+ ],
+ "sea_names": {
+  "japan_sea": {
+   "label": "日本海",
+   "aliases": [
+    "東海",
+    "East Sea",
+    "동해"
+   ],
+   "source": "R54 Part 3 (MOFA)"
+  }
+ },
+ "territory_sources": {
+  "PRI": "MOFA (R55: f_anzen_usa_safety.md:136;721)",
+  "PYF": "MOFA (R55: f_anzen_sm_tahiti.md:85;88;143; f_anzen_riskmap.md:157)",
+  "NCL": "MOFA (R55: f_france_data.md:336; f_anzen_riskmap.md:167; f_anzen_sm_newcal.md:85)",
+  "CUW": "general usage, not MOFA (R55: NOT FOUND on MOFA pages)",
+  "GUM": "MOFA (R55: f_anzen_riskmap.md:191; f_anzen_sm_guam.md:67;260; f_zaigai_usa.md:97; f_usa_data.md:517)",
+  "ABW": "general usage, not MOFA (R55: NOT FOUND on MOFA pages)",
+  "CYM": "MOFA (R55: f_anzen_sm_uk.md:332; f_press_cym.md:60;64; f_press_idx_23_2.md:411)",
+  "VIR": "MOFA (R55: f_anzen_usa_safety.md:136;721)",
+  "IMN": "MOFA (R55: f_press_im.md:60;64; f_press_2306_idx.md:213)",
+  "BMU": "MOFA (R55: f_anzen_sm_uk.md:340; f_press_idx_22_2.md:339)",
+  "GRL": "MOFA (R55: f_denmark_data.md:649;731)",
+  "FRO": "MOFA (R55: f_denmark_data.md:649;651)",
+  "TCA": "general usage, not MOFA (R55: NOT FOUND on MOFA pages)"
+ }
+}

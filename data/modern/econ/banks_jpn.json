@@ -1,0 +1,48 @@
+{
+ "id": "banks_JPN",
+ "kind": "finance",
+ "jurisdiction": "JPN",
+ "note": "BLUEPRINT_v2 E5: the aggregate banking group and the central bank. The policy rate follows the published path to the start (S: BoJ 0.25% from 2024-07-31, held on 2024-12-19); after the start the rule sets it (S4'). Spread by credit score: the new-loan average rate 2024-10 0.887% (S: BoJ 貸出約定平均金利 新規/総合/国内銀行, published 2024-12-02) gives ~0.6 pt over the policy rate for a good score; worse scores T. Term 60 months (T). Working floor one month of fixed costs (T).",
+ "stocks": {
+  "cash_bn_jpy": 10000.0,
+  "write_offs": 0.0
+ },
+ "stocks_source": {
+  "cash_bn_jpy": "T: the group's own funds available to lend before central-bank funding"
+ },
+ "policy_rate": {
+  "value": 0.0025,
+  "label": "S",
+  "source": "BoJ 2024-07-31 decision"
+ },
+ "policy_path": [
+  [
+   0,
+   0.0025
+  ]
+ ],
+ "policy_path_source": "BoJ Statement on Monetary Policy 2024-12-19: uncollateralized overnight call rate to remain at around 0.25% (8-1 vote); month 0 = January 2025",
+ "spread_by_score": [
+  [
+   0.0,
+   0.03
+  ],
+  [
+   0.5,
+   0.015
+  ],
+  [
+   0.8,
+   0.00637
+  ]
+ ],
+ "spread_source": "BoJ 貸出約定平均金利 新規/総合/国内銀行 (IR04'DLLR2CIDBNL1) 2024-10 0.887% (published 2024-12-02) less the 0.25% policy rate = 0.637 pt for score 0.8+; lower bands T",
+ "term_months": {
+  "value": 60,
+  "label": "T"
+ },
+ "floor_months": {
+  "value": 1.0,
+  "label": "T"
+ }
+}

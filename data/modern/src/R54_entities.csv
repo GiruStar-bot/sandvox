@@ -1,0 +1,255 @@
+entity_id,name,iso3,m49,type,administered_by,macro,source,note
+AFG,Afghanistan,AFG,004,UN member,self,ROW,b_un_members.md:118; b_m49.md:2234,
+ALB,Albania,ALB,008,UN member,self,ROW,b_un_members.md:122; b_m49.md:2886,
+DZA,Algeria,DZA,012,UN member,self,ROW,b_un_members.md:126; b_m49.md:197,
+AND,Andorra,AND,020,UN member,self,ROW,b_un_members.md:130; b_m49.md:2898,
+AGO,Angola,AGO,024,UN member,self,ROW,b_un_members.md:134; b_m49.md:621,
+ATG,Antigua and Barbuda,ATG,028,UN member,self,ROW,b_un_members.md:138; b_m49.md:1104,
+ARG,Argentina,ARG,032,UN member,self,ROW,b_un_members.md:142; b_m49.md:1639,
+ARM,Armenia,ARM,051,UN member,self,ROW,b_un_members.md:146; b_m49.md:2351,
+AUS,Australia,AUS,036,UN member,self,ROW,b_un_members.md:150; b_m49.md:3188,absorbs CXR CCK NFK HMD
+AUT,Austria,AUT,040,UN member,self,EU27,b_un_members.md:154; b_m49.md:3080; b_eu.md:23,
+AZE,Azerbaijan,AZE,031,UN member,self,ROW,b_un_members.md:158; b_m49.md:2365,
+BHS,Bahamas,BHS,044,UN member,self,ROW,b_un_members.md:166; b_m49.md:1136,
+BHR,Bahrain,BHR,048,UN member,self,ROW,b_un_members.md:170; b_m49.md:2379,
+BGD,Bangladesh,BGD,050,UN member,self,ROW,b_un_members.md:174; b_m49.md:2248,
+BRB,Barbados,BRB,052,UN member,self,ROW,b_un_members.md:178; b_m49.md:1152,
+BLR,Belarus,BLR,112,UN member,self,ROW,b_un_members.md:182; b_m49.md:2572,
+BEL,Belgium,BEL,056,UN member,self,EU27,b_un_members.md:186; b_m49.md:3092; b_eu.md:27,
+BLZ,Belize,BLZ,084,UN member,self,ROW,b_un_members.md:190; b_m49.md:1525,
+BEN,Benin,BEN,204,UN member,self,ROW,b_un_members.md:194; b_m49.md:831,
+BTN,Bhutan,BTN,064,UN member,self,ROW,b_un_members.md:198; b_m49.md:2261,
+BOL,Bolivia (Plurinational State of),BOL,068,UN member,self,ROW,b_un_members.md:202; b_m49.md:1653,
+BIH,Bosnia and Herzegovina,BIH,070,UN member,self,ROW,b_un_members.md:206; b_m49.md:2910,
+BWA,Botswana,BWA,072,UN member,self,ROW,b_un_members.md:210; b_m49.md:755,
+BRA,Brazil,BRA,076,UN member,self,ROW,b_un_members.md:214; b_m49.md:1683,
+BRN,Brunei Darussalam,BRN,096,UN member,self,ROW,b_un_members.md:218; b_m49.md:2093,
+BGR,Bulgaria,BGR,100,UN member,self,EU27,b_un_members.md:222; b_m49.md:2584; b_eu.md:31,
+BFA,Burkina Faso,BFA,854,UN member,self,ROW,b_un_members.md:226; b_m49.md:846,
+BDI,Burundi,BDI,108,UN member,self,ROW,b_un_members.md:230; b_m49.md:298,
+CPV,Cabo Verde,CPV,132,UN member,self,ROW,b_un_members.md:238; b_m49.md:862,
+KHM,Cambodia,KHM,116,UN member,self,ROW,b_un_members.md:242; b_m49.md:2105,
+CMR,Cameroon,CMR,120,UN member,self,ROW,b_un_members.md:246; b_m49.md:636,
+CAN,Canada,CAN,124,UN member,self,ROW,b_un_members.md:250; b_m49.md:1881,
+CAF,Central African Republic,CAF,140,UN member,self,ROW,b_un_members.md:254; b_m49.md:650,
+TCD,Chad,TCD,148,UN member,self,ROW,b_un_members.md:258; b_m49.md:666,
+CHL,Chile,CHL,152,UN member,self,ROW,b_un_members.md:262; b_m49.md:1697,
+CHN,China,CHN,156,UN member,self,CN,b_un_members.md:266; b_m49.md:2007,"mainland only: excludes HKG, MAC, TWN"
+COL,Colombia,COL,170,UN member,self,ROW,b_un_members.md:270; b_m49.md:1711,
+COM,Comoros,COM,174,UN member,self,ROW,b_un_members.md:274; b_m49.md:314,
+COG,Congo,COG,178,UN member,self,ROW,b_un_members.md:278; b_m49.md:682,
+CRI,Costa Rica,CRI,188,UN member,self,ROW,b_un_members.md:282; b_m49.md:1541,
+CIV,Côte d’Ivoire,CIV,384,UN member,self,ROW,b_un_members.md:286; b_m49.md:878,
+HRV,Croatia,HRV,191,UN member,self,EU27,b_un_members.md:290; b_m49.md:2922; b_eu.md:35,
+CUB,Cuba,CUB,192,UN member,self,ROW,b_un_members.md:294; b_m49.md:1214,
+CYP,Cyprus,CYP,196,UN member,self,EU27,b_un_members.md:298; b_m49.md:2391; b_eu.md:39,entity = area it administers; north is XNC
+CZE,Czechia,CZE,203,UN member,self,EU27,b_un_members.md:302; b_m49.md:2596; b_eu.md:43,
+PRK,Democratic People's Republic of Korea,PRK,408,UN member,self,ROW,b_un_members.md:310; b_m49.md:2043,
+COD,Democratic Republic of the Congo,COD,180,UN member,self,ROW,b_un_members.md:314; b_m49.md:696,
+DNK,Denmark,DNK,208,UN member,self,EU27,b_un_members.md:318; b_m49.md:2706; b_eu.md:47,GRL FRO separate
+DJI,Djibouti,DJI,262,UN member,self,ROW,b_un_members.md:322; b_m49.md:331,
+DMA,Dominica,DMA,212,UN member,self,ROW,b_un_members.md:326; b_m49.md:1246,
+DOM,Dominican Republic,DOM,214,UN member,self,ROW,b_un_members.md:330; b_m49.md:1262,
+ECU,Ecuador,ECU,218,UN member,self,ROW,b_un_members.md:338; b_m49.md:1725,
+EGY,Egypt,EGY,818,UN member,self,ROW,b_un_members.md:342; b_m49.md:209,
+SLV,El Salvador,SLV,222,UN member,self,ROW,b_un_members.md:346; b_m49.md:1555,
+GNQ,Equatorial Guinea,GNQ,226,UN member,self,ROW,b_un_members.md:350; b_m49.md:711,
+ERI,Eritrea,ERI,232,UN member,self,ROW,b_un_members.md:354; b_m49.md:346,
+EST,Estonia,EST,233,UN member,self,EU27,b_un_members.md:358; b_m49.md:2718; b_eu.md:51,
+SWZ,Eswatini,SWZ,748,UN member,self,ROW,b_un_members.md:362; b_m49.md:771,
+ETH,Ethiopia,ETH,231,UN member,self,ROW,b_un_members.md:366; b_m49.md:361,
+FJI,Fiji,FJI,242,UN member,self,ROW,b_un_members.md:374; b_m49.md:3260,
+FIN,Finland,FIN,246,UN member,self,EU27,b_un_members.md:378; b_m49.md:2742; b_eu.md:55,absorbs ALA
+FRA,France,FRA,250,UN member,self,EU27,b_un_members.md:382; b_m49.md:3104; b_eu.md:59,absorbs REU GLP MTQ GUF MYT MAF BLM SPM WLF ATF; PYF NCL separate
+GAB,Gabon,GAB,266,UN member,self,ROW,b_un_members.md:390; b_m49.md:725,
+GMB,Gambia,GMB,270,UN member,self,ROW,b_un_members.md:394; b_m49.md:892,
+GEO,Georgia,GEO,268,UN member,self,ROW,b_un_members.md:398; b_m49.md:2403,"entity = area it administers; XAB, XSO separate"
+DEU,Germany,DEU,276,UN member,self,EU27,b_un_members.md:402; b_m49.md:3116; b_eu.md:63,
+GHA,Ghana,GHA,288,UN member,self,ROW,b_un_members.md:406; b_m49.md:907,
+GRC,Greece,GRC,300,UN member,self,EU27,b_un_members.md:410; b_m49.md:2946; b_eu.md:67,
+GRD,Grenada,GRD,308,UN member,self,ROW,b_un_members.md:414; b_m49.md:1278,
+GTM,Guatemala,GTM,320,UN member,self,ROW,b_un_members.md:418; b_m49.md:1569,
+GIN,Guinea,GIN,324,UN member,self,ROW,b_un_members.md:422; b_m49.md:921,
+GNB,Guinea-Bissau,GNB,624,UN member,self,ROW,b_un_members.md:426; b_m49.md:936,
+GUY,Guyana,GUY,328,UN member,self,ROW,b_un_members.md:430; b_m49.md:1767,
+HTI,Haiti,HTI,332,UN member,self,ROW,b_un_members.md:438; b_m49.md:1308,
+HND,Honduras,HND,340,UN member,self,ROW,b_un_members.md:442; b_m49.md:1583,
+HUN,Hungary,HUN,348,UN member,self,EU27,b_un_members.md:446; b_m49.md:2608; b_eu.md:71,
+ISL,Iceland,ISL,352,UN member,self,ROW,b_un_members.md:454; b_m49.md:2766,
+IND,India,IND,356,UN member,self,ROW,b_un_members.md:458; b_m49.md:2275,
+IDN,Indonesia,IDN,360,UN member,self,ROW,b_un_members.md:462; b_m49.md:2118,
+IRN,Iran (Islamic Republic of),IRN,364,UN member,self,ROW,b_un_members.md:466; b_m49.md:2287,
+IRQ,Iraq,IRQ,368,UN member,self,ROW,b_un_members.md:470; b_m49.md:2415,
+IRL,Ireland,IRL,372,UN member,self,EU27,b_un_members.md:474; b_m49.md:2778; b_eu.md:75,
+ISR,Israel,ISR,376,UN member,self,ROW,b_un_members.md:478; b_m49.md:2427,
+ITA,Italy,ITA,380,UN member,self,EU27,b_un_members.md:482; b_m49.md:2970; b_eu.md:79,
+JAM,Jamaica,JAM,388,UN member,self,ROW,b_un_members.md:490; b_m49.md:1325,
+JPN,Japan,JPN,392,UN member,self,JP,b_un_members.md:494; b_m49.md:2055,
+JOR,Jordan,JOR,400,UN member,self,ROW,b_un_members.md:498; b_m49.md:2439,
+KAZ,Kazakhstan,KAZ,398,UN member,self,ROW,b_un_members.md:506; b_m49.md:1937,
+KEN,Kenya,KEN,404,UN member,self,ROW,b_un_members.md:510; b_m49.md:391,
+KIR,Kiribati,KIR,296,UN member,self,ROW,b_un_members.md:514; b_m49.md:3345,
+KWT,Kuwait,KWT,414,UN member,self,ROW,b_un_members.md:518; b_m49.md:2451,
+KGZ,Kyrgyzstan,KGZ,417,UN member,self,ROW,b_un_members.md:522; b_m49.md:1951,
+LAO,Lao People's Democratic Republic,LAO,418,UN member,self,ROW,b_un_members.md:530; b_m49.md:2130,
+LVA,Latvia,LVA,428,UN member,self,EU27,b_un_members.md:534; b_m49.md:2814; b_eu.md:83,
+LBN,Lebanon,LBN,422,UN member,self,ROW,b_un_members.md:538; b_m49.md:2463,
+LSO,Lesotho,LSO,426,UN member,self,ROW,b_un_members.md:542; b_m49.md:787,
+LBR,Liberia,LBR,430,UN member,self,ROW,b_un_members.md:546; b_m49.md:953,
+LBY,Libya,LBY,434,UN member,self,ROW,b_un_members.md:550; b_m49.md:221,
+LIE,Liechtenstein,LIE,438,UN member,self,ROW,b_un_members.md:554; b_m49.md:3128,
+LTU,Lithuania,LTU,440,UN member,self,EU27,b_un_members.md:558; b_m49.md:2826; b_eu.md:87,
+LUX,Luxembourg,LUX,442,UN member,self,EU27,b_un_members.md:562; b_m49.md:3140; b_eu.md:91,
+MDG,Madagascar,MDG,450,UN member,self,ROW,b_un_members.md:570; b_m49.md:405,
+MWI,Malawi,MWI,454,UN member,self,ROW,b_un_members.md:574; b_m49.md:420,
+MYS,Malaysia,MYS,458,UN member,self,ROW,b_un_members.md:578; b_m49.md:2144,
+MDV,Maldives,MDV,462,UN member,self,ROW,b_un_members.md:582; b_m49.md:2299,
+MLI,Mali,MLI,466,UN member,self,ROW,b_un_members.md:586; b_m49.md:968,
+MLT,Malta,MLT,470,UN member,self,EU27,b_un_members.md:590; b_m49.md:2982; b_eu.md:95,
+MHL,Marshall Islands,MHL,584,UN member,self,ROW,b_un_members.md:594; b_m49.md:3360,
+MRT,Mauritania,MRT,478,UN member,self,ROW,b_un_members.md:598; b_m49.md:984,
+MUS,Mauritius,MUS,480,UN member,self,ROW,b_un_members.md:602; b_m49.md:436,
+MEX,Mexico,MEX,484,UN member,self,ROW,b_un_members.md:606; b_m49.md:1597,
+FSM,Micronesia (Federated States of),FSM,583,UN member,self,ROW,b_un_members.md:610; b_m49.md:3374,
+MCO,Monaco,MCO,492,UN member,self,ROW,b_un_members.md:614; b_m49.md:3152,
+MNG,Mongolia,MNG,496,UN member,self,ROW,b_un_members.md:618; b_m49.md:2067,
+MNE,Montenegro,MNE,499,UN member,self,ROW,b_un_members.md:622; b_m49.md:2994,
+MAR,Morocco,MAR,504,UN member,self,ROW,b_un_members.md:626; b_m49.md:233,administers most of ESH (kept as own row ESH)
+MOZ,Mozambique,MOZ,508,UN member,self,ROW,b_un_members.md:630; b_m49.md:466,
+MMR,Myanmar,MMR,104,UN member,self,ROW,b_un_members.md:634; b_m49.md:2156,
+NAM,Namibia,NAM,516,UN member,self,ROW,b_un_members.md:642; b_m49.md:803,
+NRU,Naoero,NRU,520,UN member,self,ROW,b_un_members.md:646; b_m49.md:3388,
+NPL,Nepal,NPL,524,UN member,self,ROW,b_un_members.md:650; b_m49.md:2313,
+NLD,Netherlands (Kingdom of the),NLD,528,UN member,self,EU27,b_un_members.md:654; b_m49.md:3164; b_eu.md:99,absorbs BES SXM; ABW CUW separate
+NZL,New Zealand,NZL,554,UN member,self,ROW,b_un_members.md:658; b_m49.md:3236,"COK, NIU separate; absorbs TKL"
+NIC,Nicaragua,NIC,558,UN member,self,ROW,b_un_members.md:662; b_m49.md:1611,
+NER,Niger,NER,562,UN member,self,ROW,b_un_members.md:666; b_m49.md:999,
+NGA,Nigeria,NGA,566,UN member,self,ROW,b_un_members.md:670; b_m49.md:1015,
+MKD,North Macedonia,MKD,807,UN member,self,ROW,b_un_members.md:674; b_m49.md:3006,
+NOR,Norway,NOR,578,UN member,self,ROW,b_un_members.md:678; b_m49.md:2838,absorbs SJM BVT
+OMN,Oman,OMN,512,UN member,self,ROW,b_un_members.md:686; b_m49.md:2475,
+PAK,Pakistan,PAK,586,UN member,self,ROW,b_un_members.md:694; b_m49.md:2327,
+PLW,Palau,PLW,585,UN member,self,ROW,b_un_members.md:698; b_m49.md:3416,
+PAN,Panama,PAN,591,UN member,self,ROW,b_un_members.md:702; b_m49.md:1625,
+PNG,Papua New Guinea,PNG,598,UN member,self,ROW,b_un_members.md:706; b_m49.md:3288,
+PRY,Paraguay,PRY,600,UN member,self,ROW,b_un_members.md:710; b_m49.md:1783,
+PER,Peru,PER,604,UN member,self,ROW,b_un_members.md:714; b_m49.md:1799,
+PHL,Philippines,PHL,608,UN member,self,ROW,b_un_members.md:718; b_m49.md:2169,
+POL,Poland,POL,616,UN member,self,EU27,b_un_members.md:722; b_m49.md:2620; b_eu2.md:23,
+PRT,Portugal,PRT,620,UN member,self,EU27,b_un_members.md:726; b_m49.md:3020; b_eu2.md:27,
+QAT,Qatar,QAT,634,UN member,self,ROW,b_un_members.md:734; b_m49.md:2487,
+KOR,Republic of Korea,KOR,410,UN member,self,KR,b_un_members.md:742; b_m49.md:2081,
+MDA,Republic of Moldova,MDA,498,UN member,self,ROW,b_un_members.md:746; b_m49.md:2632,entity = area it administers; XTR separate
+ROU,Romania,ROU,642,UN member,self,EU27,b_un_members.md:750; b_m49.md:2646; b_eu2.md:31,
+RUS,Russian Federation,RUS,643,UN member,self,ROW,b_un_members.md:754; b_m49.md:2658,
+RWA,Rwanda,RWA,646,UN member,self,ROW,b_un_members.md:758; b_m49.md:495,
+KNA,Saint Kitts and Nevis,KNA,659,UN member,self,ROW,b_un_members.md:766; b_m49.md:1401,
+LCA,Saint Lucia,LCA,662,UN member,self,ROW,b_un_members.md:770; b_m49.md:1417,
+VCT,Saint Vincent and the Grenadines,VCT,670,UN member,self,ROW,b_un_members.md:774; b_m49.md:1447,
+WSM,Samoa,WSM,882,UN member,self,ROW,b_un_members.md:778; b_m49.md:3510,
+SMR,San Marino,SMR,674,UN member,self,ROW,b_un_members.md:782; b_m49.md:3032,
+STP,Sao Tome and Principe,STP,678,UN member,self,ROW,b_un_members.md:786; b_m49.md:739,
+SAU,Saudi Arabia,SAU,682,UN member,self,ROW,b_un_members.md:790; b_m49.md:2499,
+SEN,Senegal,SEN,686,UN member,self,ROW,b_un_members.md:794; b_m49.md:1043,
+SRB,Serbia,SRB,688,UN member,self,ROW,b_un_members.md:798; b_m49.md:3044,XKX separate
+SYC,Seychelles,SYC,690,UN member,self,ROW,b_un_members.md:802; b_m49.md:511,
+SLE,Sierra Leone,SLE,694,UN member,self,ROW,b_un_members.md:806; b_m49.md:1058,
+SGP,Singapore,SGP,702,UN member,self,ROW,b_un_members.md:810; b_m49.md:2181,
+SVK,Slovakia,SVK,703,UN member,self,EU27,b_un_members.md:814; b_m49.md:2670; b_eu2.md:35,
+SVN,Slovenia,SVN,705,UN member,self,EU27,b_un_members.md:818; b_m49.md:3056; b_eu2.md:39,
+SLB,Solomon Islands,SLB,090,UN member,self,ROW,b_un_members.md:822; b_m49.md:3302,
+SOM,Somalia,SOM,706,UN member,self,ROW,b_un_members.md:826; b_m49.md:527,entity = area it administers; XSL separate
+ZAF,South Africa,ZAF,710,UN member,self,ROW,b_un_members.md:830; b_m49.md:817,
+SSD,South Sudan,SSD,728,UN member,self,ROW,b_un_members.md:834; b_m49.md:542,
+ESP,Spain,ESP,724,UN member,self,EU27,b_un_members.md:838; b_m49.md:3068; b_eu2.md:43,
+LKA,Sri Lanka,LKA,144,UN member,self,ROW,b_un_members.md:842; b_m49.md:2339,
+SDN,Sudan,SDN,729,UN member,self,ROW,b_un_members.md:846; b_m49.md:245,
+SUR,Suriname,SUR,740,UN member,self,ROW,b_un_members.md:850; b_m49.md:1827,
+SWE,Sweden,SWE,752,UN member,self,EU27,b_un_members.md:854; b_m49.md:2862; b_eu2.md:47,
+CHE,Switzerland,CHE,756,UN member,self,ROW,b_un_members.md:858; b_m49.md:3176,
+SYR,Syrian Arab Republic,SYR,760,UN member,self,ROW,b_un_members.md:862; b_m49.md:2523,
+TJK,Tajikistan,TJK,762,UN member,self,ROW,b_un_members.md:870; b_m49.md:1965,
+THA,Thailand,THA,764,UN member,self,ROW,b_un_members.md:874; b_m49.md:2195,
+TLS,Timor-Leste,TLS,626,UN member,self,ROW,b_un_members.md:878; b_m49.md:2207,
+TGO,Togo,TGO,768,UN member,self,ROW,b_un_members.md:882; b_m49.md:1073,
+TON,Tonga,TON,776,UN member,self,ROW,b_un_members.md:886; b_m49.md:3536,
+TTO,Trinidad and Tobago,TTO,780,UN member,self,ROW,b_un_members.md:890; b_m49.md:1479,
+TUN,Tunisia,TUN,788,UN member,self,ROW,b_un_members.md:894; b_m49.md:258,
+TUR,Türkiye,TUR,792,UN member,self,ROW,b_un_members.md:898; b_m49.md:2535,
+TKM,Turkmenistan,TKM,795,UN member,self,ROW,b_un_members.md:902; b_m49.md:1979,
+TUV,Tuvalu,TUV,798,UN member,self,ROW,b_un_members.md:906; b_m49.md:3550,
+UGA,Uganda,UGA,800,UN member,self,ROW,b_un_members.md:914; b_m49.md:558,
+UKR,Ukraine,UKR,804,UN member,self,ROW,b_un_members.md:918; b_m49.md:2682,
+ARE,United Arab Emirates,ARE,784,UN member,self,ROW,b_un_members.md:922; b_m49.md:2547,
+GBR,United Kingdom of Great Britain and Northern Ireland,GBR,826,UN member,self,ROW,b_un_members.md:926; b_m49.md:2874,absorbs JEY GGY GIB VGB AIA MSR FLK SHN PCN IOT SGS; CYM BMU TCA IMN separate
+TZA,United Republic of Tanzania,TZA,834,UN member,self,ROW,b_un_members.md:930; b_m49.md:574,
+USA,United States of America,USA,840,UN member,self,US,b_un_members.md:934; b_m49.md:1917,"absorbs ASM, MNP, UMI; PRI GUM VIR separate"
+URY,Uruguay,URY,858,UN member,self,ROW,b_un_members.md:938; b_m49.md:1843,
+UZB,Uzbekistan,UZB,860,UN member,self,ROW,b_un_members.md:942; b_m49.md:1993,
+VUT,Vanuatu,VUT,548,UN member,self,ROW,b_un_members.md:950; b_m49.md:3317,
+VEN,Venezuela (Bolivarian Republic of),VEN,862,UN member,self,ROW,b_un_members.md:954; b_m49.md:1857,
+VNM,Viet Nam,VNM,704,UN member,self,ROW,b_un_members.md:958; b_m49.md:2222,
+YEM,Yemen,YEM,887,UN member,self,ROW,b_un_members.md:966; b_m49.md:2559,
+ZMB,Zambia,ZMB,894,UN member,self,ROW,b_un_members.md:974; b_m49.md:589,
+ZWE,Zimbabwe,ZWE,716,UN member,self,ROW,b_un_members.md:978; b_m49.md:605,
+VAT,Holy See,VAT,336,UN observer (non-member state),self,ROW,b_m49.md:2958; b_iso3166_a3.md:620; b_wpp_sources.txt:4780,
+PSE,State of Palestine,PSE,275,UN observer (non-member state),"self (Palestinian authorities; control of parts is with Israel, see b_limited.md:288)",ROW,b_m49.md:2511; b_iso3166_a3.md:516; b_limited.md:288; b_wpp_sources.txt:9908; WB 'West Bank and Gaza' b_wb_class.md:284,
+TWN,Taiwan,TWN,,other separately administered region,self,TW,b_iso3166_a3.md:604; b_iso3166.md:469; b_wpp_sources.txt:2445; b_wb_class.md:83; b_limited.md:408,no M49 code (R53 notes_e.md:67)
+HKG,Hong Kong,HKG,344,other separately administered region,self (SAR of China),ROW,b_m49.md:2019; b_iso3166_a3.md:340; b_wpp_sources.txt:2354; b_wb_class.md:93,
+MAC,Macao,MAC,446,other separately administered region,self (SAR of China),ROW,b_m49.md:2031; b_iso3166_a3.md:418; b_wpp_sources.txt:2399; b_wb_class.md:70,
+XKX,Kosovo,"XKX (user-assigned, not ISO)",,other separately administered region,self,ROW,b_kosovo_code.md:78; b_iso3166.md:1286; b_wpp_sources.txt:5697; b_wb_class.md:155; b_limited.md:342,"XKX is a user-assigned code (EU usage), not an ISO code; no M49 code"
+COK,Cook Islands,COK,184,other separately administered region,self (free association with NZL),ROW,b_m49.md:3456; b_iso3166_a3.md:244; b_wpp_sources.txt:2641; b_limited.md:332,not in WB list
+NIU,Niue,NIU,570,other separately administered region,self (free association with NZL),ROW,b_m49.md:3484; b_iso3166_a3.md:478; b_wpp_sources.txt:7735; b_limited.md:350,not in WB list
+ESH,Western Sahara,ESH,732,other separately administered region (non-self-governing territory; administration divided),mostly MAR; a smaller part SADR/Polisario (flag admin_split=MAR_major),ROW,b_m49.md:270; b_iso3166_a3.md:284; b_wpp_sources.txt:11484; b_limited.md:386-387,not in WB list; see Western Sahara options
+XNC,Northern Cyprus,"XNC (MADE code, X-range user-assigned per b_iso3166.md:1275)",,de-facto entity,self (claimed by CYP; in standard datasets inside CYP),ROW,"b_limited.md:372,376; b_pop.md:1080; code: made code",
+XAB,Abkhazia,"XAB (MADE code, X-range user-assigned per b_iso3166.md:1275)",,de-facto entity,self (claimed by GEO; in standard datasets inside GEO),ROW,"b_limited.md:364,366; b_pop.md:1120; code: made code",
+XSO,South Ossetia,"XSO (MADE code, X-range user-assigned per b_iso3166.md:1275)",,de-facto entity,self (claimed by GEO; in standard datasets inside GEO),ROW,"b_limited.md:400,402; b_pop.md:1212; code: made code",
+XTR,Transnistria,"XTR (MADE code, X-range user-assigned per b_iso3166.md:1275)",,de-facto entity,self (claimed by MDA; in standard datasets inside MDA),ROW,"b_limited.md:426,430; b_pop.md:1100; code: made code",
+XSL,Somaliland,"XSL (MADE code, X-range user-assigned per b_iso3166.md:1275)",,de-facto entity,self (claimed by SOM; in standard datasets inside SOM),ROW,"b_limited.md:392,394; code: made code",
+PRI,Puerto Rico,PRI,630,other separately administered region (dependent territory),self (dependency of USA),US,"b_m49.md:1371; b_wpp_sources.txt:8429; b_wb_class.md:211; b_pop.md:927 (pop 3,184,835)",
+PYF,French Polynesia,PYF,258,other separately administered region (dependent territory),self (dependency of FRA),ROW,"b_m49.md:3470; b_wpp_sources.txt:3954; b_wb_class.md:85; b_pop.md:1108 (pop 279,500)",
+NCL,New Caledonia,NCL,540,other separately administered region (dependent territory),self (dependency of FRA),ROW,"b_m49.md:3274; b_wpp_sources.txt:7502; b_wb_class.md:98; b_pop.md:1112 (pop 264,596)",
+CUW,Curaçao,CUW,531,other separately administered region (dependent territory),self (dependency of NLD),ROW,"b_m49.md:1230; b_wpp_sources.txt:2887; b_wb_class.md:673; b_pop.md:1136 (pop 158,006)",
+GUM,Guam,GUM,316,other separately administered region (dependent territory),self (dependency of USA),US,"b_m49.md:3331; b_wpp_sources.txt:4458; b_wb_class.md:89; b_pop.md:1140 (pop 153,836)",
+ABW,Aruba,ABW,533,other separately administered region (dependent territory),self (dependency of NLD),ROW,"b_m49.md:1120; b_wpp_sources.txt:751; b_wb_class.md:209; b_pop.md:1152 (pop 110,625)",
+CYM,Cayman Islands,CYM,136,other separately administered region (dependent territory),self (dependency of GBR),ROW,"b_m49.md:1200; b_wpp_sources.txt:2100; b_wb_class.md:237; b_pop.md:1180 (pop 88,833)",
+VIR,United States Virgin Islands,VIR,850,other separately administered region (dependent territory),self (dependency of USA),US,"b_m49.md:1509; b_wpp_sources.txt:11127; b_wb_class.md:255; b_pop.md:1184 (pop 87,146)",
+IMN,Isle of Man,IMN,833,other separately administered region (dependent territory),self (dependency of GBR),ROW,"b_m49.md:2790; b_wpp_sources.txt:5201; b_wb_class.md:141; b_pop.md:1188 (pop 84,975)",
+BMU,Bermuda,BMU,060,other separately administered region (dependent territory),self (dependency of GBR),ROW,"b_m49.md:1869; b_wpp_sources.txt:1298; b_wb_class.md:297; b_pop.md:1204 (pop 64,055)",
+GRL,Greenland,GRL,304,other separately administered region (dependent territory),self (dependency of DNK),ROW,"b_m49.md:1893; b_wpp_sources.txt:4340; b_wb_class.md:125; b_pop.md:1208 (pop 56,945)",
+FRO,Faroe Islands,FRO,234,other separately administered region (dependent territory),self (dependency of DNK),ROW,"b_m49.md:2730; b_wpp_sources.txt:3753; b_wb_class.md:693; b_pop.md:1216 (pop 55,640)",
+TCA,Turks and Caicos Islands,TCA,796,other separately administered region (dependent territory),self (dependency of GBR),ROW,"b_m49.md:1495; b_wpp_sources.txt:10722; b_wb_class.md:243; b_pop.md:1220 (pop 52,299)",
+USA,American Samoa,ASM,016,merged territory (not an entity),USA,US,b_m49.md:3442; b_wpp_sources.txt:460; b_wb_class.md:61; b_pop.md:1228,"WPP+WB but pop 49,710 < 50,000 (borderline)"
+USA,Northern Mariana Islands,MNP,580,merged territory (not an entity),USA,US,b_m49.md:3402; b_wpp_sources.txt:7823; b_wb_class.md:106; b_pop.md:1232,"WPP+WB but pop 47,329 < 50,000"
+NLD,Sint Maarten (Dutch part),SXM,534,merged territory (not an entity),NLD,EU27,b_m49.md:1463; b_wpp_sources.txt:9476; b_wb_class.md:215; b_pop.md:1240,"WPP+WB but pop 41,349"
+GBR,British Virgin Islands,VGB,092,merged territory (not an entity),GBR,ROW,b_m49.md:1184; b_wpp_sources.txt:1646; b_wb_class.md:233; b_pop.md:1248,"WPP+WB but pop 39,471"
+GBR,Gibraltar,GIB,292,merged territory (not an entity),GBR,ROW,b_m49.md:2934; b_wpp_sources.txt:4255; b_wb_class.md:117; b_pop.md:1256,"WPP+WB but pop 38,196"
+FRA,Saint Martin (French Part),MAF,663,merged territory (not an entity),FRA,EU27,b_m49.md:1433; b_wpp_sources.txt:8939; b_wb_class.md:227; b_pop.md:1264,"WPP+WB but pop 31,496"
+GBR,Jersey,JEY,832,merged territory (not an entity),GBR,ROW,b_m49.md:2802; b_wpp_sources.txt:5419; b_wb_class.md:657; b_pop.md:1164,"WPP separate; WB only as combined ""Channel Islands"" (option: one CHI entity, pop 104,540+64,781)"
+GBR,Guernsey,GGY,831,merged territory (not an entity),GBR,ROW,b_m49.md:2754; b_wpp_sources.txt:4547; b_wb_class.md:657; b_pop.md:1200,"WPP separate; WB only as combined ""Channel Islands"""
+FRA,Réunion,REU,638,merged territory (not an entity),FRA,EU27,b_m49.md:481; b_wpp_sources.txt:8609,"WPP only (not in WB list); French overseas department, EU territory"
+FRA,Guadeloupe,GLP,312,merged territory (not an entity),FRA,EU27,b_m49.md:1294; b_wpp_sources.txt:4421,WPP only; overseas department
+FRA,Martinique,MTQ,474,merged territory (not an entity),FRA,EU27,b_m49.md:1341; b_wpp_sources.txt:6645,WPP only; overseas department
+FRA,French Guiana,GUF,254,merged territory (not an entity),FRA,EU27,b_m49.md:1753; b_wpp_sources.txt:3905,WPP only; overseas department
+FRA,Mayotte,MYT,175,merged territory (not an entity),FRA,EU27,b_m49.md:452; b_wpp_sources.txt:6790,WPP only; overseas department
+FRA,Saint Barthélemy,BLM,652,merged territory (not an entity),FRA,EU27,b_m49.md:1387; b_wpp_sources.txt:8778; b_pop.md:1292,"WPP only; pop 10,562"
+FRA,Saint Pierre and Miquelon,SPM,666,merged territory (not an entity),FRA,EU27,b_m49.md:1905; b_wpp_sources.txt:8975; b_pop.md:1296,"WPP only; pop 5,819"
+FRA,Wallis and Futuna Islands,WLF,876,merged territory (not an entity),FRA,EU27,b_m49.md:3565; b_wpp_sources.txt:11439; b_pop.md:1284,"WPP only; pop 11,620"
+NLD,"Bonaire, Sint Eustatius and Saba",BES,535,merged territory (not an entity),NLD,EU27,b_m49.md:1168; b_wpp_sources.txt:1447,WPP only
+GBR,Anguilla,AIA,660,merged territory (not an entity),GBR,ROW,b_m49.md:1088; b_wpp_sources.txt:582; b_pop.md:1272,"WPP only; pop 16,010"
+GBR,Montserrat,MSR,500,merged territory (not an entity),GBR,ROW,b_m49.md:1355; b_wpp_sources.txt:7067; b_pop.md:1304,"WPP only; pop 4,386"
+GBR,Falkland Islands (Malvinas),FLK,238,merged territory (not an entity),GBR,ROW,b_m49.md:1739; b_wpp_sources.txt:3710; b_pop.md:1308,"WPP only; pop 3,662 (sovereignty disputed by ARG; administered by GBR, R53 notes_g.md:84-85)"
+GBR,Saint Helena,SHN,654,merged territory (not an entity),GBR,ROW,b_m49.md:1029; b_wpp_sources.txt:8815; b_pop.md:1300,"WPP only; pop 5,651"
+NZL,Tokelau,TKL,772,merged territory (not an entity),NZL,ROW,b_m49.md:3524; b_wpp_sources.txt:10431; b_pop.md:1312,"WPP only; pop 2,608"
+GBR,Pitcairn,PCN,612,merged territory (not an entity),GBR,ROW,b_m49.md:3498; b_pop.md:1336,ISO/M49 only; pop 35
+GBR,British Indian Ocean Territory,IOT,086,merged territory (not an entity),GBR,ROW,b_m49.md:284,ISO/M49 only
+GBR,South Georgia and the South Sandwich Islands,SGS,239,merged territory (not an entity),GBR,ROW,b_m49.md:1813,ISO/M49 only
+FRA,French Southern Territories,ATF,260,merged territory (not an entity),FRA,EU27,b_m49.md:377,ISO/M49 only
+NOR,Bouvet Island,BVT,074,merged territory (not an entity),NOR,ROW,b_m49.md:1669,ISO/M49 only; uninhabited
+NOR,Svalbard and Jan Mayen Islands,SJM,744,merged territory (not an entity),NOR,ROW,b_m49.md:2850,ISO/M49 only
+FIN,Åland Islands,ALA,248,merged territory (not an entity),FIN,EU27,b_m49.md:2694,ISO/M49 only (autonomous region of Finland)
+AUS,Christmas Island,CXR,162,merged territory (not an entity),AUS,ROW,b_m49.md:3200; b_pop.md:1320,"ISO/M49 only; pop 1,692"
+AUS,Cocos (Keeling) Islands,CCK,166,merged territory (not an entity),AUS,ROW,b_m49.md:3212; b_pop.md:1332,ISO/M49 only; pop 593
+AUS,Norfolk Island,NFK,574,merged territory (not an entity),AUS,ROW,b_m49.md:3248; b_pop.md:1316,"ISO/M49 only; pop 2,188"
+AUS,Heard Island and McDonald Islands,HMD,334,merged territory (not an entity),AUS,ROW,b_m49.md:3224,ISO/M49 only; uninhabited
+USA,United States Minor Outlying Islands,UMI,581,merged territory (not an entity),USA,US,b_m49.md:3430,ISO/M49 only

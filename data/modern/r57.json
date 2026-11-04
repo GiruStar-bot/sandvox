@@ -1,0 +1,64 @@
+{
+ "build_days": {
+  "source": "R53 d_cset_nopermits.txt:202-216",
+  "value": 682
+ },
+ "cost_per_wspm": {
+  "default": "ref",
+  "high": 571000.0,
+  "label": "S/D (R56 reference fabs); a band, not an average (R56); the default is the NAND reference (T)",
+  "low": 125000.0,
+  "ref": 200000.0,
+  "sources": {
+   "high": "R56 f_siabcg2020.txt:737,741",
+   "low": "R56 f_siabcg2020.txt:737,741",
+   "ref": "R56 f_siabcg2020.txt:737,741"
+  }
+ },
+ "kappa": {
+  "band": [
+   0.16,
+   0.28
+  ],
+  "label": "T (R57): the pre-pandemic mean 20.6%, rounded as R57 states",
+  "source": "report Part 2-3",
+  "value": 0.21
+ },
+ "not_inputs": "the US CHIPS Act (Aug 2022) and later programmes are dated events after a 2022 start: checks, not inputs; public shares stand in for subsidies",
+ "public_share": {
+  "CN": 0.35,
+  "EU": 0.125,
+  "JP": 0.275,
+  "KR": 0.275,
+  "ROW": 0.275,
+  "TW": 0.275,
+  "US": 0.125,
+  "label": "S: SIA/BCG TCO shares, middles: US 10-15, KR/TW/SG 25-30, CN 30-40; T: JP as KR/TW/SG, EU as the US, ROW as KR/TW/SG",
+  "source": "R56 f_siabcg2020.txt"
+ },
+ "r57_sha256": "a4cf2edf0f43283f1c2b2ef140880117455bafc3a2bce79317b1ba2d62ecefc1",
+ "ramp_days": {
+  "label": "T (R57): linear over 9 months after production starts",
+  "value": 274
+ },
+ "revenue_usd_start": {
+  "2022": {
+   "label": "D: 2021 capex 153.9 bn / capex-to-revenue 27.7%",
+   "source": "notes_b:30-31; notes_b:44-56; b_icins_quake2011.md:24",
+   "value": 555595667870.036
+  }
+ },
+ "utilisation": {
+  "base": 0.86,
+  "label": "T (R57): base the 2019-20 mean, top the upper bound",
+  "source": "report Part 2-3",
+  "top": 0.95
+ },
+ "world_wspm_start": {
+  "2022": {
+   "label": "D: SEMI 2022-09-27, end-2021 (+7.4% on 2020)",
+   "source": "a_semi_fabequip2022.md:16",
+   "value": 25600000.0
+  }
+ }
+}

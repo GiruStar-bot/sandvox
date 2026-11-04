@@ -1,0 +1,32 @@
+block,rule,form,parameter,value,applies_to,label,source_file_line
+energy,capacity gap,build when (1+RM)*peak > sum(credit*K) - retirements; lambda=1,RM,15% default; ERCOT 13.75; PJM 18.6-26.3; MISO 8.1-26.2,all,model assumption / sourced,notes_a.md:19
+energy,technology choice,share_i ~ LCOE_i^gamma,gamma,-3 between fuels; -10 coal types (docs example),all,model assumption,notes_a (GCAM docs)
+energy,cost of capital,WACC by income group,solar CoC real,Europe 3.0; China 4.0; India 7.2; Brazil 9.4 %,by income,sourced,notes_a (IEA CoC)
+energy,learning,C=C0*(X/X0)^-b,learning rate,PV 23; onshore wind 12; NGCC 14; coal 8.3; Li-ion 20-24 %,world,sourced,R55_actors/sources/a_rubin2015.txt:292-295
+energy,S-curve cap,max yearly addition share of supply,cap,wind 0.8 (IQR 0.6-1.1); solar 0.6 (0.4-0.9) %/yr,national,sourced,R55_actors/sources/a_cherp2021.md:83
+energy,coal retirement,age-based,age,35-46 yr empirical; China ~24; GCAM 60 / half-life 30,by region,sourced (dispute) / MA,notes_a:108-111
+energy,regime effect on VRE,-,V-Dem,no pooled effect; ~-0.01 within,-,sourced,notes_a (Clulow-Reiner)
+energy,interconnection,target share,EU,15% by 2030,EU members,sourced,notes_a
+fiscal,debt response,pb=rho*d(-1)+b1 g+b2 y,rho,industrial 0.02-0.045; emerging 0.033-0.041; EM debt>50% 0.023-0.029; high-debt industrial ~0,by income,sourced,"R55_actors/sources/b_mendoza_ostry.txt:639,777"
+fiscal,fiscal fatigue,cubic in d(-1),"a1,a2,a3","-0.2080, 0.0032, -0.00001; falls from 90-100%, negative ~150%, limit median 190%",advanced,sourced,R55_actors/sources/b_ghosh2011.txt:1153-1157
+fiscal,spending cyclicality,dlogG=beta dlogY,beta,developing 0.51; high-income -0.05 (OLS),by income,sourced,R55_actors/sources/b_iv2008.txt:1533-1534
+fiscal,graduation,g_cyc=(1.99-2.51*IQ) y_cyc,IQ threshold,0.79,all,sourced/derived,R55_actors/sources/b_fvv2011.txt:1785-1789
+fiscal,election cycle,deficit in election year,effect,new democracies -0.87%; all democracies -0.34%; old n.s.,democracies,sourced (dispute),notes_b:78-89
+industry,subsidy tit-for-tat,P(follow-on within 12 months),p,73.8%,CN/EU/US,secondary,notes_b:104
+industry,chip programmes,aggregate size,amount,US 52.7 bn USD; EU 43 bn EUR; JP 10 tn JPY; KR 26 tn KRW; CN Big Fund 138.7/204/344 bn CNY,named,sourced,notes_b:115-125
+industry,DC pause,"pause when grid binds, reopen with conditions",cases,Ireland 2021-2025; Singapore 2019-2022 (60 MW pilot); Amsterdam 2019-20,pattern,secondary,notes_b:131-133
+trade,optimal tariff,t=1/export supply elasticity,median,1.6; non-WTO +9 pp (CN +35 pp),all,sourced,notes_c (BLW)
+trade,retaliation,value ratio; rate ratio; lag,ratio,value 0.37-0.42; rate 0.84; lag 0-3 months,one episode 2018,derived,R55_actors/sources/c_fgkk_rtp.txt:421-433
+trade,AD naming,threat effect,per s.d.,-10.7 to -27.9%,all,sourced,notes_c (Blonigen-Bown)
+trade,export restriction contagion,P(new) vs others' restricted share,effect,+2 pp per +100% (staples +4 pp),food (assumed for minerals),sourced,notes_c (Giordani-Rocha-Ruta 2012)
+trade,coalition following,ally lag; counter-control lag,days,"ally 289-329; counter 1-3 days announce, 29-42 days in force",2022-25,derived,notes_c:115
+trade,leakage,replacement share,share,multilateral 7%; unilateral 28%,-,sourced (abstract),notes_c (Fan-Handley-Limao)
+trade,sanctions base rates,cases/yr; duration; success,values,"~23/yr (TIES), ~100/yr since 2022 (derived); median ~1 yr; success 27-41%; multilateral 51 vs 31%",all,sourced/derived,"R55_actors/sources/c_ties_update.txt:345-349,415-422,482-484"
+stock,IEA oil stock,90 days previous-year net imports,adjustments,naphtha -4%; products x1.065; -10% unavailable,IEA members,sourced,R55_actors/sources/d_iea_oilstocks.md:23-47
+stock,collective release,volume,mb,2005 60; 2011 60; 2022 62.7+120; 2026 400,IEA members,sourced,R55_actors/sources/d_iea_2026release.md:7-19
+stock,Japan oil,government + private,days,90 net imports + 70 consumption,Japan,sourced,notes_d
+stock,EU gas,fill target,%,"90% any day 1 Oct-1 Dec, flex up to 10+5+5 pp, to end-2027",EU,sourced,notes_d
+stock,minerals,days of consumption,days,JOGMEC 60 (180 high-risk),Japan,sourced,notes_d:127
+stock,optimal stockpile,Oren-Wan constants,q* share,fill 0.019; draw 0.109; capacity 0.143,theory,theory,notes_d
+supply,oil supply elasticity,short run,elasticity,1-month <=0.026; shale 0.3-0.9; conventional quarterly 0.017,producers,sourced (dispute),"R55_actors/sources/d_kilian_dallas1907.txt:729-731,848"
+supply,OPEC+ reaction,-,-,NOT FOUND,-,-,

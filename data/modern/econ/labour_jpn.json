@@ -1,0 +1,12 @@
+{
+ "note": "ISS Phase 5 labour market (sim/modern/econ/labour.gd). Labels: S sourced, D derived, T declared until a published estimate replaces it.",
+ "u_star": {"value": 0.025, "label": "S", "source": "総務省 労働力調査 2024年11月 完全失業率 季節調整値 2.5%; e-Stat 000040238045; published 2024-12-27 (R96, R96b)"},
+ "rho": {"value": 0.8, "label": "T", "source": "monthly persistence of the unemployment rate toward its target"},
+ "okun_k": {"value": 0.5, "label": "T; the gap is a held row (M002 G9): the modelled sectors' only, so u is held except for their share (a complete collapse of food manufacturing moves u's target by 0.85 pt at most) until the other sectors' gaps exist", "source": "Okun-type: the target falls 0.5 pt per 1% of the modelled sectors' employment-weighted use gap (Japan's Okun coefficient is small, of order 0.2-0.5)"},
+ "sector_employment_share": {"food_manufacturing": {"value": 0.017, "label": "D (to confirm)", "source": "経済構造実態調査 2022 製造業 食料品製造業 従業者 約115万人 / 労働力調査 2024年11月 就業者 6,814万人 (e-Stat 000040238045, published 2024-12-27); the sectors not modelled are held at their published state"}},
+ "u_min": {"value": 0.01, "label": "T", "source": "clamp"},
+ "u_max": {"value": 0.15, "label": "T", "source": "clamp"},
+ "w_pi": {"value": 0.5, "label": "T", "source": "wage pass-through of expected inflation a year"},
+ "w_u": {"value": 0.3, "label": "T", "source": "wage response to the unemployment gap a year"},
+ "w_demand": {"value": 0.02, "label": "T", "source": "wage response to the share of unions with a wage demand"}
+}

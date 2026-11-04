@@ -1,0 +1,1433 @@
+{
+ "entity": "JPN",
+ "year": 2024,
+ "note": "BLUEPRINT 3 and 8.2: Japan status values at the 2024 base. Every indicator: value, source (file on modern-data raw/jpn_official or the publication), label S/D/T, vintage, trend (yearly rate for held indicators, D from the published series unless said). (rounded) = from the publication text at the precision shown.",
+ "indicators": {
+  "trade_by_partner": {
+   "value": {
+    "CHINA": {
+     "exports_bn_jpy": 17763.9,
+     "imports_bn_jpy": 24424.2
+    },
+    "USA": {
+     "exports_bn_jpy": 20260.2,
+     "imports_bn_jpy": 11555.4
+    },
+    "R KOREA": {
+     "exports_bn_jpy": 6581.9,
+     "imports_bn_jpy": 4361.7
+    },
+    "TAIWAN": {
+     "exports_bn_jpy": 6016.2,
+     "imports_bn_jpy": 5000.4
+    },
+    "AUSTRAL": {
+     "exports_bn_jpy": 2355.9,
+     "imports_bn_jpy": 9097.2
+    },
+    "THAILND": {
+     "exports_bn_jpy": 4114.7,
+     "imports_bn_jpy": 3609.5
+    },
+    "U ARB E": {
+     "exports_bn_jpy": 1466.1,
+     "imports_bn_jpy": 5192.6
+    },
+    "VIETNAM": {
+     "exports_bn_jpy": 2417.1,
+     "imports_bn_jpy": 3626.3
+    },
+    "GERMANY": {
+     "exports_bn_jpy": 2716.9,
+     "imports_bn_jpy": 3152.0
+    },
+    "HG KONG": {
+     "exports_bn_jpy": 4578.6,
+     "imports_bn_jpy": 213.8
+    },
+    "INDNSIA": {
+     "exports_bn_jpy": 2025.1,
+     "imports_bn_jpy": 3415.1
+    },
+    "SU ARAB": {
+     "exports_bn_jpy": 892.4,
+     "imports_bn_jpy": 4873.0
+    },
+    "MALYSIA": {
+     "exports_bn_jpy": 1957.9,
+     "imports_bn_jpy": 2826.0
+    },
+    "SNGAPOR": {
+     "exports_bn_jpy": 2631.2,
+     "imports_bn_jpy": 1208.6
+    },
+    "CANADA": {
+     "exports_bn_jpy": 1536.6,
+     "imports_bn_jpy": 2038.0
+    },
+    "INDIA": {
+     "exports_bn_jpy": 2235.2,
+     "imports_bn_jpy": 789.3
+    },
+    "PHILPIN": {
+     "exports_bn_jpy": 1423.5,
+     "imports_bn_jpy": 1452.3
+    },
+    "U KING": {
+     "exports_bn_jpy": 1689.2,
+     "imports_bn_jpy": 1006.8
+    },
+    "MEXICO": {
+     "exports_bn_jpy": 1839.7,
+     "imports_bn_jpy": 799.3
+    },
+    "FRANCE": {
+     "exports_bn_jpy": 981.5,
+     "imports_bn_jpy": 1502.0
+    }
+   },
+   "source": "財務省関税局 報道発表 令和5年分（確定） trade-st/2023/2023_117.pdf; 地域（国）別輸出入 令和5年分 (p.2); published 2024-11-13",
+   "label": "S",
+   "vintage": "2024-11-13",
+   "trend": 0.0,
+   "note": "same 20 partners as node (node names kept); 百万円/1000 rounded 0.1; CY2023 確定 (newer than the 2024-03 確々報); PDF dated 令和6年11月13日, Last-Modified 2024-11-12T23:30Z, happyou.htm lists 2023年（年分）2024年11月13日（; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "government_form": {
+   "value": "constitutional monarchy, parliamentary cabinet system",
+   "source": "Constitution of Japan arts. 1, 41, 65-66",
+   "label": "S",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "next_lower_house_election_by": {
+   "value": "2028-10",
+   "source": "Constitution art. 45: 4-year term from the 2024-10-27 election (dissolution may bring it forward)",
+   "label": "S",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "next_upper_house_election": {
+   "value": "2025-07",
+   "source": "Constitution art. 46: half the House of Councillors every 3 years (last 2022-07)",
+   "label": "S",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "alliance_us": {
+   "value": "Treaty of Mutual Cooperation and Security between Japan and the United States of America (1960), in force",
+   "source": "MOFA treaty text",
+   "label": "S",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "pop_by_age_sex": {
+   "value": "the cohort table (single ages by sex, 2023-10-01)",
+   "source": "as .cohort; 05k2023-1.xlsx 第1表; published 2024-04-12",
+   "label": "S",
+   "vintage": "2024-04-12",
+   "trend": 0.0,
+   "period": "2023-10-01",
+   "note": "trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "share_65plus": {
+   "value": 0.2913,
+   "source": "as .cohort: 65+ 36,224 / 124,352 thousand; 05k2023-1.xlsx 第1表; published 2024-04-12",
+   "label": "D",
+   "vintage": "2024-04-12",
+   "trend": 0.0,
+   "period": "2023-10-01",
+   "note": "consistent with the cohort; R96's 2024-07-01 確定 (000040232061, 2024-12-20) gives 29.2% if a later date is wanted; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "electricity_by_source": {
+   "value": {
+    "coal": 0.32,
+    "gas": 0.34,
+    "oil": 0.04,
+    "nuclear": 0.08,
+    "hydro": 0.07,
+    "solar": 0.1,
+    "wind": 0.01,
+    "bioenergy": 0.04,
+    "other_renewable": 0.0
+   },
+   "source": "as above: Fuel % 2023 (coal 32.48, gas 34.25, other fossil 3.57, nuclear 7.64, hydro 7.35, solar 9.57, wind 0.99, bioenergy 4.15; no other renewables row); same file; published ≤2024-09-03",
+   "label": "S (rounded)",
+   "vintage": "≤2024-09-0",
+   "trend": 0.0,
+   "note": "oil = Ember 'Other Fossil', as build_stats.py maps it; PROVISIONAL as above; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "crude_imports_by_origin": {
+   "value": {
+    "SAU": 0.408,
+    "ARE": 0.394,
+    "KWT": 0.09,
+    "QAT": 0.049,
+    "other": 0.059
+   },
+   "source": "e-Stat 普通貿易統計 概況品別国別表 輸入 2023年分 1-12月 確定 (表番号23-01); 概況品 30301 原粗油, Quantity-Year (KL); published 2024-11-13",
+   "label": "D",
+   "vintage": "2024-11-13",
+   "trend": 0.0,
+   "note": "D: country kL / total 148595927 kL (2023, 確定), rounded 3 dp, other = remainder; country codes 137 SAU,147 ARE,138 KWT,140 QAT (customs codes; consistent with the per-country import totals in 2023_117.; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "lng_imports_by_origin": {
+   "value": {
+    "AUS": 0.416,
+    "MYS": 0.156,
+    "USA": 0.084,
+    "RUS": 0.093,
+    "QAT": 0.044,
+    "other": 0.207
+   },
+   "source": "e-Stat 普通貿易統計 概況品別国別表 輸入 2023年分 1-12月 確定 (表番号23-01); 概況品 3050103 液化天然ガス, Quantity-Year (MT); published 2024-11-13",
+   "label": "D",
+   "vintage": "2024-11-13",
+   "trend": 0.0,
+   "note": "D: country t / total 66150779 t (2023, 確定), rounded 3 dp, other = remainder (PNG .058, IDN .046, BRN .038 ... inside other); codes 601 AUS,113 MYS,304 USA,224 RUS,140 QAT; 3050103 identified as LNG (3; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "fab_capacity_share": {
+   "value": 0.17,
+   "source": "SIA/BCG 2024 (R54 compute shares): Japan 17% of world wafer-fab capacity (2022)",
+   "label": "S",
+   "vintage": "2022",
+   "trend": 0.0
+  },
+  "dc_capacity_mw": {
+   "value": 1884.8,
+   "source": "D: Japan's macro share of the world data-centre IT capacity (2.359%, the compute chain's hand-down) x the in-window world figure 79.9 GW (compute_chain.json, R96e: IEA Electricity 2024 and LBNL 2024); CHECK",
+   "label": "D",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "pop_total": {
+   "value": 124352000,
+   "source": "人口推計 2023-10-01 総人口; 05k2023-1.xlsx 第1表; published 2024-04-12",
+   "label": "S",
+   "vintage": "2024-04-12",
+   "trend": 0.0,
+   "note": "or 123,975,000 (2024-07-01 確定, e-Stat 000040232061, 2024-12-20; R96). Keep the same date as the cohort (T); trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)",
+   "period": "2023-10-01"
+  },
+  "births": {
+   "value": 727288,
+   "source": "人口動態統計 確定数 2023 第1表; kakutei23 hyo.xlsx 第1表; published 2024-09-17",
+   "label": "S",
+   "vintage": "2024-09-17",
+   "trend": 0.0,
+   "note": "as R96; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "deaths": {
+   "value": 1576016,
+   "source": "同 第1表; kakutei23 hyo.xlsx 第1表; published 2024-09-17",
+   "label": "S",
+   "vintage": "2024-09-17",
+   "trend": 0.0,
+   "note": "as R96; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "tfr": {
+   "value": 1.2,
+   "source": "同 第1表 合計特殊出生率; kakutei23 hyo.xlsx 第1表; published 2024-09-17",
+   "label": "S",
+   "vintage": "2024-09-17",
+   "trend": 0.0,
+   "note": "as R96; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "natural_change": {
+   "value": -848728,
+   "source": "同 第1表; kakutei23 hyo.xlsx 第1表; published 2024-09-17",
+   "label": "S",
+   "vintage": "2024-09-17",
+   "trend": 0.0,
+   "note": "as R96; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "net_migration": {
+   "value": 242000,
+   "source": "人口推計 2023-10-01 結果の要約: 社会増減 +24万2千 (2022-10..2023-09; 日本人 +2千, 外国人 +24万); 2023np index / 2023gaiyou.pdf; published 2024-04-12",
+   "label": "S (rounded)",
+   "vintage": "2024-04-12",
+   "trend": 0.0,
+   "note": "trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "foreign_residents": {
+   "value": 3588956,
+   "source": "出入国在留管理庁 在留外国人統計 2024年6月末; e-Stat 000040228081; published 2024-12-13 (R96b)",
+   "label": "S",
+   "vintage": "2024-06末",
+   "trend": 0.0,
+   "period": "2024-06-30",
+   "note": "trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "life_expectancy_m": {
+   "value": 81.09,
+   "source": "modern-data raw/jpn_official/mhlw_life_table_2023_life23-02.pdf 表1",
+   "label": "S",
+   "vintage": "2023",
+   "trend": 0.0005
+  },
+  "life_expectancy_f": {
+   "value": 87.14,
+   "source": "modern-data raw/jpn_official/mhlw_life_table_2023_life23-02.pdf 表1",
+   "label": "S",
+   "vintage": "2023",
+   "trend": 0.0006
+  },
+  "households": {
+   "value": 55950000,
+   "source": "MIC 住民基本台帳 2024-01-01 世帯数 約5,595万",
+   "label": "S (rounded)",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "gdp_nominal": {
+   "value": 591912.5,
+   "source": "modern-data raw/jpn_official/esri_sna2023_2023fcm1n_jp.xlsx 国内総生産（支出側） 2023暦年 (10億円)",
+   "label": "S",
+   "vintage": "2023",
+   "trend": 0.056032406432758974,
+   "unit": "bn JPY",
+   "note": "trend D: 2022->2023 nominal +5.6%"
+  },
+  "gdp_real_growth": {
+   "value": 0.017,
+   "source": "ESRI 2023年度国民経済計算年次推計: 2023暦年 実質 +1.7%",
+   "label": "S",
+   "vintage": "2023",
+   "trend": 0.0
+  },
+  "private_consumption": {
+   "value": 323536.5,
+   "source": "modern-data raw/jpn_official/esri 2023fcm1n: GDP - G - GFCF + NX (D, inventories ignored)",
+   "label": "D",
+   "vintage": "2023",
+   "trend": 0.03,
+   "unit": "bn JPY"
+  },
+  "gov_consumption": {
+   "value": 122976.3,
+   "source": "modern-data raw/jpn_official/esri 2023fcm1n",
+   "label": "S",
+   "vintage": "2023",
+   "trend": 0.018,
+   "unit": "bn JPY"
+  },
+  "gfcf": {
+   "value": 153968.8,
+   "source": "modern-data raw/jpn_official/esri 2023fcm1n",
+   "label": "S",
+   "vintage": "2023",
+   "trend": 0.046,
+   "unit": "bn JPY"
+  },
+  "exports_gs": {
+   "value": 129342.3,
+   "source": "modern-data raw/jpn_official/esri 2023fcm1n",
+   "label": "S",
+   "vintage": "2023",
+   "trend": 0.07,
+   "unit": "bn JPY"
+  },
+  "imports_gs": {
+   "value": 137911.4,
+   "source": "modern-data raw/jpn_official/esri 2023fcm1n",
+   "label": "S",
+   "vintage": "2023",
+   "trend": -0.026,
+   "unit": "bn JPY"
+  },
+  "cpi_inflation": {
+   "value": 0.029,
+   "source": "総務省 消費者物価指数 2024年11月 総合 前年同月比 +2.9%; e-Stat 000040229498; published 2024-12-20 (R96b)",
+   "label": "S",
+   "vintage": "2024-11",
+   "trend": 0.0,
+   "note": "trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "employed": {
+   "value": 68140000,
+   "source": "総務省 労働力調査 2024年11月 就業者 6,814万人 (原数値); e-Stat 000040238045; published 2024-12-27 (R96b)",
+   "label": "S",
+   "vintage": "2024-11",
+   "trend": 0.0,
+   "note": "trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "unemployed": {
+   "value": 1675574,
+   "source": "derived: 就業者 x u / (1 - u) from 労働力調査 2024年11月 (原数値; e-Stat 000040238045; published 2024-12-27)",
+   "label": "D",
+   "vintage": "2024-11",
+   "trend": 0.0,
+   "note": "trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "unemployment_rate": {
+   "value": 0.024,
+   "source": "総務省 労働力調査 2024年11月 完全失業率 2.4% (原数値; 季調 2.5%); e-Stat 000040238045; published 2024-12-27 (R96b)",
+   "label": "S",
+   "vintage": "2024-11",
+   "trend": 0.0,
+   "note": "trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "policy_rate": {
+   "value": 0.0025,
+   "source": "BoJ 政策金利 0.25% (2024-07-31)",
+   "label": "S",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "jgb_10y": {
+   "value": 0.011,
+   "source": "MOF 国債金利情報 2024-12-30 10年 約1.1%",
+   "label": "S",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "fx_jpy_usd": {
+   "value": 151.61,
+   "source": "BoJ 東京市場 ドル・円 スポット 17時時点 (FXERD04): mean of 245 daily values 2024-01-04..2024-12-30; BoJ FM08 FXERD04; published daily, 2024-01-04..2024-12-30 (the 2024 mean, where an annual average is meant; the PM, TO_E 20:01)",
+   "label": "D",
+   "vintage": "2024 mean",
+   "trend": 0.0,
+   "note": "trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "household_financial_assets": {
+   "value": 2179000,
+   "source": "BoJ 資金循環統計 2024年第3四半期速報 参考図表 図表3-1 家計の金融資産 2024年9月末 2,179兆円; 参考図表 図表1/図表3-1 (sjexp.pdf); published 2024-12-18",
+   "label": "S",
+   "vintage": "2024-12-18",
+   "trend": 0.0,
+   "unit": "bn JPY",
+   "note": "Cover page reads 2024年12月18日; Wayback snapshot 2024-12-27. 2,179兆円 x 1000 = bn JPY.; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "gov_revenue_general": {
+   "value": 77123.7,
+   "source": "modern-data raw/jpn_official/mof_budget_fy2024_frame_29.pdf: 税収 696,080 + その他収入 75,147 億円 (公債金を除く)",
+   "label": "D",
+   "vintage": "FY2024",
+   "trend": 0.0,
+   "unit": "bn JPY",
+   "note": "revenue without bonds, so the deficit identity equals bond issuance"
+  },
+  "gov_expenditure_general": {
+   "value": 112571.7,
+   "source": "modern-data raw/jpn_official/mof_budget_fy2024_frame_29.pdf 歳出計 1,125,717億円",
+   "label": "S",
+   "vintage": "FY2024",
+   "trend": 0.0,
+   "unit": "bn JPY"
+  },
+  "tax_revenue": {
+   "value": 69608.0,
+   "source": "modern-data raw/jpn_official/mof_budget_fy2024_frame_29.pdf 税収 696,080億円",
+   "label": "S",
+   "vintage": "FY2024",
+   "trend": 0.0,
+   "unit": "bn JPY"
+  },
+  "new_bond_issuance": {
+   "value": 35449.0,
+   "source": "modern-data raw/jpn_official/mof_budget_fy2024_frame_29.pdf 公債金 354,490億円",
+   "label": "S",
+   "vintage": "FY2024",
+   "trend": 0.0,
+   "unit": "bn JPY"
+  },
+  "gov_debt_total": {
+   "value": 1310438.5,
+   "source": "MOF 国債及び借入金並びに政府保証債務現在高（令和6年9月末現在） 1.国債及び借入金現在高 合計 13,104,385億円; gbb/202409.html table 1 合計; published 2024-11-08",
+   "label": "S",
+   "vintage": "2024-11-08",
+   "trend": 0.0,
+   "unit": "bn JPY",
+   "period": "2024-09-30",
+   "note": "Page dated 令和6年11月8日; same aggregate as the node (国債及び借入金 合計, excl. 政府保証債務 293,360億円). 億円 / 10 = bn JPY.; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge); period corrected to 2024-09-30 (9月末), the edition's own date"
+  },
+  "ordinary_jgb": {
+   "value": 1065314.0,
+   "source": "MOF 同上 普通国債 10,653,140億円 (令和6年9月末); gbb/202409.html table 1 普通国債; published 2024-11-08",
+   "label": "S",
+   "vintage": "2024-11-08",
+   "trend": 0.0,
+   "unit": "bn JPY",
+   "period": "2024-09-30",
+   "note": "includes 復興債 48,757億 and GX経済移行債 31,470億 as the MOF line does.; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "debt_to_gdp": {
+   "value": 2.2139057715456256,
+   "source": "D: gov_debt_total 1,310,438.5 bn JPY (MOF 国債及び借入金並びに政府保証債務現在高 令和6年9月末, published 2024-11-08) / gdp_nominal 591,912.5 bn JPY (ESRI 2023暦年); the 12月末 edition (published 2025-02-10) it replaces is look-ahead (R96e; the PM, TO_E 21:11 1(c))",
+   "label": "D",
+   "vintage": "2024-09-30",
+   "trend": 0.0
+  },
+  "health_expenditure_share_gdp": {
+   "value": 0.0824,
+   "source": "modern-data raw/jpn_official/mhlw_health_exp_2022_hyo.xlsx 表1 FY2022 8.24%",
+   "label": "S",
+   "vintage": "FY2022",
+   "trend": 0.0
+  },
+  "lower_house_seats_total": {
+   "value": 465,
+   "source": "House of Representatives",
+   "label": "S",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "lower_house_seats_governing": {
+   "value": 215,
+   "source": "2024-10-27 衆院選: 自民191 + 公明24 = 215 (過半数233未満)",
+   "label": "S",
+   "vintage": "2024-10",
+   "trend": 0.0
+  },
+  "upper_house_seats_total": {
+   "value": 248,
+   "source": "House of Councillors",
+   "label": "S",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "upper_house_seats_governing": {
+   "value": 140,
+   "source": "2022-07 参院選後 自民+公明 約145; 2024末 約140",
+   "label": "D",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "cabinet_approval": {
+   "value": 0.4,
+   "source": "NHK 政治意識月例調査 2024-12 石破内閣 支持 約40%",
+   "label": "S (rounded)",
+   "vintage": "2024-12",
+   "trend": 0.0
+  },
+  "wgi_rule_of_law": {
+   "value": 1.6,
+   "source": "World Bank WGI 2023 (modern-data raw/wgi_wgidataset.xlsx) Japan ~1.6",
+   "label": "S",
+   "vintage": "2023",
+   "trend": 0.0
+  },
+  "wgi_government_effectiveness": {
+   "value": 1.5,
+   "source": "World Bank WGI 2023 ~1.5",
+   "label": "S",
+   "vintage": "2023",
+   "trend": 0.0
+  },
+  "defence_budget": {
+   "value": 7949.6,
+   "source": "modern-data raw/jpn_official/mof_budget_fy2024_defence_20.pdf p4 総計 7兆9,496億円 (FY2024, SACO・米軍再編含む)",
+   "label": "S",
+   "vintage": "FY2024",
+   "trend": 0.0,
+   "unit": "bn JPY"
+  },
+  "defence_share_gdp": {
+   "value": 0.01343036344054231,
+   "source": "derived",
+   "label": "D",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "sdf_authorised_strength": {
+   "value": 247154,
+   "source": "MOD 防衛白書 2024 定員 247,154 (site blocks scripts; figure as published)",
+   "label": "S",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "sdf_actual_strength": {
+   "value": 227000,
+   "source": "MOD 防衛白書 2024 現員 約22.7万",
+   "label": "S (rounded)",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "us_forces_in_japan": {
+   "value": 54000,
+   "source": "USFJ public figure ~54,000",
+   "label": "S (rounded)",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "host_nation_support": {
+   "value": 211.0,
+   "source": "MOF 在日米軍駐留経費負担 FY2024 約2,110億円",
+   "label": "S (rounded)",
+   "vintage": "2024",
+   "trend": 0.0,
+   "unit": "bn JPY"
+  },
+  "medical_technology_grade": {
+   "value": 1.0,
+   "source": "HAQ index (GBD 2019) Japan 94/100 -> grade high = 1.0; owner: coarse, never omnipotent",
+   "label": "S -> grade",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "health_expenditure": {
+   "value": 46696.7,
+   "source": "modern-data raw/jpn_official/mhlw_health_exp_2022_hyo.xlsx 表1 FY2022 国民医療費 466,967億円",
+   "label": "S",
+   "vintage": "FY2022",
+   "trend": 0.037,
+   "unit": "bn JPY"
+  },
+  "health_expenditure_per_capita": {
+   "value": 373700,
+   "source": "modern-data raw/jpn_official/mhlw_health_exp_2022_hyo.xlsx 表1 FY2022 373.7千円",
+   "label": "S",
+   "vintage": "FY2022",
+   "trend": 0.042,
+   "unit": "JPY"
+  },
+  "physicians": {
+   "value": 343275,
+   "source": "modern-data raw/jpn_official/mhlw_physicians_2022_R04_DL-hyo.xlsx 表1 (2022-12-31)",
+   "label": "S",
+   "vintage": "2022",
+   "trend": 0.012
+  },
+  "physicians_per_100k": {
+   "value": 276.0510486361297,
+   "source": "D: physicians 343,275 (MHLW 令和4年 医師・歯科医師・薬剤師統計 表1, 2022-12-31; published 2024-03-19) / 124,352,000 persons (人口推計 2023-10-01, statInfId 000040166082, published 2024-04-12) x 100,000; the 2024-10-01 denominator it replaces is look-ahead (the PM, TO_E 21:11 1(a))",
+   "label": "D",
+   "vintage": "2022 / 2023-10-01",
+   "trend": 0.0
+  },
+  "hospital_beds": {
+   "value": 1481183,
+   "source": "MHLW 令和５(2023)年 医療施設(静態・動態)調査・病院報告: 病院 8,122施設 1,481,183床 (一般診療所 75,780床, 歯科 57床); iryosd/23 10houdou05.pdf; published 2024-11-22 (press date on PDF; PDF created 2024-11-11)",
+   "label": "S",
+   "vintage": "2023",
+   "trend": 0.0,
+   "note": "trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "insurance_coverage": {
+   "value": 1.0,
+   "source": "国民皆保険",
+   "label": "S",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "physician_maldistribution_ratio": {
+   "value": 1.9,
+   "source": "MHLW 医師統計 2022 都道府県別 人口10万対: 徳島 335 / 埼玉 177 = 1.9",
+   "label": "D",
+   "vintage": "2022",
+   "trend": 0.0
+  },
+  "infant_mortality": {
+   "value": 1.8232,
+   "source": "同 第1表: 乳児死亡 1,326 / 出生 727,288 (published rate 1.8); kakutei23 hyo.xlsx 第1表; published 2024-09-17",
+   "label": "D",
+   "vintage": "2024-09-17",
+   "trend": 0.0,
+   "note": "trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "electricity_generation_twh": {
+   "value": 1013.26,
+   "source": "Ember yearly full release long format, JPN 2023 Total Generation (archived copy 2024-09-03); yearly_full_release_long_format.csv (sha 0446cf0c408fd6f0); published ≤2024-09-03 (archive capture)",
+   "label": "S",
+   "vintage": "≤2024-09-0",
+   "trend": 0.0,
+   "note": "still PROVISIONAL (Ember's Japan series is EI-sourced; terms NF, as now); trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "electricity_demand_twh": {
+   "value": 1013.26,
+   "source": "S: Ember yearly full release, the Wayback capture of 2024-09-03 (data to 2023), Japan 2023 demand, as stats.json's JPN 2023 row (R96c); the 1016.39 it replaces was a pointer ('same') to the purged generation row",
+   "label": "S",
+   "vintage": "2023",
+   "trend": 0.0
+  },
+  "energy_self_sufficiency": {
+   "value": 0.13,
+   "source": "ANRE エネルギー白書 2024 (R53)",
+   "label": "S",
+   "vintage": "FY2022",
+   "trend": 0.0
+  },
+  "oil_stock_days": {
+   "value": 160,
+   "source": "R55 rule total: government 90 days of net imports + private 70 days (石油備蓄法); ANRE 石油備蓄の現況 2024",
+   "label": "T",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "nuclear_reactors_operating": {
+   "value": 14,
+   "source": "原子力規制委員会 / 電事連: 再稼働済 14基 (2024末)",
+   "label": "S",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "rd_expenditure_share_gdp": {
+   "value": 0.036,
+   "source": "Statistics Bureau 科学技術研究調査 2024: 研究費 対GDP比 約3.6%",
+   "label": "S",
+   "vintage": "FY2023",
+   "trend": 0.0
+  },
+  "researchers": {
+   "value": 910000,
+   "source": "Statistics Bureau 科学技術研究調査 2024 研究者数 約91万人",
+   "label": "S (rounded)",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "photoresist_share": {
+   "value": 0.9,
+   "source": "CSET (R53 Q2)",
+   "label": "S",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "silicon_wafer_share": {
+   "value": 0.56,
+   "source": "CSET (R53 Q2)",
+   "label": "S",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "current_account": {
+   "value": 25339.0,
+   "source": "MOF 令和5年度中 国際収支状況（速報） bpfy2023.pdf / pg2023fy.htm; 経常収支 令和5年度; published 2024-05-10",
+   "label": "S",
+   "vintage": "2024-05-10",
+   "trend": 0.0,
+   "unit": "bn JPY",
+   "note": "253,390 億円; FY2023 (Apr2023-Mar2024), not CY; page dated 令和6年5月10日; cross-checked: sum of Apr2023-Mar2024 in Wayback 6s-1-4.csv (snapshot 20240610) gives the same totals within 1-2 (rounding). The nod; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "trade_balance_bop": {
+   "value": -3572.5,
+   "source": "MOF 令和5年度中 国際収支状況（速報） bpfy2023.pdf / pg2023fy.htm; 貿易収支 令和5年度; published 2024-05-10",
+   "label": "S",
+   "vintage": "2024-05-10",
+   "trend": 0.0,
+   "unit": "bn JPY",
+   "note": "▲35,725 億円; FY2023 (Apr2023-Mar2024), not CY; page dated 令和6年5月10日; cross-checked: sum of Apr2023-Mar2024 in Wayback 6s-1-4.csv (snapshot 20240610) gives the same totals within 1-2 (rounding). The nod; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "primary_income": {
+   "value": 35531.2,
+   "source": "MOF 令和5年度中 国際収支状況（速報） bpfy2023.pdf / pg2023fy.htm; 第一次所得収支 令和5年度; published 2024-05-10",
+   "label": "S",
+   "vintage": "2024-05-10",
+   "trend": 0.0,
+   "unit": "bn JPY",
+   "note": "355,312 億円; FY2023 (Apr2023-Mar2024), not CY; page dated 令和6年5月10日; cross-checked: sum of Apr2023-Mar2024 in Wayback 6s-1-4.csv (snapshot 20240610) gives the same totals within 1-2 (rounding). The nod; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "exports_customs": {
+   "value": 100873.049,
+   "source": "財務省関税局 報道発表 令和5年分（確定） trade-st/2023/2023_117.pdf; 総額 令和5年 輸出; published 2024-11-13",
+   "label": "S",
+   "vintage": "2024-11-13",
+   "trend": 0.0,
+   "unit": "bn JPY",
+   "note": "CY2023 100,873,049 百万円 /1000; CY2023 確定 (newer than the 2024-03 確々報); PDF dated 令和6年11月13日, Last-Modified 2024-11-12T23:30Z, happyou.htm lists 2023年（年分）2024年11月13日（確定）; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "imports_customs": {
+   "value": 110395.119,
+   "source": "財務省関税局 報道発表 令和5年分（確定） trade-st/2023/2023_117.pdf; 総額 令和5年 輸入; published 2024-11-13",
+   "label": "S",
+   "vintage": "2024-11-13",
+   "trend": 0.0,
+   "unit": "bn JPY",
+   "note": "CY2023 110,395,119 百万円 /1000; CY2023 確定 (newer than the 2024-03 確々報); PDF dated 令和6年11月13日, Last-Modified 2024-11-12T23:30Z, happyou.htm lists 2023年（年分）2024年11月13日（確定）; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "niip": {
+   "value": 471306.0,
+   "source": "MOF 令和5年末現在本邦対外資産負債残高の概要 (iip/data/2023_g.htm); (参考)本邦対外資産負債残高の内訳 純資産合計 5年末残高 (単位10億円); published 2024-05-28",
+   "label": "S",
+   "vintage": "2024-05-28",
+   "trend": 0.0,
+   "unit": "bn JPY",
+   "period": "2024-12-31",
+   "note": "period 2023-12-31; page dated 令和6年5月28日; Wayback snapshot 20240620044232 holds the same figures (iip/A/wb_iip2023_g.htm); trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "external_assets": {
+   "value": 1488342.0,
+   "source": "MOF 令和5年末現在本邦対外資産負債残高の概要 (iip/data/2023_g.htm); (参考)本邦対外資産負債残高の内訳 資産合計 5年末残高 (単位10億円); published 2024-05-28",
+   "label": "S",
+   "vintage": "2024-05-28",
+   "trend": 0.0,
+   "unit": "bn JPY",
+   "period": "2024-12-31",
+   "note": "period 2023-12-31; page dated 令和6年5月28日; Wayback snapshot 20240620044232 holds the same figures (iip/A/wb_iip2023_g.htm); trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "external_liabilities": {
+   "value": 1017036.0,
+   "source": "MOF 令和5年末現在本邦対外資産負債残高の概要 (iip/data/2023_g.htm); (参考)本邦対外資産負債残高の内訳 負債合計 5年末残高 (単位10億円); published 2024-05-28",
+   "label": "S",
+   "vintage": "2024-05-28",
+   "trend": 0.0,
+   "unit": "bn JPY",
+   "period": "2024-12-31",
+   "note": "period 2023-12-31; page dated 令和6年5月28日; Wayback snapshot 20240620044232 holds the same figures (iip/A/wb_iip2023_g.htm); trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "fdi_assets": {
+   "value": 307692.0,
+   "source": "MOF 令和5年末現在本邦対外資産負債残高の概要 (iip/data/2023_g.htm); (参考)本邦対外資産負債残高の内訳 資産 直接投資 5年末残高 (単位10億円); published 2024-05-28",
+   "label": "S",
+   "vintage": "2024-05-28",
+   "trend": 0.0,
+   "unit": "bn JPY",
+   "period": "2024-12-31",
+   "note": "period 2023-12-31; page dated 令和6年5月28日; Wayback snapshot 20240620044232 holds the same figures (iip/A/wb_iip2023_g.htm); trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "portfolio_assets": {
+   "value": 617338.0,
+   "source": "MOF 令和5年末現在本邦対外資産負債残高の概要 (iip/data/2023_g.htm); (参考)本邦対外資産負債残高の内訳 資産 証券投資 5年末残高 (単位10億円); published 2024-05-28",
+   "label": "S",
+   "vintage": "2024-05-28",
+   "trend": 0.0,
+   "unit": "bn JPY",
+   "period": "2024-12-31",
+   "note": "period 2023-12-31; page dated 令和6年5月28日; Wayback snapshot 20240620044232 holds the same figures (iip/A/wb_iip2023_g.htm); trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "reserve_assets": {
+   "value": 183094.0,
+   "source": "MOF 令和5年末現在本邦対外資産負債残高の概要 (iip/data/2023_g.htm); (参考)本邦対外資産負債残高の内訳 資産 外貨準備 5年末残高 (単位10億円); published 2024-05-28",
+   "label": "S",
+   "vintage": "2024-05-28",
+   "trend": 0.0,
+   "unit": "bn JPY",
+   "period": "2024-12-31",
+   "note": "period 2023-12-31; page dated 令和6年5月28日; Wayback snapshot 20240620044232 holds the same figures (iip/A/wb_iip2023_g.htm); trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "recognised_states": {
+   "value": 195,
+   "source": "MOFA, 日本が承認している国 195 (R53 Q6): a standing fact, unchanged since Niue's recognition, 2015-05-15; the page R53 read is a capture made after 2024 (R96e), so the value is CHECK until an in-window capture confirms it (verifyくん; the PM, TO_E 21:11 1(d))",
+   "label": "S (CHECK)",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "inbound_tourists": {
+   "value": 25066350,
+   "source": "JNTO 国籍/月別 訪日外客数 (2003-2024), sheet 2023 総数 累計 25,066,350; 20241218_1615-5.xlsx; published 2024-12-18 (file name; Wayback capture 2024-12-25)",
+   "label": "S",
+   "vintage": "2023",
+   "trend": 0.0,
+   "note": "2023 calendar year; the Jan-Nov 2024 row (33,379,900) is not annual; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "food_self_sufficiency_calorie": {
+   "value": 0.38,
+   "source": "MAFF 令和5年度食料自給率・食料自給力指標について: カロリーベース 38% (FY2023); press 240808; published 2024-08-08 (on page)",
+   "label": "S",
+   "vintage": "2024-08-08",
+   "trend": 0.0,
+   "note": "Same number; set vintage to FY2023.; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "ghg_emissions": {
+   "value": 1135.46,
+   "source": "NIES L5-7gas_2024 1.Summary 確報値: 計 FY2022 1,135.458 Mt CO2 eq; L5-7gas_2024_gioweb_ver1.0.xlsx; published 2024-04-12 (NIES archive list; file modified 2024-04-12)",
+   "label": "S",
+   "vintage": "FY2022",
+   "trend": 0.0,
+   "unit": "Mt CO2e",
+   "note": "FY2022 final, the same year as ghg_net (FY2023 net is NF in window); NIES FY2023 provisional 1,082.40 (2024-12-13) not used; trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "ghg_net": {
+   "value": 1085.28,
+   "source": "NIES L5-7gas_2024 1.Summary 排出・吸収量（計） FY2022 1,085.277 (森林等吸収源対策 -50.18); L5-7gas_2024_gioweb_ver1.0.xlsx; published 2024-04-12",
+   "label": "S",
+   "vintage": "FY2022",
+   "trend": 0.0,
+   "unit": "Mt CO2e",
+   "note": "trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "forest_share": {
+   "value": 0.67,
+   "source": "林野庁 森林率 約67%",
+   "label": "S",
+   "vintage": "2024",
+   "trend": 0.0
+  },
+  "water_withdrawal": {
+   "value": 79.7,
+   "source": "MLIT 令和5年版 日本の水資源の現況: 2020年の取水量 797億m3 (R53 Q8); the 令和6年版 (published 2025-01-15) R96e read is look-ahead, and the 令和5年版 reports the same 2020 year (CHECK: verifyくん confirms on the 令和5年版)",
+   "label": "S (CHECK)",
+   "vintage": "2020",
+   "trend": 0.0,
+   "unit": "bn m3"
+  },
+  "rice_stockpile": {
+   "value": 1000,
+   "source": "MAFF 政府備蓄米 適正水準 100万トン",
+   "label": "S (rounded)",
+   "vintage": "2024",
+   "trend": 0.0,
+   "unit": "kt"
+  },
+  "tertiary_attainment_25_64": {
+   "value": 0.56,
+   "source": "OECD Education at a Glance 2024: Japan 25-64 tertiary ~56%",
+   "label": "S",
+   "vintage": "2023",
+   "trend": 0.0
+  },
+  "education_expenditure_share_gdp": {
+   "value": 0.04,
+   "source": "OECD EAG 2024: expenditure on educational institutions ~4.0% of GDP",
+   "label": "S",
+   "vintage": "2021",
+   "trend": 0.0
+  },
+  "relative_poverty_rate": {
+   "value": 0.154,
+   "source": "MHLW 国民生活基礎調査 2022: 相対的貧困率 15.4%",
+   "label": "S",
+   "vintage": "2021",
+   "trend": 0.0
+  },
+  "gini_disposable": {
+   "value": 0.381,
+   "source": "MHLW 所得再分配調査 2021: 再分配所得ジニ係数 0.381",
+   "label": "S",
+   "vintage": "2021",
+   "trend": 0.0
+  },
+  "recorded_penal_code_offences": {
+   "value": 703351,
+   "source": "NPA 令和５年の犯罪情勢: 刑法犯認知件数 70万3,351件 (2023); r5_report.pdf p.2; published 2024-02 (cover \"令和６年２月\"; PDF created 2024-02-08)",
+   "label": "S",
+   "vintage": "2024-02 (c",
+   "trend": 0.0,
+   "note": "trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  },
+  "suicides": {
+   "value": 21837,
+   "source": "厚労省・警察庁 令和５年中における自殺の状況: 自殺者数 21,837人 (2023); R5jisatsunojoukyou.pdf p.4; published 2024-03-29 (cover)",
+   "label": "S",
+   "vintage": "2024-03-29",
+   "trend": 0.0,
+   "note": "trend: NF in window (the replacement gives a level only); held flat, 0.0 (T, D477 purge)"
+  }
+ },
+ "cohort": {
+  "unit_persons": 1000,
+  "source": "stat.go.jp 人口推計 2023年10月1日現在 05k2023-1.xlsx 第1表 総人口 (100 = 100歳以上); published 2024-04-12",
+  "date": "2023-10-01",
+  "ages": [
+   {
+    "age": 0,
+    "male": 388,
+    "female": 369
+   },
+   {
+    "age": 1,
+    "male": 409,
+    "female": 388
+   },
+   {
+    "age": 2,
+    "male": 423,
+    "female": 404
+   },
+   {
+    "age": 3,
+    "male": 427,
+    "female": 408
+   },
+   {
+    "age": 4,
+    "male": 446,
+    "female": 425
+   },
+   {
+    "age": 5,
+    "male": 468,
+    "female": 447
+   },
+   {
+    "age": 6,
+    "male": 480,
+    "female": 459
+   },
+   {
+    "age": 7,
+    "male": 502,
+    "female": 477
+   },
+   {
+    "age": 8,
+    "male": 514,
+    "female": 490
+   },
+   {
+    "age": 9,
+    "male": 514,
+    "female": 488
+   },
+   {
+    "age": 10,
+    "male": 525,
+    "female": 501
+   },
+   {
+    "age": 11,
+    "male": 527,
+    "female": 503
+   },
+   {
+    "age": 12,
+    "male": 541,
+    "female": 514
+   },
+   {
+    "age": 13,
+    "male": 546,
+    "female": 519
+   },
+   {
+    "age": 14,
+    "male": 548,
+    "female": 521
+   },
+   {
+    "age": 15,
+    "male": 559,
+    "female": 532
+   },
+   {
+    "age": 16,
+    "male": 556,
+    "female": 528
+   },
+   {
+    "age": 17,
+    "male": 551,
+    "female": 524
+   },
+   {
+    "age": 18,
+    "male": 559,
+    "female": 530
+   },
+   {
+    "age": 19,
+    "male": 593,
+    "female": 562
+   },
+   {
+    "age": 20,
+    "male": 606,
+    "female": 569
+   },
+   {
+    "age": 21,
+    "male": 632,
+    "female": 595
+   },
+   {
+    "age": 22,
+    "male": 653,
+    "female": 616
+   },
+   {
+    "age": 23,
+    "male": 663,
+    "female": 622
+   },
+   {
+    "age": 24,
+    "male": 657,
+    "female": 622
+   },
+   {
+    "age": 25,
+    "male": 668,
+    "female": 631
+   },
+   {
+    "age": 26,
+    "male": 665,
+    "female": 629
+   },
+   {
+    "age": 27,
+    "male": 664,
+    "female": 626
+   },
+   {
+    "age": 28,
+    "male": 670,
+    "female": 632
+   },
+   {
+    "age": 29,
+    "male": 666,
+    "female": 627
+   },
+   {
+    "age": 30,
+    "male": 650,
+    "female": 612
+   },
+   {
+    "age": 31,
+    "male": 653,
+    "female": 617
+   },
+   {
+    "age": 32,
+    "male": 647,
+    "female": 614
+   },
+   {
+    "age": 33,
+    "male": 657,
+    "female": 626
+   },
+   {
+    "age": 34,
+    "male": 667,
+    "female": 637
+   },
+   {
+    "age": 35,
+    "male": 687,
+    "female": 655
+   },
+   {
+    "age": 36,
+    "male": 702,
+    "female": 673
+   },
+   {
+    "age": 37,
+    "male": 712,
+    "female": 682
+   },
+   {
+    "age": 38,
+    "male": 734,
+    "female": 710
+   },
+   {
+    "age": 39,
+    "male": 758,
+    "female": 734
+   },
+   {
+    "age": 40,
+    "male": 767,
+    "female": 744
+   },
+   {
+    "age": 41,
+    "male": 766,
+    "female": 746
+   },
+   {
+    "age": 42,
+    "male": 773,
+    "female": 751
+   },
+   {
+    "age": 43,
+    "male": 806,
+    "female": 784
+   },
+   {
+    "age": 44,
+    "male": 826,
+    "female": 802
+   },
+   {
+    "age": 45,
+    "male": 856,
+    "female": 833
+   },
+   {
+    "age": 46,
+    "male": 878,
+    "female": 854
+   },
+   {
+    "age": 47,
+    "male": 920,
+    "female": 894
+   },
+   {
+    "age": 48,
+    "male": 956,
+    "female": 931
+   },
+   {
+    "age": 49,
+    "male": 1010,
+    "female": 983
+   },
+   {
+    "age": 50,
+    "male": 1023,
+    "female": 1003
+   },
+   {
+    "age": 51,
+    "male": 1006,
+    "female": 983
+   },
+   {
+    "age": 52,
+    "male": 974,
+    "female": 956
+   },
+   {
+    "age": 53,
+    "male": 942,
+    "female": 927
+   },
+   {
+    "age": 54,
+    "male": 924,
+    "female": 914
+   },
+   {
+    "age": 55,
+    "male": 900,
+    "female": 891
+   },
+   {
+    "age": 56,
+    "male": 895,
+    "female": 889
+   },
+   {
+    "age": 57,
+    "male": 695,
+    "female": 697
+   },
+   {
+    "age": 58,
+    "male": 855,
+    "female": 856
+   },
+   {
+    "age": 59,
+    "male": 799,
+    "female": 802
+   },
+   {
+    "age": 60,
+    "male": 776,
+    "female": 782
+   },
+   {
+    "age": 61,
+    "male": 748,
+    "female": 757
+   },
+   {
+    "age": 62,
+    "male": 729,
+    "female": 742
+   },
+   {
+    "age": 63,
+    "male": 728,
+    "female": 748
+   },
+   {
+    "age": 64,
+    "male": 738,
+    "female": 760
+   },
+   {
+    "age": 65,
+    "male": 711,
+    "female": 740
+   },
+   {
+    "age": 66,
+    "male": 687,
+    "female": 718
+   },
+   {
+    "age": 67,
+    "male": 715,
+    "female": 754
+   },
+   {
+    "age": 68,
+    "male": 732,
+    "female": 776
+   },
+   {
+    "age": 69,
+    "male": 723,
+    "female": 776
+   },
+   {
+    "age": 70,
+    "male": 756,
+    "female": 824
+   },
+   {
+    "age": 71,
+    "male": 788,
+    "female": 868
+   },
+   {
+    "age": 72,
+    "male": 822,
+    "female": 915
+   },
+   {
+    "age": 73,
+    "male": 864,
+    "female": 981
+   },
+   {
+    "age": 74,
+    "male": 931,
+    "female": 1068
+   },
+   {
+    "age": 75,
+    "male": 900,
+    "female": 1052
+   },
+   {
+    "age": 76,
+    "male": 836,
+    "female": 990
+   },
+   {
+    "age": 77,
+    "male": 502,
+    "female": 615
+   },
+   {
+    "age": 78,
+    "male": 518,
+    "female": 657
+   },
+   {
+    "age": 79,
+    "male": 610,
+    "female": 795
+   },
+   {
+    "age": 80,
+    "male": 570,
+    "female": 757
+   },
+   {
+    "age": 81,
+    "male": 562,
+    "female": 765
+   },
+   {
+    "age": 82,
+    "male": 520,
+    "female": 727
+   },
+   {
+    "age": 83,
+    "male": 445,
+    "female": 645
+   },
+   {
+    "age": 84,
+    "male": 361,
+    "female": 543
+   },
+   {
+    "age": 85,
+    "male": 355,
+    "female": 561
+   },
+   {
+    "age": 86,
+    "male": 334,
+    "female": 552
+   },
+   {
+    "age": 87,
+    "male": 301,
+    "female": 526
+   },
+   {
+    "age": 88,
+    "male": 252,
+    "female": 474
+   },
+   {
+    "age": 89,
+    "male": 206,
+    "female": 418
+   },
+   {
+    "age": 90,
+    "male": 176,
+    "female": 386
+   },
+   {
+    "age": 91,
+    "male": 144,
+    "female": 340
+   },
+   {
+    "age": 92,
+    "male": 113,
+    "female": 293
+   },
+   {
+    "age": 93,
+    "male": 85,
+    "female": 242
+   },
+   {
+    "age": 94,
+    "male": 65,
+    "female": 203
+   },
+   {
+    "age": 95,
+    "male": 48,
+    "female": 166
+   },
+   {
+    "age": 96,
+    "male": 31,
+    "female": 117
+   },
+   {
+    "age": 97,
+    "male": 21,
+    "female": 89
+   },
+   {
+    "age": 98,
+    "male": 13,
+    "female": 63
+   },
+   {
+    "age": 99,
+    "male": 8,
+    "female": 43
+   },
+   {
+    "age": 100,
+    "male": 11,
+    "female": 77
+   }
+  ]
+ },
+ "fertility": {
+  "births_by_mother_age5": {
+   "15-19": 4325,
+   "20-24": 47195,
+   "25-29": 189338,
+   "30-34": 265109,
+   "35-39": 173523,
+   "40-44": 46020,
+   "45-49": 1645
+  },
+  "source": "mhlw 人口動態統計 確定数 2023 (令和5年) 第4表(1) 母の年齢(5歳階級)別出生数 (kakutei23 xls/hyo.xlsx, 2023 column); published 2024-09-17",
+  "note": "15-49 sum 727,155 of 727,288 births (14歳以下 27, 50歳以上 100, 不詳 6), the same coverage as before (R96c)"
+ },
+ "life_table": {
+  "note": "qx by single age not loaded in S1: the engine uses a Gompertz shape scaled to the published deaths (D); the 完全生命表 qx is on the owner list"
+ }
+}

@@ -1,0 +1,3810 @@
+{
+ "claims": [
+  {
+   "administered_by": "RUS",
+   "aliases": [
+    "択捉島",
+    "国後島",
+    "色丹島",
+    "歯舞群島",
+    "Southern Kurils",
+    "Южные Курилы"
+   ],
+   "area": "northern_territories",
+   "label": "北方領土",
+   "source": "R54 Part 3 (MOFA; Russia's position secondary, TASS)",
+   "view_holder": "JPN",
+   "wording": "我が国固有の領土 (under illegal occupation)"
+  },
+  {
+   "administered_by": "KOR",
+   "aliases": [
+    "Dokdo",
+    "독도"
+   ],
+   "area": "takeshima",
+   "label": "竹島",
+   "source": "R54 Part 3 (MOFA; ROK)",
+   "view_holder": "JPN",
+   "wording": "我が国固有の領土 (occupied by the ROK with no basis in international law)"
+  },
+  {
+   "administered_by": "JPN",
+   "aliases": [
+    "Diaoyu",
+    "Diaoyutai",
+    "钓鱼岛",
+    "釣魚臺"
+   ],
+   "area": "senkaku",
+   "label": "尖閣諸島",
+   "source": "R54 Part 3 (MOFA; PRC white paper 2012; ROC)",
+   "view_holder": "JPN",
+   "wording": "inherent territory; no issue of territorial sovereignty"
+  }
+ ],
+ "counts": {
+  "not_listed": 1,
+  "not_recognised": 1,
+  "region": 4,
+  "self": 1,
+  "state": 195,
+  "territory": 13,
+  "unknown": 0
+ },
+ "entities": {
+  "ABW": {
+   "aliases": [
+    "Aruba",
+    "Аруба",
+    "أروبا",
+    "阿魯巴",
+    "阿鲁巴",
+    "아루바"
+   ],
+   "kind": "territory",
+   "name": "アルバ",
+   "of": "NLD",
+   "source": "general usage, not MOFA (R55: NOT FOUND on MOFA pages)",
+   "status_text": "territory of its administering state"
+  },
+  "AFG": {
+   "aliases": [
+    "Afganistán",
+    "Afghanistan",
+    "Афганистан",
+    "أفغانستان",
+    "アフガニスタン・イスラム共和国",
+    "阿富汗",
+    "아프가니스탄"
+   ],
+   "kind": "state",
+   "name": "アフガニスタン",
+   "region_group": "JA: 中東 / EN path: middle_e",
+   "source": "c_ja_index.md:21; c_ja_middleeast.md:15; c_en_index.md:13",
+   "status_text": "recognised state"
+  },
+  "AGO": {
+   "aliases": [
+    "Angola",
+    "Ангола",
+    "أنغولا",
+    "アンゴラ共和国",
+    "安哥拉",
+    "앙골라"
+   ],
+   "kind": "state",
+   "name": "アンゴラ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:35; c_ja_africa.md:17; c_en_index.md:21",
+   "status_text": "recognised state"
+  },
+  "ALB": {
+   "aliases": [
+    "Albania",
+    "Albanie",
+    "Албания",
+    "ألبانيا",
+    "アルバニア共和国",
+    "阿尔巴尼亚",
+    "阿爾巴尼亞",
+    "알바니아"
+   ],
+   "kind": "state",
+   "name": "アルバニア",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:31; c_ja_europe.md:21; c_en_index.md:15",
+   "status_text": "recognised state"
+  },
+  "AND": {
+   "aliases": [
+    "Andorra",
+    "Andorre",
+    "Андорра",
+    "أندورا",
+    "アンドラ公国",
+    "安道尔",
+    "安道爾",
+    "안도라"
+   ],
+   "kind": "state",
+   "name": "アンドラ",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:39; c_ja_europe.md:25; c_en_index.md:19",
+   "status_text": "recognised state"
+  },
+  "ARE": {
+   "aliases": [
+    "Emiratos Árabes Unidos",
+    "United Arab Emirates",
+    "Émirats arabes unis",
+    "Объединённые Арабские Эмираты",
+    "الإمارات العربية المتحدة",
+    "阿拉伯联合酋长国",
+    "阿拉伯聯合大公國",
+    "아랍에미리트"
+   ],
+   "kind": "state",
+   "name": "アラブ首長国連邦",
+   "region_group": "JA: 中東 / EN path: middle_e",
+   "source": "c_ja_index.md:25; c_ja_middleeast.md:17; c_en_index.md:407",
+   "status_text": "recognised state"
+  },
+  "ARG": {
+   "aliases": [
+    "Argentina",
+    "Argentine",
+    "Аргентина",
+    "الأرجنتين",
+    "アルゼンチン",
+    "阿根廷",
+    "아르헨티나"
+   ],
+   "kind": "state",
+   "name": "アルゼンチン共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:29; c_en_index.md:25",
+   "status_text": "recognised state"
+  },
+  "ARM": {
+   "aliases": [
+    "Armenia",
+    "Arménie",
+    "Армения",
+    "أرمينيا",
+    "アルメニア共和国",
+    "亚美尼亚",
+    "亞美尼亞",
+    "아르메니아"
+   ],
+   "kind": "state",
+   "name": "アルメニア",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:33; c_ja_europe.md:23; c_en_index.md:27",
+   "status_text": "recognised state"
+  },
+  "ATG": {
+   "aliases": [
+    "Antigua and Barbuda",
+    "Antigua y Barbuda",
+    "Antigua-et-Barbuda",
+    "Антигуа и Барбуда",
+    "أنتيغوا وباربودا",
+    "安地卡及巴布達",
+    "安提瓜和巴布达",
+    "앤티가 바부다"
+   ],
+   "kind": "state",
+   "name": "アンティグア・バーブーダ",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:37; c_en_index.md:23",
+   "status_text": "recognised state"
+  },
+  "AUS": {
+   "aliases": [
+    "Australia",
+    "Australie",
+    "Австралия",
+    "أستراليا",
+    "オーストラリア連邦",
+    "澳大利亚",
+    "澳大利亞",
+    "오스트레일리아"
+   ],
+   "kind": "state",
+   "name": "オーストラリア",
+   "region_group": "JA: 大洋州 / EN path: asia-paci",
+   "source": "c_ja_index.md:87; c_ja_pacific.md:15; c_en_index.md:29",
+   "status_text": "recognised state"
+  },
+  "AUT": {
+   "aliases": [
+    "Austria",
+    "Autriche",
+    "Австрия",
+    "النمسا",
+    "オーストリア共和国",
+    "奥地利",
+    "奧地利",
+    "오스트리아"
+   ],
+   "kind": "state",
+   "name": "オーストリア",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:89; c_ja_europe.md:37; c_en_index.md:31",
+   "status_text": "recognised state"
+  },
+  "AZE": {
+   "aliases": [
+    "Azerbaijan",
+    "Azerbaiyán",
+    "Azerbaïdjan",
+    "Азербайджан",
+    "أذربيجان",
+    "アゼルバイジャン共和国",
+    "亞塞拜然",
+    "阿塞拜疆",
+    "아제르바이잔"
+   ],
+   "kind": "state",
+   "name": "アゼルバイジャン",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:19; c_ja_europe.md:19; c_en_index.md:33",
+   "status_text": "recognised state"
+  },
+  "BDI": {
+   "aliases": [
+    "Burundi",
+    "Бурунди",
+    "بوروندي",
+    "ブルンジ共和国",
+    "布隆迪",
+    "蒲隆地",
+    "부룬디"
+   ],
+   "kind": "state",
+   "name": "ブルンジ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:373; c_ja_africa.md:91; c_en_index.md:69",
+   "status_text": "recognised state"
+  },
+  "BEL": {
+   "aliases": [
+    "Belgique",
+    "Belgium",
+    "Bélgica",
+    "Бельгия",
+    "بلجيكا",
+    "ベルギー王国",
+    "比利时",
+    "比利時",
+    "벨기에"
+   ],
+   "kind": "state",
+   "name": "ベルギー",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:389; c_ja_europe.md:95; c_en_index.md:47",
+   "status_text": "recognised state"
+  },
+  "BEN": {
+   "aliases": [
+    "Benin",
+    "Benín",
+    "Bénin",
+    "Бенин",
+    "بنين",
+    "ベナン共和国",
+    "貝南",
+    "贝宁",
+    "베냉"
+   ],
+   "kind": "state",
+   "name": "ベナン",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:379; c_ja_africa.md:93; c_en_index.md:51",
+   "status_text": "recognised state"
+  },
+  "BFA": {
+   "aliases": [
+    "Burkina Faso",
+    "Буркина-Фасо",
+    "بوركينا فاسو",
+    "布基納法索",
+    "布基纳法索",
+    "부르키나파소"
+   ],
+   "kind": "state",
+   "name": "ブルキナファソ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:369; c_ja_africa.md:89; c_en_index.md:67",
+   "status_text": "recognised state"
+  },
+  "BGD": {
+   "aliases": [
+    "Bangladesh",
+    "Bangladés",
+    "Бангладеш",
+    "بنغلاديش",
+    "バングラデシュ人民共和国",
+    "孟加拉",
+    "孟加拉国",
+    "방글라데시"
+   ],
+   "kind": "state",
+   "name": "バングラデシュ",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:347; c_ja_asia.md:35; c_en_index.md:41",
+   "status_text": "recognised state"
+  },
+  "BGR": {
+   "aliases": [
+    "Bulgaria",
+    "Bulgarie",
+    "Болгария",
+    "بلغاريا",
+    "ブルガリア共和国",
+    "保加利亚",
+    "保加利亞",
+    "불가리아"
+   ],
+   "kind": "state",
+   "name": "ブルガリア",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:367; c_ja_europe.md:91; c_en_index.md:65",
+   "status_text": "recognised state"
+  },
+  "BHR": {
+   "aliases": [
+    "Bahrain",
+    "Bahreïn",
+    "Baréin",
+    "Бахрейн",
+    "البحرين",
+    "バーレーン王国",
+    "巴林",
+    "바레인"
+   ],
+   "kind": "state",
+   "name": "バーレーン",
+   "region_group": "JA: 中東 / EN path: middle_e",
+   "source": "c_ja_index.md:323; c_ja_middleeast.md:39; c_en_index.md:39",
+   "status_text": "recognised state"
+  },
+  "BHS": {
+   "aliases": [
+    "Bahamas",
+    "The Bahamas",
+    "Багамские Острова",
+    "باهاماس",
+    "バハマ",
+    "巴哈馬",
+    "巴哈马",
+    "바하마"
+   ],
+   "kind": "state",
+   "name": "バハマ国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:335; c_en_index.md:37",
+   "status_text": "recognised state"
+  },
+  "BIH": {
+   "aliases": [
+    "Bosnia and Herzegovina",
+    "Bosnia y Herzegovina",
+    "Bosnie-Herzégovine",
+    "Босния и Герцеговина",
+    "البوسنة والهرسك",
+    "波士尼亞與赫塞哥維納",
+    "波斯尼亚和黑塞哥维那",
+    "보스니아 헤르체고비나"
+   ],
+   "kind": "state",
+   "name": "ボスニア・ヘルツェゴビナ",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:395; c_ja_europe.md:99; c_en_index.md:57",
+   "status_text": "recognised state"
+  },
+  "BLR": {
+   "aliases": [
+    "Belarus",
+    "Bielorrusia",
+    "Biélorussie",
+    "Белоруссия",
+    "بيلاروسيا",
+    "ベラルーシ共和国",
+    "白ロシア",
+    "白俄罗斯",
+    "白俄羅斯",
+    "벨라루스"
+   ],
+   "kind": "state",
+   "name": "ベラルーシ",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:383; c_ja_europe.md:93; c_en_index.md:45",
+   "status_text": "recognised state"
+  },
+  "BLZ": {
+   "aliases": [
+    "Belice",
+    "Belize",
+    "Белиз",
+    "بليز",
+    "伯利兹",
+    "貝里斯",
+    "벨리즈"
+   ],
+   "kind": "state",
+   "name": "ベリーズ",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:385; c_en_index.md:49",
+   "status_text": "recognised state"
+  },
+  "BMU": {
+   "aliases": [
+    "Bermuda",
+    "Bermudas",
+    "Bermudes",
+    "Бермудские Острова",
+    "برمودا",
+    "百慕大",
+    "百慕達",
+    "버뮤다"
+   ],
+   "kind": "territory",
+   "name": "バミューダ諸島",
+   "of": "GBR",
+   "source": "MOFA (R55: f_anzen_sm_uk.md:340; f_press_idx_22_2.md:339)",
+   "status_text": "territory of its administering state"
+  },
+  "BOL": {
+   "aliases": [
+    "Bolivia",
+    "Bolivia (Plurinational State of)",
+    "Bolivie",
+    "Боливия",
+    "بوليفيا",
+    "ボリビア",
+    "玻利維亞",
+    "玻利维亚",
+    "볼리비아"
+   ],
+   "kind": "state",
+   "name": "ボリビア多民族国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:399; c_en_index.md:55",
+   "status_text": "recognised state"
+  },
+  "BRA": {
+   "aliases": [
+    "Brasil",
+    "Brazil",
+    "Brésil",
+    "Бразилия",
+    "البرازيل",
+    "ブラジル",
+    "巴西",
+    "브라질"
+   ],
+   "kind": "state",
+   "name": "ブラジル連邦共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:363; c_en_index.md:61",
+   "status_text": "recognised state"
+  },
+  "BRB": {
+   "aliases": [
+    "Barbade",
+    "Barbados",
+    "Барбадос",
+    "باربادوس",
+    "巴巴多斯",
+    "巴貝多",
+    "바베이도스"
+   ],
+   "kind": "state",
+   "name": "バルバドス",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:343; c_en_index.md:43",
+   "status_text": "recognised state"
+  },
+  "BRN": {
+   "aliases": [
+    "Brunei",
+    "Brunei Darussalam",
+    "Brunéi",
+    "Бруней",
+    "بروناي",
+    "ブルネイ・ダルサラーム国",
+    "文莱",
+    "汶萊",
+    "브루나이"
+   ],
+   "kind": "state",
+   "name": "ブルネイ",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:371; c_ja_asia.md:43; c_en_index.md:63",
+   "status_text": "recognised state"
+  },
+  "BTN": {
+   "aliases": [
+    "Bhoutan",
+    "Bhutan",
+    "Bután",
+    "Бутан",
+    "بوتان",
+    "ブータン王国",
+    "不丹",
+    "부탄"
+   ],
+   "kind": "state",
+   "name": "ブータン",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:361; c_ja_asia.md:41; c_en_index.md:53",
+   "status_text": "recognised state"
+  },
+  "BWA": {
+   "aliases": [
+    "Botsuana",
+    "Botswana",
+    "Ботсвана",
+    "بوتسوانا",
+    "ボツワナ共和国",
+    "博茨瓦纳",
+    "波札那",
+    "보츠와나"
+   ],
+   "kind": "state",
+   "name": "ボツワナ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:397; c_ja_africa.md:95; c_en_index.md:59",
+   "status_text": "recognised state"
+  },
+  "CAF": {
+   "aliases": [
+    "Central African Republic",
+    "República Centroafricana",
+    "République centrafricaine",
+    "Центральноафриканская Республика",
+    "جمهورية أفريقيا الوسطى",
+    "中央アフリカ共和国",
+    "中非共和国",
+    "中非共和國",
+    "중앙아프리카 공화국"
+   ],
+   "kind": "state",
+   "name": "中央アフリカ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:257; c_ja_africa.md:77; c_en_index.md:81",
+   "status_text": "recognised state"
+  },
+  "CAN": {
+   "aliases": [
+    "Canada",
+    "Canadá",
+    "Канада",
+    "كندا",
+    "加拿大",
+    "캐나다"
+   ],
+   "kind": "state",
+   "name": "カナダ",
+   "region_group": "JA: 北米 / EN path: n-america",
+   "source": "c_ja_index.md:109; c_ja_n_america.md:17; c_en_index.md:77",
+   "status_text": "recognised state"
+  },
+  "CHE": {
+   "aliases": [
+    "Suisse",
+    "Suiza",
+    "Switzerland",
+    "Швейцария",
+    "سويسرا",
+    "スイス連邦",
+    "瑞士",
+    "스위스"
+   ],
+   "kind": "state",
+   "name": "スイス",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:201; c_ja_europe.md:59; c_en_index.md:375",
+   "status_text": "recognised state"
+  },
+  "CHL": {
+   "aliases": [
+    "Chile",
+    "Chili",
+    "Чили",
+    "تشيلي",
+    "チリ",
+    "智利",
+    "칠레"
+   ],
+   "kind": "state",
+   "name": "チリ共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:263; c_en_index.md:85",
+   "status_text": "recognised state"
+  },
+  "CHN": {
+   "aliases": [
+    "China",
+    "People's Republic of China",
+    "République populaire de Chine",
+    "Китайская Народная Республика",
+    "الصين",
+    "中共",
+    "中华人民共和国",
+    "中華人民共和国",
+    "中華人民共和國",
+    "중화인민공화국"
+   ],
+   "kind": "state",
+   "name": "中国",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:259; c_ja_asia.md:29; c_en_index.md:87",
+   "status_text": "recognised state"
+  },
+  "CIV": {
+   "aliases": [
+    "Costa de Marfil",
+    "Côte d'Ivoire",
+    "Côte d’Ivoire",
+    "Ivory Coast",
+    "Кот-д’Ивуар",
+    "ساحل العاج",
+    "コートジボワール共和国",
+    "科特迪瓦",
+    "象牙海岸",
+    "코트디부아르"
+   ],
+   "kind": "state",
+   "name": "コートジボワール",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:155; c_ja_africa.md:45; c_en_index.md:101",
+   "status_text": "recognised state"
+  },
+  "CMR": {
+   "aliases": [
+    "Cameroon",
+    "Cameroun",
+    "Camerún",
+    "Камерун",
+    "الكاميرون",
+    "カメルーン共和国",
+    "喀麥隆",
+    "喀麦隆",
+    "카메룬"
+   ],
+   "kind": "state",
+   "name": "カメルーン",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:113; c_ja_africa.md:35; c_en_index.md:75",
+   "status_text": "recognised state"
+  },
+  "COD": {
+   "aliases": [
+    "Democratic Republic of the Congo",
+    "República Democrática del Congo",
+    "République démocratique du Congo",
+    "Демократическая Республика Конго",
+    "جمهورية الكونغو الديمقراطية",
+    "刚果民主共和国",
+    "剛果民主共和國",
+    "콩고 민주 공화국"
+   ],
+   "kind": "state",
+   "name": "コンゴ民主共和国",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:167; c_ja_africa.md:51; c_en_index.md:95",
+   "status_text": "recognised state"
+  },
+  "COG": {
+   "aliases": [
+    "Congo",
+    "Republic of the Congo",
+    "República del Congo",
+    "République du Congo",
+    "Республика Конго",
+    "جمهورية الكونغو",
+    "刚果共和国",
+    "剛果共和國",
+    "콩고 공화국"
+   ],
+   "kind": "state",
+   "name": "コンゴ共和国",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:165; c_ja_africa.md:49; c_en_index.md:93",
+   "status_text": "recognised state"
+  },
+  "COK": {
+   "aliases": [
+    "Cook Islands",
+    "Islas Cook",
+    "Îles Cook",
+    "Острова Кука",
+    "جزر كوك",
+    "库克群岛",
+    "庫克群島",
+    "쿡 제도"
+   ],
+   "kind": "state",
+   "name": "クック諸島",
+   "region_group": "JA: 大洋州 / EN path: asia-paci",
+   "source": "c_ja_index.md:143; c_ja_pacific.md:19; c_en_index.md:97; R53 e_mofa_world_wb.md:23 (recognised; not UN member)",
+   "status_text": "recognised state"
+  },
+  "COL": {
+   "aliases": [
+    "Colombia",
+    "Colombie",
+    "Колумбия",
+    "كولومبيا",
+    "コロンビア",
+    "哥伦比亚",
+    "哥倫比亞",
+    "콜롬비아"
+   ],
+   "kind": "state",
+   "name": "コロンビア共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:163; c_en_index.md:89",
+   "status_text": "recognised state"
+  },
+  "COM": {
+   "aliases": [
+    "Comoras",
+    "Comores",
+    "Comoros",
+    "Коморы",
+    "جزر القمر",
+    "コモロ連合",
+    "科摩罗",
+    "葛摩",
+    "코모로"
+   ],
+   "kind": "state",
+   "name": "コモロ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:161; c_ja_africa.md:47; c_en_index.md:91",
+   "status_text": "recognised state"
+  },
+  "CPV": {
+   "aliases": [
+    "Cabo Verde",
+    "Cap-Vert",
+    "Cape Verde",
+    "Кабо-Верде",
+    "الرأس الأخضر",
+    "カボベルデ",
+    "カーボベルデ共和国",
+    "佛得角",
+    "維德角",
+    "카보베르데"
+   ],
+   "kind": "state",
+   "name": "カーボベルデ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:101; c_ja_africa.md:31; c_en_index.md:79",
+   "status_text": "recognised state"
+  },
+  "CRI": {
+   "aliases": [
+    "Costa Rica",
+    "Коста-Рика",
+    "كوستاريكا",
+    "コスタリカ",
+    "哥斯大黎加",
+    "哥斯达黎加",
+    "코스타리카"
+   ],
+   "kind": "state",
+   "name": "コスタリカ共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:157; c_en_index.md:99",
+   "status_text": "recognised state"
+  },
+  "CUB": {
+   "aliases": [
+    "Cuba",
+    "Куба",
+    "كوبا",
+    "キューバ",
+    "古巴",
+    "쿠바"
+   ],
+   "kind": "state",
+   "name": "キューバ共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:129; c_en_index.md:105",
+   "status_text": "recognised state"
+  },
+  "CUW": {
+   "aliases": [
+    "Curazao",
+    "Curaçao",
+    "Кюрасао",
+    "كوراساو",
+    "古拉索",
+    "库拉索",
+    "퀴라소"
+   ],
+   "kind": "territory",
+   "name": "キュラソー",
+   "of": "NLD",
+   "source": "general usage, not MOFA (R55: NOT FOUND on MOFA pages)",
+   "status_text": "territory of its administering state"
+  },
+  "CYM": {
+   "aliases": [
+    "Cayman Islands",
+    "Islas Caimán",
+    "îles Caïmans",
+    "острова Кайман",
+    "جزر كايمان",
+    "开曼群岛",
+    "開曼群島",
+    "케이맨 제도"
+   ],
+   "kind": "territory",
+   "name": "ケイマン諸島",
+   "of": "GBR",
+   "source": "MOFA (R55: f_anzen_sm_uk.md:332; f_press_cym.md:60;64; f_press_idx_23_2.md:411)",
+   "status_text": "territory of its administering state"
+  },
+  "CYP": {
+   "aliases": [
+    "Chipre",
+    "Chypre",
+    "Cyprus",
+    "Кипр",
+    "قبرص",
+    "キプロス共和国",
+    "塞浦路斯",
+    "賽普勒斯",
+    "키프로스"
+   ],
+   "kind": "state",
+   "name": "キプロス",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:127; c_ja_europe.md:45; c_en_index.md:107",
+   "status_text": "recognised state"
+  },
+  "CZE": {
+   "aliases": [
+    "Czech Republic",
+    "Czechia",
+    "República Checa",
+    "Tchéquie",
+    "Чехия",
+    "التشيك",
+    "チェコ共和国",
+    "捷克",
+    "捷克共和國",
+    "체코"
+   ],
+   "kind": "state",
+   "name": "チェコ",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:253; c_ja_europe.md:73; c_en_index.md:109",
+   "status_text": "recognised state"
+  },
+  "DEU": {
+   "aliases": [
+    "Alemania",
+    "Allemagne",
+    "Germany",
+    "Германия",
+    "ألمانيا",
+    "ドイツ連邦共和国",
+    "德国",
+    "德國",
+    "독일"
+   ],
+   "kind": "state",
+   "name": "ドイツ",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:275; c_ja_europe.md:77; c_en_index.md:153",
+   "status_text": "recognised state"
+  },
+  "DJI": {
+   "aliases": [
+    "Djibouti",
+    "Yibuti",
+    "Джибути",
+    "جيبوتي",
+    "ジブチ共和国",
+    "吉布地",
+    "吉布提",
+    "지부티"
+   ],
+   "kind": "state",
+   "name": "ジブチ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:187; c_ja_africa.md:59; c_en_index.md:117",
+   "status_text": "recognised state"
+  },
+  "DMA": {
+   "aliases": [
+    "Dominica",
+    "Dominique",
+    "Доминика",
+    "دومينيكا",
+    "ドミニカ",
+    "多米尼克",
+    "도미니카 연방"
+   ],
+   "kind": "state",
+   "name": "ドミニカ国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:279; c_en_index.md:119",
+   "status_text": "recognised state"
+  },
+  "DNK": {
+   "aliases": [
+    "Danemark",
+    "Denmark",
+    "Dinamarca",
+    "Дания",
+    "الدنمارك",
+    "デンマーク王国",
+    "丹麥",
+    "丹麦",
+    "덴마크"
+   ],
+   "kind": "state",
+   "name": "デンマーク",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:271; c_ja_europe.md:75; c_en_index.md:115",
+   "status_text": "recognised state"
+  },
+  "DOM": {
+   "aliases": [
+    "Dominican Republic",
+    "República Dominicana",
+    "République dominicaine",
+    "Доминиканская Республика",
+    "جمهورية الدومينيكان",
+    "多明尼加",
+    "多米尼加",
+    "도미니카 공화국"
+   ],
+   "kind": "state",
+   "name": "ドミニカ共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:281; c_en_index.md:121",
+   "status_text": "recognised state"
+  },
+  "DZA": {
+   "aliases": [
+    "Algeria",
+    "Algérie",
+    "Argelia",
+    "Алжир",
+    "الجزائر",
+    "アルジェリア民主人民共和国",
+    "阿尔及利亚",
+    "阿爾及利亞",
+    "알제리"
+   ],
+   "kind": "state",
+   "name": "アルジェリア",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:27; c_ja_africa.md:15; c_en_index.md:17",
+   "status_text": "recognised state"
+  },
+  "ECU": {
+   "aliases": [
+    "Ecuador",
+    "Équateur",
+    "Эквадор",
+    "الإكوادور",
+    "エクアドル",
+    "厄瓜多尔",
+    "厄瓜多爾",
+    "에콰도르"
+   ],
+   "kind": "state",
+   "name": "エクアドル共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:71; c_en_index.md:123",
+   "status_text": "recognised state"
+  },
+  "EGY": {
+   "aliases": [
+    "Egipto",
+    "Egypt",
+    "Égypte",
+    "Египет",
+    "مصر",
+    "エジプト・アラブ共和国",
+    "埃及",
+    "이집트"
+   ],
+   "kind": "state",
+   "name": "エジプト",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:73; c_ja_africa.md:21; c_en_index.md:125",
+   "status_text": "recognised state"
+  },
+  "ERI": {
+   "aliases": [
+    "Eritrea",
+    "Érythrée",
+    "Эритрея",
+    "إريتريا",
+    "エリトリア国",
+    "厄利垂亞",
+    "厄立特里亚",
+    "에리트레아"
+   ],
+   "kind": "state",
+   "name": "エリトリア",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:81; c_ja_africa.md:27; c_en_index.md:131",
+   "status_text": "recognised state"
+  },
+  "ESH": {
+   "aliases": [
+    "Sahara Occidental",
+    "Sahara occidental",
+    "Western Sahara",
+    "Западная Сахара",
+    "الصحراء الغربية",
+    "西撒哈拉",
+    "서사하라"
+   ],
+   "kind": "not_listed",
+   "name": "西サハラ",
+   "region_group": "-",
+   "source": "c_ja_morocco_data.md:15,181",
+   "status_text": "not recognised / not listed: named only in 西サハラ問題 (dispute over attribution 帰属 between Morocco and Polisario); Morocco area stated as 西サハラ除く"
+  },
+  "ESP": {
+   "aliases": [
+    "Espagne",
+    "España",
+    "Spain",
+    "Испания",
+    "إسبانيا",
+    "スペイン王国",
+    "西班牙",
+    "스페인"
+   ],
+   "kind": "state",
+   "name": "スペイン",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:207; c_ja_europe.md:63; c_en_index.md:365",
+   "status_text": "recognised state"
+  },
+  "EST": {
+   "aliases": [
+    "Estonia",
+    "Estonie",
+    "Эстония",
+    "إستونيا",
+    "エストニア共和国",
+    "愛沙尼亞",
+    "爱沙尼亚",
+    "에스토니아"
+   ],
+   "kind": "state",
+   "name": "エストニア",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:75; c_ja_europe.md:35; c_en_index.md:133",
+   "status_text": "recognised state"
+  },
+  "ETH": {
+   "aliases": [
+    "Ethiopia",
+    "Etiopía",
+    "Éthiopie",
+    "Эфиопия",
+    "إثيوبيا",
+    "エチオピア連邦民主共和国",
+    "埃塞俄比亚",
+    "衣索比亞",
+    "에티오피아"
+   ],
+   "kind": "state",
+   "name": "エチオピア",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:79; c_ja_africa.md:25; c_en_index.md:137",
+   "status_text": "recognised state"
+  },
+  "FIN": {
+   "aliases": [
+    "Finland",
+    "Finlande",
+    "Finlandia",
+    "Финляндия",
+    "فنلندا",
+    "フィンランド共和国",
+    "芬兰",
+    "芬蘭",
+    "핀란드"
+   ],
+   "kind": "state",
+   "name": "フィンランド",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:359; c_ja_europe.md:87; c_en_index.md:141",
+   "status_text": "recognised state"
+  },
+  "FJI": {
+   "aliases": [
+    "Fidji",
+    "Fiji",
+    "Fiyi",
+    "Фиджи",
+    "فيجي",
+    "フィジー共和国",
+    "斐济",
+    "斐濟",
+    "피지"
+   ],
+   "kind": "state",
+   "name": "フィジー",
+   "region_group": "JA: 大洋州 / EN path: asia-paci",
+   "source": "c_ja_index.md:355; c_ja_pacific.md:41; c_en_index.md:139",
+   "status_text": "recognised state"
+  },
+  "FRA": {
+   "aliases": [
+    "France",
+    "Francia",
+    "Франция",
+    "فرنسا",
+    "フランス共和国",
+    "法国",
+    "法國",
+    "프랑스"
+   ],
+   "kind": "state",
+   "name": "フランス",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:365; c_ja_europe.md:89; c_en_index.md:143",
+   "status_text": "recognised state"
+  },
+  "FRO": {
+   "aliases": [
+    "Faroe Islands",
+    "Islas Feroe",
+    "îles Féroé",
+    "Фарерские острова",
+    "جزر فارو",
+    "法罗群岛",
+    "法羅群島",
+    "페로 제도"
+   ],
+   "kind": "territory",
+   "name": "フェロー諸島",
+   "of": "DNK",
+   "source": "MOFA (R55: f_denmark_data.md:649;651)",
+   "status_text": "territory of its administering state"
+  },
+  "FSM": {
+   "aliases": [
+    "Estados Federados de Micronesia",
+    "Federated States of Micronesia",
+    "Micronesia (Federated States of)",
+    "États fédérés de Micronésie",
+    "Микронезия",
+    "ولايات ميكرونيسيا المتحدة",
+    "ミクロネシア連邦",
+    "密克罗尼西亚联邦",
+    "密克羅尼西亞聯邦",
+    "미크로네시아 연방"
+   ],
+   "kind": "state",
+   "name": "ミクロネシア",
+   "region_group": "JA: 大洋州 / EN path: asia-paci",
+   "source": "c_ja_index.md:423; c_ja_pacific.md:45; c_en_index.md:255",
+   "status_text": "recognised state"
+  },
+  "GAB": {
+   "aliases": [
+    "Gabon",
+    "Gabón",
+    "Габон",
+    "الغابون",
+    "ガボン共和国",
+    "加彭",
+    "加蓬",
+    "가봉"
+   ],
+   "kind": "state",
+   "name": "ガボン",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:111; c_ja_africa.md:33; c_en_index.md:147",
+   "status_text": "recognised state"
+  },
+  "GBR": {
+   "aliases": [
+    "Reino Unido",
+    "Royaume-Uni",
+    "United Kingdom",
+    "United Kingdom of Great Britain and Northern Ireland",
+    "Великобритания",
+    "المملكة المتحدة",
+    "イギリス",
+    "英国（グレートブリテン及び北アイルランド連合王国）",
+    "英國",
+    "영국"
+   ],
+   "kind": "state",
+   "name": "英国",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:69; c_ja_europe.md:33; c_en_index.md:409",
+   "status_text": "recognised state"
+  },
+  "GEO": {
+   "aliases": [
+    "Georgia",
+    "Géorgie",
+    "Грузия",
+    "جورجيا",
+    "グルジア",
+    "喬治亞",
+    "格鲁吉亚",
+    "조지아"
+   ],
+   "kind": "state",
+   "name": "ジョージア",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:191; c_ja_europe.md:57; c_en_index.md:151",
+   "status_text": "recognised state"
+  },
+  "GHA": {
+   "aliases": [
+    "Ghana",
+    "Гана",
+    "غانا",
+    "ガーナ共和国",
+    "加纳",
+    "迦納",
+    "가나"
+   ],
+   "kind": "state",
+   "name": "ガーナ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:99; c_ja_africa.md:29; c_en_index.md:155",
+   "status_text": "recognised state"
+  },
+  "GIN": {
+   "aliases": [
+    "Guinea",
+    "Guinée",
+    "Гвинея",
+    "غينيا",
+    "ギニア共和国",
+    "几内亚",
+    "幾內亞",
+    "기니"
+   ],
+   "kind": "state",
+   "name": "ギニア",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:123; c_ja_africa.md:39; c_en_index.md:163",
+   "status_text": "recognised state"
+  },
+  "GMB": {
+   "aliases": [
+    "Gambia",
+    "Gambie",
+    "The Gambia",
+    "Гамбия",
+    "غامبيا",
+    "ガンビア共和国",
+    "冈比亚",
+    "甘比亞",
+    "감비아"
+   ],
+   "kind": "state",
+   "name": "ガンビア",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:115; c_ja_africa.md:37; c_en_index.md:149",
+   "status_text": "recognised state"
+  },
+  "GNB": {
+   "aliases": [
+    "Guinea-Bissau",
+    "Guinea-Bisáu",
+    "Guinée-Bissau",
+    "Гвинея-Бисау",
+    "غينيا بيساو",
+    "ギニアビサウ共和国",
+    "几内亚比绍",
+    "幾內亞比索",
+    "기니비사우"
+   ],
+   "kind": "state",
+   "name": "ギニアビサウ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:125; c_ja_africa.md:41; c_en_index.md:165",
+   "status_text": "recognised state"
+  },
+  "GNQ": {
+   "aliases": [
+    "Equatorial Guinea",
+    "Guinea Ecuatorial",
+    "Guinée équatoriale",
+    "Экваториальная Гвинея",
+    "غينيا الاستوائية",
+    "赤道ギニア共和国",
+    "赤道几内亚",
+    "赤道幾內亞",
+    "적도 기니"
+   ],
+   "kind": "state",
+   "name": "赤道ギニア",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:221; c_ja_africa.md:67; c_en_index.md:129",
+   "status_text": "recognised state"
+  },
+  "GRC": {
+   "aliases": [
+    "Grecia",
+    "Greece",
+    "Grèce",
+    "Греция",
+    "اليونان",
+    "ギリシャ共和国",
+    "希腊",
+    "希臘",
+    "그리스"
+   ],
+   "kind": "state",
+   "name": "ギリシャ",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:131; c_ja_europe.md:47; c_en_index.md:157",
+   "status_text": "recognised state"
+  },
+  "GRD": {
+   "aliases": [
+    "Granada",
+    "Grenada",
+    "Grenade",
+    "Гренада",
+    "غرينادا",
+    "格林纳达",
+    "格瑞那達",
+    "그레나다"
+   ],
+   "kind": "state",
+   "name": "グレナダ",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:145; c_en_index.md:159",
+   "status_text": "recognised state"
+  },
+  "GRL": {
+   "aliases": [
+    "Greenland",
+    "Groenland",
+    "Groenlandia",
+    "Гренландия",
+    "جرينلاند",
+    "格陵兰",
+    "格陵蘭",
+    "그린란드"
+   ],
+   "kind": "territory",
+   "name": "グリーンランド",
+   "of": "DNK",
+   "source": "MOFA (R55: f_denmark_data.md:649;731)",
+   "status_text": "territory of its administering state"
+  },
+  "GTM": {
+   "aliases": [
+    "Guatemala",
+    "Гватемала",
+    "غواتيمالا",
+    "グアテマラ",
+    "危地马拉",
+    "瓜地馬拉",
+    "과테말라"
+   ],
+   "kind": "state",
+   "name": "グアテマラ共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:139; c_en_index.md:161",
+   "status_text": "recognised state"
+  },
+  "GUM": {
+   "aliases": [
+    "Guam",
+    "Гуам",
+    "غوام",
+    "关岛",
+    "關島",
+    "괌"
+   ],
+   "kind": "territory",
+   "name": "グアム",
+   "of": "USA",
+   "source": "MOFA (R55: f_anzen_riskmap.md:191; f_anzen_sm_guam.md:67;260; f_zaigai_usa.md:97; f_usa_data.md:517)",
+   "status_text": "territory of its administering state"
+  },
+  "GUY": {
+   "aliases": [
+    "Guyana",
+    "Гайана",
+    "غيانا",
+    "ガイアナ",
+    "圭亚那",
+    "圭亞那",
+    "가이아나"
+   ],
+   "kind": "state",
+   "name": "ガイアナ協同共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:103; c_en_index.md:167",
+   "status_text": "recognised state"
+  },
+  "HKG": {
+   "aliases": [
+    "Hong Kong",
+    "Гонконг",
+    "هونغ كونغ",
+    "홍콩"
+   ],
+   "kind": "region",
+   "name": "香港",
+   "region_group": "JA: その他の地域 + アジア / EN path: a_o/c_m2 (China-Mongolia div.)",
+   "source": "c_ja_index.md:503; c_ja_asia.md:61; c_en_index.md:435",
+   "status_text": "region (地域; MOFA その他の地域)"
+  },
+  "HND": {
+   "aliases": [
+    "Honduras",
+    "Гондурас",
+    "هندوراس",
+    "ホンジュラス",
+    "宏都拉斯",
+    "洪都拉斯",
+    "온두라스"
+   ],
+   "kind": "state",
+   "name": "ホンジュラス共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:403; c_en_index.md:173",
+   "status_text": "recognised state"
+  },
+  "HRV": {
+   "aliases": [
+    "Croacia",
+    "Croatia",
+    "Croatie",
+    "Хорватия",
+    "كرواتيا",
+    "クロアチア共和国",
+    "克罗地亚",
+    "克羅地亞",
+    "크로아티아"
+   ],
+   "kind": "state",
+   "name": "クロアチア",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:147; c_ja_europe.md:51; c_en_index.md:103",
+   "status_text": "recognised state"
+  },
+  "HTI": {
+   "aliases": [
+    "Haiti",
+    "Haití",
+    "Haïti",
+    "Республика Гаити",
+    "هايتي",
+    "ハイチ",
+    "海地",
+    "아이티"
+   ],
+   "kind": "state",
+   "name": "ハイチ共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:325; c_en_index.md:171",
+   "status_text": "recognised state"
+  },
+  "HUN": {
+   "aliases": [
+    "Hongrie",
+    "Hungary",
+    "Hungría",
+    "Венгрия",
+    "المجر",
+    "匈牙利",
+    "헝가리"
+   ],
+   "kind": "state",
+   "name": "ハンガリー",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:345; c_ja_europe.md:85; c_en_index.md:175",
+   "status_text": "recognised state"
+  },
+  "IDN": {
+   "aliases": [
+    "Indonesia",
+    "Indonésie",
+    "Индонезия",
+    "إندونيسيا",
+    "インドネシア共和国",
+    "印度尼西亚",
+    "印度尼西亞",
+    "인도네시아"
+   ],
+   "kind": "state",
+   "name": "インドネシア",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:55; c_ja_asia.md:17; c_en_index.md:181",
+   "status_text": "recognised state"
+  },
+  "IMN": {
+   "aliases": [
+    "Isla de Man",
+    "Isle of Man",
+    "île de Man",
+    "остров Мэн",
+    "جزيرة مان",
+    "曼島",
+    "马恩岛",
+    "맨섬"
+   ],
+   "kind": "territory",
+   "name": "マン島",
+   "of": "GBR",
+   "source": "MOFA (R55: f_press_im.md:60;64; f_press_2306_idx.md:213)",
+   "status_text": "territory of its administering state"
+  },
+  "IND": {
+   "aliases": [
+    "Inde",
+    "India",
+    "Индия",
+    "الهند",
+    "印度",
+    "인도"
+   ],
+   "kind": "state",
+   "name": "インド",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:53; c_ja_asia.md:15; c_en_index.md:179",
+   "status_text": "recognised state"
+  },
+  "IRL": {
+   "aliases": [
+    "Ireland",
+    "Irlanda",
+    "Irlande",
+    "Ирландия",
+    "جمهورية أيرلندا",
+    "愛爾蘭",
+    "爱尔兰",
+    "아일랜드"
+   ],
+   "kind": "state",
+   "name": "アイルランド",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:17; c_ja_europe.md:17; c_en_index.md:187",
+   "status_text": "recognised state"
+  },
+  "IRN": {
+   "aliases": [
+    "Iran",
+    "Iran (Islamic Republic of)",
+    "Irán",
+    "Иран",
+    "إيران",
+    "イラン・イスラム共和国",
+    "伊朗",
+    "이란"
+   ],
+   "kind": "state",
+   "name": "イラン",
+   "region_group": "JA: 中東 / EN path: middle_e",
+   "source": "c_ja_index.md:51; c_ja_middleeast.md:25; c_en_index.md:183",
+   "status_text": "recognised state"
+  },
+  "IRQ": {
+   "aliases": [
+    "Irak",
+    "Iraq",
+    "Ирак",
+    "العراق",
+    "イラク共和国",
+    "伊拉克",
+    "이라크"
+   ],
+   "kind": "state",
+   "name": "イラク",
+   "region_group": "JA: 中東 / EN path: middle_e",
+   "source": "c_ja_index.md:49; c_ja_middleeast.md:23; c_en_index.md:185",
+   "status_text": "recognised state"
+  },
+  "ISL": {
+   "aliases": [
+    "Iceland",
+    "Islande",
+    "Islandia",
+    "Исландия",
+    "آيسلندا",
+    "冰岛",
+    "冰島",
+    "아이슬란드"
+   ],
+   "kind": "state",
+   "name": "アイスランド",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:15; c_ja_europe.md:15; c_en_index.md:177",
+   "status_text": "recognised state"
+  },
+  "ISR": {
+   "aliases": [
+    "Israel",
+    "Israël",
+    "Израиль",
+    "إسرائيل",
+    "イスラエル国",
+    "以色列",
+    "이스라엘"
+   ],
+   "kind": "state",
+   "name": "イスラエル",
+   "region_group": "JA: 中東 / EN path: middle_e",
+   "source": "c_ja_index.md:45; c_ja_middleeast.md:21; c_en_index.md:189",
+   "status_text": "recognised state"
+  },
+  "ITA": {
+   "aliases": [
+    "Italia",
+    "Italie",
+    "Italy",
+    "Италия",
+    "إيطاليا",
+    "イタリア共和国",
+    "意大利",
+    "義大利",
+    "이탈리아"
+   ],
+   "kind": "state",
+   "name": "イタリア",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:47; c_ja_europe.md:27; c_en_index.md:191",
+   "status_text": "recognised state"
+  },
+  "JAM": {
+   "aliases": [
+    "Jamaica",
+    "Jamaïque",
+    "Ямайка",
+    "جامايكا",
+    "牙买加",
+    "牙買加",
+    "자메이카"
+   ],
+   "kind": "state",
+   "name": "ジャマイカ",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:189; c_en_index.md:193",
+   "status_text": "recognised state"
+  },
+  "JOR": {
+   "aliases": [
+    "Jordan",
+    "Jordania",
+    "Jordanie",
+    "Иордания",
+    "الأردن",
+    "約旦",
+    "约旦",
+    "요르단"
+   ],
+   "kind": "state",
+   "name": "ヨルダン",
+   "region_group": "JA: 中東 / EN path: middle_e",
+   "source": "c_ja_index.md:459; c_ja_middleeast.md:41; c_en_index.md:195",
+   "status_text": "recognised state"
+  },
+  "JPN": {
+   "aliases": [
+    "Japan",
+    "Japon",
+    "Japón",
+    "Япония",
+    "اليابان",
+    "日本国",
+    "일본"
+   ],
+   "kind": "self",
+   "name": "日本",
+   "region_group": "-",
+   "source": "R53 e_mofa_world_wb.md:19",
+   "status_text": "self (MOFA world count 196 = 195 + Japan)"
+  },
+  "KAZ": {
+   "aliases": [
+    "Kazajistán",
+    "Kazakhstan",
+    "Казахстан",
+    "كازاخستان",
+    "カザフスタン共和国",
+    "哈萨克斯坦",
+    "哈薩克",
+    "카자흐스탄"
+   ],
+   "kind": "state",
+   "name": "カザフスタン",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:105; c_ja_europe.md:41; c_en_index.md:201",
+   "status_text": "recognised state"
+  },
+  "KEN": {
+   "aliases": [
+    "Kenia",
+    "Kenya",
+    "Кения",
+    "كينيا",
+    "ケニア共和国",
+    "肯亞",
+    "肯尼亚",
+    "케냐"
+   ],
+   "kind": "state",
+   "name": "ケニア",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:151; c_ja_africa.md:43; c_en_index.md:203",
+   "status_text": "recognised state"
+  },
+  "KGZ": {
+   "aliases": [
+    "Kirghizistan",
+    "Kirguistán",
+    "Kyrgyzstan",
+    "Киргизия",
+    "قيرغيزستان",
+    "キルギス共和国",
+    "吉尔吉斯斯坦",
+    "吉爾吉斯",
+    "키르기스스탄"
+   ],
+   "kind": "state",
+   "name": "キルギス",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:135; c_ja_europe.md:49; c_en_index.md:213",
+   "status_text": "recognised state"
+  },
+  "KHM": {
+   "aliases": [
+    "Cambodge",
+    "Cambodia",
+    "Camboya",
+    "Камбоджа",
+    "كمبوديا",
+    "カンボジア王国",
+    "柬埔寨",
+    "캄보디아"
+   ],
+   "kind": "state",
+   "name": "カンボジア",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:117; c_ja_asia.md:19; c_en_index.md:73",
+   "status_text": "recognised state"
+  },
+  "KIR": {
+   "aliases": [
+    "Kiribati",
+    "Кирибати",
+    "كيريباتي",
+    "キリバス共和国",
+    "吉里巴斯",
+    "基里巴斯",
+    "키리바시"
+   ],
+   "kind": "state",
+   "name": "キリバス",
+   "region_group": "JA: 大洋州 / EN path: asia-paci",
+   "source": "c_ja_index.md:133; c_ja_pacific.md:17; c_en_index.md:205",
+   "status_text": "recognised state"
+  },
+  "KNA": {
+   "aliases": [
+    "Saint Kitts and Nevis",
+    "Saint-Christophe-et-Niévès",
+    "San Cristóbal y Nieves",
+    "Сент-Китс и Невис",
+    "سانت كيتس ونيفيس",
+    "セントクリストファー・ネイビス",
+    "圣基茨和尼维斯",
+    "聖克里斯多福與尼維斯",
+    "세인트키츠 네비스"
+   ],
+   "kind": "state",
+   "name": "セントクリストファー・ネービス",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:227; c_en_index.md:329",
+   "status_text": "recognised state"
+  },
+  "KOR": {
+   "aliases": [
+    "Corea del Sur",
+    "Corée du Sud",
+    "Republic of Korea",
+    "South Korea",
+    "Республика Корея",
+    "كوريا الجنوبية",
+    "南朝鮮",
+    "大韓民国",
+    "大韓民國",
+    "大韩民国",
+    "대한민국"
+   ],
+   "kind": "state",
+   "name": "韓国",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:245; c_ja_asia.md:27; c_en_index.md:207",
+   "status_text": "recognised state"
+  },
+  "KWT": {
+   "aliases": [
+    "Koweït",
+    "Kuwait",
+    "Кувейт",
+    "الكويت",
+    "クウェート国",
+    "科威特",
+    "쿠웨이트"
+   ],
+   "kind": "state",
+   "name": "クウェート",
+   "region_group": "JA: 中東 / EN path: middle_e",
+   "source": "c_ja_index.md:141; c_ja_middleeast.md:31; c_en_index.md:211",
+   "status_text": "recognised state"
+  },
+  "LAO": {
+   "aliases": [
+    "Lao People's Democratic Republic",
+    "Laos",
+    "Лаос",
+    "لاوس",
+    "ラオス人民民主共和国",
+    "寮國",
+    "老挝",
+    "라오스"
+   ],
+   "kind": "state",
+   "name": "ラオス",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:463; c_ja_asia.md:55; c_en_index.md:215",
+   "status_text": "recognised state"
+  },
+  "LBN": {
+   "aliases": [
+    "Lebanon",
+    "Liban",
+    "Líbano",
+    "Ливан",
+    "لبنان",
+    "レバノン共和国",
+    "黎巴嫩",
+    "레바논"
+   ],
+   "kind": "state",
+   "name": "レバノン",
+   "region_group": "JA: 中東 / EN path: middle_e",
+   "source": "c_ja_index.md:489; c_ja_middleeast.md:43; c_en_index.md:219",
+   "status_text": "recognised state"
+  },
+  "LBR": {
+   "aliases": [
+    "Liberia",
+    "Либерия",
+    "ليبيريا",
+    "リベリア共和国",
+    "利比里亚",
+    "賴比瑞亞",
+    "라이베리아"
+   ],
+   "kind": "state",
+   "name": "リベリア",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:475; c_ja_africa.md:117; c_en_index.md:223",
+   "status_text": "recognised state"
+  },
+  "LBY": {
+   "aliases": [
+    "Libia",
+    "Libya",
+    "Libye",
+    "Ливия",
+    "ليبيا",
+    "利比亚",
+    "利比亞",
+    "리비아"
+   ],
+   "kind": "state",
+   "name": "リビア",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:471; c_ja_africa.md:115; c_en_index.md:225",
+   "status_text": "recognised state"
+  },
+  "LCA": {
+   "aliases": [
+    "Saint Lucia",
+    "Sainte-Lucie",
+    "Santa Lucía",
+    "Сент-Люсия",
+    "سانت لوسيا",
+    "圣卢西亚",
+    "聖露西亞",
+    "세인트루시아"
+   ],
+   "kind": "state",
+   "name": "セントルシア",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:231; c_en_index.md:331",
+   "status_text": "recognised state"
+  },
+  "LIE": {
+   "aliases": [
+    "Liechtenstein",
+    "Лихтенштейн",
+    "ليختنشتاين",
+    "リヒテンシュタイン公国",
+    "列支敦士登",
+    "列支敦斯登",
+    "리히텐슈타인"
+   ],
+   "kind": "state",
+   "name": "リヒテンシュタイン",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:473; c_ja_europe.md:113; c_en_index.md:227",
+   "status_text": "recognised state"
+  },
+  "LKA": {
+   "aliases": [
+    "Sri Lanka",
+    "Шри-Ланка",
+    "سريلانكا",
+    "スリランカ民主社会主義共和国",
+    "斯里兰卡",
+    "斯里蘭卡",
+    "스리랑카"
+   ],
+   "kind": "state",
+   "name": "スリランカ",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:211; c_ja_asia.md:23; c_en_index.md:367",
+   "status_text": "recognised state"
+  },
+  "LSO": {
+   "aliases": [
+    "Lesotho",
+    "Lesoto",
+    "Лесото",
+    "ليسوتو",
+    "レソト王国",
+    "莱索托",
+    "賴索托",
+    "레소토"
+   ],
+   "kind": "state",
+   "name": "レソト",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:487; c_ja_africa.md:121; c_en_index.md:221",
+   "status_text": "recognised state"
+  },
+  "LTU": {
+   "aliases": [
+    "Lithuania",
+    "Lituania",
+    "Lituanie",
+    "Литва",
+    "ليتوانيا",
+    "リトアニア共和国",
+    "立陶宛",
+    "리투아니아"
+   ],
+   "kind": "state",
+   "name": "リトアニア",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:469; c_ja_europe.md:115; c_en_index.md:229",
+   "status_text": "recognised state"
+  },
+  "LUX": {
+   "aliases": [
+    "Luxembourg",
+    "Luxemburgo",
+    "Люксембург",
+    "لوكسمبورغ",
+    "ルクセンブルク大公国",
+    "卢森堡",
+    "盧森堡",
+    "룩셈부르크"
+   ],
+   "kind": "state",
+   "name": "ルクセンブルク",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:481; c_ja_europe.md:119; c_en_index.md:231",
+   "status_text": "recognised state"
+  },
+  "LVA": {
+   "aliases": [
+    "Latvia",
+    "Letonia",
+    "Lettonie",
+    "Латвия",
+    "لاتفيا",
+    "ラトビア共和国",
+    "拉脫維亞",
+    "拉脱维亚",
+    "라트비아"
+   ],
+   "kind": "state",
+   "name": "ラトビア",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:465; c_ja_europe.md:111; c_en_index.md:217",
+   "status_text": "recognised state"
+  },
+  "MAC": {
+   "aliases": [
+    "Macao",
+    "Macau",
+    "Макао",
+    "ماكاو",
+    "澳門",
+    "澳门",
+    "마카오"
+   ],
+   "kind": "region",
+   "name": "マカオ",
+   "region_group": "JA: その他の地域 + アジア / EN path: a_o/c_m2 (China-Mongolia div.)",
+   "source": "c_ja_index.md:505; c_ja_asia.md:63; c_en_index.md:439",
+   "status_text": "region (地域; MOFA その他の地域)"
+  },
+  "MAR": {
+   "aliases": [
+    "Maroc",
+    "Marruecos",
+    "Morocco",
+    "Марокко",
+    "المغرب",
+    "モロッコ王国",
+    "摩洛哥",
+    "모로코"
+   ],
+   "kind": "state",
+   "name": "モロッコ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:449; c_ja_africa.md:113; c_en_index.md:265",
+   "status_text": "recognised state"
+  },
+  "MCO": {
+   "aliases": [
+    "Monaco",
+    "Mónaco",
+    "Монако",
+    "موناكو",
+    "モナコ公国",
+    "摩納哥",
+    "摩纳哥",
+    "모나코"
+   ],
+   "kind": "state",
+   "name": "モナコ",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:443; c_ja_europe.md:105; c_en_index.md:259",
+   "status_text": "recognised state"
+  },
+  "MDA": {
+   "aliases": [
+    "Moldavia",
+    "Moldavie",
+    "Moldova",
+    "Republic of Moldova",
+    "Молдавия",
+    "مولدوفا",
+    "モルドバ共和国",
+    "摩尔多瓦",
+    "摩爾多瓦",
+    "몰도바"
+   ],
+   "kind": "state",
+   "name": "モルドバ",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:447; c_ja_europe.md:107; c_en_index.md:257",
+   "status_text": "recognised state"
+  },
+  "MDG": {
+   "aliases": [
+    "Madagascar",
+    "Мадагаскар",
+    "مدغشقر",
+    "マダガスカル共和国",
+    "馬達加斯加",
+    "马达加斯加",
+    "마다가스카르"
+   ],
+   "kind": "state",
+   "name": "マダガスカル",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:411; c_ja_africa.md:97; c_en_index.md:235",
+   "status_text": "recognised state"
+  },
+  "MDV": {
+   "aliases": [
+    "Maldivas",
+    "Maldives",
+    "Мальдивы",
+    "المالديف",
+    "モルディブ共和国",
+    "馬爾地夫",
+    "马尔代夫",
+    "몰디브"
+   ],
+   "kind": "state",
+   "name": "モルディブ",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:445; c_ja_asia.md:51; c_en_index.md:241",
+   "status_text": "recognised state"
+  },
+  "MEX": {
+   "aliases": [
+    "Mexico",
+    "Mexique",
+    "México",
+    "Мексика",
+    "المكسيك",
+    "メキシコ",
+    "墨西哥",
+    "멕시코"
+   ],
+   "kind": "state",
+   "name": "メキシコ合衆国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:433; c_en_index.md:253",
+   "status_text": "recognised state"
+  },
+  "MHL": {
+   "aliases": [
+    "Islas Marshall",
+    "Marshall Islands",
+    "Îles Marshall",
+    "Маршалловы Острова",
+    "جزر مارشال",
+    "マーシャル諸島",
+    "マーシャル諸島共和国",
+    "馬紹爾群島",
+    "马绍尔群岛",
+    "마셜 제도"
+   ],
+   "kind": "state",
+   "name": "マーシャル",
+   "region_group": "JA: 大洋州 / EN path: asia-paci",
+   "source": "c_ja_index.md:409; c_ja_pacific.md:43; c_en_index.md:247",
+   "status_text": "recognised state"
+  },
+  "MKD": {
+   "aliases": [
+    "Macedonia del Norte",
+    "Macédoine du Nord",
+    "North Macedonia",
+    "Северная Македония",
+    "مقدونيا الشمالية",
+    "マケドニア",
+    "北マケドニア共和国",
+    "北馬其頓",
+    "北马其顿",
+    "북마케도니아"
+   ],
+   "kind": "state",
+   "name": "北マケドニア",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:121; c_ja_europe.md:43; c_en_index.md:291",
+   "status_text": "recognised state"
+  },
+  "MLI": {
+   "aliases": [
+    "Mali",
+    "Malí",
+    "Мали",
+    "مالي",
+    "マリ共和国",
+    "馬利共和國",
+    "马里",
+    "말리"
+   ],
+   "kind": "state",
+   "name": "マリ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:415; c_ja_africa.md:101; c_en_index.md:243",
+   "status_text": "recognised state"
+  },
+  "MLT": {
+   "aliases": [
+    "Malta",
+    "Malte",
+    "Мальта",
+    "مالطا",
+    "マルタ共和国",
+    "馬耳他",
+    "马耳他",
+    "몰타"
+   ],
+   "kind": "state",
+   "name": "マルタ",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:417; c_ja_europe.md:103; c_en_index.md:245",
+   "status_text": "recognised state"
+  },
+  "MMR": {
+   "aliases": [
+    "Birmania",
+    "Birmanie",
+    "Myanmar",
+    "Мьянма",
+    "ميانمار",
+    "ビルマ",
+    "ミャンマー連邦共和国",
+    "緬甸",
+    "缅甸",
+    "미얀마"
+   ],
+   "kind": "state",
+   "name": "ミャンマー",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:429; c_ja_asia.md:49; c_en_index.md:269",
+   "status_text": "recognised state"
+  },
+  "MNE": {
+   "aliases": [
+    "Montenegro",
+    "Monténégro",
+    "Черногория",
+    "الجبل الأسود",
+    "蒙特內哥羅",
+    "黑山",
+    "몬테네그로"
+   ],
+   "kind": "state",
+   "name": "モンテネグロ",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:453; c_ja_europe.md:109; c_en_index.md:263",
+   "status_text": "recognised state"
+  },
+  "MNG": {
+   "aliases": [
+    "Mongolia",
+    "Mongolie",
+    "Монголия",
+    "منغوليا",
+    "モンゴル国",
+    "蒙古国",
+    "蒙古國",
+    "몽골"
+   ],
+   "kind": "state",
+   "name": "モンゴル",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:451; c_ja_asia.md:53; c_en_index.md:261",
+   "status_text": "recognised state"
+  },
+  "MOZ": {
+   "aliases": [
+    "Mozambique",
+    "Мозамбик",
+    "موزمبيق",
+    "モザンビーク共和国",
+    "莫三比克",
+    "莫桑比克",
+    "모잠비크"
+   ],
+   "kind": "state",
+   "name": "モザンビーク",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:441; c_ja_africa.md:107; c_en_index.md:267",
+   "status_text": "recognised state"
+  },
+  "MRT": {
+   "aliases": [
+    "Mauritania",
+    "Mauritanie",
+    "Мавритания",
+    "موريتانيا",
+    "モーリタニア・イスラム共和国",
+    "毛里塔尼亚",
+    "茅利塔尼亞",
+    "모리타니"
+   ],
+   "kind": "state",
+   "name": "モーリタニア",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:439; c_ja_africa.md:111; c_en_index.md:249",
+   "status_text": "recognised state"
+  },
+  "MUS": {
+   "aliases": [
+    "Maurice",
+    "Mauricio",
+    "Mauritius",
+    "Маврикий",
+    "موريشيوس",
+    "モーリシャス共和国",
+    "模里西斯",
+    "毛里求斯",
+    "모리셔스"
+   ],
+   "kind": "state",
+   "name": "モーリシャス",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:437; c_ja_africa.md:109; c_en_index.md:251",
+   "status_text": "recognised state"
+  },
+  "MWI": {
+   "aliases": [
+    "Malaui",
+    "Malawi",
+    "Малави",
+    "مالاوي",
+    "マラウイ共和国",
+    "馬拉威",
+    "马拉维",
+    "말라위"
+   ],
+   "kind": "state",
+   "name": "マラウイ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:413; c_ja_africa.md:99; c_en_index.md:237",
+   "status_text": "recognised state"
+  },
+  "MYS": {
+   "aliases": [
+    "Malaisie",
+    "Malasia",
+    "Malaysia",
+    "Малайзия",
+    "ماليزيا",
+    "馬來西亞",
+    "马来西亚",
+    "말레이시아"
+   ],
+   "kind": "state",
+   "name": "マレーシア",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:419; c_ja_asia.md:47; c_en_index.md:239",
+   "status_text": "recognised state"
+  },
+  "NAM": {
+   "aliases": [
+    "Namibia",
+    "Namibie",
+    "Намибия",
+    "ناميبيا",
+    "ナミビア共和国",
+    "納米比亞",
+    "纳米比亚",
+    "나미비아"
+   ],
+   "kind": "state",
+   "name": "ナミビア",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:299; c_ja_africa.md:85; c_en_index.md:273",
+   "status_text": "recognised state"
+  },
+  "NCL": {
+   "aliases": [
+    "New Caledonia",
+    "Nouvelle-Calédonie",
+    "Nueva Caledonia",
+    "Новая Каледония",
+    "كاليدونيا الجديدة",
+    "新喀里多尼亚",
+    "新喀里多尼亞",
+    "누벨칼레도니"
+   ],
+   "kind": "territory",
+   "name": "ニューカレドニア",
+   "of": "FRA",
+   "source": "MOFA (R55: f_france_data.md:336; f_anzen_riskmap.md:167; f_anzen_sm_newcal.md:85)",
+   "status_text": "territory of its administering state"
+  },
+  "NER": {
+   "aliases": [
+    "Niger",
+    "Níger",
+    "Нигер",
+    "النيجر",
+    "ニジェール共和国",
+    "尼日",
+    "尼日尔",
+    "니제르"
+   ],
+   "kind": "state",
+   "name": "ニジェール",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:307; c_ja_africa.md:87; c_en_index.md:285",
+   "status_text": "recognised state"
+  },
+  "NGA": {
+   "aliases": [
+    "Nigeria",
+    "Нигерия",
+    "نيجيريا",
+    "ナイジェリア連邦共和国",
+    "奈及利亞",
+    "尼日利亚",
+    "나이지리아"
+   ],
+   "kind": "state",
+   "name": "ナイジェリア",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:295; c_ja_africa.md:83; c_en_index.md:287",
+   "status_text": "recognised state"
+  },
+  "NIC": {
+   "aliases": [
+    "Nicaragua",
+    "Никарагуа",
+    "نيكاراغوا",
+    "ニカラグア",
+    "尼加拉瓜",
+    "니카라과"
+   ],
+   "kind": "state",
+   "name": "ニカラグア共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:305; c_en_index.md:283",
+   "status_text": "recognised state"
+  },
+  "NIU": {
+   "aliases": [
+    "Niue",
+    "Ниуэ",
+    "نييوي",
+    "紐埃",
+    "纽埃",
+    "니우에"
+   ],
+   "kind": "state",
+   "name": "ニウエ",
+   "region_group": "JA: 大洋州 / EN path: a_o/ocn (Oceania div.)",
+   "source": "c_ja_index.md:303; c_ja_pacific.md:31; c_en_index.md:289; R53 e_mofa_world_wb.md:23 (recognised; not UN member)",
+   "status_text": "recognised state"
+  },
+  "NLD": {
+   "aliases": [
+    "Netherlands",
+    "Netherlands (Kingdom of the)",
+    "Pays-Bas",
+    "Países Bajos",
+    "Нидерланды",
+    "هولندا",
+    "オランダ王国",
+    "ネーデルランド",
+    "荷兰",
+    "荷蘭",
+    "네덜란드"
+   ],
+   "kind": "state",
+   "name": "オランダ",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:93; c_ja_europe.md:39; c_en_index.md:279",
+   "status_text": "recognised state"
+  },
+  "NOR": {
+   "aliases": [
+    "Noruega",
+    "Norvège",
+    "Norway",
+    "Норвегия",
+    "النرويج",
+    "ノルウェー王国",
+    "挪威",
+    "노르웨이"
+   ],
+   "kind": "state",
+   "name": "ノルウェー",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:317; c_ja_europe.md:81; c_en_index.md:293",
+   "status_text": "recognised state"
+  },
+  "NPL": {
+   "aliases": [
+    "Nepal",
+    "Népal",
+    "Непал",
+    "نيبال",
+    "尼泊尔",
+    "尼泊爾",
+    "네팔"
+   ],
+   "kind": "state",
+   "name": "ネパール",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:313; c_ja_asia.md:31; c_en_index.md:277",
+   "status_text": "recognised state"
+  },
+  "NRU": {
+   "aliases": [
+    "Naoero",
+    "Nauru",
+    "Науру",
+    "ناورو",
+    "ナウル共和国",
+    "瑙鲁",
+    "諾魯",
+    "나우루"
+   ],
+   "kind": "state",
+   "name": "ナウル",
+   "region_group": "JA: 大洋州 / EN path: asia-paci",
+   "source": "c_ja_index.md:297; c_ja_pacific.md:29; c_en_index.md:275",
+   "status_text": "recognised state"
+  },
+  "NZL": {
+   "aliases": [
+    "New Zealand",
+    "Nouvelle-Zélande",
+    "Nueva Zelanda",
+    "Новая Зеландия",
+    "نيوزيلندا",
+    "新西兰",
+    "新西蘭",
+    "뉴질랜드"
+   ],
+   "kind": "state",
+   "name": "ニュージーランド",
+   "region_group": "JA: 大洋州 / EN path: asia-paci",
+   "source": "c_ja_index.md:309; c_ja_pacific.md:33; c_en_index.md:281",
+   "status_text": "recognised state"
+  },
+  "OMN": {
+   "aliases": [
+    "Oman",
+    "Omán",
+    "Оман",
+    "سلطنة عمان",
+    "オマーン国",
+    "阿曼",
+    "오만"
+   ],
+   "kind": "state",
+   "name": "オマーン",
+   "region_group": "JA: 中東 / EN path: middle_e",
+   "source": "c_ja_index.md:91; c_ja_middleeast.md:27; c_en_index.md:295",
+   "status_text": "recognised state"
+  },
+  "PAK": {
+   "aliases": [
+    "Pakistan",
+    "Pakistán",
+    "Пакистан",
+    "باكستان",
+    "パキスタン・イスラム共和国",
+    "巴基斯坦",
+    "파키스탄"
+   ],
+   "kind": "state",
+   "name": "パキスタン",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:327; c_ja_asia.md:33; c_en_index.md:301",
+   "status_text": "recognised state"
+  },
+  "PAN": {
+   "aliases": [
+    "Panama",
+    "Panamá",
+    "Панама",
+    "بنما",
+    "パナマ",
+    "巴拿馬",
+    "巴拿马",
+    "파나마"
+   ],
+   "kind": "state",
+   "name": "パナマ共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:331; c_en_index.md:305",
+   "status_text": "recognised state"
+  },
+  "PER": {
+   "aliases": [
+    "Peru",
+    "Perú",
+    "Pérou",
+    "Перу",
+    "بيرو",
+    "ペルー",
+    "秘魯",
+    "秘鲁",
+    "페루"
+   ],
+   "kind": "state",
+   "name": "ペルー共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:387; c_en_index.md:311",
+   "status_text": "recognised state"
+  },
+  "PHL": {
+   "aliases": [
+    "Filipinas",
+    "Philippines",
+    "Филиппины",
+    "الفلبين",
+    "フィリピン共和国",
+    "菲律宾",
+    "菲律賓",
+    "필리핀"
+   ],
+   "kind": "state",
+   "name": "フィリピン",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:357; c_ja_asia.md:39; c_en_index.md:313",
+   "status_text": "recognised state"
+  },
+  "PLW": {
+   "aliases": [
+    "Palaos",
+    "Palau",
+    "Палау",
+    "بالاو",
+    "パラオ共和国",
+    "帕劳",
+    "帛琉",
+    "팔라우"
+   ],
+   "kind": "state",
+   "name": "パラオ",
+   "region_group": "JA: 大洋州 / EN path: asia-paci",
+   "source": "c_ja_index.md:339; c_ja_pacific.md:39; c_en_index.md:303",
+   "status_text": "recognised state"
+  },
+  "PNG": {
+   "aliases": [
+    "Papouasie-Nouvelle-Guinée",
+    "Papua New Guinea",
+    "Papúa Nueva Guinea",
+    "Папуа — Новая Гвинея",
+    "بابوا غينيا الجديدة",
+    "パプアニューギニア独立国",
+    "巴布亚新几内亚",
+    "巴布亞紐幾內亞",
+    "파푸아뉴기니"
+   ],
+   "kind": "state",
+   "name": "パプアニューギニア",
+   "region_group": "JA: 大洋州 / EN path: asia-paci",
+   "source": "c_ja_index.md:337; c_ja_pacific.md:37; c_en_index.md:307",
+   "status_text": "recognised state"
+  },
+  "POL": {
+   "aliases": [
+    "Poland",
+    "Pologne",
+    "Polonia",
+    "Польша",
+    "بولندا",
+    "ポーランド共和国",
+    "波兰",
+    "波蘭",
+    "폴란드"
+   ],
+   "kind": "state",
+   "name": "ポーランド",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:393; c_ja_europe.md:97; c_en_index.md:315",
+   "status_text": "recognised state"
+  },
+  "PRI": {
+   "aliases": [
+    "Porto Rico",
+    "Puerto Rico",
+    "Пуэрто-Рико",
+    "بورتوريكو",
+    "波多黎各",
+    "푸에르토리코"
+   ],
+   "kind": "territory",
+   "name": "プエルトリコ",
+   "of": "USA",
+   "source": "MOFA (R55: f_anzen_usa_safety.md:136;721)",
+   "status_text": "territory of its administering state"
+  },
+  "PRK": {
+   "aliases": [
+    "Corea del Norte",
+    "Corée du Nord",
+    "Democratic People's Republic of Korea",
+    "North Korea",
+    "КНДР",
+    "كوريا الشمالية",
+    "朝鮮民主主義人民共和国",
+    "朝鮮民主主義人民共和國",
+    "朝鲜民主主义人民共和国",
+    "조선민주주의인민공화국"
+   ],
+   "kind": "not_recognised",
+   "name": "北朝鮮",
+   "region_group": "JA: その他の地域 + アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:497; c_ja_asia.md:57; c_en_index.md:437; R53 e_mofa_world_wb.md:23",
+   "status_text": "not recognised (UN member; MOFA その他の地域)"
+  },
+  "PRT": {
+   "aliases": [
+    "Portugal",
+    "Португалия",
+    "البرتغال",
+    "ポルトガル共和国",
+    "葡萄牙",
+    "포르투갈"
+   ],
+   "kind": "state",
+   "name": "ポルトガル",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:401; c_ja_europe.md:101; c_en_index.md:317",
+   "status_text": "recognised state"
+  },
+  "PRY": {
+   "aliases": [
+    "Paraguay",
+    "Парагвай",
+    "باراغواي",
+    "パラグアイ",
+    "巴拉圭",
+    "파라과이"
+   ],
+   "kind": "state",
+   "name": "パラグアイ共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:341; c_en_index.md:309",
+   "status_text": "recognised state"
+  },
+  "PSE": {
+   "aliases": [
+    "Palestina",
+    "Palestine",
+    "State of Palestine",
+    "Палестина",
+    "فلسطين",
+    "パレスチナ国",
+    "パレスチナ自治区",
+    "巴勒斯坦",
+    "巴勒斯坦地區",
+    "팔레스타인"
+   ],
+   "kind": "region",
+   "name": "パレスチナ",
+   "region_group": "JA: その他の地域 + 中東 / EN path: middle_e",
+   "source": "c_ja_index.md:501; c_ja_middleeast.md:45; c_en_index.md:441; R53 e_mofa_palestine_data.md:57",
+   "status_text": "region (地域; MOFA その他の地域)"
+  },
+  "PYF": {
+   "aliases": [
+    "French Polynesia",
+    "Polinesia Francesa",
+    "Polynésie française",
+    "Французская Полинезия",
+    "بولينزيا الفرنسية",
+    "法属波利尼西亚",
+    "法屬玻里尼西亞",
+    "프랑스령 폴리네시아"
+   ],
+   "kind": "territory",
+   "name": "フランス領ポリネシア",
+   "of": "FRA",
+   "source": "MOFA (R55: f_anzen_sm_tahiti.md:85;88;143; f_anzen_riskmap.md:157)",
+   "status_text": "territory of its administering state"
+  },
+  "QAT": {
+   "aliases": [
+    "Catar",
+    "Qatar",
+    "Катар",
+    "قطر",
+    "カタール国",
+    "卡塔尔",
+    "卡達",
+    "카타르"
+   ],
+   "kind": "state",
+   "name": "カタール",
+   "region_group": "JA: 中東 / EN path: middle_e",
+   "source": "c_ja_index.md:107; c_ja_middleeast.md:29; c_en_index.md:319",
+   "status_text": "recognised state"
+  },
+  "ROU": {
+   "aliases": [
+    "Romania",
+    "Roumanie",
+    "Rumania",
+    "Румыния",
+    "رومانيا",
+    "罗马尼亚",
+    "羅馬尼亞",
+    "루마니아"
+   ],
+   "kind": "state",
+   "name": "ルーマニア",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:479; c_ja_europe.md:117; c_en_index.md:321",
+   "status_text": "recognised state"
+  },
+  "RUS": {
+   "aliases": [
+    "Rusia",
+    "Russia",
+    "Russian Federation",
+    "Russie",
+    "Россия",
+    "روسيا",
+    "ロシア連邦",
+    "俄罗斯",
+    "俄羅斯",
+    "러시아"
+   ],
+   "kind": "state",
+   "name": "ロシア",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:493; c_ja_europe.md:121; c_en_index.md:323",
+   "status_text": "recognised state"
+  },
+  "RWA": {
+   "aliases": [
+    "Ruanda",
+    "Rwanda",
+    "Руанда",
+    "رواندا",
+    "ルワンダ共和国",
+    "卢旺达",
+    "盧旺達",
+    "르완다"
+   ],
+   "kind": "state",
+   "name": "ルワンダ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:483; c_ja_africa.md:119; c_en_index.md:325",
+   "status_text": "recognised state"
+  },
+  "SAU": {
+   "aliases": [
+    "Arabia Saudita",
+    "Arabie saoudite",
+    "Saudi Arabia",
+    "Саудовская Аравия",
+    "السعودية",
+    "サウジアラビア王国",
+    "沙烏地阿拉伯",
+    "沙特阿拉伯",
+    "사우디아라비아"
+   ],
+   "kind": "state",
+   "name": "サウジアラビア",
+   "region_group": "JA: 中東 / EN path: middle_e",
+   "source": "c_ja_index.md:173; c_ja_middleeast.md:33; c_en_index.md:341",
+   "status_text": "recognised state"
+  },
+  "SDN": {
+   "aliases": [
+    "Soudan",
+    "Sudan",
+    "Sudán",
+    "Судан",
+    "السودان",
+    "スーダン共和国",
+    "苏丹",
+    "蘇丹",
+    "수단"
+   ],
+   "kind": "state",
+   "name": "スーダン",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:205; c_ja_africa.md:63; c_en_index.md:369",
+   "status_text": "recognised state"
+  },
+  "SEN": {
+   "aliases": [
+    "Senegal",
+    "Sénégal",
+    "Сенегал",
+    "السنغال",
+    "セネガル共和国",
+    "塞內加爾",
+    "塞内加尔",
+    "세네갈"
+   ],
+   "kind": "state",
+   "name": "セネガル",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:223; c_ja_africa.md:69; c_en_index.md:343",
+   "status_text": "recognised state"
+  },
+  "SGP": {
+   "aliases": [
+    "Singapore",
+    "Singapour",
+    "Singapur",
+    "Сингапур",
+    "سنغافورة",
+    "シンガポール共和国",
+    "新加坡",
+    "싱가포르"
+   ],
+   "kind": "state",
+   "name": "シンガポール",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:195; c_ja_asia.md:21; c_en_index.md:351",
+   "status_text": "recognised state"
+  },
+  "SLB": {
+   "aliases": [
+    "Islas Salomón",
+    "Solomon Islands",
+    "Îles Salomon",
+    "Соломоновы Острова",
+    "جزر سليمان",
+    "所罗门群岛",
+    "索羅門群島",
+    "솔로몬 제도"
+   ],
+   "kind": "state",
+   "name": "ソロモン諸島",
+   "region_group": "JA: 大洋州 / EN path: asia-paci",
+   "source": "c_ja_index.md:237; c_ja_pacific.md:23; c_en_index.md:357",
+   "status_text": "recognised state"
+  },
+  "SLE": {
+   "aliases": [
+    "Sierra Leona",
+    "Sierra Leone",
+    "Сьерра-Леоне",
+    "سيراليون",
+    "シエラレオネ共和国",
+    "塞拉利昂",
+    "獅子山",
+    "시에라리온"
+   ],
+   "kind": "state",
+   "name": "シエラレオネ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:185; c_ja_africa.md:57; c_en_index.md:349",
+   "status_text": "recognised state"
+  },
+  "SLV": {
+   "aliases": [
+    "El Salvador",
+    "Salvador",
+    "Сальвадор",
+    "السلفادور",
+    "エルサルバドル",
+    "萨尔瓦多",
+    "薩爾瓦多",
+    "엘살바도르"
+   ],
+   "kind": "state",
+   "name": "エルサルバドル共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:83; c_en_index.md:127",
+   "status_text": "recognised state"
+  },
+  "SMR": {
+   "aliases": [
+    "Saint-Marin",
+    "San Marino",
+    "Сан-Марино",
+    "سان مارينو",
+    "サンマリノ共和国",
+    "圣马力诺",
+    "聖馬力諾",
+    "산마리노"
+   ],
+   "kind": "state",
+   "name": "サンマリノ",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:181; c_ja_europe.md:55; c_en_index.md:337",
+   "status_text": "recognised state"
+  },
+  "SOM": {
+   "aliases": [
+    "Somalia",
+    "Somalie",
+    "Сомали",
+    "الصومال",
+    "ソマリア連邦共和国",
+    "索馬利亞",
+    "索马里",
+    "소말리아"
+   ],
+   "kind": "state",
+   "name": "ソマリア",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:235; c_ja_africa.md:71; c_en_index.md:359",
+   "status_text": "recognised state"
+  },
+  "SRB": {
+   "aliases": [
+    "Serbia",
+    "Serbie",
+    "Сербия",
+    "صربيا",
+    "セルビア共和国",
+    "塞尔维亚",
+    "塞爾維亞",
+    "세르비아"
+   ],
+   "kind": "state",
+   "name": "セルビア",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:225; c_ja_europe.md:69; c_en_index.md:345",
+   "status_text": "recognised state"
+  },
+  "SSD": {
+   "aliases": [
+    "Soudan du Sud",
+    "South Sudan",
+    "Sudán del Sur",
+    "Южный Судан",
+    "جنوب السودان",
+    "南スーダン共和国",
+    "南苏丹",
+    "南蘇丹",
+    "남수단"
+   ],
+   "kind": "state",
+   "name": "南スーダン",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:427; c_ja_africa.md:105; c_en_index.md:363",
+   "status_text": "recognised state"
+  },
+  "STP": {
+   "aliases": [
+    "Santo Tomé y Príncipe",
+    "Sao Tome and Principe",
+    "Sao Tomé-et-Principe",
+    "São Tomé and Príncipe",
+    "Сан-Томе и Принсипи",
+    "ساو تومي وبرينسيب",
+    "サントメ・プリンシペ民主共和国",
+    "圣多美和普林西比",
+    "聖多美普林西比",
+    "상투메 프린시페"
+   ],
+   "kind": "state",
+   "name": "サントメ・プリンシペ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:177; c_ja_africa.md:53; c_en_index.md:339",
+   "status_text": "recognised state"
+  },
+  "SUR": {
+   "aliases": [
+    "Surinam",
+    "Suriname",
+    "Суринам",
+    "سورينام",
+    "スリナム",
+    "苏里南",
+    "蘇利南",
+    "수리남"
+   ],
+   "kind": "state",
+   "name": "スリナム共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:209; c_en_index.md:371",
+   "status_text": "recognised state"
+  },
+  "SVK": {
+   "aliases": [
+    "Eslovaquia",
+    "Slovakia",
+    "Slovaquie",
+    "Словакия",
+    "سلوفاكيا",
+    "スロバキア共和国",
+    "斯洛伐克",
+    "슬로바키아"
+   ],
+   "kind": "state",
+   "name": "スロバキア",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:213; c_ja_europe.md:65; c_en_index.md:353",
+   "status_text": "recognised state"
+  },
+  "SVN": {
+   "aliases": [
+    "Eslovenia",
+    "Slovenia",
+    "Slovénie",
+    "Словения",
+    "سلوفينيا",
+    "スロベニア共和国",
+    "斯洛文尼亚",
+    "斯洛維尼亞",
+    "슬로베니아"
+   ],
+   "kind": "state",
+   "name": "スロベニア",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:215; c_ja_europe.md:67; c_en_index.md:355",
+   "status_text": "recognised state"
+  },
+  "SWE": {
+   "aliases": [
+    "Suecia",
+    "Suède",
+    "Sweden",
+    "Швеция",
+    "السويد",
+    "スウェーデン王国",
+    "瑞典",
+    "스웨덴"
+   ],
+   "kind": "state",
+   "name": "スウェーデン",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:203; c_ja_europe.md:61; c_en_index.md:373",
+   "status_text": "recognised state"
+  },
+  "SWZ": {
+   "aliases": [
+    "Eswatini",
+    "Suazilandia",
+    "Эсватини",
+    "إسواتيني",
+    "エスワティニ王国",
+    "スワジランド",
+    "史瓦帝尼",
+    "斯威士兰",
+    "에스와티니"
+   ],
+   "kind": "state",
+   "name": "エスワティニ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:77; c_ja_africa.md:23; c_en_index.md:135",
+   "status_text": "recognised state"
+  },
+  "SYC": {
+   "aliases": [
+    "Seychelles",
+    "Сейшельские Острова",
+    "سيشل",
+    "セーシェル共和国",
+    "塞席爾",
+    "塞舌尔",
+    "세이셸"
+   ],
+   "kind": "state",
+   "name": "セーシェル",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:219; c_ja_africa.md:65; c_en_index.md:347",
+   "status_text": "recognised state"
+  },
+  "SYR": {
+   "aliases": [
+    "Siria",
+    "Syria",
+    "Syrian Arab Republic",
+    "Syrie",
+    "Сирия",
+    "سوريا",
+    "シリア・アラブ共和国",
+    "叙利亚",
+    "敘利亞",
+    "시리아"
+   ],
+   "kind": "state",
+   "name": "シリア",
+   "region_group": "JA: 中東 / EN path: middle_e",
+   "source": "c_ja_index.md:193; c_ja_middleeast.md:35; c_en_index.md:377",
+   "status_text": "recognised state"
+  },
+  "TCA": {
+   "aliases": [
+    "Islas Turcas y Caicos",
+    "Turks and Caicos Islands",
+    "îles Turques-et-Caïques",
+    "Тёркс и Кайкос",
+    "جزر توركس وكايكوس",
+    "土克凱可群島",
+    "特克斯和凯科斯群岛",
+    "터크스 케이커스 제도"
+   ],
+   "kind": "territory",
+   "name": "タークス・カイコス諸島",
+   "of": "GBR",
+   "source": "general usage, not MOFA (R55: NOT FOUND on MOFA pages)",
+   "status_text": "territory of its administering state"
+  },
+  "TCD": {
+   "aliases": [
+    "Chad",
+    "Tchad",
+    "Чад",
+    "تشاد",
+    "チャド共和国",
+    "乍得",
+    "查德",
+    "차드"
+   ],
+   "kind": "state",
+   "name": "チャド",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:255; c_ja_africa.md:75; c_en_index.md:83",
+   "status_text": "recognised state"
+  },
+  "TGO": {
+   "aliases": [
+    "Togo",
+    "Того",
+    "توغو",
+    "トーゴ共和国",
+    "多哥",
+    "토고"
+   ],
+   "kind": "state",
+   "name": "トーゴ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:277; c_ja_africa.md:81; c_en_index.md:389",
+   "status_text": "recognised state"
+  },
+  "THA": {
+   "aliases": [
+    "Tailandia",
+    "Thailand",
+    "Thaïlande",
+    "Таиланд",
+    "تايلاند",
+    "タイ王国",
+    "泰国",
+    "泰國",
+    "태국"
+   ],
+   "kind": "state",
+   "name": "タイ",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:243; c_ja_asia.md:25; c_en_index.md:385",
+   "status_text": "recognised state"
+  },
+  "TJK": {
+   "aliases": [
+    "Tadjikistan",
+    "Tajikistan",
+    "Tayikistán",
+    "Таджикистан",
+    "طاجيكستان",
+    "タジキスタン共和国",
+    "塔吉克",
+    "塔吉克斯坦",
+    "타지키스탄"
+   ],
+   "kind": "state",
+   "name": "タジキスタン",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:247; c_ja_europe.md:71; c_en_index.md:381",
+   "status_text": "recognised state"
+  },
+  "TKM": {
+   "aliases": [
+    "Turkmenistan",
+    "Turkmenistán",
+    "Turkménistan",
+    "Туркмения",
+    "تركمانستان",
+    "土库曼斯坦",
+    "土庫曼",
+    "투르크메니스탄"
+   ],
+   "kind": "state",
+   "name": "トルクメニスタン",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:285; c_ja_europe.md:79; c_en_index.md:399",
+   "status_text": "recognised state"
+  },
+  "TLS": {
+   "aliases": [
+    "East Timor",
+    "Timor Oriental",
+    "Timor oriental",
+    "Timor-Leste",
+    "Восточный Тимор",
+    "تيمور الشرقية",
+    "ティモール・レステ",
+    "东帝汶",
+    "東ティモール民主共和国",
+    "東帝汶",
+    "동티모르"
+   ],
+   "kind": "state",
+   "name": "東ティモール",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:351; c_ja_asia.md:37; c_en_index.md:387",
+   "status_text": "recognised state"
+  },
+  "TON": {
+   "aliases": [
+    "Tonga",
+    "Тонга",
+    "تونغا",
+    "トンガ王国",
+    "東加",
+    "汤加",
+    "통가"
+   ],
+   "kind": "state",
+   "name": "トンガ",
+   "region_group": "JA: 大洋州 / EN path: asia-paci",
+   "source": "c_ja_index.md:289; c_ja_pacific.md:27; c_en_index.md:391",
+   "status_text": "recognised state"
+  },
+  "TTO": {
+   "aliases": [
+    "Trinidad and Tobago",
+    "Trinidad y Tobago",
+    "Trinité-et-Tobago",
+    "Тринидад и Тобаго",
+    "ترينيداد وتوباغو",
+    "トリニダード・トバゴ",
+    "千里達及托巴哥",
+    "特立尼达和多巴哥",
+    "트리니다드 토바고"
+   ],
+   "kind": "state",
+   "name": "トリニダード・トバゴ共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:283; c_en_index.md:393",
+   "status_text": "recognised state"
+  },
+  "TUN": {
+   "aliases": [
+    "Tunisia",
+    "Tunisie",
+    "Túnez",
+    "Тунис",
+    "تونس",
+    "チュニジア共和国",
+    "突尼斯",
+    "突尼西亞",
+    "튀니지"
+   ],
+   "kind": "state",
+   "name": "チュニジア",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:261; c_ja_africa.md:79; c_en_index.md:395",
+   "status_text": "recognised state"
+  },
+  "TUR": {
+   "aliases": [
+    "Turkey",
+    "Turquie",
+    "Turquía",
+    "Türkiye",
+    "Турция",
+    "تركيا",
+    "トゥルキエ",
+    "トルコ共和国",
+    "土耳其",
+    "터키"
+   ],
+   "kind": "state",
+   "name": "トルコ",
+   "region_group": "JA: 中東 / EN path: middle_e",
+   "source": "c_ja_index.md:287; c_ja_middleeast.md:37; c_en_index.md:397",
+   "status_text": "recognised state"
+  },
+  "TUV": {
+   "aliases": [
+    "Tuvalu",
+    "Тувалу",
+    "توفالو",
+    "吐瓦魯",
+    "图瓦卢",
+    "투발루"
+   ],
+   "kind": "state",
+   "name": "ツバル",
+   "region_group": "JA: 大洋州 / EN path: asia-paci",
+   "source": "c_ja_index.md:267; c_ja_pacific.md:25; c_en_index.md:401",
+   "status_text": "recognised state"
+  },
+  "TWN": {
+   "aliases": [
+    "República de China",
+    "Taiwan",
+    "Taïwan",
+    "Тайвань",
+    "تايوان",
+    "中华民国",
+    "中華民国",
+    "中華民國",
+    "중화민국"
+   ],
+   "kind": "region",
+   "name": "台湾",
+   "region_group": "JA: その他の地域 + アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:499; c_ja_asia.md:59; c_en_index.md:443; R53 e_mofa_taiwan_data.md:193; R53 e_mofa_jc1972.md:73-75",
+   "status_text": "region (地域; MOFA その他の地域)"
+  },
+  "TZA": {
+   "aliases": [
+    "Tanzania",
+    "Tanzanie",
+    "United Republic of Tanzania",
+    "Танзания",
+    "تنزانيا",
+    "タンザニア連合共和国",
+    "坦尚尼亞",
+    "坦桑尼亚",
+    "탄자니아"
+   ],
+   "kind": "state",
+   "name": "タンザニア",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:249; c_ja_africa.md:73; c_en_index.md:383",
+   "status_text": "recognised state"
+  },
+  "UGA": {
+   "aliases": [
+    "Ouganda",
+    "Uganda",
+    "Уганда",
+    "أوغندا",
+    "ウガンダ共和国",
+    "乌干达",
+    "烏干達",
+    "우간다"
+   ],
+   "kind": "state",
+   "name": "ウガンダ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:59; c_ja_africa.md:19; c_en_index.md:403",
+   "status_text": "recognised state"
+  },
+  "UKR": {
+   "aliases": [
+    "Ucrania",
+    "Ukraine",
+    "Украина",
+    "أوكرانيا",
+    "乌克兰",
+    "烏克蘭",
+    "우크라이나"
+   ],
+   "kind": "state",
+   "name": "ウクライナ",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:61; c_ja_europe.md:29; c_en_index.md:405",
+   "status_text": "recognised state"
+  },
+  "URY": {
+   "aliases": [
+    "Uruguay",
+    "Уругвай",
+    "الأوروغواي",
+    "ウルグアイ",
+    "乌拉圭",
+    "烏拉圭",
+    "우루과이"
+   ],
+   "kind": "state",
+   "name": "ウルグアイ東方共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:65; c_en_index.md:413",
+   "status_text": "recognised state"
+  },
+  "USA": {
+   "aliases": [
+    "Estados Unidos",
+    "United States of America",
+    "États-Unis",
+    "США",
+    "الولايات المتحدة",
+    "アメリカ",
+    "アメリカ合衆国",
+    "合衆国",
+    "美国",
+    "美國",
+    "미국"
+   ],
+   "kind": "state",
+   "name": "米国",
+   "region_group": "JA: 北米 / EN path: n-america",
+   "source": "c_ja_index.md:23; c_ja_n_america.md:15; c_en_index.md:411",
+   "status_text": "recognised state"
+  },
+  "UZB": {
+   "aliases": [
+    "Ouzbékistan",
+    "Uzbekistan",
+    "Uzbekistán",
+    "Узбекистан",
+    "أوزبكستان",
+    "ウズベキスタン共和国",
+    "乌兹别克斯坦",
+    "烏茲別克",
+    "우즈베키스탄"
+   ],
+   "kind": "state",
+   "name": "ウズベキスタン",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:63; c_ja_europe.md:31; c_en_index.md:415",
+   "status_text": "recognised state"
+  },
+  "VAT": {
+   "aliases": [
+    "Cité du Vatican",
+    "Ciudad del Vaticano",
+    "Holy See",
+    "Vatican City",
+    "Ватикан",
+    "الفاتيكان",
+    "バチカン市国",
+    "ローマ教皇庁",
+    "ローマ法王庁",
+    "梵蒂冈",
+    "梵蒂岡",
+    "바티칸 시국"
+   ],
+   "kind": "state",
+   "name": "バチカン",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:329; c_ja_europe.md:83; c_en_index.md:419; R53 e_mofa_world_wb.md:23 (recognised; not UN member)",
+   "status_text": "recognised state"
+  },
+  "VCT": {
+   "aliases": [
+    "Saint Vincent and the Grenadines",
+    "Saint-Vincent-et-les-Grenadines",
+    "San Vicente y las Granadinas",
+    "Сент-Винсент и Гренадины",
+    "سانت فينسنت والغرينادين",
+    "セントビンセント・グレナディーン",
+    "圣文森特和格林纳丁斯",
+    "聖文森及格瑞那丁",
+    "세인트빈센트 그레나딘"
+   ],
+   "kind": "state",
+   "name": "セントビンセント及びグレナディーン諸島",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:229; c_en_index.md:333",
+   "status_text": "recognised state"
+  },
+  "VEN": {
+   "aliases": [
+    "Venezuela",
+    "Venezuela (Bolivarian Republic of)",
+    "Венесуэла",
+    "فنزويلا",
+    "ベネズエラ",
+    "委內瑞拉",
+    "委内瑞拉",
+    "베네수엘라"
+   ],
+   "kind": "state",
+   "name": "ベネズエラ・ボリバル共和国",
+   "region_group": "JA: 中南米 (derived: not on the other 6 JA region pages; label c_ja_index.md:5) / EN path: latin",
+   "source": "c_ja_index.md:381; c_en_index.md:421",
+   "status_text": "recognised state"
+  },
+  "VIR": {
+   "aliases": [
+    "Islas Vírgenes de los Estados Unidos",
+    "United States Virgin Islands",
+    "îles Vierges des États-Unis",
+    "Американские Виргинские острова",
+    "جزر العذراء الأمريكية",
+    "アメリカ領ヴァージン諸島",
+    "美属维尔京群岛",
+    "美屬維京群島",
+    "미국령 버진아일랜드"
+   ],
+   "kind": "territory",
+   "name": "バージン諸島",
+   "of": "USA",
+   "source": "MOFA (R55: f_anzen_usa_safety.md:136;721)",
+   "status_text": "territory of its administering state"
+  },
+  "VNM": {
+   "aliases": [
+    "Viet Nam",
+    "Vietnam",
+    "Viêt Nam",
+    "Вьетнам",
+    "فيتنام",
+    "ベトナム社会主義共和国",
+    "越南",
+    "베트남"
+   ],
+   "kind": "state",
+   "name": "ベトナム",
+   "region_group": "JA: アジア / EN path: asia-paci",
+   "source": "c_ja_index.md:377; c_ja_asia.md:45; c_en_index.md:423",
+   "status_text": "recognised state"
+  },
+  "VUT": {
+   "aliases": [
+    "Vanuatu",
+    "Вануату",
+    "فانواتو",
+    "バヌアツ共和国",
+    "瓦努阿图",
+    "萬那杜",
+    "바누아투"
+   ],
+   "kind": "state",
+   "name": "バヌアツ",
+   "region_group": "JA: 大洋州 / EN path: asia-paci",
+   "source": "c_ja_index.md:333; c_ja_pacific.md:35; c_en_index.md:417",
+   "status_text": "recognised state"
+  },
+  "WSM": {
+   "aliases": [
+    "Samoa",
+    "Самоа",
+    "ساموا",
+    "サモア独立国",
+    "萨摩亚",
+    "薩摩亞",
+    "사모아"
+   ],
+   "kind": "state",
+   "name": "サモア",
+   "region_group": "JA: 大洋州 / EN path: asia-paci",
+   "source": "c_ja_index.md:175; c_ja_pacific.md:21; c_en_index.md:335",
+   "status_text": "recognised state"
+  },
+  "XKX": {
+   "aliases": [
+    "Kosovo",
+    "Республика Косово",
+    "كوسوفو",
+    "コソボ共和国",
+    "科索沃",
+    "코소보"
+   ],
+   "kind": "state",
+   "name": "コソボ",
+   "region_group": "JA: 欧州 / EN path: europe",
+   "source": "c_ja_index.md:159; c_ja_europe.md:53; c_en_index.md:209; R53 e_mofa_world_wb.md:23 (recognised; not UN member)",
+   "status_text": "recognised state"
+  },
+  "YEM": {
+   "aliases": [
+    "Yemen",
+    "Yémen",
+    "Йемен",
+    "اليمن",
+    "イエメン共和国",
+    "也门",
+    "葉門",
+    "예멘"
+   ],
+   "kind": "state",
+   "name": "イエメン",
+   "region_group": "JA: 中東 / EN path: middle_e",
+   "source": "c_ja_index.md:43; c_ja_middleeast.md:19; c_en_index.md:425",
+   "status_text": "recognised state"
+  },
+  "ZAF": {
+   "aliases": [
+    "Afrique du Sud",
+    "South Africa",
+    "Sudáfrica",
+    "ЮАР",
+    "جنوب أفريقيا",
+    "南アフリカ共和国",
+    "南非",
+    "남아프리카 공화국"
+   ],
+   "kind": "state",
+   "name": "南アフリカ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:425; c_ja_africa.md:103; c_en_index.md:361",
+   "status_text": "recognised state"
+  },
+  "ZMB": {
+   "aliases": [
+    "Zambia",
+    "Zambie",
+    "Замбия",
+    "زامبيا",
+    "ザンビア共和国",
+    "尚比亞",
+    "赞比亚",
+    "잠비아"
+   ],
+   "kind": "state",
+   "name": "ザンビア",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:179; c_ja_africa.md:55; c_en_index.md:427",
+   "status_text": "recognised state"
+  },
+  "ZWE": {
+   "aliases": [
+    "Zimbabue",
+    "Zimbabwe",
+    "Зимбабве",
+    "زيمبابوي",
+    "ジンバブエ共和国",
+    "津巴布韦",
+    "辛巴威",
+    "짐바브웨"
+   ],
+   "kind": "state",
+   "name": "ジンバブエ",
+   "region_group": "JA: アフリカ / EN path: africa",
+   "source": "c_ja_index.md:197; c_ja_africa.md:61; c_en_index.md:429",
+   "status_text": "recognised state"
+  }
+ },
+ "holder": "JPN",
+ "language": "ja",
+ "not_entities": [
+  {
+   "mofa_ja": "北極",
+   "row": "Arctic",
+   "source": "c_ja_index.md:507",
+   "status": "not a state (topic under その他の地域)"
+  },
+  {
+   "mofa_ja": "南極",
+   "row": "Antarctica",
+   "source": "c_ja_index.md:509",
+   "status": "not a state (topic under その他の地域)"
+  },
+  {
+   "mofa_ja": "NOT LISTED (MOFA text name: NOT FOUND)",
+   "row": "Northern Cyprus",
+   "source": "c_ja_cyprus.md (no match)",
+   "status": "not recognised / not listed: Cyprus basic-data page gave 403; no wording found"
+  },
+  {
+   "mofa_ja": "NOT LISTED (MOFA text name: ソマリランド)",
+   "row": "Somaliland",
+   "source": "c_ja_somali_data.md:54",
+   "status": "not recognised / not listed: named only as the north that calls itself (自称) Somaliland and declared independence"
+  },
+  {
+   "mofa_ja": "NOT LISTED (MOFA text name: アブハジア)",
+   "row": "Abkhazia",
+   "source": "c_ja_georgia_data.md:216",
+   "status": "not recognised / not listed: region claiming secession; central government control does not reach it; Russia recognised it in 2008 as a \"republic\", few others"
+  },
+  {
+   "mofa_ja": "NOT LISTED (MOFA text name: 南オセチア)",
+   "row": "South Ossetia",
+   "source": "c_ja_georgia_data.md:216",
+   "status": "not recognised / not listed: same line as Abkhazia"
+  },
+  {
+   "mofa_ja": "NOT LISTED (MOFA text name: トランスニストリア地域)",
+   "row": "Transnistria",
+   "source": "c_ja_moldova_data.md:103",
+   "status": "not recognised / not listed: declared \"independence\" (in quotes); Moldovan government control does not reach it"
+  },
+  {
+   "mofa_ja": "NOT LISTED (MOFA text name: クリミア / クリミア自治共和国)",
+   "row": "Crimea",
+   "source": "c_ja_ukraine_data.md:145,161",
+   "status": "not recognised / not listed: not an entity; see disputes table"
+  },
+  {
+   "mofa_ja": "NOT LISTED (MOFA text name: NOT FOUND)",
+   "row": "Kashmir",
+   "source": "c_ja_india_data.md (no match)",
+   "status": "not recognised / not listed: no mention on India basic-data page"
+  }
+ ],
+ "provisional": false,
+ "rule": "R54's Japan view table (R54_japan_view.csv, MOFA). The name shown is MOFA's short form where MOFA gives one, else its name; MOFA's formal form, R54's general-usage aliases and NE's names in other languages are aliases. Status: recognised state -> state; Japan -> self; region (地域) -> region; not recognised (UN member) -> not_recognised; not listed -> not_listed with MOFA's text name. The 13 dependent territories are territory of their administering state, named as MOFA names them (R55_territory_names.csv, 10 of 13; its first form); CUW, ABW and TCA in general usage, marked not MOFA. Rows that are no field entity (topics, de-facto entities inside their host, Crimea, Kashmir) are kept as notes.",
+ "sea_names": {
+  "japan_sea": {
+   "aliases": [
+    "東海",
+    "East Sea",
+    "동해"
+   ],
+   "label": "日本海",
+   "source": "R54 Part 3 (MOFA)"
+  }
+ },
+ "sources": {
+  "ne_sha256": "239eec57ac17f100a11e2536cffc56752c318b50ae765b0918ff7aab4ce8f255",
+  "r54_sha256": "7d6b36b9e85d711588fc70ba71debbc8ff2131ca4b18e373125a7d62aee665ef"
+ },
+ "view": "jpn",
+ "counts_source": "MOFA's count of recognised states (195) and the R54 entity list: a standing fact, unchanged since 2015-05-15; the page R53 read is a capture made after 2024 (R96e), so the value is CHECK until an in-window capture confirms it (verifyくん; the PM, TO_E 21:11 1(d))"
+}

@@ -1,0 +1,104 @@
+{
+ "_doc": [
+  "既知の不合格の表（R4 A6）。tools/run_tests.sh は、ここに載っていて期限（expires、YYYY-MM-DD、その日まで有効）の切れていない試験の不合格を FAIL ではなく KNOWN と出し、終了コードに数えない。",
+  "1行: {\"file\": \"sim/.../test_x.gd\", \"reason\": \"なぜ落ちるか・直す道\", \"owner\": \"誰が直すか\", \"added\": \"YYYY-MM-DD\", \"expires\": \"YYYY-MM-DD\"}。期限は長くて2週間。期限が過ぎた行は FAIL に戻る（表に残っていても）。",
+  "rows: その行が許す落ちた項目の名前（RESULT の failures の label の最初の語、「line N:」なら「line N」）の並び。2026-10-31 V114 から必須、V115 から名前の完全一致: 落ちた項目の名前が rows に無ければ FAIL、rows が空か2文字未満の名前があれば FAIL、落ちた項目の名前が無いまま終わった（exit 1 で failures が空）なら FAIL（照合は tools/test/known_rows.py、試験は tools/test/test_known_rows.gd）。",
+  "直したら行を消す。表に載った試験が合格したら WARN（行を消してよい）と出す。",
+  "2026-10-06 A6: test_audio_danger（終わりの漏れ・29.5分）、test_ui_layout・test_ui_cards・test_ui_hud・test_save_roundtrip（ときどきの漏れ）は直した。test_bank・test_traits・test_ai_stability・test_ledger_reconcile は HEAD 43bcdd9 で合格。載せる物は今は無い。"
+ ],
+ "failures": [
+  {
+   "file": "sim/modern/test_modern_households.gd",
+   "reason": "H1s-d (the 65+'s living arrangements at the start, at fc4ef4ff with §10.7 B3's never-married margin: alone 0.192, couple only 0.365, with a child 0.443; rec@4a551b1c read 0.370 / 0.438 against 0.217 / 0.407 / 0.337, +-5 pt) is the start's one outcome check and fails: the old with a child come from two T constructions (adult children of 35+ at 表8's 35-39 rate; the old-householder three-generation form) and, with the alone cells held as margins, the rake finds the old there. Recorded, not raked to (ISS_HOUSEHOLD_REDESIGN.md §10.1); its check is HB1c at year 10. The PM's ruling (2026-10-29 21:15): stays an emergent FAIL. ALSO H1s-m: H1s-m (the start's never-married share by sex and R62 band, drawn since §10.8 C3) cannot meet R62 in 7 of 10 bands even with every one-person adult of the band never married: the start's couples (built from R64's types by householder age) hold more persons of 25-44 than R62's ever-married share allows (e.g. men 30-34 0.448 against 0.518, 28 persons short of 402). Reported as found, as declared: the conflict between R64's couples and R62's statuses, for the PM's call (§10.8 C3).",
+   "owner": "Eくん",
+   "added": "2026-10-29",
+   "expires": "2026-11-12",
+   "rows": [
+    "H1s-d",
+    "H1s-m"
+   ]
+  },
+  {
+   "file": "sim/modern/test_modern_tiers_means.gd",
+   "reason": "§12.8 10.2 and §12.9 M005 (M1 pensions by entitlement with M1b survivors and M1c 生活保護, M2 annual cash pay, M4 the 2022 targets): two checks fail and are reported, never fitted (refreshed 2026-10-31 at the T2.2 WIP, V117; T1s-pe now passes). T1s-cm: the fitted top 0.01% line 109.6 M against the tax table's 168.8 M (-35.1%), mean 207.9 M against 508.8 M (-59.1%); suspected cause 合計所得 including separately taxed capital gains (R67a, CHECK). T1s-hi against 国民生活基礎調査 2022's 2021 incomes x1.0199: D1 -23%, D2 -17%, D3 -6%, D4 -5%, D5 -1%, D6 +4%, D7 +7%, D8 +10%, D9 +11%, median +1.1%, mean +6.0%, 3 of 9 deciles beyond 10%; the known causes left: the couples' income link and 生活保護 for couples and larger households are T2's (T2.5), the survey's non-receipt kept by sex x band (M1a withdrawn) at D1",
+   "owner": "Eくん",
+   "added": "2026-10-30",
+   "expires": "2026-11-14",
+   "rows": [
+    "T1s-cm",
+    "T1s-hi"
+   ]
+  },
+  {
+   "file": "sim/modern/test_modern_tiers.gd",
+   "reason": "T1s-lp (R85 国勢調査 2020 第49-2表, the share living with a parent by sex x 5-year band x marital, ±5pt T, declared 8f2d9bac) fails: the construction's household composition, not the check (TO_E 11:41); its fix is M016's role margin, and since R77c M021's cohort-consistent marital state (TO_E 17:02 (5)). T1s-bpw, T1s-bpr (§12.15, R77c's 2015 -> 2020 backtest with R88's prefecture split, M020 D20, and each prefecture's own survival (R89 ratios) and leaving (R82), TO_E 17:10; tolerances 4.71 / 3.16%, TO_E 16:58) pass the exceedance share and fail the 2x cap on 3 cells (TO_E 17:02 (1)): pref x wife Hyogo 85+ +10.4%, Tokyo 85+ +10.0%; pref relative Osaka 20-24 -7.5%. The 85+ cells take the nation's 85+ age mix and the national events' survival (T, §12.15); Osaka 20-24 is young couples' migration (M020 D20-4, a known limit, T). R89 and lambda by prefecture brought the other 6 old-age cells inside the cap and T1s-bph to a pass. The cap is not adjusted. T1s-hh0 (V111 (1)): 1,028 lone-parent persons below their type's minimum size and 4,710 couple + children / single-parent households the minimum pass leaves without a child; type 3's persons after the size floor (it moved 281,752 into type 3) against its households, the children too few in those prefecture x band cells (V115 part 2). T1s-hh0 (a) (V113): 1,221 minimum-pass children outside R83's window, all to 85+ mothers of single-parent households; M019 (2)'s structural zero at gap <= 0 with the 85+ top code (V115 part 2). T1s-gap2 (M018): 3 of 4 birth-year groups beyond tolerance (1950-69 0.057 against 0.036 at gap 6; 1990-2009 0.037 against 0.033 at gap 8; 2010-22); the minimum pass's mother-child gaps against M018's comparator, 1950-69 the old mothers in nuclear households (M019's input conflict). T1s-lc (a tripwire): L's type-4 child persons clipped 0.726 M, 13 band cells beyond 0.5%; L's 2020 within-type shares against the type-4 target (an input conflict, M019; M022 reduced it from 0.77 M). None is adjusted. Any other FAIL in this file is a real failure.",
+   "owner": "Eくん",
+   "added": "2026-10-31",
+   "expires": "2026-11-14",
+   "rows": [
+    "T1s-lp",
+    "T1s-bpw",
+    "T1s-bpr",
+    "T1s-hh0",
+    "T1s-hh0 (a)",
+    "T1s-gap2",
+    "T1s-lc"
+   ]
+  },
+  {
+   "file": "sim/modern/test_modern_t2_dgb.gd",
+   "reason": "T2s-dgb-h (§14.6 (12), V121: a CONSISTENCY row against NIPPON DATA90, a source that shaped the input; not held out) fails for men at T2.2c + M035 (b64e5469): grade 4 (4a and 4b) ÷ grades 1-3 HR over 12.2 years 1.812 against 1.31 (1.00-1.73), |ln| 0.324 against 0.313; women 1.747 against 1.43, in. At T2.2b both were in (men 1.630, women 1.556). Every grade-4 ratio in the file rose by about the same 11-14% for both sexes (the 4 ÷ 3 REPORT 1.086 / 1.065 -> 1.196 / 1.187; the read-back 2.316 -> 2.631), with m_4b = m_4a, so the likely cause is persistence, not the multiplier: 4b (care need) leaves only at e_b 0.0125 against T2.2b's grade-4 stay of 0.525 b / 0.604, and the grade-4 raise to LTCI's prevalence puts more of the 65-90 baseline mass into that persistent state, so the baseline grade-4 group stays at m 5.03 for more of the 12.2 years. Not proven by a run. The FAIL stands; the row and its bound are unchanged and nothing is tuned (the PM, 2026-11-01). T2s-dgb-t (Tosa, held out) passes for both sexes",
+   "owner": "Eくん",
+   "added": "2026-11-01",
+   "expires": "2026-11-15",
+   "rows": [
+    "T2s-dgb-h"
+   ]
+  },
+  {
+   "file": "sim/modern/test_modern_t2_decade.gd",
+   "reason": "The frozen oracle's decade CHECK run (b316b6e8, T2.2c + M035 + M036, TO_PM 109): 32 of 36. T2s-dt fails at year 1 only, on 2 of 202 cells (women 70 z -4.25, men 88 z +4.12; all six totals inside 2%); it passes at years 5 and 10. Cause: M036's start transient (every slot fresh at pi(a), so year 1's hazard sits slightly above c's); women 70 is not M036's declared place and cannot be shown cleared at 3.937, since the later bounds widen. NOTE: the entry names the row, so a T2s-dt fail at years 5 or 10 would also read KNOWN. T2s-gp: 1 cell in 120 reads, and the re-grade's IPF residual >= 1e-9 in 12 months, all in year 1 (December 0.144), about 1e-12 from year 2; likely the start's (class, state) rows meeting kernel zeros until every cohort has been re-graded once (not proven). T2s-4b: 4 cells beyond 4.175 in 1,680 reads (not printed which); same mechanism suspected. T2s-gk: gap 1 out (always good 0.775 against R92 0.729, always bad 0.090 against 0.108); gaps 5 and 9 in. Recorded, not tuned; to the mathematician (M037). The PM ruled the freeze with these (TO_E 08:20)",
+   "owner": "Eくん",
+   "added": "2026-11-03",
+   "expires": "2026-11-17",
+   "rows": [
+    "T2s-dt",
+    "T2s-gp",
+    "T2s-4b",
+    "T2s-gk"
+   ]
+  },
+  {
+   "file": "sim/modern/test_modern_t2b_persons.gd",
+   "reason": "The persons layer at T2.2c + M035 (run on 122462e7; M036 and the save fix do not touch the persons, TO_PM 100): T2s-gp fails, 15 cells beyond 4.581 in 120 reads with the re-grade's IPF residual >= 1e-9 in all 120 months; T2s-4b, 190 cells beyond 4.175; T2s-gk, always bad far below R92 (0.074 / 0.015 / 0.007 against 0.108 / 0.043 / 0.027 at gaps 1, 5, 9). Likely cause (not proven): the persons' pools by age x sex x quartile hold a handful of persons each, so the re-grade's IPF often has no exact solution, misses pi(a) and mixes the bad side back out at each birthday. T2s-dt (persons) passes at years 1, 5 and 10, women drifting up (+5 / +17 / +18% at 65+, inside its sampling bound). Recorded, not tuned; to the mathematician (M037)",
+   "owner": "Eくん",
+   "added": "2026-11-03",
+   "expires": "2026-11-17",
+   "rows": [
+    "T2s-gp",
+    "T2s-4b",
+    "T2s-gk"
+   ]
+  },
+  {
+   "file": "sim/modern/test_modern_t2_m026.gd",
+   "reason": "By design until T2.3: M026 §3's decisive check (TO_E 23:38 (1)) asks the attenuation of the bottom-to-top death ratio to be under a third in every band from 60-69 up; it reads a worst 48.3% (leave-one-household-out; person-out 36.0%, inclusive 31.7%), so the stop STAYS until T2.3's household income points. A decision row, not a defect; it lapses when T2.3 lands in Python (the PM, TO_PM 113), where it is to be registered year-tagged",
+   "owner": "Eくん",
+   "added": "2026-11-03",
+   "expires": "2026-11-17",
+   "rows": [
+    "M026"
+   ]
+  },
+  {
+   "file": "sim/modern/test_modern_people.gd",
+   "reason": "I3 (the hit persons' security deficit above their start after the lay-off wave) reads 0 of 3 on the D477 inputs: the 2023-10-01 cohort changes the 60-person draw of seed 7, and the three persons the wave hits end with no deficit above their start. A sample effect of the new cohort, not a rule change; registered by the PM's ruling (after TO_PM 125), not re-seeded.",
+   "owner": "Eくん",
+   "added": "2026-11-03",
+   "expires": "2026-11-17",
+   "rows": [
+    "I3"
+   ]
+  }
+ ]
+}

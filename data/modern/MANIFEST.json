@@ -1,0 +1,528 @@
+{
+ "blocked_here": [
+  {
+   "host": "moeaea.gov.tw / data.gov.tw",
+   "licence": "OGDL v1.0",
+   "needed": "Taiwan Energy Administration supply and demand",
+   "replaces": "nothing: blocked by the site even in a browser; Taiwan's electricity is in Ember"
+  },
+  {
+   "host": "ANRE / e-Stat",
+   "licence": "PDL 1.0",
+   "needed": "a Japanese government whole-country generation series (energy balance)",
+   "replaces": "Japan's provisional Ember rows (ANRE table 2-(1) covers electricity businesses only)"
+  },
+  {
+   "host": "not found yet",
+   "licence": "-",
+   "needed": "peak demand by entity at a <=2022 vintage",
+   "replaces": "nothing yet: R55's 15% reserve margin needs peaks; capacity GW is in Ember's July 2022 vintage on modern-data"
+  },
+  {
+   "host": "-",
+   "licence": "NOT FOUND",
+   "needed": "ATOP v5.1, COW alliances, the OECD export-restriction inventory",
+   "replaces": "nothing: not fetched, NOT FOR THE PRODUCT"
+  },
+  {
+   "host": "figshare / Copernicus CDS",
+   "licence": "CC BY 4.0 / Copernicus",
+   "needed": "Beck 2023 koppen_geiger_0p1.tif and the ERA5 monthly npz",
+   "replaces": "earth_climate.bin without the 3000 BC corrections (not read by the field yet)"
+  }
+ ],
+ "fetched": [
+  {
+   "bytes": 13287234,
+   "licence": "public domain (Natural Earth)",
+   "name": "ne_10m_admin_0_countries.geojson",
+   "note": "mirror copy (Natural Earth's host is blocked here)",
+   "sha256": "239eec57ac17f100a11e2536cffc56752c318b50ae765b0918ff7aab4ce8f255",
+   "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_admin_0_countries.geojson",
+   "utc": "2026-10-27T23:59:03Z"
+  },
+  {
+   "bytes": 13232502,
+   "licence": "public domain (Natural Earth)",
+   "name": "ne_10m_admin_0_countries_jpn.geojson",
+   "note": "mirror copy (Natural Earth's host is blocked here)",
+   "sha256": "11bc047064a5cf2db03efc2aece341e657df2dd59ad715a8221cc1575697df1b",
+   "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_admin_0_countries_jpn.geojson",
+   "utc": "2026-10-27T23:59:03Z"
+  }
+ ],
+ "files": {
+  "checks.json": {
+   "bytes": 2062,
+   "from": "R54_checks.csv",
+   "label": "SOURCED (declared before any run)",
+   "sha256": "98d4b55331acdbe274a20c8107da7354b1796bcb570e56fbd8ea3cb928366f2e",
+   "tool": "tools/modern/build_checks.py"
+  },
+  "compute_chain.json": {
+   "bytes": 8454,
+   "from": "R54_compute_shares.csv, R53_modern_data.csv",
+   "label": "SOURCED shares + THEORY remainders (per row)",
+   "provisional": "hand-down inside a macro region by GDP (R54's fallback): R54's rule by BACI exports needs BACI (blocked here)",
+   "sha256": "66abc1fac0e9cc155d68289e88148f31d7f1148ed3cb2011c865821d9d682fce",
+   "tool": "tools/modern/build_compute.py"
+  },
+  "dc_history.json": {
+   "bytes": 2926,
+   "from": "R55_dc_history.csv",
+   "label": "SOURCED values, DERIVED growth, T persistence rule (R55 Q5)",
+   "sha256": "c5ce8ec44277b18c5b707da399d50a55cea988f1ade3e8a0a15b22ecbe1c4616",
+   "tool": "tools/modern/build_dc.py"
+  },
+  "entities.json": {
+   "bytes": 70173,
+   "from": "R54_entities.csv, ne_10m_admin_0_countries.geojson",
+   "label": "SOURCED list + DERIVED (rule)",
+   "sha256": "de4ba4cbaa8bae1dd5128d10109139fd64834c250a56c0871854d46ab1ebdc2d",
+   "tool": "tools/modern/build_entities.py + entity_rules.json"
+  },
+  "entity_regions.json": {
+   "bytes": 45265,
+   "from": "ne_10m_admin_0_countries.geojson, regions.json",
+   "label": "DERIVED",
+   "sha256": "373d799a845f85fa2d9d985ade30c404f4175ce4210a64d7edc72ca735647971",
+   "tool": "tools/modern/build_entity_cells.py"
+  },
+  "r56.json": {
+   "bytes": 58847,
+   "from": "R56_values.csv, R56_alliances.csv",
+   "label": "SOURCED values (V22), T where the tool says (lifetimes, WACC mapping, ally types)",
+   "sha256": "29e045068376a8f2de43efcf2fe11b8df3a8558ec8617eb9c18b56516f49b3e1",
+   "tool": "tools/modern/build_r56.py"
+  },
+  "r57.json": {
+   "bytes": 1777,
+   "from": "R57_fab_growth.csv, R56_values.csv",
+   "label": "D levels, S shares, T rule parameters (as R57 declares)",
+   "sha256": "455bfd1bf9a6a78ff3bdddb3aecac79b0531f63555eb2faf5564b59aeae2ffe5",
+   "tool": "tools/modern/build_r57.py"
+  },
+  "r58.json": {
+   "bytes": 1968,
+   "from": "R58_dc_2022.csv",
+   "label": "S / D / 2nd PUE by macro region, 2nd DC lead (as R58 proposes, T)",
+   "sha256": "b08dad25033d807ad9455f94291fdf4631e58b2f09b834561bfca0f9a3442fb1",
+   "tool": "tools/modern/build_r58.py"
+  },
+  "regions.json": {
+   "bytes": 235984,
+   "from": "world/planet/earth_regions.gd (present-day coast)",
+   "label": "DERIVED",
+   "sha256": "592aad59176213ebba2cce2241ff80b53b4ebbdff8153677ec061e7a0ee09d04",
+   "tool": "tools/modern/dump_regions.gd, then tools/modern/canon_json_file.py (the committed bytes are this chain's output, V091)"
+  },
+  "src/R53_modern_data.csv": {
+   "bytes": 10138,
+   "from": "R53",
+   "label": "SOURCED (R53's own labels per row)",
+   "sha256": "c201d9af52863b07d66ca195917374c4ac82c96e1937b7b9313c3be3acf928b7",
+   "tool": "byte copy of research-notes R53_modern_data.csv"
+  },
+  "src/R54_checks.csv": {
+   "bytes": 689,
+   "from": "R54 Part 5 (declared before any run)",
+   "label": "SOURCED",
+   "sha256": "ee9721c49e22571348b405f779d300e2d74a7dc048ebb076181aaf60b72d350c",
+   "tool": "byte copy of research-notes R54_checks.csv"
+  },
+  "src/R54_compute_shares.csv": {
+   "bytes": 2587,
+   "from": "R54 Part 2 (SIA/BCG 2024 figures)",
+   "label": "SOURCED",
+   "sha256": "2ff3dfe6659c7f781950b29b1fc770b5987a467ef8fa00d5f0b6e9096afb470f",
+   "tool": "byte copy of research-notes R54_compute_shares.csv"
+  },
+  "src/R54_entities.csv": {
+   "bytes": 26503,
+   "from": "R54 Part 2",
+   "label": "SOURCED",
+   "sha256": "1c4a254f3280944919cefa436ae2d96eb936d0cd806d4f8df9586f273a2c0787",
+   "tool": "byte copy of research-notes R54_entities.csv"
+  },
+  "src/R54_japan_view.csv": {
+   "bytes": 38116,
+   "from": "R54 Part 3 (MOFA)",
+   "label": "SOURCED",
+   "sha256": "7d6b36b9e85d711588fc70ba71debbc8ff2131ca4b18e373125a7d62aee665ef",
+   "tool": "byte copy of research-notes R54_japan_view.csv"
+  },
+  "src/R54_visibility.csv": {
+   "bytes": 1741,
+   "from": "R54 Part 4",
+   "label": "SOURCED / DERIVED / THEORY per row",
+   "sha256": "f7c7a4c1ef3ba46a9681e7d54def3397f0f63212e1dbd6d3e3f705bf1fcd99bf",
+   "tool": "byte copy of research-notes R54_visibility.csv"
+  },
+  "src/R55_dc_history.csv": {
+   "bytes": 1639,
+   "from": "R55 Q5",
+   "label": "SOURCED (by vintage)",
+   "sha256": "fb5a133ef28b0d004f00077167bc2e796c035af24bb428500bff96bc4c762309",
+   "tool": "byte copy of research-notes R55_dc_history.csv"
+  },
+  "src/R55_rule_actors.csv": {
+   "bytes": 4485,
+   "from": "R55 Q1/Q4",
+   "label": "S / D / MA / T per row (the rule set's parameters)",
+   "sha256": "12fe0b664d88867cdde8a030354aa77e340738d5046608c84eaaeea7512fb0fb",
+   "tool": "byte copy of research-notes R55_rule_actors.csv"
+  },
+  "src/R55_territory_names.csv": {
+   "bytes": 2086,
+   "from": "R55 Q6 (MOFA)",
+   "label": "SOURCED (10 of 13)",
+   "sha256": "9eecfcda0b68627a15b90d790d698342140b5a65b2d410c6a7003d79e76f2e0b",
+   "tool": "byte copy of research-notes R55_territory_names.csv"
+  },
+  "src/R56_alliances.csv": {
+   "bytes": 24107,
+   "from": "R56 Part 5",
+   "label": "SOURCED (dates; NF where marked)",
+   "sha256": "c1af30fb2429ce306259412b74c6486c5fe0247317544a6119f2686cb34daebc",
+   "tool": "byte copy of research-notes R56_alliances.csv"
+  },
+  "src/R56_file_only.csv": {
+   "bytes": 1830,
+   "from": "R56",
+   "label": "the owner's download list",
+   "sha256": "88609c78f2d18274b663d58cbce8bebe51c99985be38784225fd3841a27e2d5f",
+   "tool": "byte copy of research-notes R56_file_only.csv"
+  },
+  "src/R56_hs_codes.csv": {
+   "bytes": 4357,
+   "from": "R56 Part 4",
+   "label": "SOURCED (WCO)",
+   "sha256": "5065012c70880ac7455e8caa35820534fe0d37cae3523bab9a577b36c3f2740a",
+   "tool": "byte copy of research-notes R56_hs_codes.csv"
+  },
+  "src/R56_values.csv": {
+   "bytes": 13923,
+   "from": "R56",
+   "label": "S / D / 2nd per row, with vintage and licence",
+   "sha256": "39e15776813b669f6bf7d50a7e55eb3c2ca48757981f552b07916b67c037dc3a",
+   "tool": "byte copy of research-notes R56_values.csv"
+  },
+  "src/R57_fab_growth.csv": {
+   "bytes": 2454,
+   "from": "R57",
+   "label": "S / D / 2nd / T per row",
+   "sha256": "a4cf2edf0f43283f1c2b2ef140880117455bafc3a2bce79317b1ba2d62ecefc1",
+   "tool": "byte copy of research-notes R57_fab_growth.csv"
+  },
+  "src/R58_dc_2022.csv": {
+   "bytes": 2002,
+   "from": "R58",
+   "label": "S / D / 2nd / NF / T per row",
+   "sha256": "416200a4a1687360c67952e7771c590556d96f69189722c71ddd05e5b0e255a0",
+   "tool": "byte copy of research-notes R58_dc_2022.csv"
+  },
+  "src/R96e_compute_chain_and_dates.csv": {
+   "bytes": 232413,
+   "from": "research-notes 6fdbf51b docs/team/research/reports/R96e_compute_chain_and_dates.csv",
+   "label": "SOURCED (R96e's dates for SOURCES_D477.csv)",
+   "sha256": "939478de64813b5281d5781518c604e5166f81d1b2f00716571bd4c4308739d6",
+   "tool": "byte copy of research-notes R96e_compute_chain_and_dates.csv; read by tools/modern/sources_inventory.py"
+  },
+  "stats.json": {
+   "bytes": 719977,
+   "from": "R96c (research-notes 585a7664): World Bank WDI Database Archives version 202412 (source 57); Ember yearly long file, Wayback capture 2024-09-03 (data to 2023); WPP 2024 (published 2024-07) for population gaps; DGBAS (Taiwan) for years <= 2023; every input published <= 2024-12-31",
+   "label": "SOURCED (D477 in-window build)",
+   "provisional": "Japan's electricity rows (Ember via the Energy Institute, terms NOT FOUND); a government whole-country series would replace them",
+   "sha256": "f549ecdc025f86e5a301611658f852f6ffc175ab298e24788eb4bfa6ad55f72d",
+   "tool": "researcher4's copy of tools/modern/build_stats.py (an --ember 2024-09 entry, no fill from later Ember files, Taiwan's 2024 dropped); 8 values on canon_m's 0.5 tie written at the loader's value (modern 711a98df)"
+  },
+  "stats_v2022.json": {
+   "bytes": 485837,
+   "from": "R96c (research-notes 585a7664): World Bank WDI Database Archives version 202412 (source 57); Ember vintage 2022-07, no fill from later files (years 2016-2021); WPP 2024 (published 2024-07) for population gaps; DGBAS (Taiwan) for years <= 2023; every input published <= 2024-12-31",
+   "label": "SOURCED (D477 in-window build)",
+   "provisional": "Japan's electricity rows (as stats.json)",
+   "sha256": "592b0b120d251f2b5bb224f7e43a24db417aaacfa83608f0d99f067bf3624d44",
+   "tool": "researcher4's copy of tools/modern/build_stats.py (an --ember 2024-09 entry, no fill from later Ember files, Taiwan's 2024 dropped); 8 values on canon_m's 0.5 tie written at the loader's value (modern 711a98df)"
+  },
+  "views/jpn.json": {
+   "bytes": 98665,
+   "from": "R54_japan_view.csv, R55_territory_names.csv, NE names",
+   "label": "SOURCED (MOFA); 3 territories in general usage",
+   "sha256": "70e80707451d9f5419032850bafbbbb549693cf455685f03dbca6e55e2f26057",
+   "tool": "tools/modern/build_view.py + view_jpn_rules.json"
+  },
+  "views/test_b.json": {
+   "bytes": 57189,
+   "from": "test fixture",
+   "label": "TEST FIXTURE (no real view)",
+   "sha256": "94f0780fc8867a8373af542656ff9b85874589a2371871e6b954482cafeafe07",
+   "tool": "tools/modern/build_view.py + view_test_b_rules.json"
+  },
+  "visibility.json": {
+   "bytes": 3997,
+   "from": "R54_visibility.csv",
+   "label": "SOURCED / DERIVED per row; T for the uniform estimate error",
+   "sha256": "7218c988c6f29dc6dc6cff4cd8f4b1c2dcb3270387193f23d177a5c832878810",
+   "tool": "tools/modern/build_visibility.py"
+  }
+ },
+ "inputs": [
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "CC BY 4.0",
+   "listed_as": "ember_vintage_2022_07/yearly_full_release_long_format_2022-07.csv.gz",
+   "path": "raw/ember_yearly_full_release_long_format_vintage_2022-07.csv.gz",
+   "read_by": "build_stats.py (stats_v2022.json)",
+   "revised": false,
+   "sha256": "18f35e38cad6899fca898a0ea198eb1aee73f8a256f23c7c9a388ceeeb58934b",
+   "vintage": "July 2022 (data to 2021)"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "CC BY 4.0",
+   "listed_as": "ember/yearly_full_release_long_format.csv",
+   "matched": "gzip of the original; its content has the listed sha256 259e1095ee8ffeaf0aff37ad557916ae1823a2da13312da50ba4cec6b4574c3b",
+   "path": "raw/ember_yearly_full_release_long_format.csv.gz",
+   "read_by": "build_stats.py (stats.json)",
+   "revised": true,
+   "sha256": "705afdaefbab4678810fcf503b972f6470696a0e55f952b4bc01a74baab94929",
+   "vintage": "latest (2026)"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "CC BY 4.0",
+   "listed_as": "ember/release_generation_yearly_global.csv",
+   "matched": "gzip of the original; its content has the listed sha256 afe1e315ce8fef7ddb2e2569243b3ac4e93cfe8146ac1be5392e362bd6afbe72",
+   "path": "raw/ember_release_generation_yearly_global.csv.gz",
+   "read_by": "not read yet (capacity GW for the reserve margin)",
+   "revised": true,
+   "sha256": "2d88342b8cf30ca6b97aab9da59826093f7cab7485d78811286ec55dfdd79b1b",
+   "vintage": "latest (2026)"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "public domain",
+   "listed_as": "eia/INTL.zip",
+   "path": "raw/eia_INTL_latest.zip",
+   "read_by": "not read yet (oil and gas balances)",
+   "revised": true,
+   "sha256": "367a8d8f93bc3c54f96c755e67ce68783ae92580a5751faa545a265376483216",
+   "vintage": "latest"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "public domain",
+   "listed_as": "eia_wayback_2023-02-16/INTL.zip",
+   "path": "raw/eia_INTL_wayback_2023-02-16.zip",
+   "read_by": "not read yet (oil and gas balances, 2022 run)",
+   "revised": true,
+   "sha256": "aef6091d3fd0d6747f416422df978f55681c1ab9c7fdba764d218ffab17263a4",
+   "vintage": "Feb 2023 capture"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "IMF terms: commercial use with attribution",
+   "listed_as": "imf_weo_2022oct/WEOOct2022all.xls",
+   "matched": "gzip of the original; its content has the listed sha256 8154545eec1500d4af562bea61c59f4c6654580683f178ff2b04e37b5e9281bc",
+   "path": "raw/imf_WEOOct2022all_wayback_2022-10-19.tsv_utf16.gz",
+   "read_by": "not read yet (fiscal rules)",
+   "revised": false,
+   "sha256": "503d0fce07043b3b56f29f95b5cdc52798def31fb3c6d138dd193ea06fa15101",
+   "vintage": "Oct 2022, exact"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "CC BY 4.0",
+   "listed_as": "nrel_atb_2022v2/ATB_2022_v2_Workbook_Corrected_7-21-2022.xlsx",
+   "path": "raw/nrel_ATB_2022_v2_Workbook_Corrected_7-21-2022.xlsx",
+   "read_by": "not read yet (O&M split; WEO 2022 costs are used)",
+   "revised": false,
+   "sha256": "331db9fe3a67dffee10e01c9b615d4a0b2fdeec7f27bae253bac9fec4b55c596",
+   "vintage": "2022 v2"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "CC BY 4.0",
+   "listed_as": "wgi/wgidataset.xlsx",
+   "path": "raw/wgi_wgidataset.xlsx",
+   "read_by": "not read yet (institutional quality, fiscal rules)",
+   "revised": true,
+   "sha256": "28f7bc1540df6c5a79bd9769fb8b2413d07a3765f3ef74d8879728b0cd154860",
+   "vintage": "latest; years <= start"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "CC BY 4.0",
+   "listed_as": "wb_income_class/OGHIST_2026_10_08.xlsx",
+   "path": "raw/OGHIST_2026_10_08.xlsx",
+   "read_by": "not read yet (income groups)",
+   "revised": false,
+   "sha256": "a4024eb8052150155034559daf053aabbc16336d8290efeb5629e6eeb6515a60",
+   "vintage": "history; the FY of the start year",
+   "d477": "an edition published after 2024-12-31: not read by any input, and not to be read under D477 (the in-window edition, e.g. USGS MCS 2024, a BACI release of <= 2024-12, replaces it if it is ever read)"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "CC BY 4.0",
+   "listed_as": "wb_income_class/CLASS_hist_2026_10_08.xlsx",
+   "path": "raw/CLASS_hist_2026_10_08.xlsx",
+   "read_by": "not read yet",
+   "revised": false,
+   "sha256": "94f1cd9638b9f357913f3d06ea582fbea9657c5c91db9e67f2ba399e4c980b66",
+   "vintage": "history",
+   "d477": "an edition published after 2024-12-31: not read by any input, and not to be read under D477 (the in-window edition, e.g. USGS MCS 2024, a BACI release of <= 2024-12, replaces it if it is ever read)"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "OGDL v1.0",
+   "listed_as": "taiwan_ogdl/6800_per_capita_quarterly.xml",
+   "matched": "committed with LF line ends; the original (CRLF) has the listed sha256 5c3411188c24280701d88d7013f06472116be6d5e3ca3cf424564cf1cb3acb96",
+   "path": "raw/taiwan_ogdl/6800_per_capita_quarterly.xml",
+   "read_by": "build_stats.py (Taiwan GDP)",
+   "revised": true,
+   "sha256": "2cdf5f8a8902a1da6c0f46e9a2bb589c84f10271eb090e49a039ce61ed09f9a3",
+   "vintage": "latest"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "OGDL v1.0",
+   "listed_as": "taiwan_ogdl/44230_gdp_contribution_by_expenditure_year.xml",
+   "matched": "committed with LF line ends; the original (CRLF) has the listed sha256 10e453d10fb6839a385e4ad2bca3a5aec10d1688bc4d8e7f4f054f5b46557ede",
+   "path": "raw/taiwan_ogdl/44230_gdp_contribution_by_expenditure_year.xml",
+   "read_by": "build_stats.py (Taiwan real growth)",
+   "revised": true,
+   "sha256": "fd1ee7024e0fe87388e55711830f78c3b126b77458e095d3bb148a43a5551890",
+   "vintage": "latest"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "OGDL v1.0",
+   "listed_as": "taiwan_ogdl/14226_population_single_age_sex_area.csv",
+   "matched": "committed with LF line ends; the original (CRLF) has the listed sha256 683a73dbed51c6fb5d7f668a6ec3ec24dcfb0058e33c174b45539b285cf6474c",
+   "path": "raw/taiwan_ogdl/14226_population_single_age_sex_area.csv",
+   "read_by": "not read (one year only; WPP gives Taiwan's population)",
+   "revised": true,
+   "sha256": "b91aef5bab0a5edf63b60e7b64830f997681dc3795688eb9e7309d184dae2665",
+   "vintage": "2020 only"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "CC0",
+   "listed_as": "raw/usgs/MCS2026_Commodities_Data.csv",
+   "matched": "committed with LF line ends; the original (CRLF) has the listed sha256 582a0aa231aea53d8a97dc8d1cd3dfa5f885cf3760353e3d029d7f0ae4fbaaf5",
+   "path": "raw/usgs/MCS2026_Commodities_Data.csv",
+   "read_by": "not read yet (minerals)",
+   "revised": true,
+   "sha256": "1498aa3ec71745d63d9ed02c3a171fd77e288e0403adb738e83a4ba3dc882f9b",
+   "vintage": "2026",
+   "d477": "an edition published after 2024-12-31: not read by any input, and not to be read under D477 (the in-window edition, e.g. USGS MCS 2024, a BACI release of <= 2024-12, replaces it if it is ever read)"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "PDL 1.0",
+   "listed_as": "raw/japan_anre/denryoku_chosa_hatsuden_jisseki_FY2021.xlsx",
+   "path": "raw/japan_anre/denryoku_chosa_hatsuden_jisseki_FY2021.xlsx",
+   "read_by": "cross-check only: electricity businesses, no captive or most rooftop generation",
+   "revised": false,
+   "sha256": "eb71c114ff1910aeb3a554b5482a349f30aba8e76f0adbbf90cd8b26faffe0ae",
+   "vintage": "FY2021"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "PDL 1.0",
+   "listed_as": "raw/japan_anre/denryoku_chosa_hatsuden_jisseki_FY2022.xlsx",
+   "path": "raw/japan_anre/denryoku_chosa_hatsuden_jisseki_FY2022.xlsx",
+   "read_by": "cross-check only",
+   "revised": false,
+   "sha256": "8f7c2f6eb10c0766a6bdd78b09533c75fa5355555c6134c60ec73d5f813cf248",
+   "vintage": "FY2022"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "PDL 1.0",
+   "listed_as": "raw/japan_anre/denryoku_chosa_hatsuden_jisseki_FY2025.xlsx",
+   "path": "raw/japan_anre/denryoku_chosa_hatsuden_jisseki_FY2025.xlsx",
+   "read_by": "cross-check only",
+   "revised": false,
+   "sha256": "499ea1cc3889c0072798ed93e1ed32d7c84efc759bdaeca20bd50a5ffc31d465",
+   "vintage": "FY2025",
+   "d477": "an edition published after 2024-12-31: not read by any input, and not to be read under D477 (the in-window edition, e.g. USGS MCS 2024, a BACI release of <= 2024-12, replaces it if it is ever read)"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "CC BY 4.0",
+   "listed_as": "extract or gzip of an original (see README)",
+   "path": "extracts/wdi_selected.csv.gz",
+   "read_by": "build_stats.py (population, GDP, real GDP)",
+   "revised": true,
+   "sha256": "fa7c4f1126f431092ad576a089b3cceeb30aa75fa92dd97d829bec0dc383e29e",
+   "vintage": "latest (extract of WDI_CSV.zip)",
+   "d477": "stats.json and stats_v2022.json are now R96c's build on WDI's 202412 archive; this 'latest' extract is no longer read"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "CC BY 3.0 IGO",
+   "listed_as": "extract or gzip of an original (see README)",
+   "path": "extracts/wpp2024_single_age_2010-2023.csv.gz",
+   "read_by": "build_stats.py (population where WDI has none)",
+   "revised": true,
+   "sha256": "1e2413030339adbe0d0f4d998ff0cbe9cf9799dda63ca98c2d2b42127824e0fd",
+   "vintage": "WPP 2024 estimates"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "CC BY 3.0 IGO",
+   "listed_as": "extract or gzip of an original (see README)",
+   "path": "extracts/wpp2024_single_age_2024-2050.csv.gz",
+   "read_by": "never an input (projections); checks only",
+   "revised": false,
+   "sha256": "adf4e53959d4fc4c44c3728de93da0573c0a9cd1b5886691fc8204e421e89aa8",
+   "vintage": "WPP 2024 projections"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "Etalab 2.0",
+   "listed_as": "extract or gzip of an original (see README)",
+   "path": "extracts/baci_hs17_v202601_selected_hs6.csv.gz",
+   "read_by": "not read yet (compute hand-down, trade values)",
+   "revised": true,
+   "sha256": "28c4a3f35da4b1226b9b3ef414a73fb3e0e85b7a89e64f3c43085ce6caf50712",
+   "vintage": "V202601 (extract)",
+   "d477": "an edition published after 2024-12-31: not read by any input, and not to be read under D477 (the in-window edition, e.g. USGS MCS 2024, a BACI release of <= 2024-12, replaces it if it is ever read)"
+  },
+  {
+   "branch": "modern-data",
+   "commit": "2f071891",
+   "licence": "Etalab 2.0",
+   "listed_as": "extract or gzip of an original (see README)",
+   "path": "extracts/baci_hs17_v202601_pair_chapter_totals.csv.gz",
+   "read_by": "not read yet (trade values)",
+   "revised": true,
+   "sha256": "dda8448be43f8848f88e27e6bc40c2a6c8904307f658633886aa198fba607480",
+   "vintage": "V202601 (extract)",
+   "d477": "an edition published after 2024-12-31: not read by any input, and not to be read under D477 (the in-window edition, e.g. USGS MCS 2024, a BACI release of <= 2024-12, replaces it if it is ever read)"
+  }
+ ],
+ "rules": "labels per MODERN_PLAN: SOURCED / DERIVED / THEORY / CALIBRATED; projections and dated policy events are checks, never inputs; R54 declared the hindcast checks before any run (checks.json); nothing is CALIBRATED against them"
+}

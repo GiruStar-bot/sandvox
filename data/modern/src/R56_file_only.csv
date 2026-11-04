@@ -1,0 +1,13 @@
+item,url,licence,purpose
+IMF WEO Oct 2022 database,https://web.archive.org/web/20221019*/https://www.imf.org/-/media/Files/Publications/WEO/WEO-Database/2022/WEOOct2022all.ashx,IMF terms: commercial OK with attribution,"fiscal debt, primary balance (2022 run)"
+WDI archive Dec 2022,WDI_excel_2022_12_22.zip (World Bank WDI Database Archives; see notes_c),CC BY 4.0,2022-vintage WDI
+WB income classification history,CLASS.xlsx / OGHIST.xlsx (Wayback URLs in notes_c),CC BY 4.0,income groups
+WGI 2022 update,World Bank WGI download (notes_c),CC BY 4.0,institutional quality
+NREL ATB 2022 v2 workbook,https://data.openei.org/files/5716/2022 v2 Annual Technology Baseline Workbook Corrected 7-21-2022.xlsx,CC BY 4.0,capex/opex all techs (do NOT use v3 Feb 2023)
+IRENASTAT capacity before 2012 / batteries,https://pxweb.irena.org/pxweb/en/IRENASTAT/,IRENA attribution,learning series (pin vintage)
+Ember yearly CSV (Wayback <=2022-12-31),https://files.ember-energy.org/public-downloads/ (pre-2023 file name via Wayback),CC BY 4.0,"capacity by source, generation (2022 vintage)"
+EIA INTL.zip (Wayback <=2022-12-31),https://www.eia.gov/opendata/bulk/INTL.zip,public domain,"oil/gas balances, capacity (2022 vintage)"
+BACI V202201,https://www.cepii.fr/DATA_DOWNLOAD/baci/data/BACI_HS17_V202201.zip (see notes_d),Etalab 2.0,trade by HS group (2022 run)
+OECD export restrictions inventory,https://www.oecd.org/trade/topics/trade-in-raw-materials/documents/oecd-industrial-raw-materials-complete-data.xlsx (Wayback <=2022),"(c) OECD, no dataset licence found",restriction counts (licence check first)
+ATOP v5.1,https://www.atopdata.org/uploads/6/9/1/3/69134503/atop_5.1__.csv_.zip,licence NOT FOUND,alliance obligations
+COW alliances v4.1,https://correlatesofwar.org/wp-content/uploads/version4.1_csv.zip,licence NOT FOUND,alliances to 2012

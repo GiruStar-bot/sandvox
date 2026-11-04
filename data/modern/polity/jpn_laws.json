@@ -1,0 +1,236 @@
+{
+ "note": "BLUEPRINT_v2 4, P3 (laws as data): the law records the simulator applies, the economic areas first (budget, tax, subsidies, licences, stocks, tariffs). Text separate from the machine rule: 'articles' quote the provision; 'effects' are the rules. Each lever of data/modern/jpn/levers.json names the law and the power it needs ('legal_basis'). Dates are the law's enforcement dates; an amendment changes a record through the Diet (P4).",
+ "laws": {
+  "constitution": {
+   "kind": "constitution",
+   "name": "日本国憲法",
+   "enforced": "1947-05-03",
+   "subjects": [
+    "every organ"
+   ],
+   "effects": [
+    "see jpn_organs.json constraints"
+   ]
+  },
+  "consumption_tax_act": {
+   "kind": "statute",
+   "name": "消費税法",
+   "enforced": "1989-04-01",
+   "amended": "2019-10-01 (10%, reduced 8%)",
+   "subjects": [
+    "households",
+    "firms"
+   ],
+   "articles": {
+    "29": "税率 100分の7.8 (地方消費税と合わせ10%)"
+   },
+   "effects": [
+    {
+     "parameter": "consumption_tax_rate",
+     "value": 0.1,
+     "reduced_rate": 0.08
+    }
+   ],
+   "change_needs": "enact_law",
+   "lever": "consumption_tax_rate"
+  },
+  "corporation_tax_act": {
+   "kind": "statute",
+   "name": "法人税法",
+   "enforced": "1965-03-31",
+   "articles": {
+    "66": "各事業年度の所得に対する法人税の税率 100分の23.2"
+   },
+   "effects": [
+    {
+     "parameter": "corporate_tax_rate",
+     "value": 0.232
+    }
+   ],
+   "change_needs": "enact_law",
+   "lever": "corporate_tax_rate"
+  },
+  "customs_tariff_act": {
+   "kind": "statute",
+   "name": "関税定率法・関税暫定措置法",
+   "enforced": "1910-04-15",
+   "effects": [
+    {
+     "parameter": "tariff_rate_general",
+     "value": 0.025,
+     "note": "simple average applied; rice out-of-quota 341円/kg; wheat 55円/kg"
+    }
+   ],
+   "change_needs": "enact_law",
+   "lever": "tariff_rate_general",
+   "note": "emergency safeguard tariffs by cabinet order within the law's delegation (art. 9 関税定率法)"
+  },
+  "public_finance_act": {
+   "kind": "statute",
+   "name": "財政法",
+   "enforced": "1947-03-31",
+   "articles": {
+    "4": "国の歳出は公債又は借入金以外の歳入を以て財源としなければならない（建設公債の例外）",
+    "24": "予備費",
+    "29": "補正予算"
+   },
+   "effects": [
+    {
+     "rule": "spending needs the budget (憲法85条); a supplementary budget needs pass_budget; the reserve fund by cabinet_decision up to its amount"
+    }
+   ],
+   "change_needs": "pass_budget"
+  },
+  "budget_fy2024": {
+   "kind": "budget",
+   "name": "令和6年度一般会計予算",
+   "enforced": "2024-04-01",
+   "source": "MOF 予算フレーム (modern-data raw/jpn_official/mof_budget_fy2024_frame_29.pdf)",
+   "lines_bn_jpy": {
+    "total": 112571.7,
+    "social_security": 37719.3,
+    "debt_service": 27009.0,
+    "local_allocation_tax": 17786.3,
+    "defence": 7949.6,
+    "public_works": 6082.8,
+    "education_science": 5405.4,
+    "reserve_fund": 1000.0,
+    "other": 5619.3
+   },
+   "effects": [
+    {
+     "rule": "a lever that adds spending is within the budget when its line has room, else it needs the reserve fund (cabinet_decision, up to 1,000 bn) or a supplementary budget (pass_budget)"
+    }
+   ],
+   "levers": [
+    "public_investment",
+    "child_allowance",
+    "education_budget",
+    "oda_budget",
+    "defence_budget_share",
+    "semiconductor_subsidy",
+    "fuel_subsidy"
+   ],
+   "change_needs": "pass_budget"
+  },
+  "foreign_exchange_act": {
+   "kind": "statute",
+   "name": "外国為替及び外国貿易法",
+   "enforced": "1949-12-01",
+   "articles": {
+    "48": "輸出の許可: 国際的な平和及び安全の維持を妨げることとなると認められるものとして政令で定める特定の種類の貨物"
+   },
+   "effects": [
+    {
+     "rule": "an export control is a ministerial ordinance under the cabinet order (輸出貿易管理令): the Cabinet by cabinet_order, METI by ministerial_ordinance; no Diet vote"
+    }
+   ],
+   "change_needs": "cabinet_order",
+   "lever": "export_control"
+  },
+  "staple_food_act": {
+   "kind": "statute",
+   "name": "主要食糧の需給及び価格の安定に関する法律 (食糧法)",
+   "enforced": "1995-11-01",
+   "effects": [
+    {
+     "rule": "the government holds a rice stockpile (適正水準 100万t) and may release it by MAFF decision (基本指針); a release is a ministerial act, no Diet vote"
+    }
+   ],
+   "change_needs": "ministerial_ordinance",
+   "lever": "rice_stock_release"
+  },
+  "oil_stockpiling_act": {
+   "kind": "statute",
+   "name": "石油の備蓄の確保等に関する法律",
+   "enforced": "1976-04-01",
+   "effects": [
+    {
+     "rule": "national stocks released by METI's decision; private stock obligation 70 days may be lowered by ministerial ordinance"
+    }
+   ],
+   "change_needs": "ministerial_ordinance",
+   "lever": "oil_stock_release"
+  },
+  "reactor_regulation_act": {
+   "kind": "statute",
+   "name": "核原料物質、核燃料物質及び原子炉の規制に関する法律",
+   "enforced": "1957-12-19",
+   "effects": [
+    {
+     "rule": "a restart needs the NRA's review (独立); the Cabinet cannot order it; local consent by practice"
+    }
+   ],
+   "change_needs": "none (NRA)",
+   "lever": "nuclear_restart"
+  },
+  "pension_act": {
+   "kind": "statute",
+   "name": "国民年金法・厚生年金保険法",
+   "effects": [
+    {
+     "parameter": "pension_age",
+     "value": 65
+    }
+   ],
+   "change_needs": "enact_law",
+   "lever": "pension_age"
+  },
+  "health_insurance_act": {
+   "kind": "statute",
+   "name": "健康保険法 (診療報酬)",
+   "effects": [
+    {
+     "rule": "the fee schedule is set by MHLW ordinance after the 中医協, every two years"
+    }
+   ],
+   "change_needs": "ministerial_ordinance",
+   "lever": "health_fee_schedule"
+  },
+  "child_allowance_act": {
+   "kind": "statute",
+   "name": "児童手当法",
+   "amended": "2024-10-01",
+   "effects": [
+    {
+     "rule": "the allowance amount is in the law; a change needs enact_law; the budget line pays it"
+    }
+   ],
+   "change_needs": "enact_law",
+   "lever": "child_allowance"
+  },
+  "immigration_act": {
+   "kind": "statute",
+   "name": "出入国管理及び難民認定法 (特定技能)",
+   "effects": [
+    {
+     "rule": "the SSW intake cap is a cabinet decision (分野別運用方針)"
+    }
+   ],
+   "change_needs": "cabinet_decision",
+   "lever": "ssw_visa_cap"
+  },
+  "energy_policy_act": {
+   "kind": "statute",
+   "name": "エネルギー政策基本法 (エネルギー基本計画)",
+   "effects": [
+    {
+     "rule": "the basic plan is a cabinet decision; builds follow the market and the field's lead times"
+    }
+   ],
+   "change_needs": "cabinet_decision",
+   "lever": "energy_mix_target_renewables"
+  },
+  "dissolution": {
+   "kind": "constitution",
+   "name": "衆議院の解散 (憲法7条・69条)",
+   "effects": [
+    {
+     "rule": "a cabinet decision; the election within 40 days"
+    }
+   ],
+   "change_needs": "cabinet_decision",
+   "lever": "call_election"
+  }
+ }
+}

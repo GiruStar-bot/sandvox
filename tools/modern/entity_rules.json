@@ -1,0 +1,17 @@
+{
+ "rule": "R54 entity list (R54_entities.csv: 220 entities, 34 merged territories). Every Natural Earth feature belongs to the R54 entity of its code (ADM0_A3, through ne_codes where NE's code is not R54's); a merged territory goes to its host as R54 lists it; a de-facto entity with no base data starts as part of the host with a defacto flag (R54 Part 2, rule T), so it is no field entity; a feature R54 does not name goes to the state that administers it (leftover, Eくん's reading of actual administration, T); the unadministered scraps are no entity.",
+ "ne_codes": {"KOS": "XKX", "PSX": "PSE", "SDS": "SSD", "SAH": "ESH", "CYN": "XNC", "SOL": "XSL"},
+ "defacto_in_host": {"XNC": "CYP", "XSL": "SOM", "XAB": "GEO", "XSO": "GEO", "XTR": "MDA"},
+ "leftover": {"ESB": "GBR", "WSB": "GBR", "USG": "USA", "KAB": "KAZ", "IOA": "AUS", "CSI": "AUS", "ATC": "AUS", "CLP": "FRA", "KAS": "IND", "BRI": "BRA", "BJN": "COL", "SER": "COL"},
+ "unadministered": ["ATA", "BRT", "CNM", "PGA", "SCR", "SPI"],
+ "macro_names": {"EU27": "EU"},
+ "wdi_extra": {"GBR": ["CHI"]},
+ "notes": {
+  "USG": "Guantanamo Bay: NE's sovereignty group is Cuba's; administered by the USA",
+  "KAB": "Baikonur: leased to Russia; Kazakhstan's territory, kept with KAZ",
+  "KAS": "Siachen Glacier: held by India",
+  "PGA": "Spratly Islands: held in parts by several states; no land cell, no entity",
+  "CHI": "WDI reports Jersey and Guernsey only together (Channel Islands, CHI); R54 merges both into GBR",
+  "ESH": "Western Sahara: one entity with admin_split MAR_major (R54)"
+ }
+}

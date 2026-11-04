@@ -1,0 +1,16 @@
+figure_type,what_another_state_sees,lag,uncertainty,label,basis_file_line
+population total,exact,~6 months; census ~10 yr,0,sourced,R53 h_unsd_census_bg.txt:122
+population by age,exact where death registration >=90%; else estimate,~6 months,+-5% where registration <90% (theory),sourced/theory,"R53 h_unsd_crvs_2021.txt:66-67,140"
+GDP,exact for SDDS reporters,quarterly within 1 quarter; others 1-2 quarters (NF),0,sourced,R53 h_sdds_geo_ar2024.txt:141
+GDP growth of an autocratic state,estimate,as published,viewer correction x1/1.35 on reported growth (theory from Martinez),secondary/theory,R53 notes_g (Martinez via BFI)
+government budget,partial,annual,+-20% (theory; OBS mean 45/100),secondary/theory,R53 h_himal_obs.md:16
+reserves total,exact,"monthly, <=1 week",0,sourced,R53 notes_h (SDDS)
+reserve currency mix,hidden,-,-,secondary,R53 h_capwolf_glossary_cofer.md:68
+gold holdings,exact,2-5+ months,0,sourced,R53 notes_h
+electricity generation,exact,~12 months,0,sourced,R53 a_ember_explorer.md:32
+oil production,exact for JODI members; hidden if suspended,<=2 months,0,sourced/secondary,R53 h_jodi_assess.md:21; h_kitco_ru_oil2023.md:18-20
+trade,exact (own reports); mirror for non-reporters,~2 months (SDDS 8 weeks),bilateral mirror gap (US-CN 63% Jan-Jul 2026),sourced/secondary,R53 g_piie_uscn_2026.md:21
+fab capacity,industry estimate only,~12 months,+-15% (derived from source spread),derived,R53 notes_b:135; notes_c:136
+data-centre capacity/electricity,industry/IEA estimate (Ireland official),~12 months (Ireland ~5),+-25% (derived from source spread),derived,R53 notes_c:27; h_cso_dc2024.md:143-145
+awkward labour series,may become hidden,-,-,secondary,R53 h_hkfp_youth.md:17-21
+own state,exact,0,0,design,MODERN_DESIGN 4

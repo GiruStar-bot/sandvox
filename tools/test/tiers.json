@@ -1,0 +1,66 @@
+{
+ "_about": [
+  "試験の段（tools/run_tests.sh --tier、tools/test/tiers.py が読む。docs/team/TESTING.md）。",
+  "smoke: 直列で 1本 25 秒未満だった試験（2026-10-06 の直列の測り・4コアの箱。measured_s）。-j3 で約2分以内が目標。",
+  "smoke_limit_s・slow・measured_s は tools/test/tiers_check.py が守る（2026-10-18、Main）。D399 の根っこは、この3つをどの道具も読まず、載っているだけの覚え書きだったこと。tiers_check.py は run_tests.sh --list --tier full が出した本物の一覧を受け取り、出てこない試験・両方の段に載った試験・smoke_limit_s を超える smoke の試験で止める（探し直さないので、discover() とずれない）。この回で直した1つ: test_political_body と test_political_members は smoke と slow の両方に載っていた（6.5 秒と 3.0 秒で、どちらも smoke が正しい）。214 本のうち 61 本はどの段にも無く measured_s も無い。full では回るので誤りではないが、この表は全部の一覧ではない。 smoke_limit_s は 20 から 25 へ（Main の決め、2026-10-18）: tools/security/test_no_key_leak.gd は 20.4 秒で（measured_s の値。_about が 20.3 と書いていたのは直した）、鍵が漏れない（印字も API 呼びも無い）ことを確かめる唯一の試験。持ち主がいちばん気にする保証なので、0.3 秒で夜の段に落とさない。20.4 秒のうち 13.0 秒が elapsed_ms で、残りは空いた箱なら縮む起動の分。tools/pilot/test_band_run.gd（19.8 秒。measured_s の値）はこの決めに関わらない。",
+  "affected の値: tools/pilot/ を触ると band の試験5本（計 295 秒・直列。test_band_tech.gd 20.9 秒を足した）が付く。この重さは承知の上で受け入れる（Main の決め、2026-10-18）。test_band_prompts は PromptLeak を見張る唯一の試験なので外さない。",
+  "slow: 夜の一括 full でだけ回る段。多くは 25 秒以上（smoke_limit_s と揃える）だが、速くても smoke から外した試験も入るので「slow なら 25 秒以上」とは読まないこと。measured_s が 25 を下回る slow の例: world/pixel/test_ui_hud 21.0、sim/nation/test_seat_bridge 24.6（どちらも smoke_limit_s が 20 から 25 に上がって下回ったが、smoke には戻していない）。sim/governance/test_political_speed は slow だが measured_s を持たない。audio_test/test_audio_danger は終わりの漏れで不合格が既知なので smoke から外した。",
+  "map: affected の追加の対応。変わったファイルの道のりがキーで始まれば、値の道のりで始まる試験（\"*\" は全部）を足す。同じフォルダ以下の対応は自動。"
+ ],
+ "smoke_limit_s": 25,
+ "smoke": [
+  "sim/modern/test_modern_data.gd",
+  "sim/modern/test_modern_field.gd",
+  "sim/modern/test_modern_actors.gd",
+  "sim/modern/test_modern_view.gd",
+  "sim/modern/test_modern_seats.gd",
+  "sim/modern/test_modern_t2_deaths.gd",
+  "sim/modern/test_modern_t2_rone.gd",
+  "sim/modern/test_modern_t2_values.gd"
+ ],
+ "slow": {
+  "sim/modern/test_modern_world.gd": 27.2,
+  "sim/modern/test_modern_t2_primitives.gd": 131.0
+ },
+ "heavy": [
+  "sim/modern/test_modern_tiers.gd",
+  "sim/modern/test_modern_tiers_means.gd",
+  "sim/modern/test_modern_labour_mean.gd",
+  "sim/modern/test_modern_t2_restore.gd",
+  "sim/modern/test_modern_t2_decade.gd",
+  "sim/modern/test_modern_t2_month.gd",
+  "sim/modern/test_modern_t2b_persons.gd"
+ ],
+ "measured_s": {
+  "sim/modern/test_modern_tiers.gd": 545.0,
+  "sim/modern/test_modern_tiers_means.gd": 270.0,
+  "sim/modern/test_modern_data.gd": 0.1,
+  "sim/modern/test_modern_field.gd": 7.1,
+  "sim/modern/test_modern_actors.gd": 17.7,
+  "sim/modern/test_modern_world.gd": 27.2,
+  "sim/modern/test_modern_view.gd": 5.5,
+  "sim/modern/test_modern_seats.gd": 3.3,
+  "sim/modern/test_modern_labour_mean.gd": 505.0,
+  "sim/modern/test_modern_t2_primitives.gd": 131.0,
+  "sim/modern/test_modern_t2_deaths.gd": 2.5,
+  "sim/modern/test_modern_t2_rone.gd": 0.5,
+  "sim/modern/test_modern_t2_values.gd": 3.0
+ },
+ "map": {
+  "tools/test/": [
+   "*"
+  ],
+  "tools/godot1.sh": [
+   "sim/api/"
+  ],
+  "data/": [
+   "sim/"
+  ],
+  "project.godot": [
+   "*"
+  ],
+  "sim/api/det_math.gd": [
+   "*"
+  ]
+ }
+}

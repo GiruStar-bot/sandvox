@@ -1,0 +1,38 @@
+{
+ "inventory": {
+  "rice": {
+   "value": 5149939.5,
+   "last_harvest": 6798600.0,
+   "unit": "t",
+   "label": "D",
+   "source": "D: the start rule from the model's own crop (the PM, TO_E 21:11 items 1(b), 2): the last harvest = crop_farming_jpn.json's area x yield (6798600 t, its in-window edition), 9 of 12 months still to sell (the node's months, T) after the reserve, plus the farmers' reserve (reserve_share 0.03 x the last harvest, ISS_AUDIT.md §8.2 item 4); tools/modern/start_flows.py"
+  },
+  "wheat": {
+   "value": 522072.72,
+   "last_harvest": 1023672.0,
+   "unit": "t",
+   "label": "D",
+   "source": "D: the start rule from the model's own crop (the PM, TO_E 21:11 items 1(b), 2): the last harvest = crop_farming_jpn.json's area x yield (1023672 t, its in-window edition), 6 of 12 months still to sell (the node's months, T) after the reserve, plus the farmers' reserve (reserve_share 0.02 x the last harvest, ISS_AUDIT.md §8.2 item 4); tools/modern/start_flows.py"
+  },
+  "soybeans": {
+   "value": 218740.643,
+   "last_harvest": 261443.0,
+   "unit": "t",
+   "label": "D",
+   "source": "D: the start rule from the model's own crop (the PM, TO_E 21:11 items 1(b), 2): the last harvest = crop_farming_jpn.json's area x yield (261443 t, its in-window edition), 10 of 12 months still to sell (the node's months, T) after the reserve, plus the farmers' reserve (reserve_share 0.02 x the last harvest, ISS_AUDIT.md §8.2 item 4); tools/modern/start_flows.py"
+  },
+  "vegetables": {
+   "value": 8249550.0,
+   "last_harvest": 10999400.0,
+   "unit": "t",
+   "label": "D",
+   "source": "D: the start rule from the model's own crop (the PM, TO_E 21:11 items 1(b), 2): the last harvest = crop_farming_jpn.json's area x yield (10999400 t, its in-window edition), 9 of 12 months still to sell (the node's months, T) after the reserve, plus the farmers' reserve (reserve_share 0.00 x the last harvest, ISS_AUDIT.md §8.2 item 4); tools/modern/start_flows.py"
+  },
+  "food_products": {
+   "value": 2424.93025,
+   "unit": "bn JPY",
+   "label": "T",
+   "source": "one month of output in stock"
+  }
+ }
+}

@@ -1,0 +1,292 @@
+{
+ "note": "BLUEPRINT_v2 3-4, P6 and P8 first cut: the lower-house election system at the prefecture grain. Single-member district seats per prefecture and the proportional blocks are the 2022 apportionment (S: 公職選挙法 別表第一・第二, 10増10減). Party support is the national poll applied to every prefecture (T until prefecture polls are loaded). Turnout is the 2024 general election's (S). The vote rule is declared (T): the governing parties' share moves with the retrospective evaluation (unemployment, prices, approval), the rest split by support; districts in a prefecture go by the plurality party with a declared bonus (T); proportional seats by d'Hondt per block (S).",
+ "houses": {
+  "house_of_representatives": {
+   "smd": 289,
+   "pr": 176,
+   "pr_method": "dhondt",
+   "blocks": {
+    "hokkaido": {
+     "seats": 8,
+     "prefectures": [
+      "01"
+     ]
+    },
+    "tohoku": {
+     "seats": 12,
+     "prefectures": [
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07"
+     ]
+    },
+    "kita_kanto": {
+     "seats": 19,
+     "prefectures": [
+      "08",
+      "09",
+      "10",
+      "11"
+     ]
+    },
+    "minami_kanto": {
+     "seats": 23,
+     "prefectures": [
+      "12",
+      "14",
+      "19"
+     ]
+    },
+    "tokyo": {
+     "seats": 19,
+     "prefectures": [
+      "13"
+     ]
+    },
+    "hokuriku_shinetsu": {
+     "seats": 10,
+     "prefectures": [
+      "15",
+      "16",
+      "17",
+      "18",
+      "20"
+     ]
+    },
+    "tokai": {
+     "seats": 21,
+     "prefectures": [
+      "21",
+      "22",
+      "23",
+      "24"
+     ]
+    },
+    "kinki": {
+     "seats": 28,
+     "prefectures": [
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30"
+     ]
+    },
+    "chugoku": {
+     "seats": 10,
+     "prefectures": [
+      "31",
+      "32",
+      "33",
+      "34",
+      "35"
+     ]
+    },
+    "shikoku": {
+     "seats": 6,
+     "prefectures": [
+      "36",
+      "37",
+      "38",
+      "39"
+     ]
+    },
+    "kyushu": {
+     "seats": 20,
+     "prefectures": [
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45",
+      "46",
+      "47"
+     ]
+    }
+   }
+  },
+  "house_of_councillors": {
+   "total": 248,
+   "per_election": 124,
+   "district": 74,
+   "pr": 50,
+   "pr_method": "dhondt (national list)",
+   "term_years": 6,
+   "half_every_years": 3,
+   "district_seats_per_election": {
+    "01": 3,
+    "02": 1,
+    "03": 1,
+    "04": 1,
+    "05": 1,
+    "06": 1,
+    "07": 1,
+    "08": 2,
+    "09": 1,
+    "10": 1,
+    "11": 4,
+    "12": 3,
+    "13": 6,
+    "14": 4,
+    "15": 1,
+    "16": 1,
+    "17": 1,
+    "18": 1,
+    "19": 1,
+    "20": 1,
+    "21": 1,
+    "22": 2,
+    "23": 4,
+    "24": 1,
+    "25": 1,
+    "26": 2,
+    "27": 4,
+    "28": 3,
+    "29": 1,
+    "30": 1,
+    "31+32": 1,
+    "33": 1,
+    "34": 2,
+    "35": 1,
+    "36+39": 1,
+    "37": 1,
+    "38": 1,
+    "40": 3,
+    "41": 1,
+    "42": 1,
+    "43": 1,
+    "44": 1,
+    "45": 1,
+    "46": 1,
+    "47": 1
+   },
+   "district_source": "公職選挙法 別表第三 (2018 改正, 合区 鳥取・島根, 徳島・高知): the seats per prefectural district at each election; the sum is 74 (S)",
+   "continuing_half_2022": {
+    "LDP": 63,
+    "Komeito": 14,
+    "CDP": 21,
+    "Ishin": 12,
+    "DPFP": 5,
+    "JCP": 4,
+    "Reiwa": 3,
+    "Sanseito": 1,
+    "others": 1,
+    "note": "the half elected in 2022 that stays through 2028 (S, rounded from the 2022 result: LDP 63, Komeito 13, CDP 17, Ishin 12, DPFP 5, JCP 4, Reiwa 3, Sanseito 1, others 6; the independents folded into the nearest bloc, T)"
+   },
+   "next_election": "2025-07",
+   "source": "参議院 定数 248, 3年ごとに半数 124 (憲法46条, 公職選挙法)"
+  }
+ },
+ "smd_by_prefecture": {
+  "01": 12,
+  "02": 3,
+  "03": 3,
+  "04": 5,
+  "05": 3,
+  "06": 3,
+  "07": 4,
+  "08": 7,
+  "09": 5,
+  "10": 5,
+  "11": 16,
+  "12": 14,
+  "13": 30,
+  "14": 20,
+  "15": 5,
+  "16": 3,
+  "17": 3,
+  "18": 2,
+  "19": 2,
+  "20": 5,
+  "21": 5,
+  "22": 8,
+  "23": 16,
+  "24": 4,
+  "25": 3,
+  "26": 6,
+  "27": 19,
+  "28": 12,
+  "29": 3,
+  "30": 2,
+  "31": 2,
+  "32": 2,
+  "33": 4,
+  "34": 6,
+  "35": 3,
+  "36": 2,
+  "37": 3,
+  "38": 3,
+  "39": 2,
+  "40": 11,
+  "41": 2,
+  "42": 3,
+  "43": 4,
+  "44": 3,
+  "45": 3,
+  "46": 4,
+  "47": 4
+ },
+ "smd_source": "公職選挙法 別表第一 (2022-12-28 施行, 10増10減); the sum is 289",
+ "parties": [
+  "LDP",
+  "Komeito",
+  "CDP",
+  "Ishin",
+  "DPFP",
+  "Reiwa",
+  "JCP",
+  "Sanseito",
+  "others"
+ ],
+ "support_national_2024_12_check_only": {
+  "LDP": 0.287,
+  "Komeito": 0.025,
+  "CDP": 0.087,
+  "Ishin": 0.034,
+  "DPFP": 0.079,
+  "Reiwa": 0.016,
+  "JCP": 0.027,
+  "Sanseito": 0.005,
+  "others": 0.017,
+  "none": 0.423,
+  "source": "NHK 政治意識月例調査 2024-12 (6-9 Dec, n=1,224), via R60 §1(e) (2nd: the en.wikipedia poll table that links the NHK PDF); none = 支持なし 35.6 + わからない 6.7",
+  "label": "2nd, CHECK ONLY: fieldwork after the 2024-01 start, never a start value (R60, PM 2026-10-29 11:45)"
+ },
+ "vote_share_2024_10_27_pr": {
+  "LDP": 0.266,
+  "Komeito": 0.109,
+  "CDP": 0.214,
+  "Ishin": 0.094,
+  "DPFP": 0.113,
+  "Reiwa": 0.069,
+  "JCP": 0.062,
+  "Sanseito": 0.034,
+  "others": 0.039,
+  "source": "総務省 第50回衆議院議員総選挙 比例代表 得票率 (S, rounded)"
+ },
+ "turnout": {
+  "value": 0.5385,
+  "source": "総務省 2024-10-27 小選挙区 投票率 53.85% (S)"
+ },
+ "vote_rule": {
+  "base": "the last election's proportional vote shares (S) as the starting point of every prefecture (T: no prefecture split loaded yet)",
+  "retrospective_swing": {
+   "form": "governing share x (1 + a x d_approval + b x d_unemployment_pt + c x d_cpi_pt)",
+   "a": 0.5,
+   "b": -0.03,
+   "c": -0.02,
+   "label": "T",
+   "source": "declared until a published retrospective-voting estimate for Japan replaces it; signs from the literature (Lewis-Beck & Stegmaier 2000)"
+  },
+  "smd_rule": {
+   "form": "in each prefecture the plurality party takes share_p^k / sum share^k of the districts (k = 3, T: a cube-law-like bonus), rounded to whole seats with the largest remainders",
+   "label": "T"
+  },
+  "non_voters": "the undecided (none) do not vote; shares are renormalised over the parties"
+ }
+}

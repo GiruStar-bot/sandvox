@@ -1,0 +1,284 @@
+{
+ "note": "BLUEPRINT_v2 4, P1 (the state, organs, offices, powers) and P2's first machine constraints. Sources: the Constitution of Japan (articles as cited), the Cabinet Act, the Diet Act, the Public Finance Act. A power is an operation an organ may perform; an act is refused when its organ lacks the power or its procedure is not met. Japan only; other states keep their own (none built yet).",
+ "state": {
+  "key": "JPN",
+  "name": "日本国",
+  "jurisdiction": "JPN",
+  "form": "constitutional monarchy; parliamentary cabinet system (arts. 1, 41, 65-66)"
+ },
+ "organs": {
+  "diet": {
+   "name": "国会",
+   "basis": "art. 41: the highest organ of state power and the sole law-making organ",
+   "houses": [
+    "house_of_representatives",
+    "house_of_councillors"
+   ]
+  },
+  "house_of_representatives": {
+   "name": "衆議院",
+   "seats": 465,
+   "term_years": 4,
+   "basis": "art. 45; Public Offices Election Act (289 single-member districts + 176 proportional)"
+  },
+  "house_of_councillors": {
+   "name": "参議院",
+   "seats": 248,
+   "term_years": 6,
+   "half_every_years": 3,
+   "basis": "art. 46"
+  },
+  "cabinet": {
+   "name": "内閣",
+   "basis": "art. 65: executive power; art. 66: collective responsibility to the Diet"
+  },
+  "prime_minister": {
+   "name": "内閣総理大臣",
+   "basis": "art. 67: designated by the Diet from its members; art. 68: appoints and removes ministers"
+  },
+  "supreme_court": {
+   "name": "最高裁判所",
+   "basis": "art. 76: judicial power; art. 81: constitutional review"
+  },
+  "emperor": {
+   "name": "天皇",
+   "basis": "art. 1 symbol; arts. 6-7 acts in matters of state with the advice and approval of the Cabinet (no political power)"
+  },
+  "ministries": {
+   "name": "省庁",
+   "basis": "National Government Organization Act",
+   "list": [
+    "内閣府",
+    "総務省",
+    "法務省",
+    "外務省",
+    "財務省",
+    "文部科学省",
+    "厚生労働省",
+    "農林水産省",
+    "経済産業省",
+    "国土交通省",
+    "環境省",
+    "防衛省",
+    "デジタル庁"
+   ]
+  }
+ },
+ "offices": {
+  "prime_minister": {
+   "organ": "cabinet",
+   "holder": "the seat (LLM or rule brain)",
+   "term": "while the Diet's confidence holds (art. 69) and the member's seat holds"
+  },
+  "minister_of_finance": {
+   "organ": "cabinet",
+   "appointed_by": "prime_minister (art. 68)"
+  }
+ },
+ "powers": {
+  "submit_bill": {
+   "organ": "cabinet",
+   "basis": "Cabinet Act art. 5: the PM submits bills on behalf of the Cabinet",
+   "procedure": [
+    "cabinet_decision"
+   ]
+  },
+  "submit_budget": {
+   "organ": "cabinet",
+   "basis": "art. 73(5), art. 86: the Cabinet prepares and submits the budget",
+   "procedure": [
+    "cabinet_decision",
+    "lower_house_first (art. 60)"
+   ]
+  },
+  "enact_law": {
+   "organ": "diet",
+   "basis": "art. 59: passage by both houses; the lower house may override with two thirds",
+   "procedure": [
+    "majority_house_of_representatives",
+    "majority_house_of_councillors_or_two_thirds_override"
+   ]
+  },
+  "pass_budget": {
+   "organ": "diet",
+   "basis": "art. 60: lower house precedence; its decision prevails after 30 days",
+   "procedure": [
+    "majority_house_of_representatives"
+   ]
+  },
+  "cabinet_order": {
+   "organ": "cabinet",
+   "basis": "art. 73(6): cabinet orders to execute the law, no penalties without a law's delegation",
+   "procedure": [
+    "cabinet_decision"
+   ]
+  },
+  "ministerial_ordinance": {
+   "organ": "ministries",
+   "basis": "National Government Organization Act art. 12",
+   "procedure": []
+  },
+  "dissolve_lower_house": {
+   "organ": "cabinet",
+   "basis": "art. 7 (advice to the Emperor) and art. 69",
+   "procedure": [
+    "cabinet_decision"
+   ],
+   "effect": "an election within 40 days (art. 54)"
+  },
+  "appoint_minister": {
+   "organ": "prime_minister",
+   "basis": "art. 68 (a majority from Diet members)",
+   "procedure": []
+  },
+  "designate_prime_minister": {
+   "organ": "diet",
+   "basis": "art. 67",
+   "procedure": [
+    "majority_house_of_representatives"
+   ]
+  },
+  "no_confidence": {
+   "organ": "house_of_representatives",
+   "basis": "art. 69: the Cabinet resigns or dissolves within 10 days",
+   "procedure": [
+    "majority_house_of_representatives"
+   ]
+  },
+  "constitutional_review": {
+   "organ": "supreme_court",
+   "basis": "art. 81",
+   "procedure": []
+  },
+  "amend_constitution": {
+   "organ": "diet",
+   "basis": "art. 96: two thirds of each house, then a referendum majority",
+   "procedure": [
+    "two_thirds_house_of_representatives",
+    "two_thirds_house_of_councillors",
+    "referendum_majority"
+   ]
+  },
+  "use_reserve_fund": {
+   "organ": "cabinet",
+   "basis": "art. 87: the reserve fund on the Cabinet's responsibility, with the Diet's later approval",
+   "procedure": [
+    "cabinet_decision"
+   ]
+  },
+  "set_tax_rate": {
+   "organ": "diet",
+   "basis": "art. 84: no tax without a law",
+   "procedure": [
+    "enact_law"
+   ]
+  },
+  "spend_public_money": {
+   "organ": "diet",
+   "basis": "art. 85: expenditure only by the Diet's resolution",
+   "procedure": [
+    "pass_budget"
+   ]
+  }
+ },
+ "constitutional_constraints": {
+  "no_tax_without_law": {
+   "article": 84,
+   "refuses": [
+    "a lever that changes a tax rate without enact_law"
+   ]
+  },
+  "no_spending_without_budget": {
+   "article": 85,
+   "refuses": [
+    "a lever that adds spending beyond the budget and the reserve fund without pass_budget"
+   ]
+  },
+  "lower_house_majority_for_pm": {
+   "article": 67,
+   "refuses": [
+    "a PM whose party and partners hold less than a majority, unless designated by a majority vote"
+   ]
+  },
+  "election_within_40_days": {
+   "article": 54,
+   "effect": "after a dissolution the general election is within 40 days and the Diet convenes within 30 days after"
+  },
+  "art_9": {
+   "article": 9,
+   "constraint": "no war potential beyond self-defence (public surface only: budget share, personnel)"
+  }
+ },
+ "calendar": {
+  "lower_house_last_election": "2024-10-27",
+  "lower_house_term_ends": "2028-10-26",
+  "upper_house_next_election": "2025-07",
+  "ordinary_session_opens": "January (Diet Act art. 2: 150 days)",
+  "fiscal_year_starts": "April 1"
+ },
+ "composition_2024_12": {
+  "house_of_representatives": {
+   "LDP": 191,
+   "Komeito": 24,
+   "CDP": 148,
+   "Ishin": 38,
+   "DPFP": 28,
+   "Reiwa": 9,
+   "JCP": 8,
+   "Sanseito": 3,
+   "others": 16,
+   "source": "2024-10-27 general election result (House of Representatives)"
+  },
+  "governing": [
+   "LDP",
+   "Komeito"
+  ],
+  "governing_seats": 215,
+  "majority": 233
+ },
+ "party_positions": {
+  "note": "T: declared party stances on the levers that need a law, by their 2024 platforms as reported (S where quoted): the governing parties vote yes on their own bills; a consumption-tax RISE is opposed by every opposition party; a tax CUT is backed by DPFP, Ishin, Reiwa, JCP, CDP (2024 platforms). Positions by lever: 'yes' | 'no'; a party not listed votes with its bloc (governing yes, opposition no).",
+  "consumption_tax_rate": {
+   "CDP": "no",
+   "Ishin": "no",
+   "DPFP": "no",
+   "Reiwa": "no",
+   "JCP": "no",
+   "Sanseito": "no",
+   "others": "no"
+  },
+  "consumption_tax_rate_cut": {
+   "CDP": "yes",
+   "Ishin": "yes",
+   "DPFP": "yes",
+   "Reiwa": "yes",
+   "JCP": "yes",
+   "Sanseito": "yes",
+   "others": "no"
+  },
+  "corporate_tax_rate": {
+   "CDP": "no",
+   "Ishin": "no",
+   "DPFP": "no"
+  },
+  "child_allowance": {
+   "CDP": "yes",
+   "DPFP": "yes",
+   "Komeito": "yes"
+  },
+  "tariff_rate_general": {},
+  "pension_age": {
+   "CDP": "no",
+   "DPFP": "no",
+   "Reiwa": "no",
+   "JCP": "no"
+  }
+ },
+ "partners": {
+  "LDP": [
+   "Komeito"
+  ],
+  "CDP": [],
+  "note": "T: standing coalition partners for the PM designation after an election (art. 67); broader bargaining is S4'"
+ }
+}

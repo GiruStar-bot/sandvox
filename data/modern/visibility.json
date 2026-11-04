@@ -1,0 +1,111 @@
+{
+ "exceptions": {
+  "IRL": {
+   "dc_capacity_mw": [
+    "exact",
+    205
+   ],
+   "dc_twh": [
+    "exact",
+    205
+   ],
+   "source": "CSO Ireland Data Centres Metered Electricity Consumption 2023 (published 2024-07-23): 205 days after the year's end; R96e. The 2025 release is look-ahead"
+  }
+ },
+ "figures": {
+  "dc_capacity_mw": {
+   "basis": "estimate",
+   "label": "T",
+   "lag_days": 365,
+   "note": "+-25% from source spread",
+   "r54_lag": "~12 months (Ireland ~5)",
+   "r54_row": "data-centre capacity/electricity",
+   "r54_uncertainty": "+-25% (derived from source spread)",
+   "source": "declared (T): about a year (IEA Electricity 2024, published 2024-01-24, reports 2022); +-25% declared. The earlier bases (IEA Energy and AI 2025, CSO 2025) are look-ahead and removed",
+   "spread": 0.25
+  },
+  "dc_twh": {
+   "basis": "estimate",
+   "label": "T",
+   "lag_days": 365,
+   "note": "+-25% from source spread",
+   "r54_lag": "~12 months (Ireland ~5)",
+   "r54_row": "data-centre capacity/electricity",
+   "r54_uncertainty": "+-25% (derived from source spread)",
+   "source": "declared (T): about a year (IEA Electricity 2024, published 2024-01-24, reports 2022); +-25% declared. The earlier bases (IEA Energy and AI 2025, CSO 2025) are look-ahead and removed",
+   "spread": 0.25
+  },
+  "demand_twh": {
+   "basis": "exact",
+   "label": "T",
+   "lag_days": 365,
+   "note": "T: demand comes in the same Ember release as generation",
+   "r54_lag": "~12 months",
+   "r54_row": "electricity generation",
+   "r54_uncertainty": "0",
+   "source": "declared (T): about a year (Ember's yearly release, the capture of 2024-09-03 holds 2023). The earlier basis, a 2026 page snapshot, is removed",
+   "spread": 0.0
+  },
+  "fab_capacity": {
+   "basis": "estimate",
+   "label": "D/T",
+   "lag_days": 365,
+   "note": "+-15% from source spread",
+   "r54_lag": "~12 months",
+   "r54_row": "fab capacity",
+   "r54_uncertainty": "+-15% (derived from source spread)",
+   "source": "R53 notes_b:135 (2023-10 to 2024-05); notes_c:136 (the IEA 2025 line ref) removed; lag and spread declared (T)",
+   "spread": 0.15
+  },
+  "gdp": {
+   "basis": "exact",
+   "label": "T",
+   "lag_days": 91,
+   "note": "annual figure one quarter late; R54's quarterly series and the 1-2 quarters of non-SDDS reporters need data the field lacks",
+   "r54_lag": "quarterly within 1 quarter; others 1-2 quarters (NF)",
+   "r54_row": "GDP",
+   "r54_uncertainty": "0",
+   "source": "declared (T): one quarter for quarterly national accounts (the SDDS annual report 2024, published 2025, is look-ahead and removed)",
+   "spread": 0.0
+  },
+  "generation_by_source_twh": {
+   "basis": "exact",
+   "label": "T",
+   "lag_days": 365,
+   "note": "Ember's mix in the same release",
+   "r54_lag": "~12 months",
+   "r54_row": "electricity generation",
+   "r54_uncertainty": "0",
+   "source": "declared (T): about a year (Ember's yearly release, the capture of 2024-09-03 holds 2023). The earlier basis, a 2026 page snapshot, is removed",
+   "spread": 0.0
+  },
+  "generation_twh": {
+   "basis": "exact",
+   "label": "T",
+   "lag_days": 365,
+   "note": "lag ~12 months",
+   "r54_lag": "~12 months",
+   "r54_row": "electricity generation",
+   "r54_uncertainty": "0",
+   "source": "declared (T): about a year (Ember's yearly release, the capture of 2024-09-03 holds 2023). The earlier basis, a 2026 page snapshot, is removed",
+   "spread": 0.0
+  },
+  "population": {
+   "basis": "exact",
+   "label": "T",
+   "lag_days": 182,
+   "note": "lag ~6 months",
+   "r54_lag": "~6 months; census ~10 yr",
+   "r54_row": "population total",
+   "r54_uncertainty": "0",
+   "source": "declared (T): about half a year (the UN document of 2025-03 is look-ahead and removed)",
+   "spread": 0.0
+  }
+ },
+ "own_state": "exact, no lag (R54 row 'own state'; MODERN_DESIGN 4)",
+ "public_at_once": [
+  "licences_closed"
+ ],
+ "r54_sha256": "f7c7a4c1ef3ba46a9681e7d54def3397f0f63212e1dbd6d3e3f705bf1fcd99bf",
+ "unlisted": "unpublished: no key in another seat's observation"
+}

@@ -1,0 +1,265 @@
+{
+ "lead_days": {
+  "bioenergy": {
+   "data_year": null,
+   "data_year_basis": "as gas (declared, T)",
+   "days": 1825,
+   "label": "THEORY: as coal"
+  },
+  "coal": {
+   "data_year": null,
+   "data_year_basis": "as gas (declared, T)",
+   "days": 1825,
+   "label": "THEORY: no coal or oil plant lead time in R53; the gas turbine's 5 yr is used"
+  },
+  "dc": {
+   "data_year": null,
+   "data_year_basis": "declared (T), no data: no in-window build time found (R96e: NF); the earlier IEA 2025 basis is look-ahead and removed",
+   "days": 912,
+   "label": "THEORY (declared: 2.5 years)"
+  },
+  "fab": {
+   "data_year": null,
+   "data_year_basis": "CSET No Permits No Fabs, year not stated",
+   "days": 682,
+   "label": "SOURCED",
+   "r53_row": 32
+  },
+  "gas": {
+   "data_year": null,
+   "data_year_basis": "declared (T), no data: the 5-year figure's cited page is dated 2025-09-10 (look-ahead, removed); no in-window source found",
+   "days": 1825,
+   "label": "THEORY (declared: 5 years)"
+  },
+  "hydro": {
+   "data_year": null,
+   "data_year_basis": "as nuclear (declared, T)",
+   "days": 3468,
+   "label": "THEORY: no hydro lead time in R53; nuclear's 114 months is used"
+  },
+  "nuclear": {
+   "data_year": null,
+   "data_year_basis": "declared (T), no data: the cited WNA page was updated 2025-09-01 (look-ahead, removed); no in-window edition was read",
+   "days": 3468,
+   "label": "THEORY (declared: 114 months)"
+  },
+  "oil": {
+   "data_year": null,
+   "data_year_basis": "as gas (declared, T)",
+   "days": 1825,
+   "label": "THEORY: as coal"
+  },
+  "other_renewable": {
+   "data_year": null,
+   "data_year_basis": "as wind",
+   "days": 1612,
+   "label": "THEORY: as onshore wind"
+  },
+  "solar": {
+   "data_year": null,
+   "data_year_basis": "R53 md (Australia), year not stated",
+   "days": 1247,
+   "label": "SOURCED: R53_modern_data.md section 1 item 3, solar 41 months (Australia), x 30.42 days"
+  },
+  "storage": {
+   "data_year": 2023,
+   "data_year_basis": "LBNL Queued Up 2024 (published 2024-04), slide 43: about 47 months from interconnection request to operation (US)",
+   "days": 1430,
+   "label": "S (47 months x 30.42 days; read off a chart)",
+   "source": "R96e (research-notes 6fdbf51b) part 1"
+  },
+  "transmission": {
+   "data_year": null,
+   "data_year_basis": "IEA Electricity Grids and Secure Energy Transitions (published 2023-10): 5-15 years for new lines",
+   "days": 3652,
+   "label": "T (the middle of 5-15 years; the PM, TO_E 21:11 1(c))"
+  },
+  "wind": {
+   "data_year": null,
+   "data_year_basis": "R53 md (Australia), year not stated",
+   "days": 1612,
+   "label": "SOURCED: R53_modern_data.md section 1 item 3, onshore wind 53 months (Australia), x 30.42 days"
+  }
+ },
+ "macros": [
+  "CN",
+  "TW",
+  "JP",
+  "KR",
+  "US",
+  "EU",
+  "ROW"
+ ],
+ "member_rule": "a macro region's share goes to its member entities by their GDP share inside it (THEORY); NAMED_IN_ROW entities take ROW's share of that good alone",
+ "named_in_row": {
+  "neon": "UKR"
+ },
+ "r53_sha256": "c201d9af52863b07d66ca195917374c4ac82c96e1937b7b9313c3be3acf928b7",
+ "r54_sha256": "2ff3dfe6659c7f781950b29b1fc770b5987a467ef8fa00d5f0b6e9096afb470f",
+ "scalars": {
+  "dc_capacity_gw_2024": {
+   "data_year": 2022,
+   "data_year_basis": "IEA Electricity 2024 (published 2024-01-24): data centres 460 TWh in 2022 incl. crypto 110 TWh; LBNL 2024 United States Data Center Energy Usage Report (2024-12-20): utilisation 0.5 (US)",
+   "label": "D (CHECK: the US utilisation applied worldwide)",
+   "r53_row": 24,
+   "value": 79.9,
+   "source": "R96e (research-notes 6fdbf51b) part 1: (460 - 110) TWh / (8,760 h x 0.5) = 79.9 GW; no in-window published GW figure (NF)"
+  },
+  "dc_electricity_twh_2024": {
+   "data_year": 2024,
+   "data_year_basis": "IEA Energy and AI 2025",
+   "label": "T",
+   "r53_row": 22,
+   "value": 270.0,
+   "source": "dc_history.json's end-2022 block (R55) carried to 2024 (T; the PM (c)); IEA Energy and AI (2025-04) is look-ahead"
+  },
+  "dc_water_bn_l_per_yr": {
+   "data_year": 2023,
+   "data_year_basis": "LBNL 2024 (published 2024-12-20) pp.55-56: US direct use 66 bn L (2023)",
+   "label": "D (CHECK: the US litres per kWh applied worldwide)",
+   "r53_row": 26,
+   "value": 131.0,
+   "source": "R96e (research-notes 6fdbf51b) part 1: 66 bn L x (350 TWh world / 176 TWh US); no in-window world figure (NF)"
+  },
+  "jp_dc_twh": {
+   "data_year": 2021,
+   "data_year_basis": "CRIEPI's paper at OCCTO (published 2024-03-05), slide 48: FY2021 actual 20 TWh",
+   "label": "S (FY2021; Fuji Chimera at METI 2024-05-30 gives 8.0 TWh FY2022 on a narrower scope)",
+   "r53_row": 22,
+   "value": 20.0,
+   "source": "R96e (research-notes 6fdbf51b) part 1"
+  },
+  "pue": {
+   "data_year": 2024,
+   "data_year_basis": "Uptime Institute Global Data Center Survey 2024 (published 2024-07): mean annual PUE 1.56",
+   "label": "S",
+   "r53_row": 25,
+   "value": 1.56,
+   "source": "R96e (research-notes 6fdbf51b) part 1"
+  },
+  "semi_electricity_twh": {
+   "data_year": 2021,
+   "data_year_basis": "Greenpeace East Asia (published 2023-04-20), fig. 22: global front-end fabs 116 TWh (2021)",
+   "label": "S (front-end only, a lower bound)",
+   "r53_row": 27,
+   "value": 116.0,
+   "source": "R96e (research-notes 6fdbf51b) part 1"
+  }
+ },
+ "shares": {
+  "atp": {
+   "data_year": 2022,
+   "data_year_basis": "SIA/BCG 2024, 2022 figures",
+   "given": {
+    "CN": 0.3,
+    "EU": 0.03,
+    "JP": 0.06,
+    "KR": 0.09,
+    "ROW": 0.2,
+    "TW": 0.28,
+    "US": 0.03
+   },
+   "label": "SOURCED (SIA/BCG 2024 figure, read by R54)",
+   "r54_row": 9,
+   "rest": null,
+   "source": "R53 b_siabcg2024.pdf p.10 (figure read; 2032F = CHECK only)"
+  },
+  "dc_electricity": {
+   "data_year": 2022,
+   "data_year_basis": "dc_history.json's end-2022 block (R55), carried to 2024 (T)",
+   "given": {
+    "EU": 0.285185,
+    "JP": 0.051852,
+    "US": 0.259259
+   },
+   "label": "T",
+   "r53_row": 22,
+   "rest": "the rest over the other macros by GDP, as the 2022 block's rest_over (T)",
+   "source": "dc_history.json 2022 block (R55 Q5); IEA Energy and AI (2025-04) is look-ahead (D477 purge, the PM (c))"
+  },
+  "fab_capacity": {
+   "data_year": 2022,
+   "data_year_basis": "SIA/BCG 2024, 2022 figures",
+   "given": {
+    "CN": 0.24,
+    "EU": 0.08,
+    "JP": 0.17,
+    "KR": 0.17,
+    "ROW": 0.07,
+    "TW": 0.18,
+    "US": 0.1
+   },
+   "label": "SOURCED (SIA/BCG 2024 figure, read by R54)",
+   "r54_row": 24,
+   "rest": null,
+   "source": "R53 b_siabcg2024.pdf p.14 (figure read; 2032F = CHECK only)"
+  },
+  "gallium": {
+   "data_year": 2023,
+   "data_year_basis": "USGS Mineral Commodity Summaries 2024 (published 2024-01-31) p.2: China 600 of 610 t (2023e)",
+   "given": {
+    "CN": 0.98
+   },
+   "label": "SOURCED + THEORY rest",
+   "r53_row": 21,
+   "rest": "ROW",
+   "source": "R96e (research-notes 6fdbf51b) part 1"
+  },
+  "lithography": {
+   "data_year": 2024,
+   "data_year_basis": "publication: SIA/BCG 2024 / CSET",
+   "given": {
+    "EU": 0.89
+   },
+   "label": "SOURCED + THEORY rest",
+   "r53_row": 18,
+   "rest": "JP (R53: ArF immersion only from the Netherlands and Japan)",
+   "source": "R53_modern/sources/b_siabcg2024.txt:1017,1034; b_cset_competitiveness.txt:1252-1253"
+  },
+  "logic_lt10nm": {
+   "data_year": 2022,
+   "data_year_basis": "SIA/BCG 2024, 2022 figures",
+   "given": {
+    "KR": 0.31,
+    "TW": 0.69
+   },
+   "label": "SOURCED (SIA/BCG 2024 figure, read by R54)",
+   "r54_row": 16,
+   "rest": null,
+   "source": "R53 b_siabcg2024.pdf p.14 (figure read; 2032F = CHECK only)"
+  },
+  "neon": {
+   "data_year": null,
+   "data_year_basis": "press (Reuters calc), year not stated",
+   "given": {
+    "ROW": 0.495
+   },
+   "label": "SECONDARY (mid of 45-54%, Ukraine in ROW) + THEORY rest",
+   "r53_row": 20,
+   "rest": "by fab_capacity over all but ROW",
+   "source": "R53_modern/sources/b_euronews_neon.md:63,65"
+  },
+  "photoresist": {
+   "data_year": 2021,
+   "data_year_basis": "publication: CSET 2021",
+   "given": {
+    "JP": 0.9
+   },
+   "label": "SOURCED + THEORY rest",
+   "r53_row": 19,
+   "rest": "by fab_capacity over the others",
+   "source": "R53_modern/sources/b_cset_competitiveness.txt:281,2280-2282"
+  },
+  "silicon_wafers": {
+   "data_year": 2021,
+   "data_year_basis": "publication: CSET 2021",
+   "given": {
+    "JP": 0.56
+   },
+   "label": "SOURCED + THEORY rest",
+   "r53_row": 19,
+   "rest": "by fab_capacity over the others",
+   "source": "R53_modern/sources/b_cset_competitiveness.txt:281,2280-2282"
+  }
+ }
+}

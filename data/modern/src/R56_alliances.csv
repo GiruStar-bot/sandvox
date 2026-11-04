@@ -1,0 +1,305 @@
+org,state,iso3,join_date,left_date,type,source_file_line
+Wassenaar,Argentina,ARG,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Australia,AUS,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Austria,AUT,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Belgium,BEL,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Bulgaria,BGR,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Canada,CAN,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Czechia,CZE,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Denmark,DNK,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Finland,FIN,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,France,FRA,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Germany,DEU,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Greece,GRC,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Hungary,HUN,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Ireland,IRL,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Italy,ITA,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Japan,JPN,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Luxembourg,LUX,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Netherlands,NLD,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,New Zealand,NZL,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Norway,NOR,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Poland,POL,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Portugal,PRT,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Korea,KOR,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Romania,ROU,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Russia,RUS,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Slovakia,SVK,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Spain,ESP,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Sweden,SWE,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Switzerland,CHE,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Turkiye,TUR,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Ukraine,UKR,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,United Kingdom,GBR,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,United States,USA,1996,,regime,"sources/e_wassenaar2.md:299,301"
+Wassenaar,Croatia,HRV,1996/2017 (exact year NOT FOUND; joined after 1996 and before India 2017-12-08),,regime,"sources/e_wassenaar2.md:297,303"
+Wassenaar,Estonia,EST,1996/2017 (exact year NOT FOUND; joined after 1996 and before India 2017-12-08),,regime,"sources/e_wassenaar2.md:297,303"
+Wassenaar,Latvia,LVA,1996/2017 (exact year NOT FOUND; joined after 1996 and before India 2017-12-08),,regime,"sources/e_wassenaar2.md:297,303"
+Wassenaar,Lithuania,LTU,1996/2017 (exact year NOT FOUND; joined after 1996 and before India 2017-12-08),,regime,"sources/e_wassenaar2.md:297,303"
+Wassenaar,Malta,MLT,1996/2017 (exact year NOT FOUND; joined after 1996 and before India 2017-12-08),,regime,"sources/e_wassenaar2.md:297,303"
+Wassenaar,Mexico,MEX,1996/2017 (exact year NOT FOUND; joined after 1996 and before India 2017-12-08),,regime,"sources/e_wassenaar2.md:297,303"
+Wassenaar,Slovenia,SVN,1996/2017 (exact year NOT FOUND; joined after 1996 and before India 2017-12-08),,regime,"sources/e_wassenaar2.md:297,303"
+Wassenaar,South Africa,ZAF,1996/2017 (exact year NOT FOUND; joined after 1996 and before India 2017-12-08),,regime,"sources/e_wassenaar2.md:297,303"
+Wassenaar,India,IND,2017-12-08,,regime,"sources/e_wa_india.md:222,224; sources/e_wassenaar2.md:303"
+NSG,Argentina,ARG,1994,,regime,sources/e_nsg_wb.md:5; e_nsg_wb.md:3
+NSG,Cyprus,CYP,2000,,regime,sources/e_nsg_wb.md:6; e_nsg_wb.md:3
+NSG,Ireland,IRL,1984,,regime,sources/e_nsg_wb.md:7; e_nsg_wb.md:3
+NSG,New Zealand,NZL,1994,,regime,sources/e_nsg_wb.md:8; e_nsg_wb.md:3
+NSG,South Africa,ZAF,1995,,regime,sources/e_nsg_wb.md:9; e_nsg_wb.md:3
+NSG,Australia,AUS,1978,,regime,sources/e_nsg_wb.md:11; e_nsg_wb.md:3
+NSG,Czechia,CZE,1978 (as Czechoslovakia; separate participation 1993-03-05),,regime,"sources/e_nsg_wb.md:12,63; e_nsg_wb.md:3"
+NSG,Italy,ITA,1978,,regime,sources/e_nsg_wb.md:13; e_nsg_wb.md:3
+NSG,Norway,NOR,1989,,regime,sources/e_nsg_wb.md:14; e_nsg_wb.md:3
+NSG,Spain,ESP,1988,,regime,sources/e_nsg_wb.md:15; e_nsg_wb.md:3
+NSG,Austria,AUT,1991,,regime,sources/e_nsg_wb.md:17; e_nsg_wb.md:3
+NSG,Denmark,DNK,1984,,regime,sources/e_nsg_wb.md:18; e_nsg_wb.md:3
+NSG,Japan,JPN,1974,,regime,sources/e_nsg_wb.md:19; e_nsg_wb.md:3
+NSG,Poland,POL,1978,,regime,sources/e_nsg_wb.md:20; e_nsg_wb.md:3
+NSG,Sweden,SWE,1978,,regime,sources/e_nsg_wb.md:21; e_nsg_wb.md:3
+NSG,Belarus,BLR,2000,,regime,sources/e_nsg_wb.md:23; e_nsg_wb.md:3
+NSG,Estonia,EST,2004,,regime,sources/e_nsg_wb.md:24; e_nsg_wb.md:3
+NSG,Kazakhstan,KAZ,2002,,regime,sources/e_nsg_wb.md:25; e_nsg_wb.md:3
+NSG,Portugal,PRT,1986,,regime,sources/e_nsg_wb.md:26; e_nsg_wb.md:3
+NSG,Switzerland,CHE,1978,,regime,sources/e_nsg_wb.md:27; e_nsg_wb.md:3
+NSG,Belgium,BEL,1978,,regime,sources/e_nsg_wb.md:29; e_nsg_wb.md:3
+NSG,Finland,FIN,1980,,regime,sources/e_nsg_wb.md:30; e_nsg_wb.md:3
+NSG,Latvia,LVA,1997,,regime,sources/e_nsg_wb.md:31; e_nsg_wb.md:3
+NSG,Romania,ROU,1990,,regime,sources/e_nsg_wb.md:32; e_nsg_wb.md:3
+NSG,Turkiye,TUR,2000,,regime,sources/e_nsg_wb.md:33; e_nsg_wb.md:3
+NSG,Brazil,BRA,1996,,regime,sources/e_nsg_wb.md:35; e_nsg_wb.md:3
+NSG,France,FRA,1974,,regime,sources/e_nsg_wb.md:36; e_nsg_wb.md:3
+NSG,Lithuania,LTU,2004,,regime,sources/e_nsg_wb.md:37; e_nsg_wb.md:3
+NSG,Korea,KOR,1995,,regime,sources/e_nsg_wb.md:38; e_nsg_wb.md:3
+NSG,Ukraine,UKR,1996,,regime,sources/e_nsg_wb.md:39; e_nsg_wb.md:3
+NSG,Bulgaria,BGR,1984,,regime,sources/e_nsg_wb.md:41; e_nsg_wb.md:3
+NSG,Germany,DEU,1974,,regime,sources/e_nsg_wb.md:42; e_nsg_wb.md:3
+NSG,Luxembourg,LUX,1984,,regime,sources/e_nsg_wb.md:43; e_nsg_wb.md:3
+NSG,Russia,RUS,1974,,regime,sources/e_nsg_wb.md:44; e_nsg_wb.md:3
+NSG,United Kingdom,GBR,1974,,regime,sources/e_nsg_wb.md:45; e_nsg_wb.md:3
+NSG,Canada,CAN,1974,,regime,sources/e_nsg_wb.md:47; e_nsg_wb.md:3
+NSG,Greece,GRC,1984,,regime,sources/e_nsg_wb.md:48; e_nsg_wb.md:3
+NSG,Malta,MLT,2004,,regime,sources/e_nsg_wb.md:49; e_nsg_wb.md:3
+NSG,Serbia,SRB,2013,,regime,sources/e_nsg_wb.md:50; e_nsg_wb.md:3
+NSG,United States,USA,1974,,regime,sources/e_nsg_wb.md:51; e_nsg_wb.md:3
+NSG,China,CHN,2004,,regime,sources/e_nsg_wb.md:53; e_nsg_wb.md:3
+NSG,Hungary,HUN,1985,,regime,sources/e_nsg_wb.md:54; e_nsg_wb.md:3
+NSG,Mexico,MEX,2012,,regime,sources/e_nsg_wb.md:55; e_nsg_wb.md:3
+NSG,Slovakia,SVK,1978 (as Czechoslovakia; separate participation 1993-03-05),,regime,"sources/e_nsg_wb.md:56,63; e_nsg_wb.md:3"
+NSG,Croatia,HRV,2005,,regime,sources/e_nsg_wb.md:58; e_nsg_wb.md:3
+NSG,Iceland,ISL,2009,,regime,sources/e_nsg_wb.md:59; e_nsg_wb.md:3
+NSG,Netherlands,NLD,1978,,regime,sources/e_nsg_wb.md:60; e_nsg_wb.md:3
+NSG,Slovenia,SVN,2000,,regime,sources/e_nsg_wb.md:61; e_nsg_wb.md:3
+MTCR,Argentina,ARG,1993,,regime,sources/e_mtcr.md:345
+MTCR,Australia,AUS,1990,,regime,sources/e_mtcr.md:353
+MTCR,Austria,AUT,1991,,regime,sources/e_mtcr.md:359
+MTCR,Belgium,BEL,1990,,regime,sources/e_mtcr.md:363
+MTCR,Bulgaria,BGR,2004,,regime,sources/e_mtcr.md:367
+MTCR,Brazil,BRA,1995,,regime,sources/e_mtcr.md:369
+MTCR,Canada,CAN,1987,,regime,sources/e_mtcr.md:371
+MTCR,Czechia,CZE,1998,,regime,sources/e_mtcr.md:375
+MTCR,Denmark,DNK,1990,,regime,sources/e_mtcr.md:377
+MTCR,Finland,FIN,1991,,regime,sources/e_mtcr.md:383
+MTCR,France,FRA,1987,,regime,sources/e_mtcr.md:385
+MTCR,Germany,DEU,1987,,regime,sources/e_mtcr.md:391
+MTCR,Greece,GRC,1992,,regime,sources/e_mtcr.md:395
+MTCR,Hungary,HUN,1993,,regime,sources/e_mtcr.md:397
+MTCR,Iceland,ISL,1993,,regime,sources/e_mtcr.md:399
+MTCR,India,IND,2016,,regime,sources/e_mtcr.md:401
+MTCR,Ireland,IRL,1992,,regime,sources/e_mtcr.md:403
+MTCR,Italy,ITA,1987,,regime,sources/e_mtcr.md:405
+MTCR,Japan,JPN,1987,,regime,sources/e_mtcr.md:409
+MTCR,Luxembourg,LUX,1990,,regime,sources/e_mtcr.md:413
+MTCR,Netherlands,NLD,1990,,regime,sources/e_mtcr.md:415
+MTCR,New Zealand,NZL,1991,,regime,sources/e_mtcr.md:419
+MTCR,Norway,NOR,1990,,regime,sources/e_mtcr.md:425
+MTCR,Poland,POL,1998,,regime,sources/e_mtcr.md:431
+MTCR,Portugal,PRT,1992,,regime,sources/e_mtcr.md:435
+MTCR,Korea,KOR,2001,,regime,sources/e_mtcr.md:437
+MTCR,Russia,RUS,1995,,regime,sources/e_mtcr.md:439
+MTCR,South Africa,ZAF,1995,,regime,sources/e_mtcr.md:441
+MTCR,Spain,ESP,1990,,regime,sources/e_mtcr.md:445
+MTCR,Sweden,SWE,1991,,regime,sources/e_mtcr.md:447
+MTCR,Switzerland,CHE,1992,,regime,sources/e_mtcr.md:451
+MTCR,Turkiye,TUR,1997,,regime,sources/e_mtcr.md:457
+MTCR,Ukraine,UKR,1998,,regime,sources/e_mtcr.md:459
+MTCR,United Kingdom,GBR,1987,,regime,sources/e_mtcr.md:461
+MTCR,United States,USA,1987,,regime,sources/e_mtcr.md:467
+Australia Group,Argentina,ARG,1993,,regime,"sources/e_ag_wb.md:168,170"
+Australia Group,Australia,AUS,1985,,regime,"sources/e_ag_wb.md:172,174"
+Australia Group,Austria,AUT,1989,,regime,"sources/e_ag_wb.md:176,178"
+Australia Group,Belgium,BEL,1985,,regime,"sources/e_ag_wb.md:180,182"
+Australia Group,Bulgaria,BGR,2001,,regime,"sources/e_ag_wb.md:184,186"
+Australia Group,Canada,CAN,1985,,regime,"sources/e_ag_wb.md:188,190"
+Australia Group,Croatia,HRV,2007,,regime,"sources/e_ag_wb.md:192,194"
+Australia Group,Czechia,CZE,1994,,regime,"sources/e_ag_wb.md:196,198"
+Australia Group,Denmark,DNK,1985,,regime,"sources/e_ag_wb.md:200,202"
+Australia Group,Estonia,EST,2004,,regime,"sources/e_ag_wb.md:204,206"
+Australia Group,European Union,EUU,1985,,regime,"sources/e_ag_wb.md:208,210"
+Australia Group,Finland,FIN,1991,,regime,"sources/e_ag_wb.md:212,214"
+Australia Group,France,FRA,1985,,regime,"sources/e_ag_wb.md:216,218"
+Australia Group,Germany,DEU,1985,,regime,"sources/e_ag_wb.md:220,222"
+Australia Group,Greece,GRC,1985,,regime,"sources/e_ag_wb.md:224,226"
+Australia Group,Hungary,HUN,1993,,regime,"sources/e_ag_wb.md:228,230"
+Australia Group,Iceland,ISL,1993,,regime,"sources/e_ag_wb.md:232,234"
+Australia Group,India,IND,2018,,regime,"sources/e_ag_wb.md:236,238"
+Australia Group,Ireland,IRL,1985,,regime,"sources/e_ag_wb.md:240,242"
+Australia Group,Italy,ITA,1985,,regime,"sources/e_ag_wb.md:244,246"
+Australia Group,Japan,JPN,1985,,regime,"sources/e_ag_wb.md:248,250"
+Australia Group,Latvia,LVA,2004,,regime,"sources/e_ag_wb.md:252,254"
+Australia Group,Lithuania,LTU,2004,,regime,"sources/e_ag_wb.md:259,261"
+Australia Group,Luxembourg,LUX,1985,,regime,"sources/e_ag_wb.md:263,265"
+Australia Group,Malta,MLT,2004,,regime,"sources/e_ag_wb.md:267,269"
+Australia Group,Mexico,MEX,2013,,regime,"sources/e_ag_wb.md:271,273"
+Australia Group,Netherlands,NLD,1985,,regime,"sources/e_ag_wb.md:275,277"
+Australia Group,New Zealand,NZL,1985,,regime,"sources/e_ag_wb.md:279,281"
+Australia Group,Norway,NOR,1986,,regime,"sources/e_ag_wb.md:283,285"
+Australia Group,Poland,POL,1994,,regime,"sources/e_ag_wb.md:287,289"
+Australia Group,Portugal,PRT,1985,,regime,"sources/e_ag_wb.md:291,293"
+Australia Group,Cyprus,CYP,2000,,regime,"sources/e_ag_wb.md:295,297"
+Australia Group,Korea,KOR,1996,,regime,"sources/e_ag_wb.md:299,301"
+Australia Group,Turkiye,TUR,2000,,regime,"sources/e_ag_wb.md:303,305"
+Australia Group,Romania,ROU,1995,,regime,"sources/e_ag_wb.md:307,309"
+Australia Group,Slovakia,SVK,1994,,regime,"sources/e_ag_wb.md:311,313"
+Australia Group,Slovenia,SVN,2004,,regime,"sources/e_ag_wb.md:315,317"
+Australia Group,Spain,ESP,1985,,regime,"sources/e_ag_wb.md:319,321"
+Australia Group,Sweden,SWE,1991,,regime,"sources/e_ag_wb.md:323,325"
+Australia Group,Switzerland,CHE,1987,,regime,"sources/e_ag_wb.md:327,329"
+Australia Group,Ukraine,UKR,2005,,regime,"sources/e_ag_wb.md:331,333"
+Australia Group,United Kingdom,GBR,1985,,regime,"sources/e_ag_wb.md:335,337"
+Australia Group,United States,USA,1985,,regime,"sources/e_ag_wb.md:339,341"
+NATO,Albania,ALB,2009-04-01,,alliance,"sources/e_nato_wb2.md:25,27; sources/e_nato_enl.md:169"
+NATO,Belgium,BEL,1949-04-04,,alliance,"sources/e_nato_wb2.md:29,31; sources/e_nato_wb2.md:15,181"
+NATO,Bulgaria,BGR,2004-03-29,,alliance,"sources/e_nato_wb2.md:33,35; sources/e_nato_enl.md:157"
+NATO,Canada,CAN,1949-04-04,,alliance,"sources/e_nato_wb2.md:37,39; sources/e_nato_wb2.md:15,181"
+NATO,Croatia,HRV,2009-04-01,,alliance,"sources/e_nato_wb2.md:41,43; sources/e_nato_enl.md:169"
+NATO,Czechia,CZE,1999-03-12,,alliance,"sources/e_nato_wb2.md:45,47; sources/e_nato_enl.md:145"
+NATO,Denmark,DNK,1949-04-04,,alliance,"sources/e_nato_wb2.md:49,51; sources/e_nato_wb2.md:15,181"
+NATO,Estonia,EST,2004-03-29,,alliance,"sources/e_nato_wb2.md:53,55; sources/e_nato_enl.md:157"
+NATO,Finland,FIN,2023-04-04,,alliance,"sources/e_nato_wb2.md:57,59; sources/e_nato_enl.md:199"
+NATO,France,FRA,1949-04-04,,alliance,"sources/e_nato_wb2.md:61,63; sources/e_nato_wb2.md:15,181"
+NATO,Germany,DEU,1955-05-06,,alliance,"sources/e_nato_wb2.md:65,67; sources/e_nato_enl.md:133"
+NATO,Greece,GRC,1952-02-18,,alliance,"sources/e_nato_wb2.md:69,71; sources/e_nato_enl.md:131"
+NATO,Hungary,HUN,1999-03-12,,alliance,"sources/e_nato_wb2.md:73,75; sources/e_nato_enl.md:145"
+NATO,Iceland,ISL,1949-04-04,,alliance,"sources/e_nato_wb2.md:77,79; sources/e_nato_wb2.md:15,181"
+NATO,Italy,ITA,1949-04-04,,alliance,"sources/e_nato_wb2.md:81,83; sources/e_nato_wb2.md:15,181"
+NATO,Latvia,LVA,2004-03-29,,alliance,"sources/e_nato_wb2.md:85,87; sources/e_nato_enl.md:157"
+NATO,Lithuania,LTU,2004-03-29,,alliance,"sources/e_nato_wb2.md:89,91; sources/e_nato_enl.md:157"
+NATO,Luxembourg,LUX,1949-04-04,,alliance,"sources/e_nato_wb2.md:93,95; sources/e_nato_wb2.md:15,181"
+NATO,Montenegro,MNE,2017-06-05,,alliance,"sources/e_nato_wb2.md:97,99; sources/e_nato_enl.md:179"
+NATO,Netherlands,NLD,1949-04-04,,alliance,"sources/e_nato_wb2.md:101,103; sources/e_nato_wb2.md:15,181"
+NATO,North Macedonia,MKD,2020-03-27,,alliance,"sources/e_nato_wb2.md:105,107; sources/e_nato_enl.md:189"
+NATO,Norway,NOR,1949-04-04,,alliance,"sources/e_nato_wb2.md:109,111; sources/e_nato_wb2.md:15,181"
+NATO,Poland,POL,1999-03-12,,alliance,"sources/e_nato_wb2.md:113,115; sources/e_nato_enl.md:145"
+NATO,Portugal,PRT,1949-04-04,,alliance,"sources/e_nato_wb2.md:117,119; sources/e_nato_wb2.md:15,181"
+NATO,Romania,ROU,2004-03-29,,alliance,"sources/e_nato_wb2.md:121,123; sources/e_nato_enl.md:157"
+NATO,Slovakia,SVK,2004-03-29,,alliance,"sources/e_nato_wb2.md:125,127; sources/e_nato_enl.md:157"
+NATO,Slovenia,SVN,2004-03-29,,alliance,"sources/e_nato_wb2.md:129,131; sources/e_nato_enl.md:157"
+NATO,Spain,ESP,1982-05-30,,alliance,"sources/e_nato_wb2.md:133,135; sources/e_nato_enl.md:135"
+NATO,Sweden,SWE,2024-03-07,,alliance,"sources/e_nato_wb2.md:137,139; sources/e_nato_enl.md:15,201"
+NATO,Turkiye,TUR,1952-02-18,,alliance,"sources/e_nato_wb2.md:141,143; sources/e_nato_enl.md:131"
+NATO,United Kingdom,GBR,1949-04-04,,alliance,"sources/e_nato_wb2.md:145,147; sources/e_nato_wb2.md:15,181"
+NATO,United States,USA,1949-04-04,,alliance,"sources/e_nato_wb2.md:149,151; sources/e_nato_wb2.md:15,181"
+US-Japan Security Treaty,United States,USA,1960-01-19 (signed; replaced 1951 treaty),,alliance,"sources/e_usdef_wb2.md:52,54"
+US-Japan Security Treaty,Japan,JPN,1960-01-19 (signed; replaced 1951 treaty),,alliance,"sources/e_usdef_wb2.md:52,54"
+US-ROK Mutual Defense Treaty,United States,USA,1953-10-01 (signed),,alliance,"sources/e_usdef_wb2.md:59,61"
+US-ROK Mutual Defense Treaty,Korea,KOR,1953-10-01 (signed),,alliance,"sources/e_usdef_wb2.md:59,61"
+US-Philippines Mutual Defense Treaty,United States,USA,1951-08-30 (signed),,alliance,"sources/e_usdef_wb2.md:38,40"
+US-Philippines Mutual Defense Treaty,Philippines,PHL,1951-08-30 (signed),,alliance,"sources/e_usdef_wb2.md:38,40"
+ANZUS,United States,USA,1951-09-01 (signed),,alliance,"sources/e_usdef_wb2.md:31,33"
+ANZUS,Australia,AUS,1951-09-01 (signed),,alliance,"sources/e_usdef_wb2.md:31,33"
+ANZUS,New Zealand,NZL,1951-09-01 (signed),,alliance,"sources/e_usdef_wb2.md:31,33"
+Southeast Asia Treaty (Manila Pact),United States,USA,1954-09-08 (signed),,alliance,"sources/e_usdef_wb2.md:45,47"
+Southeast Asia Treaty (Manila Pact),Australia,AUS,1954-09-08 (signed),,alliance,"sources/e_usdef_wb2.md:45,47"
+Southeast Asia Treaty (Manila Pact),France,FRA,1954-09-08 (signed),,alliance,"sources/e_usdef_wb2.md:45,47"
+Southeast Asia Treaty (Manila Pact),New Zealand,NZL,1954-09-08 (signed),,alliance,"sources/e_usdef_wb2.md:45,47"
+Southeast Asia Treaty (Manila Pact),Philippines,PHL,1954-09-08 (signed),,alliance,"sources/e_usdef_wb2.md:45,47"
+Southeast Asia Treaty (Manila Pact),Thailand,THA,1954-09-08 (signed),,alliance,"sources/e_usdef_wb2.md:45,47"
+Southeast Asia Treaty (Manila Pact),United Kingdom,GBR,1954-09-08 (signed),,alliance,"sources/e_usdef_wb2.md:45,47"
+Rio Treaty,Argentina,ARG,1950-08-21,,alliance,sources/e_rio_oas.md:44
+Rio Treaty,Bahamas,BHS,1982-11-24,,alliance,sources/e_rio_oas.md:51
+Rio Treaty,Bolivia,BOL,1950-09-26,2014-10-17,alliance,sources/e_rio_oas.md:70; sources/e_rio_oas.md:385-392
+Rio Treaty,Brazil,BRA,1948-03-25,,alliance,sources/e_rio_oas.md:77
+Rio Treaty,Chile,CHL,1949-02-09,,alliance,sources/e_rio_oas.md:90
+Rio Treaty,Colombia,COL,1948-02-03,,alliance,sources/e_rio_oas.md:97
+Rio Treaty,Costa Rica,CRI,1948-12-03,,alliance,sources/e_rio_oas.md:105
+Rio Treaty,Cuba,CUB,1948-12-09,,alliance,sources/e_rio_oas.md:112
+Rio Treaty,Ecuador,ECU,1950-11-07,2016-02-19 (derived: denunciation received 2014-02-19 + 2 years per Art. 25),alliance,sources/e_rio_oas.md:125; sources/e_rio_oas.md:291-296
+Rio Treaty,El Salvador,SLV,1948-03-15,,alliance,sources/e_rio_oas.md:133
+Rio Treaty,Guatemala,GTM,1955-04-06,,alliance,sources/e_rio_oas.md:146
+Rio Treaty,Haiti,HTI,1948-03-25,,alliance,sources/e_rio_oas.md:159
+Rio Treaty,Honduras,HND,1948-02-05,,alliance,sources/e_rio_oas.md:166
+Rio Treaty,Mexico,MEX,1948-11-23,2004-09-06,alliance,sources/e_rio_oas.md:179; sources/e_rio_oas.md:377-383
+Rio Treaty,Nicaragua,NIC,1948-11-12,2014-09-06,alliance,sources/e_rio_oas.md:186; sources/e_rio_oas.md:338-344
+Rio Treaty,Panama,PAN,1948-01-12,,alliance,sources/e_rio_oas.md:193
+Rio Treaty,Paraguay,PRY,1948-07-28,,alliance,sources/e_rio_oas.md:200
+Rio Treaty,Peru,PER,1950-10-25,,alliance,sources/e_rio_oas.md:207; sources/e_rio_oas.md:371-375 (denounced 1990-01-22; withdrawn 1991-12-16)
+Rio Treaty,Dominican Republic,DOM,1947-11-21,,alliance,sources/e_rio_oas.md:214
+Rio Treaty,Trinidad and Tobago,TTO,1967-06-12,,alliance,sources/e_rio_oas.md:248
+Rio Treaty,United States,USA,1947-12-30,,alliance,sources/e_rio_oas.md:256
+Rio Treaty,Uruguay,URY,1948-09-28,,alliance,sources/e_rio_oas.md:263; sources/e_rio_oas.md:408-420 (denounced 2019-09-27; withdrawn 2020-03-10)
+Rio Treaty,Venezuela,VEN,original deposit date NOT FOUND (party in state.gov list; signed 1947-09-02),2015-05-14 (derived: denunciation received 2013-05-14 + 2 years),alliance,"sources/e_usdef_wb2.md:68; sources/e_rio_oas.md:268,394-402"
+Rio Treaty,Venezuela,VEN,2019-08-06 (deposit recorded by OAS; which authority may bind the state was disputed - flag),,alliance,"sources/e_rio_oas.md:269-270,404-406"
+CSTO,Armenia,ARM,1992-05-15 (Treaty signed); 2002-10-07 (Charter),,alliance,"sources/e_csto.md:102,106,112"
+CSTO,Kazakhstan,KAZ,1992-05-15 (Treaty signed); 2002-10-07 (Charter),,alliance,"sources/e_csto.md:102,106,112"
+CSTO,Kyrgyzstan,KGZ,1992-05-15 (Treaty signed); 2002-10-07 (Charter),,alliance,"sources/e_csto.md:102,106,112"
+CSTO,Russia,RUS,1992-05-15 (Treaty signed); 2002-10-07 (Charter),,alliance,"sources/e_csto.md:102,106,112"
+CSTO,Tajikistan,TJK,1992-05-15 (Treaty signed); 2002-10-07 (Charter),,alliance,"sources/e_csto.md:102,106,112"
+CSTO,Belarus,BLR,1993 (Treaty); 2002-10-07 (Charter),,alliance,"sources/e_csto.md:102,106,112"
+CSTO,Uzbekistan,UZB,1992-05-15 (Treaty signed),1999 (ceased; later re-entry/exit NOT in source),alliance,"sources/e_csto.md:102,106"
+CSTO,Azerbaijan,AZE,1993 (Treaty),1999,alliance,"sources/e_csto.md:102,106"
+CSTO,Georgia,GEO,1993 (Treaty),1999,alliance,"sources/e_csto.md:102,106"
+SCO,Kazakhstan,KAZ,2001-06-15,,alliance,"sources/e_sco.md:11,13"
+SCO,China,CHN,2001-06-15,,alliance,"sources/e_sco.md:11,13"
+SCO,Kyrgyzstan,KGZ,2001-06-15,,alliance,"sources/e_sco.md:11,13"
+SCO,Russia,RUS,2001-06-15,,alliance,"sources/e_sco.md:11,13"
+SCO,Tajikistan,TJK,2001-06-15,,alliance,"sources/e_sco.md:11,13"
+SCO,Uzbekistan,UZB,2001-06-15,,alliance,"sources/e_sco.md:11,13"
+SCO,India,IND,2017,,alliance,sources/e_sco.md:93
+SCO,Pakistan,PAK,2017,,alliance,sources/e_sco.md:93
+SCO,Iran,IRN,2023-07-04,,alliance,sources/e_sco_iran_cd.md:127; sources/e_sco_newdelhi_air.md:8; sources/e_sco.md:97
+SCO,Belarus,BLR,2024,,alliance,"sources/e_sco.md:93,97"
+EU,Austria,AUT,1995,,union,"sources/e_eu.md:23,25"
+EU,Belgium,BEL,1958,,union,"sources/e_eu.md:27,29"
+EU,Bulgaria,BGR,2007,,union,"sources/e_eu.md:31,33"
+EU,Croatia,HRV,2013,,union,"sources/e_eu.md:35,37"
+EU,Cyprus,CYP,2004,,union,"sources/e_eu.md:39,41"
+EU,Czechia,CZE,2004,,union,"sources/e_eu.md:43,45"
+EU,Denmark,DNK,1973,,union,"sources/e_eu.md:47,49"
+EU,Estonia,EST,2004,,union,"sources/e_eu.md:51,53"
+EU,Finland,FIN,1995,,union,"sources/e_eu.md:55,57"
+EU,France,FRA,1958,,union,"sources/e_eu.md:59,61"
+EU,Germany,DEU,1958,,union,"sources/e_eu.md:63,65"
+EU,Greece,GRC,1981,,union,"sources/e_eu.md:67,69"
+EU,Hungary,HUN,2004,,union,"sources/e_eu.md:71,73"
+EU,Ireland,IRL,1973,,union,"sources/e_eu.md:75,77"
+EU,Italy,ITA,1958,,union,"sources/e_eu.md:79,81"
+EU,Latvia,LVA,2004,,union,"sources/e_eu.md:83,85"
+EU,Lithuania,LTU,2004,,union,"sources/e_eu.md:87,89"
+EU,Luxembourg,LUX,1958,,union,"sources/e_eu.md:91,93"
+EU,Malta,MLT,2004,,union,"sources/e_eu.md:95,97"
+EU,Netherlands,NLD,1958,,union,"sources/e_eu.md:99,101"
+EU,Poland,POL,2004,,union,"sources/e_eu_p2.md:23,25"
+EU,Portugal,PRT,1986,,union,"sources/e_eu_p2.md:27,29"
+EU,Romania,ROU,2007,,union,"sources/e_eu_p2.md:31,33"
+EU,Slovakia,SVK,2004,,union,"sources/e_eu_p2.md:35,37"
+EU,Slovenia,SVN,2004,,union,"sources/e_eu_p2.md:39,41"
+EU,Spain,ESP,1986,,union,"sources/e_eu_p2.md:43,45"
+EU,Sweden,SWE,1995,,union,"sources/e_eu_p2.md:47,49"
+Five Eyes (UKUSA),United Kingdom,GBR,1946-03-05,,arrangement,sources/e_ukusa_wb.md:98
+Five Eyes (UKUSA),United States,USA,1946-03-05,,arrangement,sources/e_ukusa_wb.md:98
+Five Eyes (UKUSA),Australia,AUS,NOT FOUND (named as Second Party),,arrangement,sources/e_ukusa_wb.md:98; sources/e_fvey_nz.md:5-17
+Five Eyes (UKUSA),Canada,CAN,NOT FOUND (named as Second Party),,arrangement,sources/e_ukusa_wb.md:98; sources/e_fvey_nz.md:5-17
+Five Eyes (UKUSA),New Zealand,NZL,NOT FOUND (named as Second Party),,arrangement,sources/e_ukusa_wb.md:98; sources/e_fvey_nz.md:5-17
+Quad,Australia,AUS,2021-03-12 (first leader-level joint statement),,arrangement,"sources/e_quad_wh.md:5,16"
+Quad,India,IND,2021-03-12 (first leader-level joint statement),,arrangement,"sources/e_quad_wh.md:5,16"
+Quad,Japan,JPN,2021-03-12 (first leader-level joint statement),,arrangement,"sources/e_quad_wh.md:5,16"
+Quad,United States,USA,2021-03-12 (first leader-level joint statement),,arrangement,"sources/e_quad_wh.md:5,16"
+AUKUS,Australia,AUS,2021-09-15,,arrangement,"sources/e_aukus_dcpd.txt:4,6,12"
+AUKUS,United Kingdom,GBR,2021-09-15,,arrangement,"sources/e_aukus_dcpd.txt:4,6,12"
+AUKUS,United States,USA,2021-09-15,,arrangement,"sources/e_aukus_dcpd.txt:4,6,12"
+Chip 4 (secondary source only),Taiwan,TWN,2022-09 (preparatory meeting); 2023-02-16 (first formal meeting),,arrangement,"sources/e_chip4_tt.md:49,51"
+Chip 4 (secondary source only),Japan,JPN,2022-09 (preparatory meeting); 2023-02-16 (first formal meeting),,arrangement,"sources/e_chip4_tt.md:49,51"
+Chip 4 (secondary source only),Korea,KOR,2022-09 (preparatory meeting); 2023-02-16 (first formal meeting),,arrangement,"sources/e_chip4_tt.md:49,51"
+Chip 4 (secondary source only),United States,USA,2022-09 (preparatory meeting); 2023-02-16 (first formal meeting),,arrangement,"sources/e_chip4_tt.md:49,51"
+Union State,Russia,RUS,2000-01-26 (in force; signed 1999-12-08),,union,sources/e_unionstate_pravo.md:49; sources/e_unionstate_cbrwb.md:11
+Union State,Belarus,BLR,2000-01-26 (in force; signed 1999-12-08),,union,sources/e_unionstate_pravo.md:49; sources/e_unionstate_cbrwb.md:11

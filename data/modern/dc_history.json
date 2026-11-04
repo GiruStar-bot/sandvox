@@ -1,0 +1,112 @@
+{
+ "r55_sha256": "fb5a133ef28b0d004f00077167bc2e796c035af24bb428500bff96bc4c762309",
+ "rule": "R55 Q5 (T): persistence of the mean yearly growth known at the vintage, per macro region; a macro with no series takes the world's",
+ "years": {
+  "2022": {
+   "given_twh": {
+    "EU": {
+     "label": "S: EC 2020 (EU28 read as EU)",
+     "source": "e_eu_cloud2020_pdf.txt:2715-2716",
+     "value": 77.0
+    },
+    "JP": {
+     "label": "S: JST FY2020",
+     "source": "e_jst_japan2020.md:14",
+     "value": 14.0
+    },
+    "US": {
+     "label": "S: LBNL 2016, flat",
+     "source": "e_shehabi2016_pdf.txt:202-203",
+     "value": 70.0
+    }
+   },
+   "growth": {
+    "EU": {
+     "basis": "EU28 2010 53.9 -> 2018 76.8 (EC 2020)",
+     "label": "D",
+     "value": 0.045253322881473546
+    },
+    "US": {
+     "basis": "US ~70 flat (LBNL 2016: R55 'US ~1%/yr')",
+     "label": "S",
+     "value": 0.01
+    },
+    "world": {
+     "basis": "World 2015 ~200 -> 2021 270 (IEA Sep 2022 vintage)",
+     "label": "D",
+     "value": 0.0512894223724103
+    }
+   },
+   "rest_note": "T: the residual by GDP; mainland China disputed (Greenpeace/NCEPU 161 TWh for 2018, secondary)",
+   "rest_over": [
+    "CN",
+    "TW",
+    "KR",
+    "ROW"
+   ],
+   "sources": [
+    "e_iea_dctn_dec22.md:113-115",
+    "e_eu_cloud2020_pdf.txt:2450-2451"
+   ],
+   "vintage": "end-2022 (R55 Q5 recommendation)",
+   "world_twh": {
+    "label": "D: middle of 220-320; band +-50 declared by R55",
+    "source": "e_iea_dctn_dec22.md:84,116,121",
+    "value": 270.0
+   }
+  },
+  "2024": {
+   "given_twh": {
+    "EU": {
+     "label": "S: EC 2020 (EU28 read as EU)",
+     "source": "e_eu_cloud2020_pdf.txt:2715-2716",
+     "value": 77.0
+    },
+    "JP": {
+     "label": "S: JST FY2020",
+     "source": "e_jst_japan2020.md:14",
+     "value": 14.0
+    },
+    "US": {
+     "label": "S: LBNL 2016, flat",
+     "source": "e_shehabi2016_pdf.txt:202-203",
+     "value": 70.0
+    }
+   },
+   "growth": {
+    "EU": {
+     "basis": "EU28 2010 53.9 -> 2018 76.8 (EC 2020)",
+     "label": "D",
+     "value": 0.045253322881473546
+    },
+    "US": {
+     "basis": "US ~70 flat (LBNL 2016: R55 'US ~1%/yr')",
+     "label": "S",
+     "value": 0.01
+    },
+    "world": {
+     "basis": "World 2015 ~200 -> 2021 270 (IEA Sep 2022 vintage)",
+     "label": "D",
+     "value": 0.0512894223724103
+    }
+   },
+   "rest_note": "T: the residual by GDP; mainland China disputed (Greenpeace/NCEPU 161 TWh for 2018, secondary)",
+   "rest_over": [
+    "CN",
+    "TW",
+    "KR",
+    "ROW"
+   ],
+   "sources": [
+    "e_iea_dctn_dec22.md:113-115",
+    "e_eu_cloud2020_pdf.txt:2450-2451"
+   ],
+   "vintage": "end-2022 (R55), carried to data year 2024 as the latest in window (T; D477 purge, the PM (c)); IEA Energy and AI (2025-04) is look-ahead",
+   "world_twh": {
+    "label": "D: middle of 220-320; band +-50 declared by R55",
+    "source": "e_iea_dctn_dec22.md:84,116,121",
+    "value": 270.0
+   }
+  }
+ }
+}

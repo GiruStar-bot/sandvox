@@ -1,0 +1,71 @@
+{
+ "id": "crop_farming_JPN",
+ "kind": "industry",
+ "jurisdiction": "JPN",
+ "stocks": {
+  "cash_bn_jpy": 1000.0,
+  "land_ha": 4300000.0,
+  "fixed_costs_bn_month": 264.564,
+  "working_floor_months": 1.0
+ },
+ "fixed_costs_source": "S: soumu 産業連関表 2020 取引基本表 生産者価格 統合中分類 (modern-data raw/jpn_official/io2020_medium_000954302.xlsx), 百万円 耕種農業: intermediate inputs 2,841,982 less the fertiliser and fuel bought here (about 184,000, D) + 雇用者所得 1,194,659 + 家計外消費 15,577 - 経常補助金 693,450 (received), / 12",
+ "stocks_source": {
+  "land_ha": "MAFF 耕地面積 2024 約430万ha (S, rounded)",
+  "cash_bn_jpy": "T"
+ },
+ "crops": {
+  "rice": {
+   "area_ha": 1259000.0,
+   "yield_t_ha": 5.4,
+   "harvest_month": 10,
+   "sow_month": 5,
+   "reserve_share": 0.03,
+   "source": "MAFF 作物統計調査 令和6年産水陸稲の収穫量 (概数値): 水稲 主食用作付面積 1,259,000 ha; 10a当たり収量 540 kg (1.70mm sieve); 収穫量(主食用) 6,792,000 t; 子実用 1,359,000 ha / 7,345,000 t; 作況指数 101; syukaku_suiriku_24.pdf (p.1, 累年 p.2); published 2024-12-10 (printed on p.1 \"令和６年12月10日公表\"; Wayback capture 2024-12-10)"
+  },
+  "wheat": {
+   "area_ha": 231600.0,
+   "yield_t_ha": 4.42,
+   "harvest_month": 6,
+   "sow_month": 11,
+   "reserve_share": 0.02,
+   "source": "MAFF 作物統計調査 令和6年産麦類（子実用）の作付面積及び収穫量: 小麦 231,600 ha; 10a当たり収量 442 kg; 収穫量 1,023,000 t (概数); syukaku_mugi_24.pdf table 1; published 2024-11-26 (printed \"令和６年11月26日公表\"; Wayback capture 2024-12-20)"
+  },
+  "soybeans": {
+   "area_ha": 154700.0,
+   "yield_t_ha": 1.69,
+   "harvest_month": 11,
+   "sow_month": 6,
+   "reserve_share": 0.02,
+   "source": "MAFF 作物統計 令和5年産豆類（乾燥子実）の収穫量 確報: 大豆 全国 154,700 ha; 169 kg/10a; 260,800 t; e-Stat statInfId 000040201040; published press 2024-04-10 (MAFF index, Wayback 20241227145135); 確報 file e-Stat 2024-08-30"
+  },
+  "vegetables": {
+   "area_ha": 430000.0,
+   "yield_t_ha": 25.58,
+   "harvest_month": 10,
+   "sow_month": 4,
+   "reserve_share": 0.0,
+   "source": "MAFF 作物統計 野菜 令和5年産 確報 (published 2024-12-23): 出荷量 10,999,000 t / 作付 430,000 ha = 25.58 t/ha (D, shipments per ha, the node's own basis; R96c's harvest basis 29.36 not used)"
+  }
+ },
+ "inputs_per_ha": {
+  "fertiliser": {
+   "value": 0.28,
+   "unit": "t/ha",
+   "label": "D",
+   "source": "肥料需要 約1.2 Mt / 耕地 4.3 Mha (MAFF 肥料をめぐる情勢 2024)"
+  },
+  "fuel": {
+   "value": 0.1,
+   "unit": "kL/ha",
+   "label": "T",
+   "source": "declared"
+  }
+ },
+ "params": {
+  "wage_share_of_fixed": {
+   "value": 0.376298048,
+   "label": "S",
+   "source": "soumu 産業連関表 2020 耕種農業 雇用者所得 1,194,659 百万円/yr / 12 over the fixed costs of the month (264.564 bn, fixed_costs_source): the part of the fixed cost that is wages, scaled by labour's wage index when the labour module runs (V090)"
+  }
+ }
+}

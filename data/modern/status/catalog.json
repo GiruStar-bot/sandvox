@@ -1,0 +1,199 @@
+{
+ "version": 1,
+ "note": "BLUEPRINT 3: the ten statuses. An indicator's class: field (a stock or flow the field moves by an identity), held (OUTCOME-HELD: published value carried with its published trend until an actor moves it), data (a fixed fact of the start). grain: national unless said. Values live in data/modern/<entity>/status_<year>.json with their source lines; this file names the indicator, its unit, class, the publishing body and its licence. Levers live in data/modern/<entity>/levers.json. Labels S/D/T follow the project's rule.",
+ "licences": {
+  "estat": "e-Stat / Statistics Bureau: 政府標準利用規約 2.0 (GJSTU 2.0), CC BY 4.0 compatible",
+  "pdl": "Public Data License 1.0 (CC BY 4.0 compatible)",
+  "mof": "MOF: government standard terms (GJSTU 2.0)",
+  "boj": "BoJ: statistics reusable with attribution (BoJ terms)",
+  "mhlw": "MHLW: GJSTU 2.0",
+  "customs": "Japan Customs: GJSTU 2.0",
+  "nies": "NIES GIO: attribution",
+  "wdi": "World Bank WDI CC BY 4.0",
+  "ember": "Ember CC BY 4.0",
+  "imf": "IMF: commercial use with attribution (R56)"
+ },
+ "statuses": {
+  "population": {
+   "title": "① Population",
+   "indicators": {
+    "pop_total": {"unit": "persons", "class": "field", "publisher": "Statistics Bureau 人口推計", "licence": "estat", "period": "1 October"},
+    "pop_by_age_sex": {"unit": "persons", "class": "field", "grain": "single age 0-100+ x sex", "publisher": "Statistics Bureau 人口推計 第1表", "licence": "estat"},
+    "births": {"unit": "persons/yr", "class": "field", "publisher": "MHLW 人口動態統計", "licence": "mhlw"},
+    "deaths": {"unit": "persons/yr", "class": "field", "publisher": "MHLW 人口動態統計", "licence": "mhlw"},
+    "tfr": {"unit": "children/woman", "class": "held", "publisher": "MHLW 人口動態統計", "licence": "mhlw"},
+    "natural_change": {"unit": "persons/yr", "class": "field", "publisher": "MHLW", "licence": "mhlw"},
+    "net_migration": {"unit": "persons/yr", "class": "held", "publisher": "Statistics Bureau 人口推計 (社会増減)", "licence": "estat"},
+    "foreign_residents": {"unit": "persons", "class": "field", "publisher": "Immigration Services Agency 在留外国人統計", "licence": "pdl"},
+    "life_expectancy_m": {"unit": "years", "class": "held", "publisher": "MHLW 簡易生命表", "licence": "mhlw"},
+    "life_expectancy_f": {"unit": "years", "class": "held", "publisher": "MHLW 簡易生命表", "licence": "mhlw"},
+    "share_65plus": {"unit": "share", "class": "field", "publisher": "derived from pop_by_age_sex", "licence": "estat"},
+    "households": {"unit": "households", "class": "held", "publisher": "Statistics Bureau 国勢調査 / 住民基本台帳", "licence": "estat"}
+   },
+   "stocks": ["pop_by_age_sex", "foreign_residents"],
+   "identities": ["pop_total(t) = pop_total(t-1) + births - deaths + net_migration (daily, cohort table ages on 1 January)"],
+   "reference_lines": {"tfr": {"target": 1.8, "source": "Cabinet 希望出生率 1.8 (少子化社会対策大綱, 閣議決定 2020-05-29)", "label": "S"}}
+  },
+  "economy": {
+   "title": "② Economy",
+   "indicators": {
+    "gdp_nominal": {"unit": "bn JPY/yr", "class": "held", "publisher": "Cabinet Office ESRI 国民経済計算", "licence": "estat"},
+    "gdp_real_growth": {"unit": "share/yr", "class": "held", "publisher": "ESRI", "licence": "estat"},
+    "private_consumption": {"unit": "bn JPY/yr", "class": "held", "publisher": "ESRI", "licence": "estat"},
+    "gov_consumption": {"unit": "bn JPY/yr", "class": "held", "publisher": "ESRI", "licence": "estat"},
+    "gfcf": {"unit": "bn JPY/yr", "class": "held", "publisher": "ESRI", "licence": "estat"},
+    "exports_gs": {"unit": "bn JPY/yr", "class": "held", "publisher": "ESRI", "licence": "estat"},
+    "imports_gs": {"unit": "bn JPY/yr", "class": "held", "publisher": "ESRI", "licence": "estat"},
+    "cpi_inflation": {"unit": "share/yr", "class": "held", "publisher": "Statistics Bureau 消費者物価指数", "licence": "estat"},
+    "employed": {"unit": "persons", "class": "held", "publisher": "Statistics Bureau 労働力調査", "licence": "estat"},
+    "unemployed": {"unit": "persons", "class": "held", "publisher": "Statistics Bureau 労働力調査", "licence": "estat"},
+    "unemployment_rate": {"unit": "share", "class": "held", "publisher": "Statistics Bureau 労働力調査", "licence": "estat"},
+    "policy_rate": {"unit": "share/yr", "class": "held", "publisher": "BoJ", "licence": "boj"},
+    "jgb_10y": {"unit": "share/yr", "class": "held", "publisher": "MOF 国債金利情報", "licence": "mof"},
+    "fx_jpy_usd": {"unit": "JPY per USD", "class": "held", "publisher": "BoJ", "licence": "boj"},
+    "household_financial_assets": {"unit": "bn JPY", "class": "field", "publisher": "BoJ 資金循環統計", "licence": "boj"},
+    "gov_revenue_general": {"unit": "bn JPY/yr", "class": "field", "publisher": "MOF 一般会計", "licence": "mof"},
+    "gov_expenditure_general": {"unit": "bn JPY/yr", "class": "field", "publisher": "MOF 一般会計", "licence": "mof"},
+    "tax_revenue": {"unit": "bn JPY/yr", "class": "field", "publisher": "MOF", "licence": "mof"},
+    "new_bond_issuance": {"unit": "bn JPY/yr", "class": "field", "publisher": "MOF", "licence": "mof"},
+    "gov_debt_total": {"unit": "bn JPY", "class": "field", "publisher": "MOF 国債及び借入金並びに政府保証債務現在高", "licence": "mof"},
+    "ordinary_jgb": {"unit": "bn JPY", "class": "field", "publisher": "MOF", "licence": "mof"},
+    "debt_to_gdp": {"unit": "share", "class": "field", "publisher": "derived", "licence": "mof"},
+    "health_expenditure_share_gdp": {"unit": "share", "class": "held", "publisher": "MHLW 国民医療費", "licence": "mhlw"}
+   },
+   "stocks": ["gov_debt_total", "ordinary_jgb", "household_financial_assets"],
+   "identities": ["gov_debt_total(t) = gov_debt_total(t-1) + (gov_expenditure_general - gov_revenue_general)/365 (daily)", "debt_to_gdp = gov_debt_total / gdp_nominal"],
+   "reference_lines": {"primary_balance": {"target": 0.0, "source": "Cabinet 骨太の方針: 2025年度PB黒字化目標", "label": "S"}, "debt_fatigue": {"threshold_debt_to_gdp": [0.9, 1.0], "source": "Ghosh et al. 2013 (R55)", "label": "S"}, "cpi_target": {"target": 0.02, "source": "BoJ 物価安定の目標 2%", "label": "S"}}
+  },
+  "politics": {
+   "title": "③ Politics",
+   "indicators": {
+    "government_form": {"unit": "text", "class": "data", "publisher": "Constitution", "licence": "pdl"},
+    "lower_house_seats_total": {"unit": "seats", "class": "data", "publisher": "House of Representatives", "licence": "pdl"},
+    "lower_house_seats_governing": {"unit": "seats", "class": "held", "publisher": "House of Representatives", "licence": "pdl"},
+    "upper_house_seats_total": {"unit": "seats", "class": "data", "publisher": "House of Councillors", "licence": "pdl"},
+    "upper_house_seats_governing": {"unit": "seats", "class": "held", "publisher": "House of Councillors", "licence": "pdl"},
+    "next_lower_house_election_by": {"unit": "date", "class": "data", "publisher": "Constitution art. 45 (4-year term)", "licence": "pdl"},
+    "next_upper_house_election": {"unit": "date", "class": "data", "publisher": "Constitution art. 46 (half every 3 years)", "licence": "pdl"},
+    "cabinet_approval": {"unit": "share", "class": "held", "publisher": "NHK 政治意識月例調査", "licence": "attribution (poll)"},
+    "wgi_rule_of_law": {"unit": "index", "class": "held", "publisher": "World Bank WGI", "licence": "wdi"},
+    "wgi_government_effectiveness": {"unit": "index", "class": "held", "publisher": "World Bank WGI", "licence": "wdi"}
+   },
+   "stocks": [],
+   "identities": ["a bill passes when the governing seats hold a majority in the lower house (art. 59; a two-thirds override exists)"],
+   "reference_lines": {"approval_danger": {"threshold": 0.3, "source": "青木率 (approval + party support < 50) as a published rule of thumb", "label": "T"}}
+  },
+  "military": {
+   "title": "④ Military (public surface only)",
+   "indicators": {
+    "defence_budget": {"unit": "bn JPY/yr", "class": "field", "publisher": "MOF 防衛関係予算 / MOD", "licence": "mof"},
+    "defence_share_gdp": {"unit": "share", "class": "field", "publisher": "derived", "licence": "mof"},
+    "sdf_authorised_strength": {"unit": "persons", "class": "data", "publisher": "MOD 防衛白書", "licence": "pdl"},
+    "sdf_actual_strength": {"unit": "persons", "class": "held", "publisher": "MOD 防衛白書", "licence": "pdl"},
+    "us_forces_in_japan": {"unit": "persons", "class": "data", "publisher": "MOD / USFJ public figures", "licence": "pdl"},
+    "host_nation_support": {"unit": "bn JPY/yr", "class": "field", "publisher": "MOF budget (在日米軍駐留経費負担)", "licence": "mof"},
+    "alliance_us": {"unit": "text", "class": "data", "publisher": "Treaty of Mutual Cooperation and Security 1960", "licence": "pdl"}
+   },
+   "stocks": [],
+   "identities": [],
+   "reference_lines": {"defence_share_target": {"target": 0.02, "by": 2027, "source": "国家安全保障戦略 2022 (GDP比2%, 関連経費含む)", "label": "S"}}
+  },
+  "health": {
+   "title": "⑤ Health (coarse grade only)",
+   "indicators": {
+    "medical_technology_grade": {"unit": "grade high|middle|low", "class": "data", "publisher": "HAQ index (GBD) as the published basis", "licence": "attribution", "note": "owner: never omnipotent; bounds the cohort mortality within the published life table"},
+    "health_expenditure": {"unit": "bn JPY/yr", "class": "field", "publisher": "MHLW 国民医療費", "licence": "mhlw"},
+    "health_expenditure_per_capita": {"unit": "JPY/yr", "class": "held", "publisher": "MHLW", "licence": "mhlw"},
+    "physicians": {"unit": "persons", "class": "field", "publisher": "MHLW 医師・歯科医師・薬剤師統計", "licence": "mhlw"},
+    "physicians_per_100k": {"unit": "per 100,000", "class": "held", "publisher": "MHLW", "licence": "mhlw"},
+    "hospital_beds": {"unit": "beds", "class": "held", "publisher": "MHLW 医療施設調査", "licence": "mhlw"},
+    "insurance_coverage": {"unit": "share", "class": "data", "publisher": "国民皆保険", "licence": "pdl"},
+    "physician_maldistribution_ratio": {"unit": "ratio max/min prefecture per 100k", "class": "held", "publisher": "MHLW 医師統計 都道府県別", "licence": "mhlw"},
+    "infant_mortality": {"unit": "per 1,000 births", "class": "held", "publisher": "MHLW 人口動態統計", "licence": "mhlw"}
+   },
+   "stocks": ["physicians"],
+   "identities": [],
+   "reference_lines": {}
+  },
+  "energy": {
+   "title": "⑥ Energy",
+   "indicators": {
+    "electricity_generation_twh": {"unit": "TWh/yr", "class": "field", "publisher": "ANRE 電力調査統計 / Ember", "licence": "pdl"},
+    "electricity_by_source": {"unit": "TWh/yr by source", "class": "field", "publisher": "ANRE / Ember", "licence": "pdl"},
+    "electricity_demand_twh": {"unit": "TWh/yr", "class": "field", "publisher": "OCCTO / Ember", "licence": "pdl"},
+    "energy_self_sufficiency": {"unit": "share", "class": "held", "publisher": "ANRE エネルギー白書", "licence": "pdl"},
+    "crude_imports_by_origin": {"unit": "share by origin", "class": "field", "publisher": "ANRE 資源・エネルギー統計 / Customs", "licence": "customs"},
+    "lng_imports_by_origin": {"unit": "share by origin", "class": "field", "publisher": "Customs", "licence": "customs"},
+    "oil_stock_days": {"unit": "days", "class": "field", "publisher": "ANRE 石油備蓄の現況", "licence": "pdl"},
+    "nuclear_reactors_operating": {"unit": "count", "class": "held", "publisher": "NRA / 電気事業連合会", "licence": "pdl"}
+   },
+   "stocks": ["oil_stock_days"],
+   "identities": ["electricity: generation + net imports = demand (daily, the field)"],
+   "reference_lines": {"mix_2040": {"renewables": [0.4, 0.5], "nuclear": 0.2, "source": "第7次エネルギー基本計画（原案）の概要, 総合資源エネルギー調査会 基本政策分科会 第67回 資料2, p.9 「2040年度エネルギー需給の見通し」: 再エネ 4〜5割程度, 原子力 2割程度, 火力 3〜4割程度 (発電電力量 1.1〜1.2兆kWh); 067_005.pdf p.9 (sha 3e99a6a1b65e1441); full text 資料3 067_006.pdf; published 2024-12-17 (a draft; the PM, TO_E 19:25)", "label": "D"}, "oil_stock_rule": {"government_days": 90, "private_days": 70, "source": "石油備蓄法 (R55)", "label": "S"}}
+  },
+  "technology": {
+   "title": "⑦ Technology and compute",
+   "indicators": {
+    "fab_capacity_share": {"unit": "share of world", "class": "field", "publisher": "SIA/BCG (R54)", "licence": "attribution"},
+    "dc_capacity_mw": {"unit": "MW", "class": "field", "publisher": "industry estimates (R53)", "licence": "attribution"},
+    "rd_expenditure_share_gdp": {"unit": "share", "class": "held", "publisher": "Statistics Bureau 科学技術研究調査", "licence": "estat"},
+    "researchers": {"unit": "persons", "class": "held", "publisher": "Statistics Bureau 科学技術研究調査", "licence": "estat"},
+    "photoresist_share": {"unit": "share of world", "class": "data", "publisher": "CSET (R53)", "licence": "attribution"},
+    "silicon_wafer_share": {"unit": "share of world", "class": "data", "publisher": "CSET (R53)", "licence": "attribution"}
+   },
+   "stocks": [],
+   "identities": [],
+   "reference_lines": {}
+  },
+  "foreign": {
+   "title": "⑧ Foreign relations and trade",
+   "indicators": {
+    "current_account": {"unit": "bn JPY/FY", "class": "field", "publisher": "MOF/BoJ 国際収支統計", "licence": "mof"},
+    "trade_balance_bop": {"unit": "bn JPY/FY", "class": "field", "publisher": "MOF/BoJ", "licence": "mof"},
+    "primary_income": {"unit": "bn JPY/FY", "class": "field", "publisher": "MOF/BoJ", "licence": "mof"},
+    "exports_customs": {"unit": "bn JPY/yr", "class": "held", "publisher": "Japan Customs 貿易統計", "licence": "customs"},
+    "imports_customs": {"unit": "bn JPY/yr", "class": "held", "publisher": "Japan Customs 貿易統計", "licence": "customs"},
+    "trade_by_partner": {"unit": "bn JPY/yr by partner", "class": "held", "publisher": "Japan Customs", "licence": "customs"},
+    "niip": {"unit": "bn JPY", "class": "field", "publisher": "MOF 本邦対外資産負債残高", "licence": "mof"},
+    "external_assets": {"unit": "bn JPY", "class": "field", "publisher": "MOF", "licence": "mof"},
+    "external_liabilities": {"unit": "bn JPY", "class": "field", "publisher": "MOF", "licence": "mof"},
+    "fdi_assets": {"unit": "bn JPY", "class": "field", "publisher": "MOF", "licence": "mof"},
+    "portfolio_assets": {"unit": "bn JPY", "class": "field", "publisher": "MOF", "licence": "mof"},
+    "reserve_assets": {"unit": "bn JPY", "class": "field", "publisher": "MOF 外貨準備等の状況", "licence": "mof"},
+    "recognised_states": {"unit": "count", "class": "data", "publisher": "MOFA (R53 Q6)", "licence": "pdl"},
+    "inbound_tourists": {"unit": "persons/yr", "class": "held", "publisher": "JNTO", "licence": "attribution"}
+   },
+   "stocks": ["niip", "external_assets", "external_liabilities", "reserve_assets"],
+   "identities": ["niip(t) = niip(t-1) + current_account/365 (daily; valuation held at 0 until FX moves in S3)", "current_account = trade_balance_bop + services + primary_income + secondary_income"],
+   "reference_lines": {}
+  },
+  "resources": {
+   "title": "⑨ Resources, environment, food",
+   "indicators": {
+    "food_self_sufficiency_calorie": {"unit": "share", "class": "held", "publisher": "MAFF 食料需給表", "licence": "pdl"},
+    "ghg_emissions": {"unit": "Mt CO2e/FY", "class": "field", "publisher": "NIES GIO", "licence": "nies"},
+    "ghg_net": {"unit": "Mt CO2e/FY", "class": "field", "publisher": "NIES GIO", "licence": "nies"},
+    "forest_share": {"unit": "share of land", "class": "data", "publisher": "Forestry Agency", "licence": "pdl"},
+    "water_withdrawal": {"unit": "bn m3/yr", "class": "held", "publisher": "MLIT 日本の水資源 (R53 Q8)", "licence": "pdl"},
+    "rice_stockpile": {"unit": "kt", "class": "field", "publisher": "MAFF 政府備蓄米", "licence": "pdl"}
+   },
+   "stocks": ["rice_stockpile"],
+   "identities": [],
+   "reference_lines": {"ghg_target_2030": {"reduction_vs_2013": 0.46, "source": "NDC 2021 (2013年度比46%削減)", "label": "S"}, "food_self_sufficiency_target": {"target": 0.45, "by": 2030, "source": "食料・農業・農村基本計画 2020", "label": "S"}}
+  },
+  "society": {
+   "title": "⑩ Society",
+   "indicators": {
+    "tertiary_attainment_25_64": {"unit": "share", "class": "held", "publisher": "OECD Education at a Glance / MEXT", "licence": "attribution"},
+    "education_expenditure_share_gdp": {"unit": "share", "class": "held", "publisher": "OECD / MEXT", "licence": "attribution"},
+    "relative_poverty_rate": {"unit": "share", "class": "held", "publisher": "MHLW 国民生活基礎調査", "licence": "mhlw"},
+    "gini_disposable": {"unit": "index", "class": "held", "publisher": "MHLW 所得再分配調査", "licence": "mhlw"},
+    "recorded_penal_code_offences": {"unit": "cases/yr", "class": "held", "publisher": "NPA 犯罪統計", "licence": "pdl"},
+    "suicides": {"unit": "persons/yr", "class": "held", "publisher": "NPA / MHLW", "licence": "pdl"}
+   },
+   "stocks": [],
+   "identities": [],
+   "reference_lines": {}
+  }
+ }
+}

@@ -1,0 +1,11 @@
+{
+ "note": "The files this container could fetch (2026-10-28). Official hosts are policy-denied here; the GitHub copies below are recorded with their upstream and replaced by the official files when the PM routes them (MODERN_PLAN 1.5).",
+ "files": [
+  {"name": "ne_10m_admin_0_countries.geojson", "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_admin_0_countries.geojson", "licence": "public domain (Natural Earth)", "upstream": "Natural Earth v5 admin-0 countries (de facto)"},
+  {"name": "ne_10m_admin_0_countries_jpn.geojson", "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_admin_0_countries_jpn.geojson", "licence": "public domain (Natural Earth)", "upstream": "Natural Earth v5 admin-0, Japan's point of view"},
+  {"name": "wdi_population.csv", "url": "https://raw.githubusercontent.com/datasets/population/main/data/population.csv", "licence": "CC BY 4.0 (World Bank WDI SP.POP.TOTL; packaged by datasets/population, ODC-PDDL)", "upstream": "World Bank WDI SP.POP.TOTL"},
+  {"name": "wdi_gdp.csv", "url": "https://raw.githubusercontent.com/datasets/gdp/main/data/gdp.csv", "licence": "CC BY 4.0 (World Bank WDI NY.GDP.MKTP.CD; packaged by datasets/gdp, ODC-PDDL)", "upstream": "World Bank WDI NY.GDP.MKTP.CD (current US$)"},
+  {"name": "owid-energy-data.csv", "url": "https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv", "licence": "CC BY 4.0 (OWID); only columns whose upstream is Ember or EIA are used (R53 Q1)", "upstream": "OWID energy dataset (Ember yearly electricity, EIA)"},
+  {"name": "owid-energy-codebook.csv", "url": "https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-codebook.csv", "licence": "CC BY 4.0 (OWID)", "upstream": "OWID energy codebook: each column's source"}
+ ]
+}

@@ -1,0 +1,84 @@
+{
+ "id": "food_manufacturing_JPN",
+ "self_use_coef": 0.22012289494374804,
+ "self_use_source": "S: soumu 産業連関表 2020 取引基本表 生産者価格 統合中分類 (modern-data raw/jpn_official/io2020_medium_000954302.xlsx), 百万円 食料品->食料品 6,405,392 / 29,099,163 (own intermediate use, kept inside the actor)",
+ "kind": "industry",
+ "jurisdiction": "JPN",
+ "stocks": {
+  "capacity_bn_jpy_month": 2424.93025,
+  "cash_bn_jpy": 2000.0,
+  "demand_expectation": 1891.147583,
+  "fixed_costs_bn_month": 967.7280000000001,
+  "working_floor_months": 1.0,
+  "inventory_target_months": 0.5,
+  "capex_per_bn_month_capacity": 18.0
+ },
+ "fixed_costs_source": "S: soumu 産業連関表 2020 取引基本表 生産者価格 統合中分類 (modern-data raw/jpn_official/io2020_medium_000954302.xlsx), 百万円 食料品: other intermediate inputs (内生部門計 20,133,572 less the commodities bought here and own use) + 雇用者所得 4,275,571 + 家計外消費 168,872, / 12; paid to other sectors and households each month",
+ "stocks_source": {
+  "capacity_bn_jpy_month": "S: soumu 産業連関表 2020 取引基本表 生産者価格 統合中分類 (modern-data raw/jpn_official/io2020_medium_000954302.xlsx), 百万円 食料品 国内生産額 29,099,163 百万円 / 12",
+  "cash_bn_jpy": "T: declared working cash",
+  "inventory_target_months": "T: half a month of expected sales",
+  "capex_per_bn_month_capacity": "D: the IO 2020 食料品 資本減耗引当 1,660,050 百万円/yr against the output 29,099,163 gives a capital stock of about 1.5 years of output at a 25-year life (T), i.e. 18 bn of capital per bn of monthly capacity",
+  "demand_expectation": "D: the start sales = monthly output x (1 - own use 0.2201): 2424.93 x 0.7799; the gross figure read as excess supply in month 0 (S4 fix)"
+ },
+ "inputs": {
+  "rice": {
+   "coef": 128.3303156065961,
+   "unit": "t per bn JPY of output",
+   "label": "D",
+   "domestic_share": 1.0,
+   "self_sufficiency": 1.0,
+   "self_sufficiency_source": "S: 食料需給表 令和5年度 米 自給率 99%; since S2' the whole requirement is bid at home and the trading houses import the gap (E4-2)",
+   "source": "soumu 産業連関表 2020 取引基本表 生産者価格 統合中分類 (modern-data raw/jpn_official/io2020_medium_000954302.xlsx), 百万円; 耕種農業->食料品 2,911,264 / 食料品 国内生産額 29,099,163; split 0.5 (T); at the commodity's start price (coef recomputed at the D477 start price, D477 purge)"
+  },
+  "vegetables": {
+   "coef": 126.64090385683836,
+   "unit": "t per bn JPY of output",
+   "label": "D",
+   "domestic_share": 1.0,
+   "self_sufficiency": 0.8,
+   "self_sufficiency_source": "S: 野菜 自給率 79%; since S2' the whole requirement is bid at home and the trading houses import the gap (E4-2)",
+   "source": "soumu 産業連関表 2020 取引基本表 生産者価格 統合中分類 (modern-data raw/jpn_official/io2020_medium_000954302.xlsx), 百万円; 耕種農業->食料品 2,911,264 / 食料品 国内生産額 29,099,163; split 0.3 (T); at the commodity's start price (coef recomputed at the D477 start price, D477 purge)"
+  },
+  "wheat": {
+   "coef": 166.74385674483722,
+   "unit": "t per bn JPY of output",
+   "label": "D",
+   "domestic_share": 1.0,
+   "self_sufficiency": 0.15,
+   "self_sufficiency_source": "S: 小麦 自給率 15%; since S2' the whole requirement is bid at home and the trading houses import the gap (E4-2)",
+   "source": "soumu 産業連関表 2020 取引基本表 生産者価格 統合中分類 (modern-data raw/jpn_official/io2020_medium_000954302.xlsx), 百万円; 耕種農業->食料品 2,911,264 / 食料品 国内生産額 29,099,163; split 0.1 (T); at the commodity's start price"
+  },
+  "soybeans": {
+   "coef": 101.93621140637654,
+   "unit": "t per bn JPY of output",
+   "label": "D",
+   "domestic_share": 1.0,
+   "self_sufficiency": 0.07,
+   "self_sufficiency_source": "S: 食料需給表 令和5年度 大豆 自給率 7% (食品製造の投入は搾油を含むので全体の自給率); since S2' the whole requirement is bid at home and the trading houses import the gap (E4-2)",
+   "source": "soumu 産業連関表 2020 取引基本表 生産者価格 統合中分類 (modern-data raw/jpn_official/io2020_medium_000954302.xlsx), 百万円; 耕種農業->食料品 2,911,264 / 食料品 国内生産額 29,099,163; split 0.1 (T); at the commodity's start price (coef recomputed at the D477 start price, D477 purge)"
+  },
+  "livestock_products": {
+   "external": true,
+   "coef": 335.5855384178668,
+   "unit": "t per bn JPY of output",
+   "label": "D",
+   "source": "soumu 産業連関表 2020 取引基本表 生産者価格 統合中分類 (modern-data raw/jpn_official/io2020_medium_000954302.xlsx), 百万円; 畜産->食料品 2,741,108 / 29,099,163 at the start price (coef recomputed at R96d's start price)"
+  },
+  "fish": {
+   "external": true,
+   "coef": 77.63748942440017,
+   "unit": "t per bn JPY of output",
+   "label": "D",
+   "source": "soumu 産業連関表 2020 取引基本表 生産者価格 統合中分類 (modern-data raw/jpn_official/io2020_medium_000954302.xlsx), 百万円; 漁業->食料品 907,515 / 29,099,163 at the start price (coef recomputed at the D477 start price, D477 purge)"
+  }
+ },
+ "inputs_note": "external: true = no producing actor yet (livestock and fisheries are E1 actors to come); the input is taken as supplied at the start level (HELD placeholder) and paid at its price",
+ "params": {
+  "wage_share_of_fixed": {
+   "value": 0.368179471,
+   "label": "S",
+   "source": "soumu 産業連関表 2020 食料品 雇用者所得 4,275,571 百万円/yr / 12 over the fixed costs of the month (967.728 bn, fixed_costs_source): the part of the fixed cost that is wages, scaled by labour's wage index when the labour module runs (V090)"
+  }
+ }
+}

@@ -1,0 +1,46 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+__pycache__/
+*.pyc
+docs/team/backup_*/
+.claude/worktrees/
+
+# 試験の回し方（tools/run_tests.sh）の出力
+outputs/tests/
+outputs/cache/
+
+# 拡張（C++）: godot-cpp の木・ビルドの出力はコミットしない
+# 末尾の / は付けない: 付けるとフォルダにしか当たらず、作業者の worktree がここを symlink で共有したとき（作り直しは10分）無視されず、git add -A で symlink が入る
+native/third_party
+native/bin
+*.os
+*.obj
+*.o
+.sconsign*.dblite
+
+# 書き出しの成果物（tools/export/export_windows.sh）。.exe・.pck・.dll はコミットしない
+/build/
+*.pck
+*.dll
+*.exe
+
+# 秘密（T023）。鍵は環境変数にだけ置く
+.env
+.env.*
+*.key
+*.pem
+secrets/
+
+# 走らせた結果の置き場（T023）。実行の記録は SANDVOX_RUNS_DIR（tools/run/runs_dir.gd）に出す。
+# 既にコミット済みの outputs/ の下は追跡されたまま（.gitignore は追跡済みに効かない）。新しい物は git add -f で明示して足す
+/outputs/
+transcripts/
+*.transcript.jsonl
+frames.bin
+/frames/
+tools/validate/constants_seed.*.translation
+tools/validate/constants_seed.csv.import
+
+# The paleo climate slice: only the gzip is committed (owner 2026-10-26; the 69.7 MB bin is over the 50 MB per-file limit)
+/data/earth/paleo_climate.bin

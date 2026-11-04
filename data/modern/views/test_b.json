@@ -1,0 +1,3114 @@
+{
+ "claims": [
+  {
+   "administered_by": "RUS",
+   "aliases": [],
+   "area": "northern_territories",
+   "label": "Southern Kurils",
+   "source": "test fixture",
+   "view_holder": null
+  },
+  {
+   "administered_by": "KOR",
+   "aliases": [],
+   "area": "takeshima",
+   "label": "Dokdo",
+   "source": "test fixture",
+   "view_holder": null
+  }
+ ],
+ "counts": {
+  "not_listed": 0,
+  "not_recognised": 0,
+  "region": 1,
+  "self": 0,
+  "state": 200,
+  "territory": 13,
+  "unknown": 1
+ },
+ "entities": {
+  "ABW": {
+   "aliases": [
+    "Аруба",
+    "أروبا",
+    "アルバ",
+    "阿魯巴",
+    "阿鲁巴",
+    "아루바"
+   ],
+   "kind": "territory",
+   "name": "Aruba",
+   "of": "NLD",
+   "source": "fixture"
+  },
+  "AFG": {
+   "aliases": [
+    "Afganistán",
+    "Афганистан",
+    "أفغانستان",
+    "アフガニスタン",
+    "阿富汗",
+    "아프가니스탄"
+   ],
+   "kind": "state",
+   "name": "Afghanistan",
+   "source": "fixture"
+  },
+  "AGO": {
+   "aliases": [
+    "Ангола",
+    "أنغولا",
+    "アンゴラ",
+    "安哥拉",
+    "앙골라"
+   ],
+   "kind": "state",
+   "name": "Angola",
+   "source": "fixture"
+  },
+  "ALB": {
+   "aliases": [
+    "Albanie",
+    "Албания",
+    "ألبانيا",
+    "アルバニア",
+    "阿尔巴尼亚",
+    "阿爾巴尼亞",
+    "알바니아"
+   ],
+   "kind": "state",
+   "name": "Albania",
+   "source": "fixture"
+  },
+  "AND": {
+   "aliases": [
+    "Andorre",
+    "Андорра",
+    "أندورا",
+    "アンドラ",
+    "安道尔",
+    "安道爾",
+    "안도라"
+   ],
+   "kind": "state",
+   "name": "Andorra",
+   "source": "fixture"
+  },
+  "ARE": {
+   "aliases": [
+    "Emiratos Árabes Unidos",
+    "Émirats arabes unis",
+    "Объединённые Арабские Эмираты",
+    "الإمارات العربية المتحدة",
+    "アラブ首長国連邦",
+    "阿拉伯联合酋长国",
+    "阿拉伯聯合大公國",
+    "아랍에미리트"
+   ],
+   "kind": "state",
+   "name": "United Arab Emirates",
+   "source": "fixture"
+  },
+  "ARG": {
+   "aliases": [
+    "Argentine",
+    "Аргентина",
+    "الأرجنتين",
+    "アルゼンチン",
+    "阿根廷",
+    "아르헨티나"
+   ],
+   "kind": "state",
+   "name": "Argentina",
+   "source": "fixture"
+  },
+  "ARM": {
+   "aliases": [
+    "Arménie",
+    "Армения",
+    "أرمينيا",
+    "アルメニア",
+    "亚美尼亚",
+    "亞美尼亞",
+    "아르메니아"
+   ],
+   "kind": "state",
+   "name": "Armenia",
+   "source": "fixture"
+  },
+  "ATG": {
+   "aliases": [
+    "Antigua y Barbuda",
+    "Antigua-et-Barbuda",
+    "Антигуа и Барбуда",
+    "أنتيغوا وباربودا",
+    "アンティグア・バーブーダ",
+    "安地卡及巴布達",
+    "安提瓜和巴布达",
+    "앤티가 바부다"
+   ],
+   "kind": "state",
+   "name": "Antigua and Barbuda",
+   "source": "fixture"
+  },
+  "AUS": {
+   "aliases": [
+    "Australie",
+    "Австралия",
+    "أستراليا",
+    "オーストラリア",
+    "澳大利亚",
+    "澳大利亞",
+    "오스트레일리아"
+   ],
+   "kind": "state",
+   "name": "Australia",
+   "source": "fixture"
+  },
+  "AUT": {
+   "aliases": [
+    "Autriche",
+    "Австрия",
+    "النمسا",
+    "オーストリア",
+    "奥地利",
+    "奧地利",
+    "오스트리아"
+   ],
+   "kind": "state",
+   "name": "Austria",
+   "source": "fixture"
+  },
+  "AZE": {
+   "aliases": [
+    "Azerbaiyán",
+    "Azerbaïdjan",
+    "Азербайджан",
+    "أذربيجان",
+    "アゼルバイジャン",
+    "亞塞拜然",
+    "阿塞拜疆",
+    "아제르바이잔"
+   ],
+   "kind": "state",
+   "name": "Azerbaijan",
+   "source": "fixture"
+  },
+  "BDI": {
+   "aliases": [
+    "Бурунди",
+    "بوروندي",
+    "ブルンジ",
+    "布隆迪",
+    "蒲隆地",
+    "부룬디"
+   ],
+   "kind": "state",
+   "name": "Burundi",
+   "source": "fixture"
+  },
+  "BEL": {
+   "aliases": [
+    "Belgique",
+    "Bélgica",
+    "Бельгия",
+    "بلجيكا",
+    "ベルギー",
+    "比利时",
+    "比利時",
+    "벨기에"
+   ],
+   "kind": "state",
+   "name": "Belgium",
+   "source": "fixture"
+  },
+  "BEN": {
+   "aliases": [
+    "Benín",
+    "Bénin",
+    "Бенин",
+    "بنين",
+    "ベナン",
+    "貝南",
+    "贝宁",
+    "베냉"
+   ],
+   "kind": "state",
+   "name": "Benin",
+   "source": "fixture"
+  },
+  "BFA": {
+   "aliases": [
+    "Буркина-Фасо",
+    "بوركينا فاسو",
+    "ブルキナファソ",
+    "布基納法索",
+    "布基纳法索",
+    "부르키나파소"
+   ],
+   "kind": "state",
+   "name": "Burkina Faso",
+   "source": "fixture"
+  },
+  "BGD": {
+   "aliases": [
+    "Bangladés",
+    "Бангладеш",
+    "بنغلاديش",
+    "バングラデシュ",
+    "孟加拉",
+    "孟加拉国",
+    "방글라데시"
+   ],
+   "kind": "state",
+   "name": "Bangladesh",
+   "source": "fixture"
+  },
+  "BGR": {
+   "aliases": [
+    "Bulgarie",
+    "Болгария",
+    "بلغاريا",
+    "ブルガリア",
+    "保加利亚",
+    "保加利亞",
+    "불가리아"
+   ],
+   "kind": "state",
+   "name": "Bulgaria",
+   "source": "fixture"
+  },
+  "BHR": {
+   "aliases": [
+    "Bahreïn",
+    "Baréin",
+    "Бахрейн",
+    "البحرين",
+    "バーレーン",
+    "巴林",
+    "바레인"
+   ],
+   "kind": "state",
+   "name": "Bahrain",
+   "source": "fixture"
+  },
+  "BHS": {
+   "aliases": [
+    "The Bahamas",
+    "Багамские Острова",
+    "باهاماس",
+    "バハマ",
+    "巴哈馬",
+    "巴哈马",
+    "바하마"
+   ],
+   "kind": "state",
+   "name": "Bahamas",
+   "source": "fixture"
+  },
+  "BIH": {
+   "aliases": [
+    "Bosnia y Herzegovina",
+    "Bosnie-Herzégovine",
+    "Босния и Герцеговина",
+    "البوسنة والهرسك",
+    "ボスニア・ヘルツェゴビナ",
+    "波士尼亞與赫塞哥維納",
+    "波斯尼亚和黑塞哥维那",
+    "보스니아 헤르체고비나"
+   ],
+   "kind": "state",
+   "name": "Bosnia and Herzegovina",
+   "source": "fixture"
+  },
+  "BLR": {
+   "aliases": [
+    "Bielorrusia",
+    "Biélorussie",
+    "Белоруссия",
+    "بيلاروسيا",
+    "ベラルーシ",
+    "白俄罗斯",
+    "白俄羅斯",
+    "벨라루스"
+   ],
+   "kind": "state",
+   "name": "Belarus",
+   "source": "fixture"
+  },
+  "BLZ": {
+   "aliases": [
+    "Belice",
+    "Белиз",
+    "بليز",
+    "ベリーズ",
+    "伯利兹",
+    "貝里斯",
+    "벨리즈"
+   ],
+   "kind": "state",
+   "name": "Belize",
+   "source": "fixture"
+  },
+  "BMU": {
+   "aliases": [
+    "Bermudas",
+    "Bermudes",
+    "Бермудские Острова",
+    "برمودا",
+    "バミューダ諸島",
+    "百慕大",
+    "百慕達",
+    "버뮤다"
+   ],
+   "kind": "territory",
+   "name": "Bermuda",
+   "of": "GBR",
+   "source": "fixture"
+  },
+  "BOL": {
+   "aliases": [
+    "Bolivia",
+    "Bolivie",
+    "Боливия",
+    "بوليفيا",
+    "ボリビア",
+    "玻利維亞",
+    "玻利维亚",
+    "볼리비아"
+   ],
+   "kind": "state",
+   "name": "Bolivia (Plurinational State of)",
+   "source": "fixture"
+  },
+  "BRA": {
+   "aliases": [
+    "Brasil",
+    "Brésil",
+    "Бразилия",
+    "البرازيل",
+    "ブラジル",
+    "巴西",
+    "브라질"
+   ],
+   "kind": "state",
+   "name": "Brazil",
+   "source": "fixture"
+  },
+  "BRB": {
+   "aliases": [
+    "Barbade",
+    "Барбадос",
+    "باربادوس",
+    "バルバドス",
+    "巴巴多斯",
+    "巴貝多",
+    "바베이도스"
+   ],
+   "kind": "state",
+   "name": "Barbados",
+   "source": "fixture"
+  },
+  "BRN": {
+   "aliases": [
+    "Brunei",
+    "Brunéi",
+    "Бруней",
+    "بروناي",
+    "ブルネイ",
+    "文莱",
+    "汶萊",
+    "브루나이"
+   ],
+   "kind": "state",
+   "name": "Brunei Darussalam",
+   "source": "fixture"
+  },
+  "BTN": {
+   "aliases": [
+    "Bhoutan",
+    "Bután",
+    "Бутан",
+    "بوتان",
+    "ブータン",
+    "不丹",
+    "부탄"
+   ],
+   "kind": "state",
+   "name": "Bhutan",
+   "source": "fixture"
+  },
+  "BWA": {
+   "aliases": [
+    "Botsuana",
+    "Ботсвана",
+    "بوتسوانا",
+    "ボツワナ",
+    "博茨瓦纳",
+    "波札那",
+    "보츠와나"
+   ],
+   "kind": "state",
+   "name": "Botswana",
+   "source": "fixture"
+  },
+  "CAF": {
+   "aliases": [
+    "República Centroafricana",
+    "République centrafricaine",
+    "Центральноафриканская Республика",
+    "جمهورية أفريقيا الوسطى",
+    "中央アフリカ共和国",
+    "中非共和国",
+    "中非共和國",
+    "중앙아프리카 공화국"
+   ],
+   "kind": "state",
+   "name": "Central African Republic",
+   "source": "fixture"
+  },
+  "CAN": {
+   "aliases": [
+    "Canadá",
+    "Канада",
+    "كندا",
+    "カナダ",
+    "加拿大",
+    "캐나다"
+   ],
+   "kind": "state",
+   "name": "Canada",
+   "source": "fixture"
+  },
+  "CHE": {
+   "aliases": [
+    "Suisse",
+    "Suiza",
+    "Швейцария",
+    "سويسرا",
+    "スイス",
+    "瑞士",
+    "스위스"
+   ],
+   "kind": "state",
+   "name": "Switzerland",
+   "source": "fixture"
+  },
+  "CHL": {
+   "aliases": [
+    "Chili",
+    "Чили",
+    "تشيلي",
+    "チリ",
+    "智利",
+    "칠레"
+   ],
+   "kind": "state",
+   "name": "Chile",
+   "source": "fixture"
+  },
+  "CHN": {
+   "aliases": [
+    "People's Republic of China",
+    "République populaire de Chine",
+    "Китайская Народная Республика",
+    "الصين",
+    "中华人民共和国",
+    "中華人民共和国",
+    "中華人民共和國",
+    "중화인민공화국"
+   ],
+   "kind": "state",
+   "name": "China",
+   "source": "fixture"
+  },
+  "CIV": {
+   "aliases": [
+    "Costa de Marfil",
+    "Côte d'Ivoire",
+    "Ivory Coast",
+    "Кот-д’Ивуар",
+    "ساحل العاج",
+    "コートジボワール",
+    "科特迪瓦",
+    "象牙海岸",
+    "코트디부아르"
+   ],
+   "kind": "state",
+   "name": "Côte d’Ivoire",
+   "source": "fixture"
+  },
+  "CMR": {
+   "aliases": [
+    "Cameroun",
+    "Camerún",
+    "Камерун",
+    "الكاميرون",
+    "カメルーン",
+    "喀麥隆",
+    "喀麦隆",
+    "카메룬"
+   ],
+   "kind": "state",
+   "name": "Cameroon",
+   "source": "fixture"
+  },
+  "COD": {
+   "aliases": [
+    "República Democrática del Congo",
+    "République démocratique du Congo",
+    "Демократическая Республика Конго",
+    "جمهورية الكونغو الديمقراطية",
+    "コンゴ民主共和国",
+    "刚果民主共和国",
+    "剛果民主共和國",
+    "콩고 민주 공화국"
+   ],
+   "kind": "state",
+   "name": "Democratic Republic of the Congo",
+   "source": "fixture"
+  },
+  "COG": {
+   "aliases": [
+    "Republic of the Congo",
+    "República del Congo",
+    "République du Congo",
+    "Республика Конго",
+    "جمهورية الكونغو",
+    "コンゴ共和国",
+    "刚果共和国",
+    "剛果共和國",
+    "콩고 공화국"
+   ],
+   "kind": "state",
+   "name": "Congo",
+   "source": "fixture"
+  },
+  "COK": {
+   "aliases": [
+    "Islas Cook",
+    "Îles Cook",
+    "Острова Кука",
+    "جزر كوك",
+    "クック諸島",
+    "库克群岛",
+    "庫克群島",
+    "쿡 제도"
+   ],
+   "kind": "state",
+   "name": "Cook Islands",
+   "source": "fixture"
+  },
+  "COL": {
+   "aliases": [
+    "Colombie",
+    "Колумбия",
+    "كولومبيا",
+    "コロンビア",
+    "哥伦比亚",
+    "哥倫比亞",
+    "콜롬비아"
+   ],
+   "kind": "state",
+   "name": "Colombia",
+   "source": "fixture"
+  },
+  "COM": {
+   "aliases": [
+    "Comoras",
+    "Comores",
+    "Коморы",
+    "جزر القمر",
+    "コモロ",
+    "科摩罗",
+    "葛摩",
+    "코모로"
+   ],
+   "kind": "state",
+   "name": "Comoros",
+   "source": "fixture"
+  },
+  "CPV": {
+   "aliases": [
+    "Cap-Vert",
+    "Cape Verde",
+    "Кабо-Верде",
+    "الرأس الأخضر",
+    "カーボベルデ",
+    "佛得角",
+    "維德角",
+    "카보베르데"
+   ],
+   "kind": "state",
+   "name": "Cabo Verde",
+   "source": "fixture"
+  },
+  "CRI": {
+   "aliases": [
+    "Коста-Рика",
+    "كوستاريكا",
+    "コスタリカ",
+    "哥斯大黎加",
+    "哥斯达黎加",
+    "코스타리카"
+   ],
+   "kind": "state",
+   "name": "Costa Rica",
+   "source": "fixture"
+  },
+  "CUB": {
+   "aliases": [
+    "Куба",
+    "كوبا",
+    "キューバ",
+    "古巴",
+    "쿠바"
+   ],
+   "kind": "state",
+   "name": "Cuba",
+   "source": "fixture"
+  },
+  "CUW": {
+   "aliases": [
+    "Curazao",
+    "Кюрасао",
+    "كوراساو",
+    "キュラソー",
+    "古拉索",
+    "库拉索",
+    "퀴라소"
+   ],
+   "kind": "territory",
+   "name": "Curaçao",
+   "of": "NLD",
+   "source": "fixture"
+  },
+  "CYM": {
+   "aliases": [
+    "Islas Caimán",
+    "îles Caïmans",
+    "острова Кайман",
+    "جزر كايمان",
+    "ケイマン諸島",
+    "开曼群岛",
+    "開曼群島",
+    "케이맨 제도"
+   ],
+   "kind": "territory",
+   "name": "Cayman Islands",
+   "of": "GBR",
+   "source": "fixture"
+  },
+  "CYP": {
+   "aliases": [
+    "Chipre",
+    "Chypre",
+    "Кипр",
+    "قبرص",
+    "キプロス",
+    "塞浦路斯",
+    "賽普勒斯",
+    "키프로스"
+   ],
+   "kind": "state",
+   "name": "Cyprus",
+   "source": "fixture"
+  },
+  "CZE": {
+   "aliases": [
+    "Czech Republic",
+    "República Checa",
+    "Tchéquie",
+    "Чехия",
+    "التشيك",
+    "チェコ",
+    "捷克",
+    "捷克共和國",
+    "체코"
+   ],
+   "kind": "state",
+   "name": "Czechia",
+   "source": "fixture"
+  },
+  "DEU": {
+   "aliases": [
+    "Alemania",
+    "Allemagne",
+    "Германия",
+    "ألمانيا",
+    "ドイツ",
+    "德国",
+    "德國",
+    "독일"
+   ],
+   "kind": "state",
+   "name": "Germany",
+   "source": "fixture"
+  },
+  "DJI": {
+   "aliases": [
+    "Yibuti",
+    "Джибути",
+    "جيبوتي",
+    "ジブチ",
+    "吉布地",
+    "吉布提",
+    "지부티"
+   ],
+   "kind": "state",
+   "name": "Djibouti",
+   "source": "fixture"
+  },
+  "DMA": {
+   "aliases": [
+    "Dominique",
+    "Доминика",
+    "دومينيكا",
+    "ドミニカ国",
+    "多米尼克",
+    "도미니카 연방"
+   ],
+   "kind": "state",
+   "name": "Dominica",
+   "source": "fixture"
+  },
+  "DNK": {
+   "aliases": [
+    "Danemark",
+    "Dinamarca",
+    "Дания",
+    "الدنمارك",
+    "デンマーク",
+    "丹麥",
+    "丹麦",
+    "덴마크"
+   ],
+   "kind": "state",
+   "name": "Denmark",
+   "source": "fixture"
+  },
+  "DOM": {
+   "aliases": [
+    "República Dominicana",
+    "République dominicaine",
+    "Доминиканская Республика",
+    "جمهورية الدومينيكان",
+    "ドミニカ共和国",
+    "多明尼加",
+    "多米尼加",
+    "도미니카 공화국"
+   ],
+   "kind": "state",
+   "name": "Dominican Republic",
+   "source": "fixture"
+  },
+  "DZA": {
+   "aliases": [
+    "Algérie",
+    "Argelia",
+    "Алжир",
+    "الجزائر",
+    "アルジェリア",
+    "阿尔及利亚",
+    "阿爾及利亞",
+    "알제리"
+   ],
+   "kind": "state",
+   "name": "Algeria",
+   "source": "fixture"
+  },
+  "ECU": {
+   "aliases": [
+    "Équateur",
+    "Эквадор",
+    "الإكوادور",
+    "エクアドル",
+    "厄瓜多尔",
+    "厄瓜多爾",
+    "에콰도르"
+   ],
+   "kind": "state",
+   "name": "Ecuador",
+   "source": "fixture"
+  },
+  "EGY": {
+   "aliases": [
+    "Egipto",
+    "Égypte",
+    "Египет",
+    "مصر",
+    "エジプト",
+    "埃及",
+    "이집트"
+   ],
+   "kind": "state",
+   "name": "Egypt",
+   "source": "fixture"
+  },
+  "ERI": {
+   "aliases": [
+    "Érythrée",
+    "Эритрея",
+    "إريتريا",
+    "エリトリア",
+    "厄利垂亞",
+    "厄立特里亚",
+    "에리트레아"
+   ],
+   "kind": "state",
+   "name": "Eritrea",
+   "source": "fixture"
+  },
+  "ESH": {
+   "aliases": [
+    "Sahara Occidental",
+    "Sahara occidental",
+    "Западная Сахара",
+    "الصحراء الغربية",
+    "西サハラ",
+    "西撒哈拉",
+    "서사하라"
+   ],
+   "kind": "region",
+   "name": "Western Sahara",
+   "source": "fixture"
+  },
+  "ESP": {
+   "aliases": [
+    "Espagne",
+    "España",
+    "Испания",
+    "إسبانيا",
+    "スペイン",
+    "西班牙",
+    "스페인"
+   ],
+   "kind": "state",
+   "name": "Spain",
+   "source": "fixture"
+  },
+  "EST": {
+   "aliases": [
+    "Estonie",
+    "Эстония",
+    "إستونيا",
+    "エストニア",
+    "愛沙尼亞",
+    "爱沙尼亚",
+    "에스토니아"
+   ],
+   "kind": "state",
+   "name": "Estonia",
+   "source": "fixture"
+  },
+  "ETH": {
+   "aliases": [
+    "Etiopía",
+    "Éthiopie",
+    "Эфиопия",
+    "إثيوبيا",
+    "エチオピア",
+    "埃塞俄比亚",
+    "衣索比亞",
+    "에티오피아"
+   ],
+   "kind": "state",
+   "name": "Ethiopia",
+   "source": "fixture"
+  },
+  "FIN": {
+   "aliases": [
+    "Finlande",
+    "Finlandia",
+    "Финляндия",
+    "فنلندا",
+    "フィンランド",
+    "芬兰",
+    "芬蘭",
+    "핀란드"
+   ],
+   "kind": "state",
+   "name": "Finland",
+   "source": "fixture"
+  },
+  "FJI": {
+   "aliases": [
+    "Fidji",
+    "Fiyi",
+    "Фиджи",
+    "فيجي",
+    "フィジー",
+    "斐济",
+    "斐濟",
+    "피지"
+   ],
+   "kind": "state",
+   "name": "Fiji",
+   "source": "fixture"
+  },
+  "FRA": {
+   "aliases": [
+    "Francia",
+    "Франция",
+    "فرنسا",
+    "フランス",
+    "法国",
+    "法國",
+    "프랑스"
+   ],
+   "kind": "state",
+   "name": "France",
+   "source": "fixture"
+  },
+  "FRO": {
+   "aliases": [
+    "Islas Feroe",
+    "îles Féroé",
+    "Фарерские острова",
+    "جزر فارو",
+    "フェロー諸島",
+    "法罗群岛",
+    "法羅群島",
+    "페로 제도"
+   ],
+   "kind": "territory",
+   "name": "Faroe Islands",
+   "of": "DNK",
+   "source": "fixture"
+  },
+  "FSM": {
+   "aliases": [
+    "Estados Federados de Micronesia",
+    "Federated States of Micronesia",
+    "États fédérés de Micronésie",
+    "Микронезия",
+    "ولايات ميكرونيسيا المتحدة",
+    "ミクロネシア連邦",
+    "密克罗尼西亚联邦",
+    "密克羅尼西亞聯邦",
+    "미크로네시아 연방"
+   ],
+   "kind": "state",
+   "name": "Micronesia (Federated States of)",
+   "source": "fixture"
+  },
+  "GAB": {
+   "aliases": [
+    "Gabón",
+    "Габон",
+    "الغابون",
+    "ガボン",
+    "加彭",
+    "加蓬",
+    "가봉"
+   ],
+   "kind": "state",
+   "name": "Gabon",
+   "source": "fixture"
+  },
+  "GBR": {
+   "aliases": [
+    "Reino Unido",
+    "Royaume-Uni",
+    "United Kingdom",
+    "Великобритания",
+    "المملكة المتحدة",
+    "イギリス",
+    "英国",
+    "英國",
+    "영국"
+   ],
+   "kind": "state",
+   "name": "United Kingdom of Great Britain and Northern Ireland",
+   "source": "fixture"
+  },
+  "GEO": {
+   "aliases": [
+    "Géorgie",
+    "Грузия",
+    "جورجيا",
+    "ジョージア",
+    "喬治亞",
+    "格鲁吉亚",
+    "조지아"
+   ],
+   "kind": "state",
+   "name": "Georgia",
+   "source": "fixture"
+  },
+  "GHA": {
+   "aliases": [
+    "Гана",
+    "غانا",
+    "ガーナ",
+    "加纳",
+    "迦納",
+    "가나"
+   ],
+   "kind": "state",
+   "name": "Ghana",
+   "source": "fixture"
+  },
+  "GIN": {
+   "aliases": [
+    "Guinée",
+    "Гвинея",
+    "غينيا",
+    "ギニア",
+    "几内亚",
+    "幾內亞",
+    "기니"
+   ],
+   "kind": "state",
+   "name": "Guinea",
+   "source": "fixture"
+  },
+  "GMB": {
+   "aliases": [
+    "Gambie",
+    "The Gambia",
+    "Гамбия",
+    "غامبيا",
+    "ガンビア",
+    "冈比亚",
+    "甘比亞",
+    "감비아"
+   ],
+   "kind": "state",
+   "name": "Gambia",
+   "source": "fixture"
+  },
+  "GNB": {
+   "aliases": [
+    "Guinea-Bisáu",
+    "Guinée-Bissau",
+    "Гвинея-Бисау",
+    "غينيا بيساو",
+    "ギニアビサウ",
+    "几内亚比绍",
+    "幾內亞比索",
+    "기니비사우"
+   ],
+   "kind": "state",
+   "name": "Guinea-Bissau",
+   "source": "fixture"
+  },
+  "GNQ": {
+   "aliases": [
+    "Guinea Ecuatorial",
+    "Guinée équatoriale",
+    "Экваториальная Гвинея",
+    "غينيا الاستوائية",
+    "赤道ギニア",
+    "赤道几内亚",
+    "赤道幾內亞",
+    "적도 기니"
+   ],
+   "kind": "state",
+   "name": "Equatorial Guinea",
+   "source": "fixture"
+  },
+  "GRC": {
+   "aliases": [
+    "Grecia",
+    "Grèce",
+    "Греция",
+    "اليونان",
+    "ギリシャ",
+    "希腊",
+    "希臘",
+    "그리스"
+   ],
+   "kind": "state",
+   "name": "Greece",
+   "source": "fixture"
+  },
+  "GRD": {
+   "aliases": [
+    "Granada",
+    "Grenade",
+    "Гренада",
+    "غرينادا",
+    "グレナダ",
+    "格林纳达",
+    "格瑞那達",
+    "그레나다"
+   ],
+   "kind": "state",
+   "name": "Grenada",
+   "source": "fixture"
+  },
+  "GRL": {
+   "aliases": [
+    "Groenland",
+    "Groenlandia",
+    "Гренландия",
+    "جرينلاند",
+    "グリーンランド",
+    "格陵兰",
+    "格陵蘭",
+    "그린란드"
+   ],
+   "kind": "territory",
+   "name": "Greenland",
+   "of": "DNK",
+   "source": "fixture"
+  },
+  "GTM": {
+   "aliases": [
+    "Гватемала",
+    "غواتيمالا",
+    "グアテマラ",
+    "危地马拉",
+    "瓜地馬拉",
+    "과테말라"
+   ],
+   "kind": "state",
+   "name": "Guatemala",
+   "source": "fixture"
+  },
+  "GUM": {
+   "aliases": [
+    "Гуам",
+    "غوام",
+    "グアム",
+    "关岛",
+    "關島",
+    "괌"
+   ],
+   "kind": "territory",
+   "name": "Guam",
+   "of": "USA",
+   "source": "fixture"
+  },
+  "GUY": {
+   "aliases": [
+    "Гайана",
+    "غيانا",
+    "ガイアナ",
+    "圭亚那",
+    "圭亞那",
+    "가이아나"
+   ],
+   "kind": "state",
+   "name": "Guyana",
+   "source": "fixture"
+  },
+  "HKG": {
+   "aliases": [
+    "Гонконг",
+    "هونغ كونغ",
+    "香港",
+    "홍콩"
+   ],
+   "kind": "state",
+   "name": "Hong Kong",
+   "source": "fixture"
+  },
+  "HND": {
+   "aliases": [
+    "Гондурас",
+    "هندوراس",
+    "ホンジュラス",
+    "宏都拉斯",
+    "洪都拉斯",
+    "온두라스"
+   ],
+   "kind": "state",
+   "name": "Honduras",
+   "source": "fixture"
+  },
+  "HRV": {
+   "aliases": [
+    "Croacia",
+    "Croatie",
+    "Хорватия",
+    "كرواتيا",
+    "クロアチア",
+    "克罗地亚",
+    "克羅地亞",
+    "크로아티아"
+   ],
+   "kind": "state",
+   "name": "Croatia",
+   "source": "fixture"
+  },
+  "HTI": {
+   "aliases": [
+    "Haití",
+    "Haïti",
+    "Республика Гаити",
+    "هايتي",
+    "ハイチ",
+    "海地",
+    "아이티"
+   ],
+   "kind": "state",
+   "name": "Haiti",
+   "source": "fixture"
+  },
+  "HUN": {
+   "aliases": [
+    "Hongrie",
+    "Hungría",
+    "Венгрия",
+    "المجر",
+    "ハンガリー",
+    "匈牙利",
+    "헝가리"
+   ],
+   "kind": "state",
+   "name": "Hungary",
+   "source": "fixture"
+  },
+  "IDN": {
+   "aliases": [
+    "Indonésie",
+    "Индонезия",
+    "إندونيسيا",
+    "インドネシア",
+    "印度尼西亚",
+    "印度尼西亞",
+    "인도네시아"
+   ],
+   "kind": "state",
+   "name": "Indonesia",
+   "source": "fixture"
+  },
+  "IMN": {
+   "aliases": [
+    "Isla de Man",
+    "île de Man",
+    "остров Мэн",
+    "جزيرة مان",
+    "マン島",
+    "曼島",
+    "马恩岛",
+    "맨섬"
+   ],
+   "kind": "territory",
+   "name": "Isle of Man",
+   "of": "GBR",
+   "source": "fixture"
+  },
+  "IND": {
+   "aliases": [
+    "Inde",
+    "Индия",
+    "الهند",
+    "インド",
+    "印度",
+    "인도"
+   ],
+   "kind": "state",
+   "name": "India",
+   "source": "fixture"
+  },
+  "IRL": {
+   "aliases": [
+    "Irlanda",
+    "Irlande",
+    "Ирландия",
+    "جمهورية أيرلندا",
+    "アイルランド",
+    "愛爾蘭",
+    "爱尔兰",
+    "아일랜드"
+   ],
+   "kind": "state",
+   "name": "Ireland",
+   "source": "fixture"
+  },
+  "IRN": {
+   "aliases": [
+    "Iran",
+    "Irán",
+    "Иран",
+    "إيران",
+    "イラン",
+    "伊朗",
+    "이란"
+   ],
+   "kind": "state",
+   "name": "Iran (Islamic Republic of)",
+   "source": "fixture"
+  },
+  "IRQ": {
+   "aliases": [
+    "Irak",
+    "Ирак",
+    "العراق",
+    "イラク",
+    "伊拉克",
+    "이라크"
+   ],
+   "kind": "state",
+   "name": "Iraq",
+   "source": "fixture"
+  },
+  "ISL": {
+   "aliases": [
+    "Islande",
+    "Islandia",
+    "Исландия",
+    "آيسلندا",
+    "アイスランド",
+    "冰岛",
+    "冰島",
+    "아이슬란드"
+   ],
+   "kind": "state",
+   "name": "Iceland",
+   "source": "fixture"
+  },
+  "ISR": {
+   "aliases": [
+    "Israël",
+    "Израиль",
+    "إسرائيل",
+    "イスラエル",
+    "以色列",
+    "이스라엘"
+   ],
+   "kind": "state",
+   "name": "Israel",
+   "source": "fixture"
+  },
+  "ITA": {
+   "aliases": [
+    "Italia",
+    "Italie",
+    "Италия",
+    "إيطاليا",
+    "イタリア",
+    "意大利",
+    "義大利",
+    "이탈리아"
+   ],
+   "kind": "state",
+   "name": "Italy",
+   "source": "fixture"
+  },
+  "JAM": {
+   "aliases": [
+    "Jamaïque",
+    "Ямайка",
+    "جامايكا",
+    "ジャマイカ",
+    "牙买加",
+    "牙買加",
+    "자메이카"
+   ],
+   "kind": "state",
+   "name": "Jamaica",
+   "source": "fixture"
+  },
+  "JOR": {
+   "aliases": [
+    "Jordania",
+    "Jordanie",
+    "Иордания",
+    "الأردن",
+    "ヨルダン",
+    "約旦",
+    "约旦",
+    "요르단"
+   ],
+   "kind": "state",
+   "name": "Jordan",
+   "source": "fixture"
+  },
+  "JPN": {
+   "aliases": [
+    "Japon",
+    "Japón",
+    "Япония",
+    "اليابان",
+    "日本",
+    "일본"
+   ],
+   "kind": "state",
+   "name": "Japan",
+   "source": "fixture"
+  },
+  "KAZ": {
+   "aliases": [
+    "Kazajistán",
+    "Казахстан",
+    "كازاخستان",
+    "カザフスタン",
+    "哈萨克斯坦",
+    "哈薩克",
+    "카자흐스탄"
+   ],
+   "kind": "state",
+   "name": "Kazakhstan",
+   "source": "fixture"
+  },
+  "KEN": {
+   "aliases": [
+    "Kenia",
+    "Кения",
+    "كينيا",
+    "ケニア",
+    "肯亞",
+    "肯尼亚",
+    "케냐"
+   ],
+   "kind": "state",
+   "name": "Kenya",
+   "source": "fixture"
+  },
+  "KGZ": {
+   "aliases": [
+    "Kirghizistan",
+    "Kirguistán",
+    "Киргизия",
+    "قيرغيزستان",
+    "キルギス",
+    "吉尔吉斯斯坦",
+    "吉爾吉斯",
+    "키르기스스탄"
+   ],
+   "kind": "state",
+   "name": "Kyrgyzstan",
+   "source": "fixture"
+  },
+  "KHM": {
+   "aliases": [
+    "Cambodge",
+    "Camboya",
+    "Камбоджа",
+    "كمبوديا",
+    "カンボジア",
+    "柬埔寨",
+    "캄보디아"
+   ],
+   "kind": "state",
+   "name": "Cambodia",
+   "source": "fixture"
+  },
+  "KIR": {
+   "aliases": [
+    "Кирибати",
+    "كيريباتي",
+    "キリバス",
+    "吉里巴斯",
+    "基里巴斯",
+    "키리바시"
+   ],
+   "kind": "state",
+   "name": "Kiribati",
+   "source": "fixture"
+  },
+  "KNA": {
+   "aliases": [
+    "Saint-Christophe-et-Niévès",
+    "San Cristóbal y Nieves",
+    "Сент-Китс и Невис",
+    "سانت كيتس ونيفيس",
+    "セントクリストファー・ネイビス",
+    "圣基茨和尼维斯",
+    "聖克里斯多福與尼維斯",
+    "세인트키츠 네비스"
+   ],
+   "kind": "state",
+   "name": "Saint Kitts and Nevis",
+   "source": "fixture"
+  },
+  "KOR": {
+   "aliases": [
+    "Corea del Sur",
+    "Corée du Sud",
+    "South Korea",
+    "Республика Корея",
+    "كوريا الجنوبية",
+    "大韓民国",
+    "大韓民國",
+    "大韩民国",
+    "대한민국"
+   ],
+   "kind": "state",
+   "name": "Republic of Korea",
+   "source": "fixture"
+  },
+  "KWT": {
+   "aliases": [
+    "Koweït",
+    "Кувейт",
+    "الكويت",
+    "クウェート",
+    "科威特",
+    "쿠웨이트"
+   ],
+   "kind": "state",
+   "name": "Kuwait",
+   "source": "fixture"
+  },
+  "LAO": {
+   "aliases": [
+    "Laos",
+    "Лаос",
+    "لاوس",
+    "ラオス",
+    "寮國",
+    "老挝",
+    "라오스"
+   ],
+   "kind": "state",
+   "name": "Lao People's Democratic Republic",
+   "source": "fixture"
+  },
+  "LBN": {
+   "aliases": [
+    "Liban",
+    "Líbano",
+    "Ливан",
+    "لبنان",
+    "レバノン",
+    "黎巴嫩",
+    "레바논"
+   ],
+   "kind": "state",
+   "name": "Lebanon",
+   "source": "fixture"
+  },
+  "LBR": {
+   "aliases": [
+    "Либерия",
+    "ليبيريا",
+    "リベリア",
+    "利比里亚",
+    "賴比瑞亞",
+    "라이베리아"
+   ],
+   "kind": "state",
+   "name": "Liberia",
+   "source": "fixture"
+  },
+  "LBY": {
+   "aliases": [
+    "Libia",
+    "Libye",
+    "Ливия",
+    "ليبيا",
+    "リビア",
+    "利比亚",
+    "利比亞",
+    "리비아"
+   ],
+   "kind": "state",
+   "name": "Libya",
+   "source": "fixture"
+  },
+  "LCA": {
+   "aliases": [
+    "Sainte-Lucie",
+    "Santa Lucía",
+    "Сент-Люсия",
+    "سانت لوسيا",
+    "セントルシア",
+    "圣卢西亚",
+    "聖露西亞",
+    "세인트루시아"
+   ],
+   "kind": "state",
+   "name": "Saint Lucia",
+   "source": "fixture"
+  },
+  "LIE": {
+   "aliases": [
+    "Лихтенштейн",
+    "ليختنشتاين",
+    "リヒテンシュタイン",
+    "列支敦士登",
+    "列支敦斯登",
+    "리히텐슈타인"
+   ],
+   "kind": "state",
+   "name": "Liechtenstein",
+   "source": "fixture"
+  },
+  "LKA": {
+   "aliases": [
+    "Шри-Ланка",
+    "سريلانكا",
+    "スリランカ",
+    "斯里兰卡",
+    "斯里蘭卡",
+    "스리랑카"
+   ],
+   "kind": "state",
+   "name": "Sri Lanka",
+   "source": "fixture"
+  },
+  "LSO": {
+   "aliases": [
+    "Lesoto",
+    "Лесото",
+    "ليسوتو",
+    "レソト",
+    "莱索托",
+    "賴索托",
+    "레소토"
+   ],
+   "kind": "state",
+   "name": "Lesotho",
+   "source": "fixture"
+  },
+  "LTU": {
+   "aliases": [
+    "Lituania",
+    "Lituanie",
+    "Литва",
+    "ليتوانيا",
+    "リトアニア",
+    "立陶宛",
+    "리투아니아"
+   ],
+   "kind": "state",
+   "name": "Lithuania",
+   "source": "fixture"
+  },
+  "LUX": {
+   "aliases": [
+    "Luxemburgo",
+    "Люксембург",
+    "لوكسمبورغ",
+    "ルクセンブルク",
+    "卢森堡",
+    "盧森堡",
+    "룩셈부르크"
+   ],
+   "kind": "state",
+   "name": "Luxembourg",
+   "source": "fixture"
+  },
+  "LVA": {
+   "aliases": [
+    "Letonia",
+    "Lettonie",
+    "Латвия",
+    "لاتفيا",
+    "ラトビア",
+    "拉脫維亞",
+    "拉脱维亚",
+    "라트비아"
+   ],
+   "kind": "state",
+   "name": "Latvia",
+   "source": "fixture"
+  },
+  "MAC": {
+   "aliases": [
+    "Macau",
+    "Макао",
+    "ماكاو",
+    "マカオ",
+    "澳門",
+    "澳门",
+    "마카오"
+   ],
+   "kind": "state",
+   "name": "Macao",
+   "source": "fixture"
+  },
+  "MAR": {
+   "aliases": [
+    "Maroc",
+    "Marruecos",
+    "Марокко",
+    "المغرب",
+    "モロッコ",
+    "摩洛哥",
+    "모로코"
+   ],
+   "kind": "state",
+   "name": "Morocco",
+   "source": "fixture"
+  },
+  "MCO": {
+   "aliases": [
+    "Mónaco",
+    "Монако",
+    "موناكو",
+    "モナコ",
+    "摩納哥",
+    "摩纳哥",
+    "모나코"
+   ],
+   "kind": "state",
+   "name": "Monaco",
+   "source": "fixture"
+  },
+  "MDA": {
+   "aliases": [
+    "Moldavia",
+    "Moldavie",
+    "Moldova",
+    "Молдавия",
+    "مولدوفا",
+    "モルドバ",
+    "摩尔多瓦",
+    "摩爾多瓦",
+    "몰도바"
+   ],
+   "kind": "state",
+   "name": "Republic of Moldova",
+   "source": "fixture"
+  },
+  "MDG": {
+   "aliases": [
+    "Мадагаскар",
+    "مدغشقر",
+    "マダガスカル",
+    "馬達加斯加",
+    "马达加斯加",
+    "마다가스카르"
+   ],
+   "kind": "state",
+   "name": "Madagascar",
+   "source": "fixture"
+  },
+  "MDV": {
+   "aliases": [
+    "Maldivas",
+    "Мальдивы",
+    "المالديف",
+    "モルディブ",
+    "馬爾地夫",
+    "马尔代夫",
+    "몰디브"
+   ],
+   "kind": "state",
+   "name": "Maldives",
+   "source": "fixture"
+  },
+  "MEX": {
+   "aliases": [
+    "Mexique",
+    "México",
+    "Мексика",
+    "المكسيك",
+    "メキシコ",
+    "墨西哥",
+    "멕시코"
+   ],
+   "kind": "state",
+   "name": "Mexico",
+   "source": "fixture"
+  },
+  "MHL": {
+   "aliases": [
+    "Islas Marshall",
+    "Îles Marshall",
+    "Маршалловы Острова",
+    "جزر مارشال",
+    "マーシャル諸島",
+    "馬紹爾群島",
+    "马绍尔群岛",
+    "마셜 제도"
+   ],
+   "kind": "state",
+   "name": "Marshall Islands",
+   "source": "fixture"
+  },
+  "MKD": {
+   "aliases": [
+    "Macedonia del Norte",
+    "Macédoine du Nord",
+    "Северная Македония",
+    "مقدونيا الشمالية",
+    "北マケドニア",
+    "北馬其頓",
+    "北马其顿",
+    "북마케도니아"
+   ],
+   "kind": "state",
+   "name": "North Macedonia",
+   "source": "fixture"
+  },
+  "MLI": {
+   "aliases": [
+    "Malí",
+    "Мали",
+    "مالي",
+    "マリ共和国",
+    "馬利共和國",
+    "马里",
+    "말리"
+   ],
+   "kind": "state",
+   "name": "Mali",
+   "source": "fixture"
+  },
+  "MLT": {
+   "aliases": [
+    "Malte",
+    "Мальта",
+    "مالطا",
+    "マルタ",
+    "馬耳他",
+    "马耳他",
+    "몰타"
+   ],
+   "kind": "state",
+   "name": "Malta",
+   "source": "fixture"
+  },
+  "MMR": {
+   "aliases": [
+    "Birmania",
+    "Birmanie",
+    "Мьянма",
+    "ميانمار",
+    "ミャンマー",
+    "緬甸",
+    "缅甸",
+    "미얀마"
+   ],
+   "kind": "state",
+   "name": "Myanmar",
+   "source": "fixture"
+  },
+  "MNE": {
+   "aliases": [
+    "Monténégro",
+    "Черногория",
+    "الجبل الأسود",
+    "モンテネグロ",
+    "蒙特內哥羅",
+    "黑山",
+    "몬테네그로"
+   ],
+   "kind": "state",
+   "name": "Montenegro",
+   "source": "fixture"
+  },
+  "MNG": {
+   "aliases": [
+    "Mongolie",
+    "Монголия",
+    "منغوليا",
+    "モンゴル国",
+    "蒙古国",
+    "蒙古國",
+    "몽골"
+   ],
+   "kind": "state",
+   "name": "Mongolia",
+   "source": "fixture"
+  },
+  "MOZ": {
+   "aliases": [
+    "Мозамбик",
+    "موزمبيق",
+    "モザンビーク",
+    "莫三比克",
+    "莫桑比克",
+    "모잠비크"
+   ],
+   "kind": "state",
+   "name": "Mozambique",
+   "source": "fixture"
+  },
+  "MRT": {
+   "aliases": [
+    "Mauritanie",
+    "Мавритания",
+    "موريتانيا",
+    "モーリタニア",
+    "毛里塔尼亚",
+    "茅利塔尼亞",
+    "모리타니"
+   ],
+   "kind": "state",
+   "name": "Mauritania",
+   "source": "fixture"
+  },
+  "MUS": {
+   "aliases": [
+    "Maurice",
+    "Mauricio",
+    "Маврикий",
+    "موريشيوس",
+    "モーリシャス",
+    "模里西斯",
+    "毛里求斯",
+    "모리셔스"
+   ],
+   "kind": "state",
+   "name": "Mauritius",
+   "source": "fixture"
+  },
+  "MWI": {
+   "aliases": [
+    "Malaui",
+    "Малави",
+    "مالاوي",
+    "マラウイ",
+    "馬拉威",
+    "马拉维",
+    "말라위"
+   ],
+   "kind": "state",
+   "name": "Malawi",
+   "source": "fixture"
+  },
+  "MYS": {
+   "aliases": [
+    "Malaisie",
+    "Malasia",
+    "Малайзия",
+    "ماليزيا",
+    "マレーシア",
+    "馬來西亞",
+    "马来西亚",
+    "말레이시아"
+   ],
+   "kind": "state",
+   "name": "Malaysia",
+   "source": "fixture"
+  },
+  "NAM": {
+   "aliases": [
+    "Namibie",
+    "Намибия",
+    "ناميبيا",
+    "ナミビア",
+    "納米比亞",
+    "纳米比亚",
+    "나미비아"
+   ],
+   "kind": "state",
+   "name": "Namibia",
+   "source": "fixture"
+  },
+  "NCL": {
+   "aliases": [
+    "Nouvelle-Calédonie",
+    "Nueva Caledonia",
+    "Новая Каледония",
+    "كاليدونيا الجديدة",
+    "ニューカレドニア",
+    "新喀里多尼亚",
+    "新喀里多尼亞",
+    "누벨칼레도니"
+   ],
+   "kind": "territory",
+   "name": "New Caledonia",
+   "of": "FRA",
+   "source": "fixture"
+  },
+  "NER": {
+   "aliases": [
+    "Níger",
+    "Нигер",
+    "النيجر",
+    "ニジェール",
+    "尼日",
+    "尼日尔",
+    "니제르"
+   ],
+   "kind": "state",
+   "name": "Niger",
+   "source": "fixture"
+  },
+  "NGA": {
+   "aliases": [
+    "Нигерия",
+    "نيجيريا",
+    "ナイジェリア",
+    "奈及利亞",
+    "尼日利亚",
+    "나이지리아"
+   ],
+   "kind": "state",
+   "name": "Nigeria",
+   "source": "fixture"
+  },
+  "NIC": {
+   "aliases": [
+    "Никарагуа",
+    "نيكاراغوا",
+    "ニカラグア",
+    "尼加拉瓜",
+    "니카라과"
+   ],
+   "kind": "state",
+   "name": "Nicaragua",
+   "source": "fixture"
+  },
+  "NIU": {
+   "aliases": [
+    "Ниуэ",
+    "نييوي",
+    "ニウエ",
+    "紐埃",
+    "纽埃",
+    "니우에"
+   ],
+   "kind": "state",
+   "name": "Niue",
+   "source": "fixture"
+  },
+  "NLD": {
+   "aliases": [
+    "Netherlands",
+    "Pays-Bas",
+    "Países Bajos",
+    "Нидерланды",
+    "هولندا",
+    "オランダ",
+    "荷兰",
+    "荷蘭",
+    "네덜란드"
+   ],
+   "kind": "state",
+   "name": "Netherlands (Kingdom of the)",
+   "source": "fixture"
+  },
+  "NOR": {
+   "aliases": [
+    "Noruega",
+    "Norvège",
+    "Норвегия",
+    "النرويج",
+    "ノルウェー",
+    "挪威",
+    "노르웨이"
+   ],
+   "kind": "state",
+   "name": "Norway",
+   "source": "fixture"
+  },
+  "NPL": {
+   "aliases": [
+    "Népal",
+    "Непал",
+    "نيبال",
+    "ネパール",
+    "尼泊尔",
+    "尼泊爾",
+    "네팔"
+   ],
+   "kind": "state",
+   "name": "Nepal",
+   "source": "fixture"
+  },
+  "NRU": {
+   "aliases": [
+    "Nauru",
+    "Науру",
+    "ناورو",
+    "ナウル",
+    "瑙鲁",
+    "諾魯",
+    "나우루"
+   ],
+   "kind": "state",
+   "name": "Naoero",
+   "source": "fixture"
+  },
+  "NZL": {
+   "aliases": [
+    "Nouvelle-Zélande",
+    "Nueva Zelanda",
+    "Новая Зеландия",
+    "نيوزيلندا",
+    "ニュージーランド",
+    "新西兰",
+    "新西蘭",
+    "뉴질랜드"
+   ],
+   "kind": "state",
+   "name": "New Zealand",
+   "source": "fixture"
+  },
+  "OMN": {
+   "aliases": [
+    "Omán",
+    "Оман",
+    "سلطنة عمان",
+    "オマーン",
+    "阿曼",
+    "오만"
+   ],
+   "kind": "state",
+   "name": "Oman",
+   "source": "fixture"
+  },
+  "PAK": {
+   "aliases": [
+    "Pakistán",
+    "Пакистан",
+    "باكستان",
+    "パキスタン",
+    "巴基斯坦",
+    "파키스탄"
+   ],
+   "kind": "state",
+   "name": "Pakistan",
+   "source": "fixture"
+  },
+  "PAN": {
+   "aliases": [
+    "Panamá",
+    "Панама",
+    "بنما",
+    "パナマ",
+    "巴拿馬",
+    "巴拿马",
+    "파나마"
+   ],
+   "kind": "state",
+   "name": "Panama",
+   "source": "fixture"
+  },
+  "PER": {
+   "aliases": [
+    "Perú",
+    "Pérou",
+    "Перу",
+    "بيرو",
+    "ペルー",
+    "秘魯",
+    "秘鲁",
+    "페루"
+   ],
+   "kind": "state",
+   "name": "Peru",
+   "source": "fixture"
+  },
+  "PHL": {
+   "aliases": [
+    "Filipinas",
+    "Филиппины",
+    "الفلبين",
+    "フィリピン",
+    "菲律宾",
+    "菲律賓",
+    "필리핀"
+   ],
+   "kind": "state",
+   "name": "Philippines",
+   "source": "fixture"
+  },
+  "PLW": {
+   "aliases": [
+    "Palaos",
+    "Палау",
+    "بالاو",
+    "パラオ",
+    "帕劳",
+    "帛琉",
+    "팔라우"
+   ],
+   "kind": "state",
+   "name": "Palau",
+   "source": "fixture"
+  },
+  "PNG": {
+   "aliases": [
+    "Papouasie-Nouvelle-Guinée",
+    "Papúa Nueva Guinea",
+    "Папуа — Новая Гвинея",
+    "بابوا غينيا الجديدة",
+    "パプアニューギニア",
+    "巴布亚新几内亚",
+    "巴布亞紐幾內亞",
+    "파푸아뉴기니"
+   ],
+   "kind": "state",
+   "name": "Papua New Guinea",
+   "source": "fixture"
+  },
+  "POL": {
+   "aliases": [
+    "Pologne",
+    "Polonia",
+    "Польша",
+    "بولندا",
+    "ポーランド",
+    "波兰",
+    "波蘭",
+    "폴란드"
+   ],
+   "kind": "state",
+   "name": "Poland",
+   "source": "fixture"
+  },
+  "PRI": {
+   "aliases": [
+    "Porto Rico",
+    "Пуэрто-Рико",
+    "بورتوريكو",
+    "プエルトリコ",
+    "波多黎各",
+    "푸에르토리코"
+   ],
+   "kind": "territory",
+   "name": "Puerto Rico",
+   "of": "USA",
+   "source": "fixture"
+  },
+  "PRK": {
+   "aliases": [
+    "Corea del Norte",
+    "Corée du Nord",
+    "North Korea",
+    "КНДР",
+    "كوريا الشمالية",
+    "朝鮮民主主義人民共和国",
+    "朝鮮民主主義人民共和國",
+    "朝鲜民主主义人民共和国",
+    "조선민주주의인민공화국"
+   ],
+   "kind": "state",
+   "name": "Democratic People's Republic of Korea",
+   "source": "fixture"
+  },
+  "PRT": {
+   "aliases": [
+    "Португалия",
+    "البرتغال",
+    "ポルトガル",
+    "葡萄牙",
+    "포르투갈"
+   ],
+   "kind": "state",
+   "name": "Portugal",
+   "source": "fixture"
+  },
+  "PRY": {
+   "aliases": [
+    "Парагвай",
+    "باراغواي",
+    "パラグアイ",
+    "巴拉圭",
+    "파라과이"
+   ],
+   "kind": "state",
+   "name": "Paraguay",
+   "source": "fixture"
+  },
+  "PSE": {
+   "aliases": [
+    "Palestina",
+    "Palestine",
+    "Палестина",
+    "فلسطين",
+    "パレスチナ",
+    "巴勒斯坦",
+    "巴勒斯坦地區",
+    "팔레스타인"
+   ],
+   "kind": "state",
+   "name": "State of Palestine",
+   "source": "fixture"
+  },
+  "PYF": {
+   "aliases": [
+    "Polinesia Francesa",
+    "Polynésie française",
+    "Французская Полинезия",
+    "بولينزيا الفرنسية",
+    "フランス領ポリネシア",
+    "法属波利尼西亚",
+    "法屬玻里尼西亞",
+    "프랑스령 폴리네시아"
+   ],
+   "kind": "territory",
+   "name": "French Polynesia",
+   "of": "FRA",
+   "source": "fixture"
+  },
+  "QAT": {
+   "aliases": [
+    "Catar",
+    "Катар",
+    "قطر",
+    "カタール",
+    "卡塔尔",
+    "卡達",
+    "카타르"
+   ],
+   "kind": "state",
+   "name": "Qatar",
+   "source": "fixture"
+  },
+  "ROU": {
+   "aliases": [
+    "Roumanie",
+    "Rumania",
+    "Румыния",
+    "رومانيا",
+    "ルーマニア",
+    "罗马尼亚",
+    "羅馬尼亞",
+    "루마니아"
+   ],
+   "kind": "state",
+   "name": "Romania",
+   "source": "fixture"
+  },
+  "RUS": {
+   "aliases": [
+    "Rusia",
+    "Russia",
+    "Russie",
+    "Россия",
+    "روسيا",
+    "ロシア",
+    "俄罗斯",
+    "俄羅斯",
+    "러시아"
+   ],
+   "kind": "state",
+   "name": "Russian Federation",
+   "source": "fixture"
+  },
+  "RWA": {
+   "aliases": [
+    "Ruanda",
+    "Руанда",
+    "رواندا",
+    "ルワンダ",
+    "卢旺达",
+    "盧旺達",
+    "르완다"
+   ],
+   "kind": "state",
+   "name": "Rwanda",
+   "source": "fixture"
+  },
+  "SAU": {
+   "aliases": [
+    "Arabia Saudita",
+    "Arabie saoudite",
+    "Саудовская Аравия",
+    "السعودية",
+    "サウジアラビア",
+    "沙烏地阿拉伯",
+    "沙特阿拉伯",
+    "사우디아라비아"
+   ],
+   "kind": "state",
+   "name": "Saudi Arabia",
+   "source": "fixture"
+  },
+  "SDN": {
+   "aliases": [
+    "Soudan",
+    "Sudán",
+    "Судан",
+    "السودان",
+    "スーダン",
+    "苏丹",
+    "蘇丹",
+    "수단"
+   ],
+   "kind": "state",
+   "name": "Sudan",
+   "source": "fixture"
+  },
+  "SEN": {
+   "aliases": [
+    "Sénégal",
+    "Сенегал",
+    "السنغال",
+    "セネガル",
+    "塞內加爾",
+    "塞内加尔",
+    "세네갈"
+   ],
+   "kind": "state",
+   "name": "Senegal",
+   "source": "fixture"
+  },
+  "SGP": {
+   "aliases": [
+    "Singapour",
+    "Singapur",
+    "Сингапур",
+    "سنغافورة",
+    "シンガポール",
+    "新加坡",
+    "싱가포르"
+   ],
+   "kind": "state",
+   "name": "Singapore",
+   "source": "fixture"
+  },
+  "SLB": {
+   "aliases": [
+    "Islas Salomón",
+    "Îles Salomon",
+    "Соломоновы Острова",
+    "جزر سليمان",
+    "ソロモン諸島",
+    "所罗门群岛",
+    "索羅門群島",
+    "솔로몬 제도"
+   ],
+   "kind": "state",
+   "name": "Solomon Islands",
+   "source": "fixture"
+  },
+  "SLE": {
+   "aliases": [
+    "Sierra Leona",
+    "Сьерра-Леоне",
+    "سيراليون",
+    "シエラレオネ",
+    "塞拉利昂",
+    "獅子山",
+    "시에라리온"
+   ],
+   "kind": "state",
+   "name": "Sierra Leone",
+   "source": "fixture"
+  },
+  "SLV": {
+   "aliases": [
+    "Salvador",
+    "Сальвадор",
+    "السلفادور",
+    "エルサルバドル",
+    "萨尔瓦多",
+    "薩爾瓦多",
+    "엘살바도르"
+   ],
+   "kind": "state",
+   "name": "El Salvador",
+   "source": "fixture"
+  },
+  "SMR": {
+   "aliases": [
+    "Saint-Marin",
+    "Сан-Марино",
+    "سان مارينو",
+    "サンマリノ",
+    "圣马力诺",
+    "聖馬力諾",
+    "산마리노"
+   ],
+   "kind": "state",
+   "name": "San Marino",
+   "source": "fixture"
+  },
+  "SOM": {
+   "aliases": [
+    "Somalie",
+    "Сомали",
+    "الصومال",
+    "ソマリア",
+    "索馬利亞",
+    "索马里",
+    "소말리아"
+   ],
+   "kind": "state",
+   "name": "Somalia",
+   "source": "fixture"
+  },
+  "SRB": {
+   "aliases": [
+    "Serbie",
+    "Сербия",
+    "صربيا",
+    "セルビア",
+    "塞尔维亚",
+    "塞爾維亞",
+    "세르비아"
+   ],
+   "kind": "state",
+   "name": "Serbia",
+   "source": "fixture"
+  },
+  "SSD": {
+   "aliases": [
+    "Soudan du Sud",
+    "Sudán del Sur",
+    "Южный Судан",
+    "جنوب السودان",
+    "南スーダン",
+    "南苏丹",
+    "南蘇丹",
+    "남수단"
+   ],
+   "kind": "state",
+   "name": "South Sudan",
+   "source": "fixture"
+  },
+  "STP": {
+   "aliases": [
+    "Santo Tomé y Príncipe",
+    "Sao Tomé-et-Principe",
+    "São Tomé and Príncipe",
+    "Сан-Томе и Принсипи",
+    "ساو تومي وبرينسيب",
+    "サントメ・プリンシペ",
+    "圣多美和普林西比",
+    "聖多美普林西比",
+    "상투메 프린시페"
+   ],
+   "kind": "state",
+   "name": "Sao Tome and Principe",
+   "source": "fixture"
+  },
+  "SUR": {
+   "aliases": [
+    "Surinam",
+    "Суринам",
+    "سورينام",
+    "スリナム",
+    "苏里南",
+    "蘇利南",
+    "수리남"
+   ],
+   "kind": "state",
+   "name": "Suriname",
+   "source": "fixture"
+  },
+  "SVK": {
+   "aliases": [
+    "Eslovaquia",
+    "Slovaquie",
+    "Словакия",
+    "سلوفاكيا",
+    "スロバキア",
+    "斯洛伐克",
+    "슬로바키아"
+   ],
+   "kind": "state",
+   "name": "Slovakia",
+   "source": "fixture"
+  },
+  "SVN": {
+   "aliases": [
+    "Eslovenia",
+    "Slovénie",
+    "Словения",
+    "سلوفينيا",
+    "スロベニア",
+    "斯洛文尼亚",
+    "斯洛維尼亞",
+    "슬로베니아"
+   ],
+   "kind": "state",
+   "name": "Slovenia",
+   "source": "fixture"
+  },
+  "SWE": {
+   "aliases": [
+    "Suecia",
+    "Suède",
+    "Швеция",
+    "السويد",
+    "スウェーデン",
+    "瑞典",
+    "스웨덴"
+   ],
+   "kind": "state",
+   "name": "Sweden",
+   "source": "fixture"
+  },
+  "SWZ": {
+   "aliases": [
+    "Suazilandia",
+    "Эсватини",
+    "إسواتيني",
+    "エスワティニ",
+    "史瓦帝尼",
+    "斯威士兰",
+    "에스와티니"
+   ],
+   "kind": "state",
+   "name": "Eswatini",
+   "source": "fixture"
+  },
+  "SYC": {
+   "aliases": [
+    "Сейшельские Острова",
+    "سيشل",
+    "セーシェル",
+    "塞席爾",
+    "塞舌尔",
+    "세이셸"
+   ],
+   "kind": "state",
+   "name": "Seychelles",
+   "source": "fixture"
+  },
+  "SYR": {
+   "aliases": [
+    "Siria",
+    "Syria",
+    "Syrie",
+    "Сирия",
+    "سوريا",
+    "シリア",
+    "叙利亚",
+    "敘利亞",
+    "시리아"
+   ],
+   "kind": "state",
+   "name": "Syrian Arab Republic",
+   "source": "fixture"
+  },
+  "TCA": {
+   "aliases": [
+    "Islas Turcas y Caicos",
+    "îles Turques-et-Caïques",
+    "Тёркс и Кайкос",
+    "جزر توركس وكايكوس",
+    "タークス・カイコス諸島",
+    "土克凱可群島",
+    "特克斯和凯科斯群岛",
+    "터크스 케이커스 제도"
+   ],
+   "kind": "territory",
+   "name": "Turks and Caicos Islands",
+   "of": "GBR",
+   "source": "fixture"
+  },
+  "TCD": {
+   "aliases": [
+    "Tchad",
+    "Чад",
+    "تشاد",
+    "チャド",
+    "乍得",
+    "查德",
+    "차드"
+   ],
+   "kind": "state",
+   "name": "Chad",
+   "source": "fixture"
+  },
+  "TGO": {
+   "aliases": [
+    "Того",
+    "توغو",
+    "トーゴ",
+    "多哥",
+    "토고"
+   ],
+   "kind": "state",
+   "name": "Togo",
+   "source": "fixture"
+  },
+  "THA": {
+   "aliases": [
+    "Tailandia",
+    "Thaïlande",
+    "Таиланд",
+    "تايلاند",
+    "タイ王国",
+    "泰国",
+    "泰國",
+    "태국"
+   ],
+   "kind": "state",
+   "name": "Thailand",
+   "source": "fixture"
+  },
+  "TJK": {
+   "aliases": [
+    "Tadjikistan",
+    "Tayikistán",
+    "Таджикистан",
+    "طاجيكستان",
+    "タジキスタン",
+    "塔吉克",
+    "塔吉克斯坦",
+    "타지키스탄"
+   ],
+   "kind": "state",
+   "name": "Tajikistan",
+   "source": "fixture"
+  },
+  "TKM": {
+   "aliases": [
+    "Turkmenistán",
+    "Turkménistan",
+    "Туркмения",
+    "تركمانستان",
+    "トルクメニスタン",
+    "土库曼斯坦",
+    "土庫曼",
+    "투르크메니스탄"
+   ],
+   "kind": "state",
+   "name": "Turkmenistan",
+   "source": "fixture"
+  },
+  "TLS": {
+   "aliases": [
+    "East Timor",
+    "Timor Oriental",
+    "Timor oriental",
+    "Восточный Тимор",
+    "تيمور الشرقية",
+    "东帝汶",
+    "東ティモール",
+    "東帝汶",
+    "동티모르"
+   ],
+   "kind": "state",
+   "name": "Timor-Leste",
+   "source": "fixture"
+  },
+  "TON": {
+   "aliases": [
+    "Тонга",
+    "تونغا",
+    "トンガ",
+    "東加",
+    "汤加",
+    "통가"
+   ],
+   "kind": "state",
+   "name": "Tonga",
+   "source": "fixture"
+  },
+  "TTO": {
+   "aliases": [
+    "Trinidad y Tobago",
+    "Trinité-et-Tobago",
+    "Тринидад и Тобаго",
+    "ترينيداد وتوباغو",
+    "トリニダード・トバゴ",
+    "千里達及托巴哥",
+    "特立尼达和多巴哥",
+    "트리니다드 토바고"
+   ],
+   "kind": "state",
+   "name": "Trinidad and Tobago",
+   "source": "fixture"
+  },
+  "TUN": {
+   "aliases": [
+    "Tunisie",
+    "Túnez",
+    "Тунис",
+    "تونس",
+    "チュニジア",
+    "突尼斯",
+    "突尼西亞",
+    "튀니지"
+   ],
+   "kind": "state",
+   "name": "Tunisia",
+   "source": "fixture"
+  },
+  "TUR": {
+   "aliases": [
+    "Turkey",
+    "Turquie",
+    "Turquía",
+    "Турция",
+    "تركيا",
+    "トルコ",
+    "土耳其",
+    "터키"
+   ],
+   "kind": "state",
+   "name": "Türkiye",
+   "source": "fixture"
+  },
+  "TUV": {
+   "aliases": [
+    "Тувалу",
+    "توفالو",
+    "ツバル",
+    "吐瓦魯",
+    "图瓦卢",
+    "투발루"
+   ],
+   "kind": "state",
+   "name": "Tuvalu",
+   "source": "fixture"
+  },
+  "TWN": {
+   "aliases": [
+    "República de China",
+    "Taïwan",
+    "Тайвань",
+    "تايوان",
+    "中华民国",
+    "中華民国",
+    "中華民國",
+    "중화민국"
+   ],
+   "kind": "state",
+   "name": "Taiwan",
+   "source": "fixture"
+  },
+  "TZA": {
+   "aliases": [
+    "Tanzania",
+    "Tanzanie",
+    "Танзания",
+    "تنزانيا",
+    "タンザニア",
+    "坦尚尼亞",
+    "坦桑尼亚",
+    "탄자니아"
+   ],
+   "kind": "state",
+   "name": "United Republic of Tanzania",
+   "source": "fixture"
+  },
+  "UGA": {
+   "aliases": [
+    "Ouganda",
+    "Уганда",
+    "أوغندا",
+    "ウガンダ",
+    "乌干达",
+    "烏干達",
+    "우간다"
+   ],
+   "kind": "state",
+   "name": "Uganda",
+   "source": "fixture"
+  },
+  "UKR": {
+   "aliases": [
+    "Ucrania",
+    "Украина",
+    "أوكرانيا",
+    "ウクライナ",
+    "乌克兰",
+    "烏克蘭",
+    "우크라이나"
+   ],
+   "kind": "state",
+   "name": "Ukraine",
+   "source": "fixture"
+  },
+  "URY": {
+   "aliases": [
+    "Уругвай",
+    "الأوروغواي",
+    "ウルグアイ",
+    "乌拉圭",
+    "烏拉圭",
+    "우루과이"
+   ],
+   "kind": "state",
+   "name": "Uruguay",
+   "source": "fixture"
+  },
+  "USA": {
+   "aliases": [
+    "Estados Unidos",
+    "États-Unis",
+    "США",
+    "الولايات المتحدة",
+    "アメリカ合衆国",
+    "美国",
+    "美國",
+    "미국"
+   ],
+   "kind": "state",
+   "name": "United States of America",
+   "source": "fixture"
+  },
+  "UZB": {
+   "aliases": [
+    "Ouzbékistan",
+    "Uzbekistán",
+    "Узбекистан",
+    "أوزبكستان",
+    "ウズベキスタン",
+    "乌兹别克斯坦",
+    "烏茲別克",
+    "우즈베키스탄"
+   ],
+   "kind": "state",
+   "name": "Uzbekistan",
+   "source": "fixture"
+  },
+  "VAT": {
+   "aliases": [
+    "Cité du Vatican",
+    "Ciudad del Vaticano",
+    "Vatican City",
+    "Ватикан",
+    "الفاتيكان",
+    "バチカン",
+    "梵蒂冈",
+    "梵蒂岡",
+    "바티칸 시국"
+   ],
+   "kind": "state",
+   "name": "Holy See",
+   "source": "fixture"
+  },
+  "VCT": {
+   "aliases": [
+    "Saint-Vincent-et-les-Grenadines",
+    "San Vicente y las Granadinas",
+    "Сент-Винсент и Гренадины",
+    "سانت فينسنت والغرينادين",
+    "セントビンセント・グレナディーン",
+    "圣文森特和格林纳丁斯",
+    "聖文森及格瑞那丁",
+    "세인트빈센트 그레나딘"
+   ],
+   "kind": "state",
+   "name": "Saint Vincent and the Grenadines",
+   "source": "fixture"
+  },
+  "VEN": {
+   "aliases": [
+    "Venezuela",
+    "Венесуэла",
+    "فنزويلا",
+    "ベネズエラ",
+    "委內瑞拉",
+    "委内瑞拉",
+    "베네수엘라"
+   ],
+   "kind": "state",
+   "name": "Venezuela (Bolivarian Republic of)",
+   "source": "fixture"
+  },
+  "VIR": {
+   "aliases": [
+    "Islas Vírgenes de los Estados Unidos",
+    "îles Vierges des États-Unis",
+    "Американские Виргинские острова",
+    "جزر العذراء الأمريكية",
+    "アメリカ領ヴァージン諸島",
+    "美属维尔京群岛",
+    "美屬維京群島",
+    "미국령 버진아일랜드"
+   ],
+   "kind": "territory",
+   "name": "United States Virgin Islands",
+   "of": "USA",
+   "source": "fixture"
+  },
+  "VNM": {
+   "aliases": [
+    "Vietnam",
+    "Viêt Nam",
+    "Вьетнам",
+    "فيتنام",
+    "ベトナム",
+    "越南",
+    "베트남"
+   ],
+   "kind": "state",
+   "name": "Viet Nam",
+   "source": "fixture"
+  },
+  "VUT": {
+   "aliases": [
+    "Вануату",
+    "فانواتو",
+    "バヌアツ",
+    "瓦努阿图",
+    "萬那杜",
+    "바누아투"
+   ],
+   "kind": "state",
+   "name": "Vanuatu",
+   "source": "fixture"
+  },
+  "WSM": {
+   "aliases": [
+    "Самоа",
+    "ساموا",
+    "サモア",
+    "萨摩亚",
+    "薩摩亞",
+    "사모아"
+   ],
+   "kind": "state",
+   "name": "Samoa",
+   "source": "fixture"
+  },
+  "XKX": {
+   "aliases": [
+    "Республика Косово",
+    "كوسوفو",
+    "コソボ共和国",
+    "科索沃",
+    "코소보"
+   ],
+   "kind": "unknown",
+   "name": "Kosovo",
+   "source": "fixture"
+  },
+  "YEM": {
+   "aliases": [
+    "Yémen",
+    "Йемен",
+    "اليمن",
+    "イエメン",
+    "也门",
+    "葉門",
+    "예멘"
+   ],
+   "kind": "state",
+   "name": "Yemen",
+   "source": "fixture"
+  },
+  "ZAF": {
+   "aliases": [
+    "Afrique du Sud",
+    "Sudáfrica",
+    "ЮАР",
+    "جنوب أفريقيا",
+    "南アフリカ共和国",
+    "南非",
+    "남아프리카 공화국"
+   ],
+   "kind": "state",
+   "name": "South Africa",
+   "source": "fixture"
+  },
+  "ZMB": {
+   "aliases": [
+    "Zambie",
+    "Замбия",
+    "زامبيا",
+    "ザンビア",
+    "尚比亞",
+    "赞比亚",
+    "잠비아"
+   ],
+   "kind": "state",
+   "name": "Zambia",
+   "source": "fixture"
+  },
+  "ZWE": {
+   "aliases": [
+    "Zimbabue",
+    "Зимбабве",
+    "زيمبابوي",
+    "ジンバブエ",
+    "津巴布韦",
+    "辛巴威",
+    "짐바브웨"
+   ],
+   "kind": "state",
+   "name": "Zimbabwe",
+   "source": "fixture"
+  }
+ },
+ "holder": null,
+ "language": "en",
+ "not_entities": [],
+ "provisional": true,
+ "rule": "TEST FIXTURE for the leak test only (MODERN_PLAN 4): not any real state's view. Every entity is a state except Western Sahara (a region) and the dependent territories (territory); Kosovo is not in this view at all (unknown: no name, no token); English names (R54's entity names); the disputed areas under other labels.",
+ "sea_names": {},
+ "sources": {
+  "ne_sha256": "239eec57ac17f100a11e2536cffc56752c318b50ae765b0918ff7aab4ce8f255"
+ },
+ "view": "test_b"
+}

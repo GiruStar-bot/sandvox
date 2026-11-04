@@ -1,0 +1,4209 @@
+{
+ "counts": {
+  "dependency": 13,
+  "entities": 215,
+  "observer": 2,
+  "region": 7,
+  "un_member": 193
+ },
+ "data_codes": {
+  "ABW": [
+   "ABW"
+  ],
+  "AFG": [
+   "AFG"
+  ],
+  "AGO": [
+   "AGO"
+  ],
+  "ALB": [
+   "ALB"
+  ],
+  "AND": [
+   "AND"
+  ],
+  "ARE": [
+   "ARE"
+  ],
+  "ARG": [
+   "ARG"
+  ],
+  "ARM": [
+   "ARM"
+  ],
+  "ATG": [
+   "ATG"
+  ],
+  "AUS": [
+   "AUS",
+   "CCK",
+   "CXR",
+   "HMD",
+   "NFK"
+  ],
+  "AUT": [
+   "AUT"
+  ],
+  "AZE": [
+   "AZE"
+  ],
+  "BDI": [
+   "BDI"
+  ],
+  "BEL": [
+   "BEL"
+  ],
+  "BEN": [
+   "BEN"
+  ],
+  "BFA": [
+   "BFA"
+  ],
+  "BGD": [
+   "BGD"
+  ],
+  "BGR": [
+   "BGR"
+  ],
+  "BHR": [
+   "BHR"
+  ],
+  "BHS": [
+   "BHS"
+  ],
+  "BIH": [
+   "BIH"
+  ],
+  "BLR": [
+   "BLR"
+  ],
+  "BLZ": [
+   "BLZ"
+  ],
+  "BMU": [
+   "BMU"
+  ],
+  "BOL": [
+   "BOL"
+  ],
+  "BRA": [
+   "BRA"
+  ],
+  "BRB": [
+   "BRB"
+  ],
+  "BRN": [
+   "BRN"
+  ],
+  "BTN": [
+   "BTN"
+  ],
+  "BWA": [
+   "BWA"
+  ],
+  "CAF": [
+   "CAF"
+  ],
+  "CAN": [
+   "CAN"
+  ],
+  "CHE": [
+   "CHE"
+  ],
+  "CHL": [
+   "CHL"
+  ],
+  "CHN": [
+   "CHN"
+  ],
+  "CIV": [
+   "CIV"
+  ],
+  "CMR": [
+   "CMR"
+  ],
+  "COD": [
+   "COD"
+  ],
+  "COG": [
+   "COG"
+  ],
+  "COK": [
+   "COK"
+  ],
+  "COL": [
+   "COL"
+  ],
+  "COM": [
+   "COM"
+  ],
+  "CPV": [
+   "CPV"
+  ],
+  "CRI": [
+   "CRI"
+  ],
+  "CUB": [
+   "CUB"
+  ],
+  "CUW": [
+   "CUW"
+  ],
+  "CYM": [
+   "CYM"
+  ],
+  "CYP": [
+   "CYP"
+  ],
+  "CZE": [
+   "CZE"
+  ],
+  "DEU": [
+   "DEU"
+  ],
+  "DJI": [
+   "DJI"
+  ],
+  "DMA": [
+   "DMA"
+  ],
+  "DNK": [
+   "DNK"
+  ],
+  "DOM": [
+   "DOM"
+  ],
+  "DZA": [
+   "DZA"
+  ],
+  "ECU": [
+   "ECU"
+  ],
+  "EGY": [
+   "EGY"
+  ],
+  "ERI": [
+   "ERI"
+  ],
+  "ESH": [
+   "ESH"
+  ],
+  "ESP": [
+   "ESP"
+  ],
+  "EST": [
+   "EST"
+  ],
+  "ETH": [
+   "ETH"
+  ],
+  "FIN": [
+   "FIN",
+   "ALA"
+  ],
+  "FJI": [
+   "FJI"
+  ],
+  "FRA": [
+   "FRA",
+   "ATF",
+   "BLM",
+   "GLP",
+   "GUF",
+   "MAF",
+   "MTQ",
+   "MYT",
+   "REU",
+   "SPM",
+   "WLF"
+  ],
+  "FRO": [
+   "FRO"
+  ],
+  "FSM": [
+   "FSM"
+  ],
+  "GAB": [
+   "GAB"
+  ],
+  "GBR": [
+   "GBR",
+   "AIA",
+   "FLK",
+   "GGY",
+   "GIB",
+   "IOT",
+   "JEY",
+   "MSR",
+   "PCN",
+   "SGS",
+   "SHN",
+   "VGB",
+   "CHI"
+  ],
+  "GEO": [
+   "GEO"
+  ],
+  "GHA": [
+   "GHA"
+  ],
+  "GIN": [
+   "GIN"
+  ],
+  "GMB": [
+   "GMB"
+  ],
+  "GNB": [
+   "GNB"
+  ],
+  "GNQ": [
+   "GNQ"
+  ],
+  "GRC": [
+   "GRC"
+  ],
+  "GRD": [
+   "GRD"
+  ],
+  "GRL": [
+   "GRL"
+  ],
+  "GTM": [
+   "GTM"
+  ],
+  "GUM": [
+   "GUM"
+  ],
+  "GUY": [
+   "GUY"
+  ],
+  "HKG": [
+   "HKG"
+  ],
+  "HND": [
+   "HND"
+  ],
+  "HRV": [
+   "HRV"
+  ],
+  "HTI": [
+   "HTI"
+  ],
+  "HUN": [
+   "HUN"
+  ],
+  "IDN": [
+   "IDN"
+  ],
+  "IMN": [
+   "IMN"
+  ],
+  "IND": [
+   "IND"
+  ],
+  "IRL": [
+   "IRL"
+  ],
+  "IRN": [
+   "IRN"
+  ],
+  "IRQ": [
+   "IRQ"
+  ],
+  "ISL": [
+   "ISL"
+  ],
+  "ISR": [
+   "ISR"
+  ],
+  "ITA": [
+   "ITA"
+  ],
+  "JAM": [
+   "JAM"
+  ],
+  "JOR": [
+   "JOR"
+  ],
+  "JPN": [
+   "JPN"
+  ],
+  "KAZ": [
+   "KAZ"
+  ],
+  "KEN": [
+   "KEN"
+  ],
+  "KGZ": [
+   "KGZ"
+  ],
+  "KHM": [
+   "KHM"
+  ],
+  "KIR": [
+   "KIR"
+  ],
+  "KNA": [
+   "KNA"
+  ],
+  "KOR": [
+   "KOR"
+  ],
+  "KWT": [
+   "KWT"
+  ],
+  "LAO": [
+   "LAO"
+  ],
+  "LBN": [
+   "LBN"
+  ],
+  "LBR": [
+   "LBR"
+  ],
+  "LBY": [
+   "LBY"
+  ],
+  "LCA": [
+   "LCA"
+  ],
+  "LIE": [
+   "LIE"
+  ],
+  "LKA": [
+   "LKA"
+  ],
+  "LSO": [
+   "LSO"
+  ],
+  "LTU": [
+   "LTU"
+  ],
+  "LUX": [
+   "LUX"
+  ],
+  "LVA": [
+   "LVA"
+  ],
+  "MAC": [
+   "MAC"
+  ],
+  "MAR": [
+   "MAR"
+  ],
+  "MCO": [
+   "MCO"
+  ],
+  "MDA": [
+   "MDA"
+  ],
+  "MDG": [
+   "MDG"
+  ],
+  "MDV": [
+   "MDV"
+  ],
+  "MEX": [
+   "MEX"
+  ],
+  "MHL": [
+   "MHL"
+  ],
+  "MKD": [
+   "MKD"
+  ],
+  "MLI": [
+   "MLI"
+  ],
+  "MLT": [
+   "MLT"
+  ],
+  "MMR": [
+   "MMR"
+  ],
+  "MNE": [
+   "MNE"
+  ],
+  "MNG": [
+   "MNG"
+  ],
+  "MOZ": [
+   "MOZ"
+  ],
+  "MRT": [
+   "MRT"
+  ],
+  "MUS": [
+   "MUS"
+  ],
+  "MWI": [
+   "MWI"
+  ],
+  "MYS": [
+   "MYS"
+  ],
+  "NAM": [
+   "NAM"
+  ],
+  "NCL": [
+   "NCL"
+  ],
+  "NER": [
+   "NER"
+  ],
+  "NGA": [
+   "NGA"
+  ],
+  "NIC": [
+   "NIC"
+  ],
+  "NIU": [
+   "NIU"
+  ],
+  "NLD": [
+   "NLD",
+   "BES",
+   "SXM"
+  ],
+  "NOR": [
+   "NOR",
+   "BVT",
+   "SJM"
+  ],
+  "NPL": [
+   "NPL"
+  ],
+  "NRU": [
+   "NRU"
+  ],
+  "NZL": [
+   "NZL",
+   "TKL"
+  ],
+  "OMN": [
+   "OMN"
+  ],
+  "PAK": [
+   "PAK"
+  ],
+  "PAN": [
+   "PAN"
+  ],
+  "PER": [
+   "PER"
+  ],
+  "PHL": [
+   "PHL"
+  ],
+  "PLW": [
+   "PLW"
+  ],
+  "PNG": [
+   "PNG"
+  ],
+  "POL": [
+   "POL"
+  ],
+  "PRI": [
+   "PRI"
+  ],
+  "PRK": [
+   "PRK"
+  ],
+  "PRT": [
+   "PRT"
+  ],
+  "PRY": [
+   "PRY"
+  ],
+  "PSE": [
+   "PSE"
+  ],
+  "PYF": [
+   "PYF"
+  ],
+  "QAT": [
+   "QAT"
+  ],
+  "ROU": [
+   "ROU"
+  ],
+  "RUS": [
+   "RUS"
+  ],
+  "RWA": [
+   "RWA"
+  ],
+  "SAU": [
+   "SAU"
+  ],
+  "SDN": [
+   "SDN"
+  ],
+  "SEN": [
+   "SEN"
+  ],
+  "SGP": [
+   "SGP"
+  ],
+  "SLB": [
+   "SLB"
+  ],
+  "SLE": [
+   "SLE"
+  ],
+  "SLV": [
+   "SLV"
+  ],
+  "SMR": [
+   "SMR"
+  ],
+  "SOM": [
+   "SOM"
+  ],
+  "SRB": [
+   "SRB"
+  ],
+  "SSD": [
+   "SSD"
+  ],
+  "STP": [
+   "STP"
+  ],
+  "SUR": [
+   "SUR"
+  ],
+  "SVK": [
+   "SVK"
+  ],
+  "SVN": [
+   "SVN"
+  ],
+  "SWE": [
+   "SWE"
+  ],
+  "SWZ": [
+   "SWZ"
+  ],
+  "SYC": [
+   "SYC"
+  ],
+  "SYR": [
+   "SYR"
+  ],
+  "TCA": [
+   "TCA"
+  ],
+  "TCD": [
+   "TCD"
+  ],
+  "TGO": [
+   "TGO"
+  ],
+  "THA": [
+   "THA"
+  ],
+  "TJK": [
+   "TJK"
+  ],
+  "TKM": [
+   "TKM"
+  ],
+  "TLS": [
+   "TLS"
+  ],
+  "TON": [
+   "TON"
+  ],
+  "TTO": [
+   "TTO"
+  ],
+  "TUN": [
+   "TUN"
+  ],
+  "TUR": [
+   "TUR"
+  ],
+  "TUV": [
+   "TUV"
+  ],
+  "TWN": [
+   "TWN"
+  ],
+  "TZA": [
+   "TZA"
+  ],
+  "UGA": [
+   "UGA"
+  ],
+  "UKR": [
+   "UKR"
+  ],
+  "URY": [
+   "URY"
+  ],
+  "USA": [
+   "USA",
+   "ASM",
+   "MNP",
+   "UMI"
+  ],
+  "UZB": [
+   "UZB"
+  ],
+  "VAT": [
+   "VAT"
+  ],
+  "VCT": [
+   "VCT"
+  ],
+  "VEN": [
+   "VEN"
+  ],
+  "VIR": [
+   "VIR"
+  ],
+  "VNM": [
+   "VNM"
+  ],
+  "VUT": [
+   "VUT"
+  ],
+  "WSM": [
+   "WSM"
+  ],
+  "XKX": [
+   "XKX"
+  ],
+  "YEM": [
+   "YEM"
+  ],
+  "ZAF": [
+   "ZAF"
+  ],
+  "ZMB": [
+   "ZMB"
+  ],
+  "ZWE": [
+   "ZWE"
+  ]
+ },
+ "defacto_in_host": {
+  "XAB": "GEO",
+  "XNC": "CYP",
+  "XSL": "SOM",
+  "XSO": "GEO",
+  "XTR": "MDA"
+ },
+ "entities": [
+  {
+   "administered_by": "self (dependency of NLD)",
+   "defacto_inside": [],
+   "iso_a3": "ABW",
+   "key": "ABW",
+   "kind": "dependency",
+   "label": [
+    -69.972795,
+    12.5174
+   ],
+   "macro": "ROW",
+   "name_en": "Aruba",
+   "ne_a3": "ABW",
+   "r54_type": "other separately administered region (dependent territory)"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "AFG",
+   "key": "AFG",
+   "kind": "un_member",
+   "label": [
+    66.496586,
+    34.164262
+   ],
+   "macro": "ROW",
+   "name_en": "Afghanistan",
+   "ne_a3": "AFG",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "AGO",
+   "key": "AGO",
+   "kind": "un_member",
+   "label": [
+    17.984249,
+    -12.182762
+   ],
+   "macro": "ROW",
+   "name_en": "Angola",
+   "ne_a3": "AGO",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "ALB",
+   "key": "ALB",
+   "kind": "un_member",
+   "label": [
+    20.11384,
+    40.654855
+   ],
+   "macro": "ROW",
+   "name_en": "Albania",
+   "ne_a3": "ALB",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "AND",
+   "key": "AND",
+   "kind": "un_member",
+   "label": [
+    1.539409,
+    42.547643
+   ],
+   "macro": "ROW",
+   "name_en": "Andorra",
+   "ne_a3": "AND",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "ARE",
+   "key": "ARE",
+   "kind": "un_member",
+   "label": [
+    54.547256,
+    23.466285
+   ],
+   "macro": "ROW",
+   "name_en": "United Arab Emirates",
+   "ne_a3": "ARE",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "ARG",
+   "key": "ARG",
+   "kind": "un_member",
+   "label": [
+    -64.173331,
+    -33.501159
+   ],
+   "macro": "ROW",
+   "name_en": "Argentina",
+   "ne_a3": "ARG",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "ARM",
+   "key": "ARM",
+   "kind": "un_member",
+   "label": [
+    44.800564,
+    40.459077
+   ],
+   "macro": "ROW",
+   "name_en": "Armenia",
+   "ne_a3": "ARM",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "ATG",
+   "key": "ATG",
+   "kind": "un_member",
+   "label": [
+    -61.790612,
+    17.352249
+   ],
+   "macro": "ROW",
+   "name_en": "Antigua and Barbuda",
+   "ne_a3": "ATG",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "AUS",
+   "key": "AUS",
+   "kind": "un_member",
+   "label": [
+    134.04972,
+    -24.129522
+   ],
+   "macro": "ROW",
+   "name_en": "Australia",
+   "ne_a3": "AUS",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "AUT",
+   "key": "AUT",
+   "kind": "un_member",
+   "label": [
+    14.130515,
+    47.518859
+   ],
+   "macro": "EU",
+   "name_en": "Austria",
+   "ne_a3": "AUT",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "AZE",
+   "key": "AZE",
+   "kind": "un_member",
+   "label": [
+    47.210994,
+    40.402387
+   ],
+   "macro": "ROW",
+   "name_en": "Azerbaijan",
+   "ne_a3": "AZE",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "BDI",
+   "key": "BDI",
+   "kind": "un_member",
+   "label": [
+    29.917086,
+    -3.332836
+   ],
+   "macro": "ROW",
+   "name_en": "Burundi",
+   "ne_a3": "BDI",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "BEL",
+   "key": "BEL",
+   "kind": "un_member",
+   "label": [
+    4.800448,
+    50.785392
+   ],
+   "macro": "EU",
+   "name_en": "Belgium",
+   "ne_a3": "BEL",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "BEN",
+   "key": "BEN",
+   "kind": "un_member",
+   "label": [
+    2.352018,
+    10.324775
+   ],
+   "macro": "ROW",
+   "name_en": "Benin",
+   "ne_a3": "BEN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "BFA",
+   "key": "BFA",
+   "kind": "un_member",
+   "label": [
+    -1.36388,
+    12.673048
+   ],
+   "macro": "ROW",
+   "name_en": "Burkina Faso",
+   "ne_a3": "BFA",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "BGD",
+   "key": "BGD",
+   "kind": "un_member",
+   "label": [
+    89.684963,
+    24.214956
+   ],
+   "macro": "ROW",
+   "name_en": "Bangladesh",
+   "ne_a3": "BGD",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "BGR",
+   "key": "BGR",
+   "kind": "un_member",
+   "label": [
+    25.15709,
+    42.508785
+   ],
+   "macro": "EU",
+   "name_en": "Bulgaria",
+   "ne_a3": "BGR",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "BHR",
+   "key": "BHR",
+   "kind": "un_member",
+   "label": [
+    50.554816,
+    26.055972
+   ],
+   "macro": "ROW",
+   "name_en": "Bahrain",
+   "ne_a3": "BHR",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "BHS",
+   "key": "BHS",
+   "kind": "un_member",
+   "label": [
+    -77.146688,
+    26.401789
+   ],
+   "macro": "ROW",
+   "name_en": "Bahamas",
+   "ne_a3": "BHS",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "BIH",
+   "key": "BIH",
+   "kind": "un_member",
+   "label": [
+    18.06841,
+    44.091051
+   ],
+   "macro": "ROW",
+   "name_en": "Bosnia and Herzegovina",
+   "ne_a3": "BIH",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "BLR",
+   "key": "BLR",
+   "kind": "un_member",
+   "label": [
+    28.417701,
+    53.821888
+   ],
+   "macro": "ROW",
+   "name_en": "Belarus",
+   "ne_a3": "BLR",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "BLZ",
+   "key": "BLZ",
+   "kind": "un_member",
+   "label": [
+    -88.712962,
+    17.202068
+   ],
+   "macro": "ROW",
+   "name_en": "Belize",
+   "ne_a3": "BLZ",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self (dependency of GBR)",
+   "defacto_inside": [],
+   "iso_a3": "BMU",
+   "key": "BMU",
+   "kind": "dependency",
+   "label": [
+    -64.763573,
+    32.296592
+   ],
+   "macro": "ROW",
+   "name_en": "Bermuda",
+   "ne_a3": "BMU",
+   "r54_type": "other separately administered region (dependent territory)"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "BOL",
+   "key": "BOL",
+   "kind": "un_member",
+   "label": [
+    -64.593433,
+    -16.666015
+   ],
+   "macro": "ROW",
+   "name_en": "Bolivia (Plurinational State of)",
+   "ne_a3": "BOL",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "BRA",
+   "key": "BRA",
+   "kind": "un_member",
+   "label": [
+    -49.55945,
+    -12.098687
+   ],
+   "macro": "ROW",
+   "name_en": "Brazil",
+   "ne_a3": "BRA",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "BRB",
+   "key": "BRB",
+   "kind": "un_member",
+   "label": [
+    -59.568966,
+    13.163709
+   ],
+   "macro": "ROW",
+   "name_en": "Barbados",
+   "ne_a3": "BRB",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "BRN",
+   "key": "BRN",
+   "kind": "un_member",
+   "label": [
+    114.551943,
+    4.448298
+   ],
+   "macro": "ROW",
+   "name_en": "Brunei Darussalam",
+   "ne_a3": "BRN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "BTN",
+   "key": "BTN",
+   "kind": "un_member",
+   "label": [
+    90.040294,
+    27.536685
+   ],
+   "macro": "ROW",
+   "name_en": "Bhutan",
+   "ne_a3": "BTN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "BWA",
+   "key": "BWA",
+   "kind": "un_member",
+   "label": [
+    24.179216,
+    -22.102634
+   ],
+   "macro": "ROW",
+   "name_en": "Botswana",
+   "ne_a3": "BWA",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "CAF",
+   "key": "CAF",
+   "kind": "un_member",
+   "label": [
+    20.906897,
+    6.989681
+   ],
+   "macro": "ROW",
+   "name_en": "Central African Republic",
+   "ne_a3": "CAF",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "CAN",
+   "key": "CAN",
+   "kind": "un_member",
+   "label": [
+    -101.9107,
+    60.324287
+   ],
+   "macro": "ROW",
+   "name_en": "Canada",
+   "ne_a3": "CAN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "CHE",
+   "key": "CHE",
+   "kind": "un_member",
+   "label": [
+    7.463965,
+    46.719114
+   ],
+   "macro": "ROW",
+   "name_en": "Switzerland",
+   "ne_a3": "CHE",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "CHL",
+   "key": "CHL",
+   "kind": "un_member",
+   "label": [
+    -72.318871,
+    -38.151771
+   ],
+   "macro": "ROW",
+   "name_en": "Chile",
+   "ne_a3": "CHL",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "CHN",
+   "key": "CHN",
+   "kind": "un_member",
+   "label": [
+    106.337289,
+    32.498178
+   ],
+   "macro": "CN",
+   "name_en": "China",
+   "ne_a3": "CHN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "CIV",
+   "key": "CIV",
+   "kind": "un_member",
+   "label": [
+    -5.568618,
+    7.49139
+   ],
+   "macro": "ROW",
+   "name_en": "Côte d’Ivoire",
+   "ne_a3": "CIV",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "CMR",
+   "key": "CMR",
+   "kind": "un_member",
+   "label": [
+    12.473488,
+    4.585041
+   ],
+   "macro": "ROW",
+   "name_en": "Cameroon",
+   "ne_a3": "CMR",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "COD",
+   "key": "COD",
+   "kind": "un_member",
+   "label": [
+    23.458829,
+    -1.858167
+   ],
+   "macro": "ROW",
+   "name_en": "Democratic Republic of the Congo",
+   "ne_a3": "COD",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "COG",
+   "key": "COG",
+   "kind": "un_member",
+   "label": [
+    15.9005,
+    0.142331
+   ],
+   "macro": "ROW",
+   "name_en": "Congo",
+   "ne_a3": "COG",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self (free association with NZL)",
+   "defacto_inside": [],
+   "iso_a3": "COK",
+   "key": "COK",
+   "kind": "region",
+   "label": [
+    -159.785675,
+    -21.215993
+   ],
+   "macro": "ROW",
+   "name_en": "Cook Islands",
+   "ne_a3": "COK",
+   "r54_type": "other separately administered region"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "COL",
+   "key": "COL",
+   "kind": "un_member",
+   "label": [
+    -73.174347,
+    3.373111
+   ],
+   "macro": "ROW",
+   "name_en": "Colombia",
+   "ne_a3": "COL",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "COM",
+   "key": "COM",
+   "kind": "un_member",
+   "label": [
+    43.318094,
+    -11.727683
+   ],
+   "macro": "ROW",
+   "name_en": "Comoros",
+   "ne_a3": "COM",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "CPV",
+   "key": "CPV",
+   "kind": "un_member",
+   "label": [
+    -23.639434,
+    15.074761
+   ],
+   "macro": "ROW",
+   "name_en": "Cabo Verde",
+   "ne_a3": "CPV",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "CRI",
+   "key": "CRI",
+   "kind": "un_member",
+   "label": [
+    -84.077922,
+    10.0651
+   ],
+   "macro": "ROW",
+   "name_en": "Costa Rica",
+   "ne_a3": "CRI",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "CUB",
+   "key": "CUB",
+   "kind": "un_member",
+   "label": [
+    -77.975855,
+    21.334024
+   ],
+   "macro": "ROW",
+   "name_en": "Cuba",
+   "ne_a3": "CUB",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self (dependency of NLD)",
+   "defacto_inside": [],
+   "iso_a3": "CUW",
+   "key": "CUW",
+   "kind": "dependency",
+   "label": [
+    -68.920578,
+    12.145039
+   ],
+   "macro": "ROW",
+   "name_en": "Curaçao",
+   "ne_a3": "CUW",
+   "r54_type": "other separately administered region (dependent territory)"
+  },
+  {
+   "administered_by": "self (dependency of GBR)",
+   "defacto_inside": [],
+   "iso_a3": "CYM",
+   "key": "CYM",
+   "kind": "dependency",
+   "label": [
+    -81.24055,
+    19.319862
+   ],
+   "macro": "ROW",
+   "name_en": "Cayman Islands",
+   "ne_a3": "CYM",
+   "r54_type": "other separately administered region (dependent territory)"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [
+    "XNC"
+   ],
+   "iso_a3": "CYP",
+   "key": "CYP",
+   "kind": "un_member",
+   "label": [
+    33.084182,
+    34.913329
+   ],
+   "macro": "EU",
+   "name_en": "Cyprus",
+   "ne_a3": "CYP",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "CZE",
+   "key": "CZE",
+   "kind": "un_member",
+   "label": [
+    15.377555,
+    49.882364
+   ],
+   "macro": "EU",
+   "name_en": "Czechia",
+   "ne_a3": "CZE",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "DEU",
+   "key": "DEU",
+   "kind": "un_member",
+   "label": [
+    9.678348,
+    50.961733
+   ],
+   "macro": "EU",
+   "name_en": "Germany",
+   "ne_a3": "DEU",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "DJI",
+   "key": "DJI",
+   "kind": "un_member",
+   "label": [
+    42.498825,
+    11.976343
+   ],
+   "macro": "ROW",
+   "name_en": "Djibouti",
+   "ne_a3": "DJI",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "DMA",
+   "key": "DMA",
+   "kind": "un_member",
+   "label": [
+    -61.344958,
+    15.458829
+   ],
+   "macro": "ROW",
+   "name_en": "Dominica",
+   "ne_a3": "DMA",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "DNK",
+   "key": "DNK",
+   "kind": "un_member",
+   "label": [
+    9.018163,
+    55.966965
+   ],
+   "macro": "EU",
+   "name_en": "Denmark",
+   "ne_a3": "DNK",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "DOM",
+   "key": "DOM",
+   "kind": "un_member",
+   "label": [
+    -70.653998,
+    19.104137
+   ],
+   "macro": "ROW",
+   "name_en": "Dominican Republic",
+   "ne_a3": "DOM",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "DZA",
+   "key": "DZA",
+   "kind": "un_member",
+   "label": [
+    2.808241,
+    27.397406
+   ],
+   "macro": "ROW",
+   "name_en": "Algeria",
+   "ne_a3": "DZA",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "ECU",
+   "key": "ECU",
+   "kind": "un_member",
+   "label": [
+    -78.188375,
+    -1.259076
+   ],
+   "macro": "ROW",
+   "name_en": "Ecuador",
+   "ne_a3": "ECU",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "EGY",
+   "key": "EGY",
+   "kind": "un_member",
+   "label": [
+    29.445837,
+    26.186173
+   ],
+   "macro": "ROW",
+   "name_en": "Egypt",
+   "ne_a3": "EGY",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "ERI",
+   "key": "ERI",
+   "kind": "un_member",
+   "label": [
+    38.285566,
+    15.787401
+   ],
+   "macro": "ROW",
+   "name_en": "Eritrea",
+   "ne_a3": "ERI",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "mostly MAR; a smaller part SADR/Polisario (flag admin_split=MAR_major)",
+   "defacto_inside": [],
+   "iso_a3": "ESH",
+   "key": "ESH",
+   "kind": "region",
+   "label": [
+    -12.630304,
+    23.967592
+   ],
+   "macro": "ROW",
+   "name_en": "Western Sahara",
+   "ne_a3": "SAH",
+   "r54_type": "other separately administered region (non-self-governing territory; administration divided)"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "ESP",
+   "key": "ESP",
+   "kind": "un_member",
+   "label": [
+    -3.464718,
+    40.090953
+   ],
+   "macro": "EU",
+   "name_en": "Spain",
+   "ne_a3": "ESP",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "EST",
+   "key": "EST",
+   "kind": "un_member",
+   "label": [
+    25.867126,
+    58.724865
+   ],
+   "macro": "EU",
+   "name_en": "Estonia",
+   "ne_a3": "EST",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "ETH",
+   "key": "ETH",
+   "kind": "un_member",
+   "label": [
+    39.0886,
+    8.032795
+   ],
+   "macro": "ROW",
+   "name_en": "Ethiopia",
+   "ne_a3": "ETH",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "FIN",
+   "key": "FIN",
+   "kind": "un_member",
+   "label": [
+    27.276449,
+    63.252361
+   ],
+   "macro": "EU",
+   "name_en": "Finland",
+   "ne_a3": "FIN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "FJI",
+   "key": "FJI",
+   "kind": "un_member",
+   "label": [
+    177.975427,
+    -17.826099
+   ],
+   "macro": "ROW",
+   "name_en": "Fiji",
+   "ne_a3": "FJI",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "FRA",
+   "key": "FRA",
+   "kind": "un_member",
+   "label": [
+    2.552275,
+    46.696113
+   ],
+   "macro": "EU",
+   "name_en": "France",
+   "ne_a3": "FRA",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self (dependency of DNK)",
+   "defacto_inside": [],
+   "iso_a3": "FRO",
+   "key": "FRO",
+   "kind": "dependency",
+   "label": [
+    -7.058429,
+    62.185604
+   ],
+   "macro": "ROW",
+   "name_en": "Faroe Islands",
+   "ne_a3": "FRO",
+   "r54_type": "other separately administered region (dependent territory)"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "FSM",
+   "key": "FSM",
+   "kind": "un_member",
+   "label": [
+    158.234019,
+    6.887553
+   ],
+   "macro": "ROW",
+   "name_en": "Micronesia (Federated States of)",
+   "ne_a3": "FSM",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "GAB",
+   "key": "GAB",
+   "kind": "un_member",
+   "label": [
+    11.835939,
+    -0.437739
+   ],
+   "macro": "ROW",
+   "name_en": "Gabon",
+   "ne_a3": "GAB",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "GBR",
+   "key": "GBR",
+   "kind": "un_member",
+   "label": [
+    -2.116346,
+    54.402739
+   ],
+   "macro": "ROW",
+   "name_en": "United Kingdom of Great Britain and Northern Ireland",
+   "ne_a3": "GBR",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [
+    "XAB",
+    "XSO"
+   ],
+   "iso_a3": "GEO",
+   "key": "GEO",
+   "kind": "un_member",
+   "label": [
+    43.735724,
+    41.870087
+   ],
+   "macro": "ROW",
+   "name_en": "Georgia",
+   "ne_a3": "GEO",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "GHA",
+   "key": "GHA",
+   "kind": "un_member",
+   "label": [
+    -1.036941,
+    7.717639
+   ],
+   "macro": "ROW",
+   "name_en": "Ghana",
+   "ne_a3": "GHA",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "GIN",
+   "key": "GIN",
+   "kind": "un_member",
+   "label": [
+    -10.016402,
+    10.618516
+   ],
+   "macro": "ROW",
+   "name_en": "Guinea",
+   "ne_a3": "GIN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "GMB",
+   "key": "GMB",
+   "kind": "un_member",
+   "label": [
+    -14.998318,
+    13.641721
+   ],
+   "macro": "ROW",
+   "name_en": "Gambia",
+   "ne_a3": "GMB",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "GNB",
+   "key": "GNB",
+   "kind": "un_member",
+   "label": [
+    -14.52413,
+    12.163712
+   ],
+   "macro": "ROW",
+   "name_en": "Guinea-Bissau",
+   "ne_a3": "GNB",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "GNQ",
+   "key": "GNQ",
+   "kind": "un_member",
+   "label": [
+    8.9902,
+    2.333
+   ],
+   "macro": "ROW",
+   "name_en": "Equatorial Guinea",
+   "ne_a3": "GNQ",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "GRC",
+   "key": "GRC",
+   "kind": "un_member",
+   "label": [
+    21.72568,
+    39.492763
+   ],
+   "macro": "EU",
+   "name_en": "Greece",
+   "ne_a3": "GRC",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "GRD",
+   "key": "GRD",
+   "kind": "un_member",
+   "label": [
+    -61.680461,
+    12.113156
+   ],
+   "macro": "ROW",
+   "name_en": "Grenada",
+   "ne_a3": "GRD",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self (dependency of DNK)",
+   "defacto_inside": [],
+   "iso_a3": "GRL",
+   "key": "GRL",
+   "kind": "dependency",
+   "label": [
+    -39.335251,
+    74.319387
+   ],
+   "macro": "ROW",
+   "name_en": "Greenland",
+   "ne_a3": "GRL",
+   "r54_type": "other separately administered region (dependent territory)"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "GTM",
+   "key": "GTM",
+   "kind": "un_member",
+   "label": [
+    -90.497134,
+    14.982133
+   ],
+   "macro": "ROW",
+   "name_en": "Guatemala",
+   "ne_a3": "GTM",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self (dependency of USA)",
+   "defacto_inside": [],
+   "iso_a3": "GUM",
+   "key": "GUM",
+   "kind": "dependency",
+   "label": [
+    144.703614,
+    13.354173
+   ],
+   "macro": "US",
+   "name_en": "Guam",
+   "ne_a3": "GUM",
+   "r54_type": "other separately administered region (dependent territory)"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "GUY",
+   "key": "GUY",
+   "kind": "un_member",
+   "label": [
+    -58.942643,
+    5.124317
+   ],
+   "macro": "ROW",
+   "name_en": "Guyana",
+   "ne_a3": "GUY",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self (SAR of China)",
+   "defacto_inside": [],
+   "iso_a3": "HKG",
+   "key": "HKG",
+   "kind": "region",
+   "label": [
+    114.097769,
+    22.448829
+   ],
+   "macro": "ROW",
+   "name_en": "Hong Kong",
+   "ne_a3": "HKG",
+   "r54_type": "other separately administered region"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "HND",
+   "key": "HND",
+   "kind": "un_member",
+   "label": [
+    -86.887604,
+    14.794801
+   ],
+   "macro": "ROW",
+   "name_en": "Honduras",
+   "ne_a3": "HND",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "HRV",
+   "key": "HRV",
+   "kind": "un_member",
+   "label": [
+    16.37241,
+    45.805799
+   ],
+   "macro": "EU",
+   "name_en": "Croatia",
+   "ne_a3": "HRV",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "HTI",
+   "key": "HTI",
+   "kind": "un_member",
+   "label": [
+    -72.224051,
+    19.263784
+   ],
+   "macro": "ROW",
+   "name_en": "Haiti",
+   "ne_a3": "HTI",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "HUN",
+   "key": "HUN",
+   "kind": "un_member",
+   "label": [
+    19.447867,
+    47.086841
+   ],
+   "macro": "EU",
+   "name_en": "Hungary",
+   "ne_a3": "HUN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "IDN",
+   "key": "IDN",
+   "kind": "un_member",
+   "label": [
+    101.892949,
+    -0.954404
+   ],
+   "macro": "ROW",
+   "name_en": "Indonesia",
+   "ne_a3": "IDN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self (dependency of GBR)",
+   "defacto_inside": [],
+   "iso_a3": "IMN",
+   "key": "IMN",
+   "kind": "dependency",
+   "label": [
+    -4.530069,
+    54.220833
+   ],
+   "macro": "ROW",
+   "name_en": "Isle of Man",
+   "ne_a3": "IMN",
+   "r54_type": "other separately administered region (dependent territory)"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "IND",
+   "key": "IND",
+   "kind": "un_member",
+   "label": [
+    79.358105,
+    22.686852
+   ],
+   "macro": "ROW",
+   "name_en": "India",
+   "ne_a3": "IND",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "IRL",
+   "key": "IRL",
+   "kind": "un_member",
+   "label": [
+    -7.798588,
+    53.078726
+   ],
+   "macro": "EU",
+   "name_en": "Ireland",
+   "ne_a3": "IRL",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "IRN",
+   "key": "IRN",
+   "kind": "un_member",
+   "label": [
+    54.931495,
+    32.166225
+   ],
+   "macro": "ROW",
+   "name_en": "Iran (Islamic Republic of)",
+   "ne_a3": "IRN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "IRQ",
+   "key": "IRQ",
+   "kind": "un_member",
+   "label": [
+    43.26181,
+    33.09403
+   ],
+   "macro": "ROW",
+   "name_en": "Iraq",
+   "ne_a3": "IRQ",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "ISL",
+   "key": "ISL",
+   "kind": "un_member",
+   "label": [
+    -18.673711,
+    64.779286
+   ],
+   "macro": "ROW",
+   "name_en": "Iceland",
+   "ne_a3": "ISL",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "ISR",
+   "key": "ISR",
+   "kind": "un_member",
+   "label": [
+    34.847915,
+    30.911148
+   ],
+   "macro": "ROW",
+   "name_en": "Israel",
+   "ne_a3": "ISR",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "ITA",
+   "key": "ITA",
+   "kind": "un_member",
+   "label": [
+    11.076907,
+    44.732482
+   ],
+   "macro": "EU",
+   "name_en": "Italy",
+   "ne_a3": "ITA",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "JAM",
+   "key": "JAM",
+   "kind": "un_member",
+   "label": [
+    -77.318767,
+    18.137124
+   ],
+   "macro": "ROW",
+   "name_en": "Jamaica",
+   "ne_a3": "JAM",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "JOR",
+   "key": "JOR",
+   "kind": "un_member",
+   "label": [
+    36.375991,
+    30.805025
+   ],
+   "macro": "ROW",
+   "name_en": "Jordan",
+   "ne_a3": "JOR",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "JPN",
+   "key": "JPN",
+   "kind": "un_member",
+   "label": [
+    138.44217,
+    36.142538
+   ],
+   "macro": "JP",
+   "name_en": "Japan",
+   "ne_a3": "JPN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "KAZ",
+   "key": "KAZ",
+   "kind": "un_member",
+   "label": [
+    68.685548,
+    49.054149
+   ],
+   "macro": "ROW",
+   "name_en": "Kazakhstan",
+   "ne_a3": "KAZ",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "KEN",
+   "key": "KEN",
+   "kind": "un_member",
+   "label": [
+    37.907632,
+    0.549043
+   ],
+   "macro": "ROW",
+   "name_en": "Kenya",
+   "ne_a3": "KEN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "KGZ",
+   "key": "KGZ",
+   "kind": "un_member",
+   "label": [
+    74.532637,
+    41.66854
+   ],
+   "macro": "ROW",
+   "name_en": "Kyrgyzstan",
+   "ne_a3": "KGZ",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "KHM",
+   "key": "KHM",
+   "kind": "un_member",
+   "label": [
+    104.50487,
+    12.647584
+   ],
+   "macro": "ROW",
+   "name_en": "Cambodia",
+   "ne_a3": "KHM",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "KIR",
+   "key": "KIR",
+   "kind": "un_member",
+   "label": [
+    -157.384577,
+    1.820437
+   ],
+   "macro": "ROW",
+   "name_en": "Kiribati",
+   "ne_a3": "KIR",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "KNA",
+   "key": "KNA",
+   "kind": "un_member",
+   "label": [
+    -62.757975,
+    17.336558
+   ],
+   "macro": "ROW",
+   "name_en": "Saint Kitts and Nevis",
+   "ne_a3": "KNA",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "KOR",
+   "key": "KOR",
+   "kind": "un_member",
+   "label": [
+    128.129504,
+    36.384924
+   ],
+   "macro": "KR",
+   "name_en": "Republic of Korea",
+   "ne_a3": "KOR",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "KWT",
+   "key": "KWT",
+   "kind": "un_member",
+   "label": [
+    47.313999,
+    29.413628
+   ],
+   "macro": "ROW",
+   "name_en": "Kuwait",
+   "ne_a3": "KWT",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "LAO",
+   "key": "LAO",
+   "kind": "un_member",
+   "label": [
+    102.533912,
+    19.431821
+   ],
+   "macro": "ROW",
+   "name_en": "Lao People's Democratic Republic",
+   "ne_a3": "LAO",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "LBN",
+   "key": "LBN",
+   "kind": "un_member",
+   "label": [
+    35.992892,
+    34.133368
+   ],
+   "macro": "ROW",
+   "name_en": "Lebanon",
+   "ne_a3": "LBN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "LBR",
+   "key": "LBR",
+   "kind": "un_member",
+   "label": [
+    -9.460379,
+    6.447177
+   ],
+   "macro": "ROW",
+   "name_en": "Liberia",
+   "ne_a3": "LBR",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "LBY",
+   "key": "LBY",
+   "kind": "un_member",
+   "label": [
+    18.011015,
+    26.638944
+   ],
+   "macro": "ROW",
+   "name_en": "Libya",
+   "ne_a3": "LBY",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "LCA",
+   "key": "LCA",
+   "kind": "un_member",
+   "label": [
+    -60.980094,
+    13.892371
+   ],
+   "macro": "ROW",
+   "name_en": "Saint Lucia",
+   "ne_a3": "LCA",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "LIE",
+   "key": "LIE",
+   "kind": "un_member",
+   "label": [
+    9.559439,
+    47.111405
+   ],
+   "macro": "ROW",
+   "name_en": "Liechtenstein",
+   "ne_a3": "LIE",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "LKA",
+   "key": "LKA",
+   "kind": "un_member",
+   "label": [
+    80.704823,
+    7.581097
+   ],
+   "macro": "ROW",
+   "name_en": "Sri Lanka",
+   "ne_a3": "LKA",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "LSO",
+   "key": "LSO",
+   "kind": "un_member",
+   "label": [
+    28.246639,
+    -29.480158
+   ],
+   "macro": "ROW",
+   "name_en": "Lesotho",
+   "ne_a3": "LSO",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "LTU",
+   "key": "LTU",
+   "kind": "un_member",
+   "label": [
+    24.089932,
+    55.103703
+   ],
+   "macro": "EU",
+   "name_en": "Lithuania",
+   "ne_a3": "LTU",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "LUX",
+   "key": "LUX",
+   "kind": "un_member",
+   "label": [
+    6.07762,
+    49.733732
+   ],
+   "macro": "EU",
+   "name_en": "Luxembourg",
+   "ne_a3": "LUX",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "LVA",
+   "key": "LVA",
+   "kind": "un_member",
+   "label": [
+    25.458723,
+    57.066872
+   ],
+   "macro": "EU",
+   "name_en": "Latvia",
+   "ne_a3": "LVA",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self (SAR of China)",
+   "defacto_inside": [],
+   "iso_a3": "MAC",
+   "key": "MAC",
+   "kind": "region",
+   "label": [
+    113.556038,
+    22.129735
+   ],
+   "macro": "ROW",
+   "name_en": "Macao",
+   "ne_a3": "MAC",
+   "r54_type": "other separately administered region"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "MAR",
+   "key": "MAR",
+   "kind": "un_member",
+   "label": [
+    -7.187296,
+    31.650723
+   ],
+   "macro": "ROW",
+   "name_en": "Morocco",
+   "ne_a3": "MAR",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "MCO",
+   "key": "MCO",
+   "kind": "un_member",
+   "label": [
+    7.398291,
+    43.739652
+   ],
+   "macro": "ROW",
+   "name_en": "Monaco",
+   "ne_a3": "MCO",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [
+    "XTR"
+   ],
+   "iso_a3": "MDA",
+   "key": "MDA",
+   "kind": "un_member",
+   "label": [
+    28.487904,
+    47.434999
+   ],
+   "macro": "ROW",
+   "name_en": "Republic of Moldova",
+   "ne_a3": "MDA",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "MDG",
+   "key": "MDG",
+   "kind": "un_member",
+   "label": [
+    46.704241,
+    -18.628288
+   ],
+   "macro": "ROW",
+   "name_en": "Madagascar",
+   "ne_a3": "MDG",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "MDV",
+   "key": "MDV",
+   "kind": "un_member",
+   "label": [
+    73.507554,
+    4.174441
+   ],
+   "macro": "ROW",
+   "name_en": "Maldives",
+   "ne_a3": "MDV",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "MEX",
+   "key": "MEX",
+   "kind": "un_member",
+   "label": [
+    -102.289448,
+    23.919988
+   ],
+   "macro": "ROW",
+   "name_en": "Mexico",
+   "ne_a3": "MEX",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "MHL",
+   "key": "MHL",
+   "kind": "un_member",
+   "label": [
+    171.193609,
+    7.082568
+   ],
+   "macro": "ROW",
+   "name_en": "Marshall Islands",
+   "ne_a3": "MHL",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "MKD",
+   "key": "MKD",
+   "kind": "un_member",
+   "label": [
+    21.555839,
+    41.558223
+   ],
+   "macro": "ROW",
+   "name_en": "North Macedonia",
+   "ne_a3": "MKD",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "MLI",
+   "key": "MLI",
+   "kind": "un_member",
+   "label": [
+    -2.038455,
+    18.692713
+   ],
+   "macro": "ROW",
+   "name_en": "Mali",
+   "ne_a3": "MLI",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "MLT",
+   "key": "MLT",
+   "kind": "un_member",
+   "label": [
+    14.433005,
+    35.892886
+   ],
+   "macro": "EU",
+   "name_en": "Malta",
+   "ne_a3": "MLT",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "MMR",
+   "key": "MMR",
+   "kind": "un_member",
+   "label": [
+    95.804497,
+    21.573855
+   ],
+   "macro": "ROW",
+   "name_en": "Myanmar",
+   "ne_a3": "MMR",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "MNE",
+   "key": "MNE",
+   "kind": "un_member",
+   "label": [
+    19.143727,
+    42.803101
+   ],
+   "macro": "ROW",
+   "name_en": "Montenegro",
+   "ne_a3": "MNE",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "MNG",
+   "key": "MNG",
+   "kind": "un_member",
+   "label": [
+    104.150405,
+    45.997488
+   ],
+   "macro": "ROW",
+   "name_en": "Mongolia",
+   "ne_a3": "MNG",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "MOZ",
+   "key": "MOZ",
+   "kind": "un_member",
+   "label": [
+    37.83789,
+    -13.94323
+   ],
+   "macro": "ROW",
+   "name_en": "Mozambique",
+   "ne_a3": "MOZ",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "MRT",
+   "key": "MRT",
+   "kind": "un_member",
+   "label": [
+    -9.740299,
+    19.587062
+   ],
+   "macro": "ROW",
+   "name_en": "Mauritania",
+   "ne_a3": "MRT",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "MUS",
+   "key": "MUS",
+   "kind": "un_member",
+   "label": [
+    57.565848,
+    -20.299506
+   ],
+   "macro": "ROW",
+   "name_en": "Mauritius",
+   "ne_a3": "MUS",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "MWI",
+   "key": "MWI",
+   "kind": "un_member",
+   "label": [
+    33.608082,
+    -13.386737
+   ],
+   "macro": "ROW",
+   "name_en": "Malawi",
+   "ne_a3": "MWI",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "MYS",
+   "key": "MYS",
+   "kind": "un_member",
+   "label": [
+    113.83708,
+    2.528667
+   ],
+   "macro": "ROW",
+   "name_en": "Malaysia",
+   "ne_a3": "MYS",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "NAM",
+   "key": "NAM",
+   "kind": "un_member",
+   "label": [
+    17.108166,
+    -20.575298
+   ],
+   "macro": "ROW",
+   "name_en": "Namibia",
+   "ne_a3": "NAM",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self (dependency of FRA)",
+   "defacto_inside": [],
+   "iso_a3": "NCL",
+   "key": "NCL",
+   "kind": "dependency",
+   "label": [
+    165.084004,
+    -21.064697
+   ],
+   "macro": "ROW",
+   "name_en": "New Caledonia",
+   "ne_a3": "NCL",
+   "r54_type": "other separately administered region (dependent territory)"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "NER",
+   "key": "NER",
+   "kind": "un_member",
+   "label": [
+    9.504356,
+    17.446195
+   ],
+   "macro": "ROW",
+   "name_en": "Niger",
+   "ne_a3": "NER",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "NGA",
+   "key": "NGA",
+   "kind": "un_member",
+   "label": [
+    7.50322,
+    9.439799
+   ],
+   "macro": "ROW",
+   "name_en": "Nigeria",
+   "ne_a3": "NGA",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "NIC",
+   "key": "NIC",
+   "kind": "un_member",
+   "label": [
+    -85.069347,
+    12.670697
+   ],
+   "macro": "ROW",
+   "name_en": "Nicaragua",
+   "ne_a3": "NIC",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self (free association with NZL)",
+   "defacto_inside": [],
+   "iso_a3": "NIU",
+   "key": "NIU",
+   "kind": "region",
+   "label": [
+    -169.862565,
+    -19.045956
+   ],
+   "macro": "ROW",
+   "name_en": "Niue",
+   "ne_a3": "NIU",
+   "r54_type": "other separately administered region"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "NLD",
+   "key": "NLD",
+   "kind": "un_member",
+   "label": [
+    5.61144,
+    52.422211
+   ],
+   "macro": "EU",
+   "name_en": "Netherlands (Kingdom of the)",
+   "ne_a3": "NLD",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "NOR",
+   "key": "NOR",
+   "kind": "un_member",
+   "label": [
+    9.679975,
+    61.357092
+   ],
+   "macro": "ROW",
+   "name_en": "Norway",
+   "ne_a3": "NOR",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "NPL",
+   "key": "NPL",
+   "kind": "un_member",
+   "label": [
+    83.639914,
+    28.297925
+   ],
+   "macro": "ROW",
+   "name_en": "Nepal",
+   "ne_a3": "NPL",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "NRU",
+   "key": "NRU",
+   "kind": "un_member",
+   "label": [
+    166.932644,
+    -0.520261
+   ],
+   "macro": "ROW",
+   "name_en": "Naoero",
+   "ne_a3": "NRU",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "NZL",
+   "key": "NZL",
+   "kind": "un_member",
+   "label": [
+    172.787,
+    -39.759
+   ],
+   "macro": "ROW",
+   "name_en": "New Zealand",
+   "ne_a3": "NZL",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "OMN",
+   "key": "OMN",
+   "kind": "un_member",
+   "label": [
+    57.336553,
+    22.120427
+   ],
+   "macro": "ROW",
+   "name_en": "Oman",
+   "ne_a3": "OMN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "PAK",
+   "key": "PAK",
+   "kind": "un_member",
+   "label": [
+    68.545632,
+    29.328389
+   ],
+   "macro": "ROW",
+   "name_en": "Pakistan",
+   "ne_a3": "PAK",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "PAN",
+   "key": "PAN",
+   "kind": "un_member",
+   "label": [
+    -80.352106,
+    8.72198
+   ],
+   "macro": "ROW",
+   "name_en": "Panama",
+   "ne_a3": "PAN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "PER",
+   "key": "PER",
+   "kind": "un_member",
+   "label": [
+    -72.90016,
+    -12.976679
+   ],
+   "macro": "ROW",
+   "name_en": "Peru",
+   "ne_a3": "PER",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "PHL",
+   "key": "PHL",
+   "kind": "un_member",
+   "label": [
+    122.465,
+    11.198
+   ],
+   "macro": "ROW",
+   "name_en": "Philippines",
+   "ne_a3": "PHL",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "PLW",
+   "key": "PLW",
+   "kind": "un_member",
+   "label": [
+    134.580157,
+    7.518252
+   ],
+   "macro": "ROW",
+   "name_en": "Palau",
+   "ne_a3": "PLW",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "PNG",
+   "key": "PNG",
+   "kind": "un_member",
+   "label": [
+    143.910216,
+    -5.695285
+   ],
+   "macro": "ROW",
+   "name_en": "Papua New Guinea",
+   "ne_a3": "PNG",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "POL",
+   "key": "POL",
+   "kind": "un_member",
+   "label": [
+    19.490468,
+    51.990316
+   ],
+   "macro": "EU",
+   "name_en": "Poland",
+   "ne_a3": "POL",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self (dependency of USA)",
+   "defacto_inside": [],
+   "iso_a3": "PRI",
+   "key": "PRI",
+   "kind": "dependency",
+   "label": [
+    -66.481065,
+    18.234668
+   ],
+   "macro": "US",
+   "name_en": "Puerto Rico",
+   "ne_a3": "PRI",
+   "r54_type": "other separately administered region (dependent territory)"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "PRK",
+   "key": "PRK",
+   "kind": "un_member",
+   "label": [
+    126.444516,
+    39.885252
+   ],
+   "macro": "ROW",
+   "name_en": "Democratic People's Republic of Korea",
+   "ne_a3": "PRK",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "PRT",
+   "key": "PRT",
+   "kind": "un_member",
+   "label": [
+    -8.271754,
+    39.606675
+   ],
+   "macro": "EU",
+   "name_en": "Portugal",
+   "ne_a3": "PRT",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "PRY",
+   "key": "PRY",
+   "kind": "un_member",
+   "label": [
+    -60.146394,
+    -21.674509
+   ],
+   "macro": "ROW",
+   "name_en": "Paraguay",
+   "ne_a3": "PRY",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self (Palestinian authorities; control of parts is with Israel, see b_limited.md:288)",
+   "defacto_inside": [],
+   "iso_a3": "PSE",
+   "key": "PSE",
+   "kind": "observer",
+   "label": [
+    35.291341,
+    32.047431
+   ],
+   "macro": "ROW",
+   "name_en": "State of Palestine",
+   "ne_a3": "PSX",
+   "r54_type": "UN observer (non-member state)"
+  },
+  {
+   "administered_by": "self (dependency of FRA)",
+   "defacto_inside": [],
+   "iso_a3": "PYF",
+   "key": "PYF",
+   "kind": "dependency",
+   "label": [
+    -149.46157,
+    -17.628081
+   ],
+   "macro": "ROW",
+   "name_en": "French Polynesia",
+   "ne_a3": "PYF",
+   "r54_type": "other separately administered region (dependent territory)"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "QAT",
+   "key": "QAT",
+   "kind": "un_member",
+   "label": [
+    51.143509,
+    25.237383
+   ],
+   "macro": "ROW",
+   "name_en": "Qatar",
+   "ne_a3": "QAT",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "ROU",
+   "key": "ROU",
+   "kind": "un_member",
+   "label": [
+    24.972624,
+    45.733237
+   ],
+   "macro": "EU",
+   "name_en": "Romania",
+   "ne_a3": "ROU",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "RUS",
+   "key": "RUS",
+   "kind": "un_member",
+   "label": [
+    44.686469,
+    58.249357
+   ],
+   "macro": "ROW",
+   "name_en": "Russian Federation",
+   "ne_a3": "RUS",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "RWA",
+   "key": "RWA",
+   "kind": "un_member",
+   "label": [
+    30.103894,
+    -1.897196
+   ],
+   "macro": "ROW",
+   "name_en": "Rwanda",
+   "ne_a3": "RWA",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "SAU",
+   "key": "SAU",
+   "kind": "un_member",
+   "label": [
+    44.6996,
+    23.806908
+   ],
+   "macro": "ROW",
+   "name_en": "Saudi Arabia",
+   "ne_a3": "SAU",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "SDN",
+   "key": "SDN",
+   "kind": "un_member",
+   "label": [
+    29.260657,
+    16.330746
+   ],
+   "macro": "ROW",
+   "name_en": "Sudan",
+   "ne_a3": "SDN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "SEN",
+   "key": "SEN",
+   "kind": "un_member",
+   "label": [
+    -14.778586,
+    15.138125
+   ],
+   "macro": "ROW",
+   "name_en": "Senegal",
+   "ne_a3": "SEN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "SGP",
+   "key": "SGP",
+   "kind": "un_member",
+   "label": [
+    103.816925,
+    1.366587
+   ],
+   "macro": "ROW",
+   "name_en": "Singapore",
+   "ne_a3": "SGP",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "SLB",
+   "key": "SLB",
+   "kind": "un_member",
+   "label": [
+    159.170468,
+    -8.029548
+   ],
+   "macro": "ROW",
+   "name_en": "Solomon Islands",
+   "ne_a3": "SLB",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "SLE",
+   "key": "SLE",
+   "kind": "un_member",
+   "label": [
+    -11.763677,
+    8.617449
+   ],
+   "macro": "ROW",
+   "name_en": "Sierra Leone",
+   "ne_a3": "SLE",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "SLV",
+   "key": "SLV",
+   "kind": "un_member",
+   "label": [
+    -88.890124,
+    13.685371
+   ],
+   "macro": "ROW",
+   "name_en": "El Salvador",
+   "ne_a3": "SLV",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "SMR",
+   "key": "SMR",
+   "kind": "un_member",
+   "label": [
+    12.441206,
+    43.933916
+   ],
+   "macro": "ROW",
+   "name_en": "San Marino",
+   "ne_a3": "SMR",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [
+    "XSL"
+   ],
+   "iso_a3": "SOM",
+   "key": "SOM",
+   "kind": "un_member",
+   "label": [
+    45.19238,
+    3.568925
+   ],
+   "macro": "ROW",
+   "name_en": "Somalia",
+   "ne_a3": "SOM",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "SRB",
+   "key": "SRB",
+   "kind": "un_member",
+   "label": [
+    20.787989,
+    44.189919
+   ],
+   "macro": "ROW",
+   "name_en": "Serbia",
+   "ne_a3": "SRB",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "SSD",
+   "key": "SSD",
+   "kind": "un_member",
+   "label": [
+    30.390151,
+    7.230477
+   ],
+   "macro": "ROW",
+   "name_en": "South Sudan",
+   "ne_a3": "SDS",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "STP",
+   "key": "STP",
+   "kind": "un_member",
+   "label": [
+    7.021,
+    0.9709
+   ],
+   "macro": "ROW",
+   "name_en": "Sao Tome and Principe",
+   "ne_a3": "STP",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "SUR",
+   "key": "SUR",
+   "kind": "un_member",
+   "label": [
+    -55.91094,
+    4.143987
+   ],
+   "macro": "ROW",
+   "name_en": "Suriname",
+   "ne_a3": "SUR",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "SVK",
+   "key": "SVK",
+   "kind": "un_member",
+   "label": [
+    19.049868,
+    48.734044
+   ],
+   "macro": "EU",
+   "name_en": "Slovakia",
+   "ne_a3": "SVK",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "SVN",
+   "key": "SVN",
+   "kind": "un_member",
+   "label": [
+    14.915312,
+    46.06076
+   ],
+   "macro": "EU",
+   "name_en": "Slovenia",
+   "ne_a3": "SVN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "SWE",
+   "key": "SWE",
+   "kind": "un_member",
+   "label": [
+    19.01705,
+    65.85918
+   ],
+   "macro": "EU",
+   "name_en": "Sweden",
+   "ne_a3": "SWE",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "SWZ",
+   "key": "SWZ",
+   "kind": "un_member",
+   "label": [
+    31.467264,
+    -26.533676
+   ],
+   "macro": "ROW",
+   "name_en": "Eswatini",
+   "ne_a3": "SWZ",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "SYC",
+   "key": "SYC",
+   "kind": "un_member",
+   "label": [
+    55.480175,
+    -4.676659
+   ],
+   "macro": "ROW",
+   "name_en": "Seychelles",
+   "ne_a3": "SYC",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "SYR",
+   "key": "SYR",
+   "kind": "un_member",
+   "label": [
+    38.277783,
+    35.006636
+   ],
+   "macro": "ROW",
+   "name_en": "Syrian Arab Republic",
+   "ne_a3": "SYR",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self (dependency of GBR)",
+   "defacto_inside": [],
+   "iso_a3": "TCA",
+   "key": "TCA",
+   "kind": "dependency",
+   "label": [
+    -71.752704,
+    21.81663
+   ],
+   "macro": "ROW",
+   "name_en": "Turks and Caicos Islands",
+   "ne_a3": "TCA",
+   "r54_type": "other separately administered region (dependent territory)"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "TCD",
+   "key": "TCD",
+   "kind": "un_member",
+   "label": [
+    18.645041,
+    15.142959
+   ],
+   "macro": "ROW",
+   "name_en": "Chad",
+   "ne_a3": "TCD",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "TGO",
+   "key": "TGO",
+   "kind": "un_member",
+   "label": [
+    1.058113,
+    8.80722
+   ],
+   "macro": "ROW",
+   "name_en": "Togo",
+   "ne_a3": "TGO",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "THA",
+   "key": "THA",
+   "kind": "un_member",
+   "label": [
+    101.073198,
+    15.45974
+   ],
+   "macro": "ROW",
+   "name_en": "Thailand",
+   "ne_a3": "THA",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "TJK",
+   "key": "TJK",
+   "kind": "un_member",
+   "label": [
+    72.587276,
+    38.199835
+   ],
+   "macro": "ROW",
+   "name_en": "Tajikistan",
+   "ne_a3": "TJK",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "TKM",
+   "key": "TKM",
+   "kind": "un_member",
+   "label": [
+    58.676647,
+    39.855246
+   ],
+   "macro": "ROW",
+   "name_en": "Turkmenistan",
+   "ne_a3": "TKM",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "TLS",
+   "key": "TLS",
+   "kind": "un_member",
+   "label": [
+    125.854679,
+    -8.803705
+   ],
+   "macro": "ROW",
+   "name_en": "Timor-Leste",
+   "ne_a3": "TLS",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "TON",
+   "key": "TON",
+   "kind": "un_member",
+   "label": [
+    -175.163014,
+    -21.210026
+   ],
+   "macro": "ROW",
+   "name_en": "Tonga",
+   "ne_a3": "TON",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "TTO",
+   "key": "TTO",
+   "kind": "un_member",
+   "label": [
+    -60.9184,
+    10.9989
+   ],
+   "macro": "ROW",
+   "name_en": "Trinidad and Tobago",
+   "ne_a3": "TTO",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "TUN",
+   "key": "TUN",
+   "kind": "un_member",
+   "label": [
+    9.007881,
+    33.687263
+   ],
+   "macro": "ROW",
+   "name_en": "Tunisia",
+   "ne_a3": "TUN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "TUR",
+   "key": "TUR",
+   "kind": "un_member",
+   "label": [
+    34.508268,
+    39.345388
+   ],
+   "macro": "ROW",
+   "name_en": "Türkiye",
+   "ne_a3": "TUR",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "TUV",
+   "key": "TUV",
+   "kind": "un_member",
+   "label": [
+    179.209587,
+    -8.513717
+   ],
+   "macro": "ROW",
+   "name_en": "Tuvalu",
+   "ne_a3": "TUV",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "TWN",
+   "key": "TWN",
+   "kind": "region",
+   "label": [
+    120.868204,
+    23.652408
+   ],
+   "macro": "TW",
+   "name_en": "Taiwan",
+   "ne_a3": "TWN",
+   "r54_type": "other separately administered region"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "TZA",
+   "key": "TZA",
+   "kind": "un_member",
+   "label": [
+    34.959183,
+    -6.051866
+   ],
+   "macro": "ROW",
+   "name_en": "United Republic of Tanzania",
+   "ne_a3": "TZA",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "UGA",
+   "key": "UGA",
+   "kind": "un_member",
+   "label": [
+    32.948555,
+    1.972589
+   ],
+   "macro": "ROW",
+   "name_en": "Uganda",
+   "ne_a3": "UGA",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "UKR",
+   "key": "UKR",
+   "kind": "un_member",
+   "label": [
+    32.140865,
+    49.724739
+   ],
+   "macro": "ROW",
+   "name_en": "Ukraine",
+   "ne_a3": "UKR",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "URY",
+   "key": "URY",
+   "kind": "un_member",
+   "label": [
+    -55.966942,
+    -32.961127
+   ],
+   "macro": "ROW",
+   "name_en": "Uruguay",
+   "ne_a3": "URY",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "USA",
+   "key": "USA",
+   "kind": "un_member",
+   "label": [
+    -97.482602,
+    39.538479
+   ],
+   "macro": "US",
+   "name_en": "United States of America",
+   "ne_a3": "USA",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "UZB",
+   "key": "UZB",
+   "kind": "un_member",
+   "label": [
+    64.005429,
+    41.693603
+   ],
+   "macro": "ROW",
+   "name_en": "Uzbekistan",
+   "ne_a3": "UZB",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "VAT",
+   "key": "VAT",
+   "kind": "observer",
+   "label": [
+    12.453418,
+    41.903323
+   ],
+   "macro": "ROW",
+   "name_en": "Holy See",
+   "ne_a3": "VAT",
+   "r54_type": "UN observer (non-member state)"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "VCT",
+   "key": "VCT",
+   "kind": "un_member",
+   "label": [
+    -61.3359,
+    13.0879
+   ],
+   "macro": "ROW",
+   "name_en": "Saint Vincent and the Grenadines",
+   "ne_a3": "VCT",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "VEN",
+   "key": "VEN",
+   "kind": "un_member",
+   "label": [
+    -64.599381,
+    7.182476
+   ],
+   "macro": "ROW",
+   "name_en": "Venezuela (Bolivarian Republic of)",
+   "ne_a3": "VEN",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self (dependency of USA)",
+   "defacto_inside": [],
+   "iso_a3": "VIR",
+   "key": "VIR",
+   "kind": "dependency",
+   "label": [
+    -64.779172,
+    17.746706
+   ],
+   "macro": "US",
+   "name_en": "United States Virgin Islands",
+   "ne_a3": "VIR",
+   "r54_type": "other separately administered region (dependent territory)"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "VNM",
+   "key": "VNM",
+   "kind": "un_member",
+   "label": [
+    105.387292,
+    21.715416
+   ],
+   "macro": "ROW",
+   "name_en": "Viet Nam",
+   "ne_a3": "VNM",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "VUT",
+   "key": "VUT",
+   "kind": "un_member",
+   "label": [
+    166.908762,
+    -15.37153
+   ],
+   "macro": "ROW",
+   "name_en": "Vanuatu",
+   "ne_a3": "VUT",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "WSM",
+   "key": "WSM",
+   "kind": "un_member",
+   "label": [
+    -172.438241,
+    -13.639139
+   ],
+   "macro": "ROW",
+   "name_en": "Samoa",
+   "ne_a3": "WSM",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "XKX",
+   "key": "XKX",
+   "kind": "region",
+   "label": [
+    20.860719,
+    42.593587
+   ],
+   "macro": "ROW",
+   "name_en": "Kosovo",
+   "ne_a3": "KOS",
+   "r54_type": "other separately administered region"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "YEM",
+   "key": "YEM",
+   "kind": "un_member",
+   "label": [
+    45.874383,
+    15.328226
+   ],
+   "macro": "ROW",
+   "name_en": "Yemen",
+   "ne_a3": "YEM",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "ZAF",
+   "key": "ZAF",
+   "kind": "un_member",
+   "label": [
+    23.665734,
+    -29.708776
+   ],
+   "macro": "ROW",
+   "name_en": "South Africa",
+   "ne_a3": "ZAF",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "ZMB",
+   "key": "ZMB",
+   "kind": "un_member",
+   "label": [
+    26.395298,
+    -14.660804
+   ],
+   "macro": "ROW",
+   "name_en": "Zambia",
+   "ne_a3": "ZMB",
+   "r54_type": "UN member"
+  },
+  {
+   "administered_by": "self",
+   "defacto_inside": [],
+   "iso_a3": "ZWE",
+   "key": "ZWE",
+   "kind": "un_member",
+   "label": [
+    29.925444,
+    -18.91164
+   ],
+   "macro": "ROW",
+   "name_en": "Zimbabwe",
+   "ne_a3": "ZWE",
+   "r54_type": "UN member"
+  }
+ ],
+ "feature_entity": {
+  "ABW": "ABW",
+  "AFG": "AFG",
+  "AGO": "AGO",
+  "AIA": "GBR",
+  "ALB": "ALB",
+  "ALD": "FIN",
+  "AND": "AND",
+  "ARE": "ARE",
+  "ARG": "ARG",
+  "ARM": "ARM",
+  "ASM": "USA",
+  "ATC": "AUS",
+  "ATF": "FRA",
+  "ATG": "ATG",
+  "AUS": "AUS",
+  "AUT": "AUT",
+  "AZE": "AZE",
+  "BDI": "BDI",
+  "BEL": "BEL",
+  "BEN": "BEN",
+  "BFA": "BFA",
+  "BGD": "BGD",
+  "BGR": "BGR",
+  "BHR": "BHR",
+  "BHS": "BHS",
+  "BIH": "BIH",
+  "BJN": "COL",
+  "BLM": "FRA",
+  "BLR": "BLR",
+  "BLZ": "BLZ",
+  "BMU": "BMU",
+  "BOL": "BOL",
+  "BRA": "BRA",
+  "BRB": "BRB",
+  "BRI": "BRA",
+  "BRN": "BRN",
+  "BTN": "BTN",
+  "BWA": "BWA",
+  "CAF": "CAF",
+  "CAN": "CAN",
+  "CHE": "CHE",
+  "CHL": "CHL",
+  "CHN": "CHN",
+  "CIV": "CIV",
+  "CLP": "FRA",
+  "CMR": "CMR",
+  "COD": "COD",
+  "COG": "COG",
+  "COK": "COK",
+  "COL": "COL",
+  "COM": "COM",
+  "CPV": "CPV",
+  "CRI": "CRI",
+  "CSI": "AUS",
+  "CUB": "CUB",
+  "CUW": "CUW",
+  "CYM": "CYM",
+  "CYN": "CYP",
+  "CYP": "CYP",
+  "CZE": "CZE",
+  "DEU": "DEU",
+  "DJI": "DJI",
+  "DMA": "DMA",
+  "DNK": "DNK",
+  "DOM": "DOM",
+  "DZA": "DZA",
+  "ECU": "ECU",
+  "EGY": "EGY",
+  "ERI": "ERI",
+  "ESB": "GBR",
+  "ESP": "ESP",
+  "EST": "EST",
+  "ETH": "ETH",
+  "FIN": "FIN",
+  "FJI": "FJI",
+  "FLK": "GBR",
+  "FRA": "FRA",
+  "FRO": "FRO",
+  "FSM": "FSM",
+  "GAB": "GAB",
+  "GBR": "GBR",
+  "GEO": "GEO",
+  "GGY": "GBR",
+  "GHA": "GHA",
+  "GIB": "GBR",
+  "GIN": "GIN",
+  "GMB": "GMB",
+  "GNB": "GNB",
+  "GNQ": "GNQ",
+  "GRC": "GRC",
+  "GRD": "GRD",
+  "GRL": "GRL",
+  "GTM": "GTM",
+  "GUM": "GUM",
+  "GUY": "GUY",
+  "HKG": "HKG",
+  "HMD": "AUS",
+  "HND": "HND",
+  "HRV": "HRV",
+  "HTI": "HTI",
+  "HUN": "HUN",
+  "IDN": "IDN",
+  "IMN": "IMN",
+  "IND": "IND",
+  "IOA": "AUS",
+  "IOT": "GBR",
+  "IRL": "IRL",
+  "IRN": "IRN",
+  "IRQ": "IRQ",
+  "ISL": "ISL",
+  "ISR": "ISR",
+  "ITA": "ITA",
+  "JAM": "JAM",
+  "JEY": "GBR",
+  "JOR": "JOR",
+  "JPN": "JPN",
+  "KAB": "KAZ",
+  "KAS": "IND",
+  "KAZ": "KAZ",
+  "KEN": "KEN",
+  "KGZ": "KGZ",
+  "KHM": "KHM",
+  "KIR": "KIR",
+  "KNA": "KNA",
+  "KOR": "KOR",
+  "KOS": "XKX",
+  "KWT": "KWT",
+  "LAO": "LAO",
+  "LBN": "LBN",
+  "LBR": "LBR",
+  "LBY": "LBY",
+  "LCA": "LCA",
+  "LIE": "LIE",
+  "LKA": "LKA",
+  "LSO": "LSO",
+  "LTU": "LTU",
+  "LUX": "LUX",
+  "LVA": "LVA",
+  "MAC": "MAC",
+  "MAF": "FRA",
+  "MAR": "MAR",
+  "MCO": "MCO",
+  "MDA": "MDA",
+  "MDG": "MDG",
+  "MDV": "MDV",
+  "MEX": "MEX",
+  "MHL": "MHL",
+  "MKD": "MKD",
+  "MLI": "MLI",
+  "MLT": "MLT",
+  "MMR": "MMR",
+  "MNE": "MNE",
+  "MNG": "MNG",
+  "MNP": "USA",
+  "MOZ": "MOZ",
+  "MRT": "MRT",
+  "MSR": "GBR",
+  "MUS": "MUS",
+  "MWI": "MWI",
+  "MYS": "MYS",
+  "NAM": "NAM",
+  "NCL": "NCL",
+  "NER": "NER",
+  "NFK": "AUS",
+  "NGA": "NGA",
+  "NIC": "NIC",
+  "NIU": "NIU",
+  "NLD": "NLD",
+  "NOR": "NOR",
+  "NPL": "NPL",
+  "NRU": "NRU",
+  "NZL": "NZL",
+  "OMN": "OMN",
+  "PAK": "PAK",
+  "PAN": "PAN",
+  "PCN": "GBR",
+  "PER": "PER",
+  "PHL": "PHL",
+  "PLW": "PLW",
+  "PNG": "PNG",
+  "POL": "POL",
+  "PRI": "PRI",
+  "PRK": "PRK",
+  "PRT": "PRT",
+  "PRY": "PRY",
+  "PSX": "PSE",
+  "PYF": "PYF",
+  "QAT": "QAT",
+  "ROU": "ROU",
+  "RUS": "RUS",
+  "RWA": "RWA",
+  "SAH": "ESH",
+  "SAU": "SAU",
+  "SDN": "SDN",
+  "SDS": "SSD",
+  "SEN": "SEN",
+  "SER": "COL",
+  "SGP": "SGP",
+  "SGS": "GBR",
+  "SHN": "GBR",
+  "SLB": "SLB",
+  "SLE": "SLE",
+  "SLV": "SLV",
+  "SMR": "SMR",
+  "SOL": "SOM",
+  "SOM": "SOM",
+  "SPM": "FRA",
+  "SRB": "SRB",
+  "STP": "STP",
+  "SUR": "SUR",
+  "SVK": "SVK",
+  "SVN": "SVN",
+  "SWE": "SWE",
+  "SWZ": "SWZ",
+  "SXM": "NLD",
+  "SYC": "SYC",
+  "SYR": "SYR",
+  "TCA": "TCA",
+  "TCD": "TCD",
+  "TGO": "TGO",
+  "THA": "THA",
+  "TJK": "TJK",
+  "TKM": "TKM",
+  "TLS": "TLS",
+  "TON": "TON",
+  "TTO": "TTO",
+  "TUN": "TUN",
+  "TUR": "TUR",
+  "TUV": "TUV",
+  "TWN": "TWN",
+  "TZA": "TZA",
+  "UGA": "UGA",
+  "UKR": "UKR",
+  "UMI": "USA",
+  "URY": "URY",
+  "USA": "USA",
+  "USG": "USA",
+  "UZB": "UZB",
+  "VAT": "VAT",
+  "VCT": "VCT",
+  "VEN": "VEN",
+  "VGB": "GBR",
+  "VIR": "VIR",
+  "VNM": "VNM",
+  "VUT": "VUT",
+  "WLF": "FRA",
+  "WSB": "GBR",
+  "WSM": "WSM",
+  "YEM": "YEM",
+  "ZAF": "ZAF",
+  "ZMB": "ZMB",
+  "ZWE": "ZWE"
+ },
+ "provisional": false,
+ "rule": "R54 entity list (R54_entities.csv: 220 entities, 34 merged territories). Every Natural Earth feature belongs to the R54 entity of its code (ADM0_A3, through ne_codes where NE's code is not R54's); a merged territory goes to its host as R54 lists it; a de-facto entity with no base data starts as part of the host with a defacto flag (R54 Part 2, rule T), so it is no field entity; a feature R54 does not name goes to the state that administers it (leftover, Eくん's reading of actual administration, T); the unadministered scraps are no entity.",
+ "source": {
+  "ne": {
+   "file": "ne_10m_admin_0_countries.geojson",
+   "sha256": "239eec57ac17f100a11e2536cffc56752c318b50ae765b0918ff7aab4ce8f255"
+  },
+  "r54": {
+   "file": "src/R54_entities.csv",
+   "sha256": "1c4a254f3280944919cefa436ae2d96eb936d0cd806d4f8df9586f273a2c0787"
+  },
+  "un_m49": "UN member states and M49 codes: a standing fact, unchanged since South Sudan's admission, 2011-07-14; the page R53 read is a capture made after 2024 (R96e), so the value is CHECK until an in-window capture confirms it (verifyくん; the PM, TO_E 21:11 1(d)); Natural Earth v5.1.1 (2022-05-13) is in window"
+ },
+ "unadministered": [
+  "ATA",
+  "BRT",
+  "CNM",
+  "PGA",
+  "SCR",
+  "SPI"
+ ]
+}

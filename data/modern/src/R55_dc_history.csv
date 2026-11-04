@@ -1,0 +1,18 @@
+region,year_described,twh,vintage_date,source,label,source_file_line
+World,2010,194,2020-02,Masanet et al. 2020,sourced,e_masanet2020.txt:152-153
+World,2018,205,2020-02,Masanet et al. 2020,sourced,e_masanet2020.txt:156-158
+World,2015,~200,2022-09,IEA tracking report,sourced,e_iea_dctn_dec22.md:113-115
+World,2020,200-250 (excl. crypto),2021-11,IEA tracking report,sourced,e_iea_dctn_2021.md:71
+World,2021,220-320 (excl. crypto); crypto 100-140,2022-09,IEA tracking report,sourced,"e_iea_dctn_dec22.md:84,116,121"
+US,2014,~70,2016-06,Shehabi et al. LBNL,sourced,e_shehabi2016_pdf.txt:202-203
+EU28,2010,53.9,2020-11,EC cloud study,sourced,e_eu_cloud2020_pdf.txt:2450-2451
+EU28,2018,76.8,2020-11,EC cloud study,sourced,e_eu_cloud2020_pdf.txt:2715-2716
+Japan,2018,14,FY2020,JST LCS,sourced,e_jst_japan2020.md:14
+Mainland China,2018,161 (disputed),2019-09,Greenpeace/NCEPU via DCK,secondary,e_dck_greenpeace_cn.md:317
+World,2022,~460 incl. ~110 crypto (~350 excl.),2024-01,IEA Electricity 2024,sourced/derived,"e_iea_elec2024_pdf.txt:1636-1638,1906"
+World,2020/2023/2024,269/361/416,2025-04,IEA Energy and AI Table A.4,sourced,R53 c_iea_eai_full.txt:12323
+US,2020/2023/2024,108/154/183,2025-04,IEA Energy and AI Table A.4,sourced,R53 c_iea_eai_full.txt:12325
+Europe,2020/2023/2024,57/66/68,2025-04,IEA Energy and AI Table A.4,sourced,R53 c_iea_eai_full.txt:12327
+Mainland China,2020/2023/2024,62/84/102,2025-04,IEA Energy and AI Table A.4,sourced,R53 c_iea_eai_full.txt:12331
+Japan,2024,<20,2025-04,IEA Energy and AI text,sourced,R53 c_iea_eai_full.txt:2631-2632
+US,2014/2018/2023,58-60/76/176,2024-12,LBNL Shehabi et al. 2024,sourced,notes_e

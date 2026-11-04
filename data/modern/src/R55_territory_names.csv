@@ -1,0 +1,14 @@
+iso3,entity_en,mofa_ja,mofa_page,source_file_line,general_usage_not_mofa
+PRI,Puerto Rico,プエルトリコ,https://www.anzen.mofa.go.jp/info/pcsafetymeasure_221.html,f_anzen_usa_safety.md:136;721,
+PYF,French Polynesia,フランス領ポリネシア | 仏領ポリネシア | (travel entry) タヒチ,https://www.anzen.mofa.go.jp/info/pcsafetymeasure_079.html; https://www.anzen.mofa.go.jp/riskmap/,f_anzen_sm_tahiti.md:85;88;143; f_anzen_riskmap.md:157,
+NCL,New Caledonia,ニューカレドニア,https://www.mofa.go.jp/mofaj/area/france/data.html; https://www.anzen.mofa.go.jp/info/pcsafetymeasure_299.html,f_france_data.md:336; f_anzen_riskmap.md:167; f_anzen_sm_newcal.md:85,
+CUW,Curaçao,NOT FOUND,,,キュラソー
+GUM,Guam,グアム,https://www.anzen.mofa.go.jp/info/pcsafetymeasure_224.html; https://www.mofa.go.jp/mofaj/annai/zaigai/list/n_ame/usa.html,f_anzen_riskmap.md:191; f_anzen_sm_guam.md:67;260; f_zaigai_usa.md:97; f_usa_data.md:517,
+ABW,Aruba,NOT FOUND,,,アルバ
+CYM,Cayman Islands,ケイマン諸島 | ケイマン,https://www.anzen.mofa.go.jp/info/pcsafetymeasure_154.html; https://www.mofa.go.jp/mofaj/press/release/23/2/0207_05.html,f_anzen_sm_uk.md:332; f_press_cym.md:60;64; f_press_idx_23_2.md:411,
+VIR,US Virgin Islands,バージン諸島 (in US jurisdiction list; no 米領 prefix),https://www.anzen.mofa.go.jp/info/pcsafetymeasure_221.html,f_anzen_usa_safety.md:136;721,米領ヴァージン諸島
+IMN,Isle of Man,マン島,https://www.mofa.go.jp/mofaj/press/release/23/6/0622_01.html,f_press_im.md:60;64; f_press_2306_idx.md:213,
+BMU,Bermuda,バミューダ諸島 | バミューダ,https://www.anzen.mofa.go.jp/info/pcsafetymeasure_154.html; https://www.mofa.go.jp/mofaj/press/release/22/2/index.html,f_anzen_sm_uk.md:340; f_press_idx_22_2.md:339,
+GRL,Greenland,グリーンランド,https://www.mofa.go.jp/mofaj/area/denmark/data.html,f_denmark_data.md:649;731,
+FRO,Faroe Islands,フェロー諸島,https://www.mofa.go.jp/mofaj/area/denmark/data.html,f_denmark_data.md:649;651,
+TCA,Turks and Caicos Islands,NOT FOUND,,,タークス・カイコス諸島

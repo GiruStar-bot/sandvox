@@ -1,0 +1,38 @@
+{
+ "entity": "JPN",
+ "note": "BLUEPRINT 4 and 4b: Japan's foreign links as PLACEHOLDERS (held at the published level with the published trend, counterpart named) until a counterpart gets a profile (S3). Units as stated. Sources are the official files on the modern-data branch (raw/jpn_official) or the research reports named. Labels: S sourced, D derived, T declared, HELD placeholder.",
+ "external_position_2024_end": {"unit": "bn JPY", "period": "2023-12-31", "assets_total": 1488342, "liabilities_total": 1017036, "net": 471306, "assets": {"direct_investment": 307692, "portfolio_investment": 617338, "financial_derivatives": 62332, "other_investment": 317887, "reserve_assets": 183094}, "liabilities": {"direct_investment": 50518, "portfolio_investment": 505513, "financial_derivatives": 63701, "other_investment": 397304}, "change_2024": {"assets": 148676, "liabilities": 97370, "net": 51306, "fx_valuation_assets": 75700, "note": "holds the change over 2023 (key name kept from node); fx valuation of assets +75.7 tn per MOF text"}, "source": "MOF 令和5年末現在本邦対外資産負債残高の概要 (iip/data/2023_g.htm); (参考)本邦対外資産負債残高の内訳 5年末残高 / 前年末比; published 2024-05-28", "label": "S"},
+ "direct_investment_assets_by_counterpart_2024_end": {"unit": "100 million JPY", "period": "2023-12-31", "total": 3076922, "USA": 1046705, "GBR": 265393, "CHN": 195681, "SGP": 161890, "AUS": 139705, "THA": 107491, "DEU": 65435, "IDN": 54877, "IND": 47022, "KOR": 54898, "HKG": 55740, "VNM": 38570, "CAN": 37937, "FRA": 24291, "BRA": 34404, "MYS": 28862, "PHL": 25124, "TWN": 26297, "MEX": 20406, "regions": {"Asia": 803879, "North America": 1084642, "Central and South America": 167891, "Oceania": 153778, "Europe": 844449}, "source": "MOF 直接投資・証券投資等残高地域別統計 2023年末 rdip2023.xls (Wayback 20240627151815); sheet 1 直接投資残高地域別統計（資産）col 直接投資; published 2024-05-28", "label": "S"},
+ "portfolio_assets_by_counterpart_2024_end": {"unit": "100 million JPY", "period": "2023-12-31", "total": 6173376, "USA": 2816253, "CYM": 1203833, "AUS": 191316, "DEU": 137647, "CAN": 115511, "CHN": 40973, "IND": 32585, "SGP": 24158, "KOR": 28197, "TWN": 17639, "MEX": 19716, "HKG": 15327, "NZL": 14178, "MYS": 10755, "IDN": 9659, "regions": {"Asia": 191674, "North America": 2931764, "Central and South America": 1281685, "Oceania": 205649, "Europe": 1470228}, "note": "of the US total, long-term debt securities 1,774,738 (D: mostly US Treasuries and agencies)", "source": "MOF 直接投資・証券投資等残高地域別統計 2023年末 rdip2023.xls (Wayback 20240627151815); sheet 2 証券投資等残高地域別統計（資産）col 証券投資; published 2024-05-28", "label": "S"},
+ "balance_of_payments_fy": {"unit": "100 million JPY", "FY2023": {"current_account": 253390, "goods_and_services": -60230, "goods": -35725, "exports": 1018666, "imports": 1054391, "services": -24504, "primary_income": 355312, "secondary_income": -41692, "capital_account": -3447, "financial_account": 214532, "direct_investment": 252039, "portfolio_investment": 88837}, "source": "MOF 令和5年度中 国際収支状況（速報） bpfy2023.pdf / pg2023fy.htm; 国際収支状況（速報）総括表 令和5年度; published 2024-05-10", "label": "S"},
+ "trade_by_partner_2024": {"unit": "thousand JPY", "world": {"exports": 100873049000, "imports": 110395119000}, "partners": {"CHN": {"exports": 17763904000, "imports": 24424202000}, "USA": {"exports": 20260169000, "imports": 11555414000}, "KOR": {"exports": 6581862000, "imports": 4361659000}, "TWN": {"exports": 6016166000, "imports": 5000425000}, "AUS": {"exports": 2355904000, "imports": 9097236000}, "THA": {"exports": 4114664000, "imports": 3609472000}, "ARE": {"exports": 1466149000, "imports": 5192557000}, "VNM": {"exports": 2417122000, "imports": 3626296000}, "DEU": {"exports": 2716855000, "imports": 3151977000}, "HKG": {"exports": 4578606000, "imports": 213751000}, "IDN": {"exports": 2025070000, "imports": 3415054000}, "SAU": {"exports": 892422000, "imports": 4872988000}}, "period": "CY2023", "source": "財務省関税局 報道発表 令和5年分（確定） trade-st/2023/2023_117.pdf; 総額 + 地域（国）別輸出入 令和5年分; published 2024-11-13", "label": "S", "note": "the customs files hold every partner; the loader reads the files on modern-data directly, this list is the reading surface"},
+ "energy_imports_by_origin": {
+  "label": "HELD placeholder from R53 Q6 text until the ANRE/customs commodity tables are read",
+  "crude_oil": {"middle_east_share": 0.95, "main": ["SAU", "ARE", "KWT", "QAT"], "source": "ANRE エネルギー白書 (R53)", "decided_by_counterpart": true, "profile_stage": "S3/S4"},
+  "lng": {"main": ["AUS", "MYS", "QAT", "USA", "RUS"], "source": "ANRE / customs (R53)", "decided_by_counterpart": "partly", "profile_stage": "S3"},
+  "coal": {"main": ["AUS", "IDN"], "decided_by_counterpart": false, "profile_stage": "none"},
+  "energy_self_sufficiency": {"value": 0.13, "source": "ANRE エネルギー白書 2024 (R53)", "label": "S"}
+ },
+ "food_imports_by_origin": {
+  "label": "HELD placeholder",
+  "calorie_self_sufficiency": {"FY2023": 0.38},
+  "wheat": {"main": ["USA", "CAN", "AUS"]}, "soybeans": {"main": ["USA", "BRA", "CAN"]}, "maize": {"main": ["USA", "BRA"]},
+  "decided_by_counterpart": false, "profile_stage": "S4 shocks"
+ },
+ "people": {
+  "foreign_residents_2024_end": {"value": 3588956, "source": "出入国在留管理庁 在留外国人統計 2024年6月末; e-Stat 000040228081; published 2024-12-13 (R96b); the key's name kept, the period is 2024-06-30", "label": "S"},
+  "main_origins": ["CHN", "VNM", "KOR", "PHL", "NPL", "BRA", "IDN"],
+  "decided_by_counterpart": "partly", "profile_stage": "S3"
+ },
+ "security": {
+  "alliance": {"USA": "Treaty of Mutual Cooperation and Security (1960), in force", "source": "R56 alliances", "label": "S"},
+  "us_forces_in_japan": {"value": 54000, "source": "MOD / USFJ public figure (R53/BLUEPRINT)", "label": "S (rounded)"},
+  "export_control_regimes": ["Wassenaar", "NSG", "MTCR", "Australia Group"],
+  "decided_by_counterpart": true, "profile_stage": "S3 (USA)"
+ },
+ "rules_of_the_outside": {
+  "wto_bound_simple_average_pct": 4.0, "ftas_in_force": ["CPTPP", "RCEP", "Japan-EU EPA", "Japan-US Trade Agreement", "Japan-UK CEPA"], "label": "S (public treaty list)",
+  "decided_by_counterpart": "tariffs yes (USA, CHN, EU)", "profile_stage": "S3"
+ },
+ "recognition": {"recognised_states": 195, "plus_self": 196, "not_recognised": ["PRK"], "regions": ["TWN", "PSE", "HKG", "MAC"], "source": "MOFA (R53 Q6): a standing fact, unchanged since Niue's recognition, 2015-05-15; the page R53 read is a capture made after 2024 (R96e), so the value is CHECK until an in-window capture confirms it (verifyくん; the PM, TO_E 21:11 1(d))", "label": "S (CHECK)"}
+}
