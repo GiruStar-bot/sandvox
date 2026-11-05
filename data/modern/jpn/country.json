@@ -1,0 +1,22 @@
+{
+  "id": "JPN",
+  "name_en": "Japan",
+  "status": "filled",
+  "cutoff": "2024-12-31",
+  "comparison_year": 2025,
+  "sealed": "research-notes docs/team/research/reports/sealed/ (D477); builders never read it",
+  "files": {
+    "status": "res://data/modern/jpn/status_2024.json",
+    "people_spec": "res://data/modern/people/jpn_people_2024.json",
+    "tiers_spec": "res://data/modern/people/jpn_tiers_2024.json",
+    "households_spec": "res://data/modern/people/jpn_households_2024.json",
+    "regions": "res://data/modern/polity/jpn_prefectures.json",
+    "commodities": "res://data/modern/econ/commodities.json",
+    "start_2025": "res://data/modern/jpn/cohort_2025-01-01.json",
+    "levers": "res://data/modern/jpn/levers.json"
+  },
+  "constants": {
+    "persons_per_region": 2,
+    "pension_age": 65
+  }
+}

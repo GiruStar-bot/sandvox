@@ -7,6 +7,7 @@ from core.gd import maxf, minf
 
 from . import data
 from .actors import Bank, CropFarming, FoodManufacturing, TradingHouse
+from .mech import Mech
 from .world import World, gkey
 
 
@@ -20,6 +21,12 @@ class EconMonth:
         self.labour = None
         self.shocks = []
         self.error = ""
+        self.mech = None
+
+    def enable_mech(self, params=None):
+        self.mech = Mech(params, self.core_inflation)
+        if self.labour is not None:
+            self.labour.caps = self.mech
 
     def trading_house(self):
         for a in self.actors:
@@ -161,6 +168,8 @@ class EconMonth:
         j = self.actors[0].jurisdiction
         fp = w.good("food_products", j)
         yoy = float(fp["price"]) / maxf(1e-9, float(fp.get("price_12m", fp["price"]))) - 1.0
+        if self.mech is not None:
+            self.core_inflation = self.mech.core_at(float(self.actors[1].stocks.get("capacity_use", 1.0)))
         w.env["inflation"] = 0.75 * self.core_inflation + 0.25 * yoy
         w.env["food_price_yoy"] = yoy
         if self.bank is not None:
@@ -181,8 +190,14 @@ class EconMonth:
                 q *= sc
             w.demand(c, j, q, "final_demand")
         w.clear_markets()
-        if self.labour is not None:
+        if self.labour is not None and self.mech is None:
             self.labour.step(m, float(self.actors[1].stocks.get("capacity_use", 1.0)), float(w.env.get("inflation", 0.02)))
+        elif self.labour is not None:
+            # Why not the headline inflation into wages with mech on: M046's loop gain G = rho (1 + beta_w w_pi) has wages follow
+            # w_pi x the expectations state E
+            w0 = self.labour.wage_index
+            self.labour.step(m, float(self.actors[1].stocks.get("capacity_use", 1.0)), self.mech.parts[0])
+            self.mech.observe_wage(w0, self.labour.wage_index)
         for a in self.actors:
             a.settle(w, m)
         for a in self.actors:
@@ -190,6 +205,8 @@ class EconMonth:
                 a.pay_fixed_and_finance(w, m, self.bank, self.revenue_of(a))
         if self.bank is not None:
             self.bank.settle(w, m)
+        if self.mech is not None:
+            self.mech.end_month()
         w.next_month()
 
     def revenue_of(self, a):

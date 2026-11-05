@@ -1,0 +1,9 @@
+{
+ "note": "UNSOURCED (stub, D483): a stub country's one region; its population is the stub template's placeholder (1,000,000 persons)",
+ "prefectures": {
+  "01": {
+   "name": "stub region",
+   "pop_thousand": 1000.0
+  }
+ }
+}

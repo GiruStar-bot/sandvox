@@ -2,7 +2,7 @@
 #   python py/tests/run_world.py <oracle run dir> [ROW]
 #     W0-s, W1 / W2 (the per-field hashes at every day the oracle wrote), W2-i (enforcement on the replayed stocks), W-c (conservation)
 #   env: WORLD_SAVE_AT=40,365,400 (W1-r / W2-r: the Python world saved and restored there), WORLD_NUDGE=31 (W-mf), WORLD_NUDGE_FOOD=3
-#   (W-mf2), WORLD_LEAK=50 (W-c-mf2), WORLD_BASE=<the no-case run's dir> (W2-p's drought), WORLD_MANIFEST_ALLOW=checks.json (TO_PM_WORLD 4); with no oracle dir (WORLD_YEAR, WORLD_DAYS, WORLD_PARAMS) the Python-only
+#   (W-mf2), WORLD_LEAK=50 (W-c-mf2), WORLD_LEAK_F=31 (W-c-mf3), WORLD_BASE=<the no-case run's dir> (W2-p's drought); with no oracle dir (WORLD_YEAR, WORLD_DAYS, WORLD_PARAMS) the Python-only
 #   rows run against the Python's own straight run
 import json
 import math
@@ -163,6 +163,7 @@ def main():
     save_at = [int(x) for x in os.environ.get("WORLD_SAVE_AT", "").split(",") if x]
     nudge = int(os.environ.get("WORLD_NUDGE", "-1"))
     leak = int(os.environ.get("WORLD_LEAK", "-1"))
+    leak_f = int(os.environ.get("WORLD_LEAK_F", "-1"))
     WM.NUDGE_FOOD[0] = int(os.environ.get("WORLD_NUDGE_FOOD", "-1"))
     t0 = time.perf_counter()
     w = WM.World()
@@ -189,7 +190,7 @@ def main():
             mine = w.tree()
             extra = "; " + "; ".join(first_diff(mine.get(n), ref.get(n), n) for n in bad[:4])
         row = "W0-s" if day == 0 else ("W1" if year == 2022 else "W2")
-        if leak >= 0:
+        if leak >= 0 or leak_f >= 0:
             return
         if nudge >= 0:
             if day == nudge:
@@ -214,6 +215,10 @@ def main():
             k0 = w.status.entities[0]
             w.status.cohort[k0][80] += 1.0
             cons.L.add(("co", k0, 80), 1.0, w.status.cohort[k0][80])
+        if day == leak_f:
+            e0 = w.data.index_of("JPN")
+            w.field.servers[e0] += 1.0
+            cons.L.flt[("servers", e0)] = w.field.servers[e0]
         if day == 40 and "release" in cases:
             w.status.set_lever("JPN", "rice_stock_release", 100.0)
         if day == nudge:
@@ -255,7 +260,11 @@ def main():
         kit.check(not w.econ.mismatch, "W2-i: enforcement on the replayed stocks equals the oracle's after-rows every month: %d differ %s" % (len(w.econ.mismatch), w.econ.mismatch[:2]))
     xf = [x for x in cons.fails if x.startswith("W-c-x")]
     ff = [x for x in cons.fails if x.startswith("W-c-f")]
-    if leak >= 0 or nudge >= 0:
+    if leak >= 0 or nudge >= 0 or leak_f >= 0:
+        if leak_f >= 0:
+            e0 = w.data.index_of("JPN")
+            hit = [x for x in ff if ("day %d " % (leak_f + 1)) in x and "('servers', %d)" % e0 in x and "differs from the last posting" not in x]
+            kit.check(bool(hit), "W-c-mf3: 1 MW of JPN's servers moved at day %d as if posted, the shadow not, fails W-c-f at the next check and names it: %s" % (leak_f, hit[:1]))
         if leak >= 0:
             kit.check(any("double entry" in x and ("day %d " % (leak + 1)) in x for x in xf), "W-c-mf2: one person added to a cell with no counterpart at day %d breaks W-c-x at the next check: %s" % (leak, xf[:1]))
         if nudge >= 0:

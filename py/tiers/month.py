@@ -8,6 +8,7 @@ import numpy as np
 from core import detmath, keyed, prims
 from core.gd import idiv, maxi, mini, maxf, minf, clampi, clampf
 from core.digest import Packed, PackedStr
+from tiers import t23
 
 BANDS = 18
 NTYPE = 6
@@ -266,8 +267,12 @@ def step(p):
         p.tr_pt_rem = {}
     g0 = grade_table(p, [])
     _t22_age(p, w)
+    if getattr(p, "t23", False):
+        t23.after_age(p, w)
     g1 = grade_table(p, w["lists"])
     _t22_deaths(p, w)
+    if getattr(p, "t23", False):
+        t23.after_deaths(p, w)
     g2 = grade_table(p, w["lists"])
     if p.month % 12 == 0:
         p.tr_kb = _targets(p)
@@ -857,6 +862,8 @@ def _t22_deaths(p, w):
                     continue
                 c2 = cps[i]
                 p.tr_cp_n[c2] -= y[i]
+                if "t23_cuts" in w:
+                    w["t23_cuts"].append((c2, g, y[i]))
                 other = p.tr_cp_h[c2] if p.tr_cp_w[c2] == g else p.tr_cp_w[c2]
                 wv = mini(y[i], ms[other * 4 + 1])
                 tl["couples_lost"] = int(tl["couples_lost"]) + y[i]

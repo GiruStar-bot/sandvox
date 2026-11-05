@@ -17,9 +17,12 @@ class Labour:
         self.wage_demand_share = 0.0
         self.demand_scale = {}
         self.log = []
+        self.caps = None
+        self.bands = {}
 
     def var_names(self):
-        return ["spec", "u", "wage_index", "use_start", "search_share", "wage_demand_share", "demand_scale", "log"]
+        names = ["spec", "u", "wage_index", "use_start", "search_share", "wage_demand_share", "demand_scale", "log"]
+        return names + ["bands"] if self.caps is not None else names
 
     def load_state(self, key):
         d = load_json("labour_%s.json" % key.lower())
@@ -32,8 +35,19 @@ class Labour:
     def _p(self, name):
         return float(self.spec[name]["value"])
 
-    def receive(self, search, wage_demands, scales):
+    def receive(self, search, wage_demands, scales, bands=None):
         self.search_share = float(search)
+        if self.caps is not None and bands is not None:
+            # Why not the search share recomputed from the bands: the persons' share is of their labour force, which the bands'
+            # participation does not carry; it is scaled by the searching the caps leave
+            self.bands = self.caps.cap(bands)
+            s0 = 0.0
+            s1 = 0.0
+            for b in bands:
+                s0 += float(bands[b][2])
+                s1 += self.bands[b][2]
+            if s0 > 0.0:
+                self.search_share = self.search_share * (s1 / s0)
         self.wage_demand_share = float(wage_demands)
         self.demand_scale = copy.copy(scales)
 

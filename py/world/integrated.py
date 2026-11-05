@@ -22,6 +22,12 @@ class EconLink:
     def check_enforcement(self, month):
         pass
 
+    def attach_labour(self, key):
+        # modern_world.gd create: the economy's labour market runs when the persons supply labour
+        from econ.labour import Labour
+        self.e.labour = Labour()
+        return self.e.labour.load_state(key)
+
     def to_dict(self):
         return {}
 
@@ -64,6 +70,18 @@ def from_oracle(world_dir, econ, persons):
     return w
 
 
+def econ_factory():
+    # py/econ's month, created as modern_world.gd creates econ (its seeded weather only on request)
+    def make():
+        from econ.month import EconMonth
+        e = EconMonth()
+        err = e.create("JPN")
+        if err != "":
+            raise ValueError(err)
+        return EconLink(e)
+    return make
+
+
 def hashes(w):
     from econ import state as ES
     return {"world": field_hashes(w.tree()), "econ": ES.field_hashes(w.econ.e)}
@@ -92,8 +110,9 @@ def advance_to(w, day, hook=None, order=None):
         if w.econ is not None and MA.is_month_end(field.day):
             if hook:
                 hook("b01")
+            since = w.lever_since(logged)
             if order == "s4_first":
-                w._s4_month(logged)
+                w._s4_month(since)
             if w.people is not None:
                 psup = w.people.supply()
                 w.econ.labour.receive(float(psup["search_share"]), float(psup["wage_demand_share"]), psup["scales"])
@@ -109,7 +128,7 @@ def advance_to(w, day, hook=None, order=None):
                 if str(r["ledger"]) == "goods" and str(r["field"]) == "price":
                     w.chronicle.add(field.day, "price", "JPN", "market", {"commodity": str(r["key"]).split("|")[0], "before": r["before"], "after": r["after"]}, str(r["why"]))
             if w.people is not None:
-                applied_ids = [str(w.status.lever_log[i][2]) for i in range(logged, len(w.status.lever_log)) if str(w.status.lever_log[i][4]) == "applied"]
+                applied_ids = [str(w.status.lever_log[i][2]) for i in range(since, len(w.status.lever_log)) if str(w.status.lever_log[i][4]) == "applied"]
                 w.people.step({"inflation_month": float(w.econ.world.env.get("inflation", 0.02)) / 12.0, "food_price_yoy": float(w.econ.world.env.get("food_price_yoy", 0.0)),
                                "unemployment_rate": w.econ.labour.u, "wage_index": w.econ.labour.wage_index, "levers": applied_ids, "cohort": w.status.cohort["JPN"]})
                 sm = w.people.summary()
@@ -122,7 +141,7 @@ def advance_to(w, day, hook=None, order=None):
             if hook:
                 hook("b03")
             if order != "s4_first":
-                w._s4_month(logged)
+                w._s4_month(since)
             if hook:
                 hook("b04")
         w.chronicle.observe_field(field, w.data.keys)

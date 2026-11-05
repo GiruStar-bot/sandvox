@@ -32,6 +32,8 @@ def fields(e):
         owners.append(("bank", e.bank))
     if e.labour is not None:
         owners.append(("labour", e.labour))
+    if getattr(e, "mech", None) is not None:
+        owners.append(("mech", e.mech))
     for name, o in owners:
         for n in o.var_names():
             if n == "log" and name != "labour":
@@ -104,4 +106,11 @@ def from_tree(d):
         for n in lb.var_names():
             setattr(lb, n, t["labour." + n])
         e.labour = lb
+    if "mech.p" in t:
+        e.enable_mech(t["mech.p"])
+        for n in e.mech.var_names():
+            if n != "log":
+                setattr(e.mech, n, t["mech." + n])
+        if "labour.bands" in t:
+            e.labour.bands = t["labour.bands"]
     return e

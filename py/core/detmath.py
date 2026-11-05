@@ -18,6 +18,9 @@ ATANLO=[F(0x3C7A2B7F222F65E2),F(0x3C81A62633145C07),F(0x3C7007887AF0CBBD),F(0x3C
 AT=[F(0x3FD555555555550D),-F(0x3FC999999998EBC4),F(0x3FC24924920083FF),-F(0x3FBC71C6FE231671),F(0x3FB745CDC54C206E),-F(0x3FB3B0F2AF749A6D),F(0x3FB10D66A0D03D51),-F(0x3FADDE2D52DEFD9A),F(0x3FA97B4B24760DEB),-F(0x3FA2B4442C6A6C2F),F(0x3F90AD3AE322DA11)]
 PI_=F(0x400921FB54442D18);PI_LO=F(0x3CA1A62633145C07);TWO66=F(0x4410000000000000);TWO60=F(0x43B0000000000000);TWOM29=F(0x3E20000000000000)
 INF=float('inf')
+# Godot's NAN and the IEEE operations give x86-64's default NaN, 0xFFF8000000000000; Python's float("nan") is 0x7FF8..., and the
+# digest hashes a float's bits (M042 §2b, row Q-nan)
+NAN=INF-INF
 def p2(k): return F((1<<(k+1074)) if k< -1022 else ((k+1023)<<52))
 def exp(x):
     if x!=x: return x
@@ -33,7 +36,7 @@ def exp(x):
     if k< -1022: return (y*p2(k+1000))*p2(-1000)
     return y*p2(k)
 def log(x):
-    if not x>0.0: return -INF if x==0.0 else float('nan')
+    if not x>0.0: return -INF if x==0.0 else NAN
     if x==INF: return x
     k=0
     if x<MIN_NORMAL: x*=TWO54; k=-54
@@ -62,7 +65,7 @@ def pow(x,y):
     if y==1.0: return x
     if y==2.0: return x*x
     if y==0.5 and x>0.0 and x<INF: return math.sqrt(x)
-    if x!=x or y!=y: return float('nan')
+    if x!=x or y!=y: return NAN
     if math.floor(y)==y and abs(y)<=64.0:
         n=int(abs(y)); acc=1.0; b=x
         while True:
@@ -73,7 +76,7 @@ def pow(x,y):
         return 1.0/acc if y<0 else acc
     neg=False; ax=x
     if x<0.0:
-        if math.floor(y)!=y: return float('nan')
+        if math.floor(y)!=y: return NAN
         ax=-x; neg = abs(y)<TWO54 and math.floor(y*0.5)!=y*0.5
     if ax==0.0: r=0.0 if y>0 else INF
     elif ax==INF: r=INF if y>0 else 0.0
@@ -94,11 +97,13 @@ def kcos(x,y):
 def sin(x):
     ax=abs(x)
     if ax<=PIO4: return x if ax<TWOM27 else ksin(x,0.0)
+    if not (ax<INF): return NAN
     n,a,b=rem(x); n&=3
     return [ksin(a,b),kcos(a,b),-ksin(a,b),-kcos(a,b)][n]
 def cos(x):
     ax=abs(x)
     if ax<=PIO4: return 1.0 if ax<TWOM27 else kcos(x,0.0)
+    if not (ax<INF): return NAN
     n,a,b=rem(x); n&=3
     return [kcos(a,b),-ksin(a,b),-kcos(a,b),ksin(a,b)][n]
 def atan(x):

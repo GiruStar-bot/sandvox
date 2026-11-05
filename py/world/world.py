@@ -151,7 +151,10 @@ class World:
         self.view_salt = b""
         self.iface = None
 
-    def create(self, year, p=None, iface=None):
+    def create(self, year, p=None, iface=None, econ_factory=None, persons_factory=None):
+        # econ_factory() -> the econ the world steps (py/econ's, through integrated.EconLink), persons_factory(key, seed, cohort, qx,
+        # prefectures, n_per, year, households) -> the persons (W1-p, AMENDED B2). Why factories and not imports: py/world stays
+        # verifiable on its own with EconReplay, and the persons port is not on modern yet
         p = p or {}
         self.iface = iface
         cg = p.get("compute_growth", "persistence")
@@ -162,10 +165,18 @@ class World:
             self.params["pipeline_mix"] = str(p.get("pipeline_mix", "logit"))
             self.params["fab_cost"] = str(p.get("fab_cost", "ref"))
             self.params["coal_retire_yr"] = 1.0 / MA.COAL_AGE_YR
+        if p.get("lever_window") == "month":
+            self.params["lever_window"] = "month"
         self.view_salt = bytes.fromhex(str(p.get("view_salt", "")))
         if bool(p.get("people", False)):
-            self.error = "py world: the persons' interface replay (W1-p) is not ported yet"
-            return self.error
+            self.params["people"] = True
+            self.params["people_seed"] = int(p.get("people_seed", 1))
+            self.params["people_per_prefecture"] = int(p.get("people_per_prefecture", 0))
+            if bool(p.get("people_households", False)):
+                self.params["people_households"] = True
+            if econ_factory is None or persons_factory is None:
+                self.error = "py world: the persons need econ_factory and persons_factory (W1-p)"
+                return self.error
         if self.params["rules"] not in MA.RULE_SETS:
             self.error = "modern world: unknown rule set " + self.params["rules"]
             return self.error
@@ -217,10 +228,13 @@ class World:
             self.cabinet = Cabinet()
             self.cabinet.setup(self.polity["JPN"])
             if exists("res://data/modern/econ/crop_farming_jpn.json"):
-                if iface is None:
+                if econ_factory is not None:
+                    self.econ = econ_factory()
+                elif iface is None:
                     self.error = "py world: this world runs the economy; give the oracle's iface.json (WORLD_PORT_PLAN §3)"
                     return self.error
-                self.econ = EconReplay(iface)
+                else:
+                    self.econ = EconReplay(iface)
                 if "shock_seed" in p:
                     self.params["shock_seed"] = int(p["shock_seed"])
                     self.params["shock_years"] = int(p.get("shock_years", 10))
@@ -231,6 +245,14 @@ class World:
                 self.election = Election()
                 if self.election.load_state("JPN") != "":
                     self.election = None
+                if bool(self.params.get("people", False)):
+                    prefs = CANON.load_json("res://data/modern/polity/jpn_prefectures.json")
+                    self.people = persons_factory("JPN", int(self.params["people_seed"]), self.status.cohort["JPN"], self.status.qx["JPN"],
+                                                  prefs["prefectures"], int(self.params["people_per_prefecture"]), data.base_year,
+                                                  bool(self.params.get("people_households", False)))
+                    self.error = self.econ.attach_labour("JPN")
+                    if self.error != "":
+                        return self.error
         return ""
 
     def advance_to(self, day):
@@ -257,7 +279,7 @@ class World:
                 for r in self.econ.chronicle_rows(self.data.base_year, self.econ.world.month - 1):
                     if str(r["ledger"]) == "goods" and str(r["field"]) == "price":
                         self.chronicle.add(field.day, "price", "JPN", "market", {"commodity": str(r["key"]).split("|")[0], "before": r["before"], "after": r["after"]}, str(r["why"]))
-                self._s4_month(logged)
+                self._s4_month(self.lever_since(logged))
             self.chronicle.observe_field(field, self.data.keys)
             if field.day % 365 == 0:
                 self.register.close_year(self, self.data.base_year + field.day // 365 - 1)
@@ -266,6 +288,20 @@ class World:
                                        "niip": self.status.value(k, "niip"), "debt_to_gdp": self.status.value(k, "debt_to_gdp")}, "the year's statuses")
             if MA.is_month_end(field.day):
                 self._month()
+
+    def lever_since(self, logged):
+        # D-lev (WORLD_PORT_PLAN §5b): with lever_window "month", the first lever-log row after the previous month end; else the day's
+        # `logged`, as modern_world.gd. Why derived from the log's days and not kept: a kept index would be new state in the save and the
+        # digest, and the log is append-only in day order
+        if self.params.get("lever_window") != "month":
+            return logged
+        prev = self.field.day - 1
+        while prev > 0 and not MA.is_month_end(prev):
+            prev -= 1
+        i = len(self.status.lever_log)
+        while i > 0 and int(self.status.lever_log[i - 1][0]) > prev:
+            i -= 1
+        return i
 
     def _s4_month(self, logged_before):
         m = self.econ.world.month - 1

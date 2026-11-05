@@ -1,0 +1,21 @@
+{
+  "id": "",
+  "name_en": "",
+  "status": "stub",
+  "label": "UNSOURCED (stub, D483): every number of a stub country is a placeholder and claims nothing about the country",
+  "cutoff": "2024-12-31",
+  "files": {
+    "status": "res://data/modern/jpn/status_2024.json",
+    "people_spec": "res://data/modern/people/jpn_people_2024.json",
+    "tiers_spec": "res://data/modern/people/jpn_tiers_2024.json",
+    "households_spec": "res://data/modern/people/jpn_households_2024.json",
+    "regions": "res://data/modern/stub/regions.json",
+    "commodities": "res://data/modern/econ/commodities.json",
+    "levers": "res://data/modern/stub/levers.json"
+  },
+  "constants": {
+    "population_placeholder": 1000000,
+    "persons_per_region": 50,
+    "pension_age": 65
+  }
+}

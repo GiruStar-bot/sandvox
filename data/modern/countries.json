@@ -1,0 +1,1726 @@
+{
+ "source": "data/modern/entities.json (the field's entities: ids and names)",
+ "note": "FRAME_PLAN §6.1 (D483): every country is a stub except the filled ones; a stub's numbers are placeholders, labelled UNSOURCED, and claim nothing about the country",
+ "countries": [
+  {
+   "id": "ABW",
+   "name_en": "Aruba",
+   "kind": "dependency",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "AFG",
+   "name_en": "Afghanistan",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "AGO",
+   "name_en": "Angola",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "ALB",
+   "name_en": "Albania",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "AND",
+   "name_en": "Andorra",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "ARE",
+   "name_en": "United Arab Emirates",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "ARG",
+   "name_en": "Argentina",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "ARM",
+   "name_en": "Armenia",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "ATG",
+   "name_en": "Antigua and Barbuda",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "AUS",
+   "name_en": "Australia",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "AUT",
+   "name_en": "Austria",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "AZE",
+   "name_en": "Azerbaijan",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "BDI",
+   "name_en": "Burundi",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "BEL",
+   "name_en": "Belgium",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "BEN",
+   "name_en": "Benin",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "BFA",
+   "name_en": "Burkina Faso",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "BGD",
+   "name_en": "Bangladesh",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "BGR",
+   "name_en": "Bulgaria",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "BHR",
+   "name_en": "Bahrain",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "BHS",
+   "name_en": "Bahamas",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "BIH",
+   "name_en": "Bosnia and Herzegovina",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "BLR",
+   "name_en": "Belarus",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "BLZ",
+   "name_en": "Belize",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "BMU",
+   "name_en": "Bermuda",
+   "kind": "dependency",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "BOL",
+   "name_en": "Bolivia (Plurinational State of)",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "BRA",
+   "name_en": "Brazil",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "BRB",
+   "name_en": "Barbados",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "BRN",
+   "name_en": "Brunei Darussalam",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "BTN",
+   "name_en": "Bhutan",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "BWA",
+   "name_en": "Botswana",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "CAF",
+   "name_en": "Central African Republic",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "CAN",
+   "name_en": "Canada",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "CHE",
+   "name_en": "Switzerland",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "CHL",
+   "name_en": "Chile",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "CHN",
+   "name_en": "China",
+   "kind": "un_member",
+   "macro": "CN",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "CIV",
+   "name_en": "Côte d’Ivoire",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "CMR",
+   "name_en": "Cameroon",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "COD",
+   "name_en": "Democratic Republic of the Congo",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "COG",
+   "name_en": "Congo",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "COK",
+   "name_en": "Cook Islands",
+   "kind": "region",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "COL",
+   "name_en": "Colombia",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "COM",
+   "name_en": "Comoros",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "CPV",
+   "name_en": "Cabo Verde",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "CRI",
+   "name_en": "Costa Rica",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "CUB",
+   "name_en": "Cuba",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "CUW",
+   "name_en": "Curaçao",
+   "kind": "dependency",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "CYM",
+   "name_en": "Cayman Islands",
+   "kind": "dependency",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "CYP",
+   "name_en": "Cyprus",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "CZE",
+   "name_en": "Czechia",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "DEU",
+   "name_en": "Germany",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "DJI",
+   "name_en": "Djibouti",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "DMA",
+   "name_en": "Dominica",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "DNK",
+   "name_en": "Denmark",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "DOM",
+   "name_en": "Dominican Republic",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "DZA",
+   "name_en": "Algeria",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "ECU",
+   "name_en": "Ecuador",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "EGY",
+   "name_en": "Egypt",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "ERI",
+   "name_en": "Eritrea",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "ESH",
+   "name_en": "Western Sahara",
+   "kind": "region",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "ESP",
+   "name_en": "Spain",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "EST",
+   "name_en": "Estonia",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "ETH",
+   "name_en": "Ethiopia",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "FIN",
+   "name_en": "Finland",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "FJI",
+   "name_en": "Fiji",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "FRA",
+   "name_en": "France",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "FRO",
+   "name_en": "Faroe Islands",
+   "kind": "dependency",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "FSM",
+   "name_en": "Micronesia (Federated States of)",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "GAB",
+   "name_en": "Gabon",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "GBR",
+   "name_en": "United Kingdom of Great Britain and Northern Ireland",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "GEO",
+   "name_en": "Georgia",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "GHA",
+   "name_en": "Ghana",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "GIN",
+   "name_en": "Guinea",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "GMB",
+   "name_en": "Gambia",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "GNB",
+   "name_en": "Guinea-Bissau",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "GNQ",
+   "name_en": "Equatorial Guinea",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "GRC",
+   "name_en": "Greece",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "GRD",
+   "name_en": "Grenada",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "GRL",
+   "name_en": "Greenland",
+   "kind": "dependency",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "GTM",
+   "name_en": "Guatemala",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "GUM",
+   "name_en": "Guam",
+   "kind": "dependency",
+   "macro": "US",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "GUY",
+   "name_en": "Guyana",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "HKG",
+   "name_en": "Hong Kong",
+   "kind": "region",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "HND",
+   "name_en": "Honduras",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "HRV",
+   "name_en": "Croatia",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "HTI",
+   "name_en": "Haiti",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "HUN",
+   "name_en": "Hungary",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "IDN",
+   "name_en": "Indonesia",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "IMN",
+   "name_en": "Isle of Man",
+   "kind": "dependency",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "IND",
+   "name_en": "India",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "IRL",
+   "name_en": "Ireland",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "IRN",
+   "name_en": "Iran (Islamic Republic of)",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "IRQ",
+   "name_en": "Iraq",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "ISL",
+   "name_en": "Iceland",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "ISR",
+   "name_en": "Israel",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "ITA",
+   "name_en": "Italy",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "JAM",
+   "name_en": "Jamaica",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "JOR",
+   "name_en": "Jordan",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "JPN",
+   "name_en": "Japan",
+   "kind": "un_member",
+   "macro": "JP",
+   "status": "filled",
+   "manifest": "data/modern/jpn/country.json"
+  },
+  {
+   "id": "KAZ",
+   "name_en": "Kazakhstan",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "KEN",
+   "name_en": "Kenya",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "KGZ",
+   "name_en": "Kyrgyzstan",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "KHM",
+   "name_en": "Cambodia",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "KIR",
+   "name_en": "Kiribati",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "KNA",
+   "name_en": "Saint Kitts and Nevis",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "KOR",
+   "name_en": "Republic of Korea",
+   "kind": "un_member",
+   "macro": "KR",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "KWT",
+   "name_en": "Kuwait",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "LAO",
+   "name_en": "Lao People's Democratic Republic",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "LBN",
+   "name_en": "Lebanon",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "LBR",
+   "name_en": "Liberia",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "LBY",
+   "name_en": "Libya",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "LCA",
+   "name_en": "Saint Lucia",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "LIE",
+   "name_en": "Liechtenstein",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "LKA",
+   "name_en": "Sri Lanka",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "LSO",
+   "name_en": "Lesotho",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "LTU",
+   "name_en": "Lithuania",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "LUX",
+   "name_en": "Luxembourg",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "LVA",
+   "name_en": "Latvia",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "MAC",
+   "name_en": "Macao",
+   "kind": "region",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "MAR",
+   "name_en": "Morocco",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "MCO",
+   "name_en": "Monaco",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "MDA",
+   "name_en": "Republic of Moldova",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "MDG",
+   "name_en": "Madagascar",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "MDV",
+   "name_en": "Maldives",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "MEX",
+   "name_en": "Mexico",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "MHL",
+   "name_en": "Marshall Islands",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "MKD",
+   "name_en": "North Macedonia",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "MLI",
+   "name_en": "Mali",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "MLT",
+   "name_en": "Malta",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "MMR",
+   "name_en": "Myanmar",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "MNE",
+   "name_en": "Montenegro",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "MNG",
+   "name_en": "Mongolia",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "MOZ",
+   "name_en": "Mozambique",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "MRT",
+   "name_en": "Mauritania",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "MUS",
+   "name_en": "Mauritius",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "MWI",
+   "name_en": "Malawi",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "MYS",
+   "name_en": "Malaysia",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "NAM",
+   "name_en": "Namibia",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "NCL",
+   "name_en": "New Caledonia",
+   "kind": "dependency",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "NER",
+   "name_en": "Niger",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "NGA",
+   "name_en": "Nigeria",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "NIC",
+   "name_en": "Nicaragua",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "NIU",
+   "name_en": "Niue",
+   "kind": "region",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "NLD",
+   "name_en": "Netherlands (Kingdom of the)",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "NOR",
+   "name_en": "Norway",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "NPL",
+   "name_en": "Nepal",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "NRU",
+   "name_en": "Naoero",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "NZL",
+   "name_en": "New Zealand",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "OMN",
+   "name_en": "Oman",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "PAK",
+   "name_en": "Pakistan",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "PAN",
+   "name_en": "Panama",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "PER",
+   "name_en": "Peru",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "PHL",
+   "name_en": "Philippines",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "PLW",
+   "name_en": "Palau",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "PNG",
+   "name_en": "Papua New Guinea",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "POL",
+   "name_en": "Poland",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "PRI",
+   "name_en": "Puerto Rico",
+   "kind": "dependency",
+   "macro": "US",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "PRK",
+   "name_en": "Democratic People's Republic of Korea",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "PRT",
+   "name_en": "Portugal",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "PRY",
+   "name_en": "Paraguay",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "PSE",
+   "name_en": "State of Palestine",
+   "kind": "observer",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "PYF",
+   "name_en": "French Polynesia",
+   "kind": "dependency",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "QAT",
+   "name_en": "Qatar",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "ROU",
+   "name_en": "Romania",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "RUS",
+   "name_en": "Russian Federation",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "RWA",
+   "name_en": "Rwanda",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "SAU",
+   "name_en": "Saudi Arabia",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "SDN",
+   "name_en": "Sudan",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "SEN",
+   "name_en": "Senegal",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "SGP",
+   "name_en": "Singapore",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "SLB",
+   "name_en": "Solomon Islands",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "SLE",
+   "name_en": "Sierra Leone",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "SLV",
+   "name_en": "El Salvador",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "SMR",
+   "name_en": "San Marino",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "SOM",
+   "name_en": "Somalia",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "SRB",
+   "name_en": "Serbia",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "SSD",
+   "name_en": "South Sudan",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "STP",
+   "name_en": "Sao Tome and Principe",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "SUR",
+   "name_en": "Suriname",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "SVK",
+   "name_en": "Slovakia",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "SVN",
+   "name_en": "Slovenia",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "SWE",
+   "name_en": "Sweden",
+   "kind": "un_member",
+   "macro": "EU",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "SWZ",
+   "name_en": "Eswatini",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "SYC",
+   "name_en": "Seychelles",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "SYR",
+   "name_en": "Syrian Arab Republic",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "TCA",
+   "name_en": "Turks and Caicos Islands",
+   "kind": "dependency",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "TCD",
+   "name_en": "Chad",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "TGO",
+   "name_en": "Togo",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "THA",
+   "name_en": "Thailand",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "TJK",
+   "name_en": "Tajikistan",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "TKM",
+   "name_en": "Turkmenistan",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "TLS",
+   "name_en": "Timor-Leste",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "TON",
+   "name_en": "Tonga",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "TTO",
+   "name_en": "Trinidad and Tobago",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "TUN",
+   "name_en": "Tunisia",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "TUR",
+   "name_en": "Türkiye",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "TUV",
+   "name_en": "Tuvalu",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "TWN",
+   "name_en": "Taiwan",
+   "kind": "region",
+   "macro": "TW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "TZA",
+   "name_en": "United Republic of Tanzania",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "UGA",
+   "name_en": "Uganda",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "UKR",
+   "name_en": "Ukraine",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "URY",
+   "name_en": "Uruguay",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "USA",
+   "name_en": "United States of America",
+   "kind": "un_member",
+   "macro": "US",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "UZB",
+   "name_en": "Uzbekistan",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "VAT",
+   "name_en": "Holy See",
+   "kind": "observer",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "VCT",
+   "name_en": "Saint Vincent and the Grenadines",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "VEN",
+   "name_en": "Venezuela (Bolivarian Republic of)",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "VIR",
+   "name_en": "United States Virgin Islands",
+   "kind": "dependency",
+   "macro": "US",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "VNM",
+   "name_en": "Viet Nam",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "VUT",
+   "name_en": "Vanuatu",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "WSM",
+   "name_en": "Samoa",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "XKX",
+   "name_en": "Kosovo",
+   "kind": "region",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "YEM",
+   "name_en": "Yemen",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "ZAF",
+   "name_en": "South Africa",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "ZMB",
+   "name_en": "Zambia",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  },
+  {
+   "id": "ZWE",
+   "name_en": "Zimbabwe",
+   "kind": "un_member",
+   "macro": "ROW",
+   "status": "stub",
+   "manifest": "data/modern/stub/country.json"
+  }
+ ]
+}

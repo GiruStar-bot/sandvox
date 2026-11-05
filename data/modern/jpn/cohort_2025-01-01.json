@@ -1,0 +1,843 @@
+{
+ "unit_persons": 1,
+ "date": "2025-01-01",
+ "source": "start rule (D), START_PORT_PLAN §5 (AMENDED by the PM's ruling on M040), py/tiers/start/age_d.py, seed 1: the 人口推計 2023-10-01 cohort (data/modern/jpn/status_2024.json .cohort, 第1表, published 2024-04-12) on birth-month groups (R76 birth_month_shares), the prefectures' totals from R81's 2023-10-01 第10表 (data/modern/polity/jpn_prefectures.json) raked to the cohort's total, aged over 2023-10 .. 2024-12 with R96f's monthly flows (research-notes 33f578dc) and R96g's 2023 tables (research-notes 81317116), copied in data/modern/jpn/flows_2023_2024/, deaths split by 令和5年簡易生命表's central rate (R96h, jpn_households_2024.json .life_course.qx_2022); the international net by sex by 住基's trailing 12-month net shares (D, the PM's ruling on (5)) and over prefectures by their 2023 住基 net from abroad (国外からの転入 - 国外への転出, 総数; R100, research-notes a694abc5, published 2024-07-24; a negative net floored at 0; D, AMENDED, the PM's ruling on (7)); every input published by 2024-12-31",
+ "seed": 1,
+ "sha256_table": "602af7f89d4f4ba162eff50a4907adf0e67d2510638c4f40f4992f3dd883ad43",
+ "sha256_prefectures": "7bdc461ad7cf6cbd38c79ac37a9eb234311f9ae225d39d90a909f1995473f2ef",
+ "total": 123748543,
+ "ages": [
+  {
+   "age": 0,
+   "male": 370137,
+   "female": 352652
+  },
+  {
+   "age": 1,
+   "male": 388110,
+   "female": 369966
+  },
+  {
+   "age": 2,
+   "male": 405454,
+   "female": 384675
+  },
+  {
+   "age": 3,
+   "male": 424116,
+   "female": 404199
+  },
+  {
+   "age": 4,
+   "male": 427229,
+   "female": 407962
+  },
+  {
+   "age": 5,
+   "male": 442870,
+   "female": 422133
+  },
+  {
+   "age": 6,
+   "male": 462981,
+   "female": 441857
+  },
+  {
+   "age": 7,
+   "male": 479620,
+   "female": 458401
+  },
+  {
+   "age": 8,
+   "male": 497251,
+   "female": 473103
+  },
+  {
+   "age": 9,
+   "male": 509837,
+   "female": 485532
+  },
+  {
+   "age": 10,
+   "male": 515066,
+   "female": 489431
+  },
+  {
+   "age": 11,
+   "male": 523077,
+   "female": 498481
+  },
+  {
+   "age": 12,
+   "male": 529515,
+   "female": 505337
+  },
+  {
+   "age": 13,
+   "male": 536591,
+   "female": 510345
+  },
+  {
+   "age": 14,
+   "male": 544416,
+   "female": 517408
+  },
+  {
+   "age": 15,
+   "male": 549872,
+   "female": 522281
+  },
+  {
+   "age": 16,
+   "male": 558642,
+   "female": 530557
+  },
+  {
+   "age": 17,
+   "male": 560444,
+   "female": 531533
+  },
+  {
+   "age": 18,
+   "male": 558022,
+   "female": 529527
+  },
+  {
+   "age": 19,
+   "male": 560700,
+   "female": 531071
+  },
+  {
+   "age": 20,
+   "male": 591768,
+   "female": 559224
+  },
+  {
+   "age": 21,
+   "male": 616509,
+   "female": 577751
+  },
+  {
+   "age": 22,
+   "male": 636328,
+   "female": 596147
+  },
+  {
+   "age": 23,
+   "male": 661129,
+   "female": 620721
+  },
+  {
+   "age": 24,
+   "male": 674419,
+   "female": 630894
+  },
+  {
+   "age": 25,
+   "male": 671069,
+   "female": 631410
+  },
+  {
+   "age": 26,
+   "male": 680799,
+   "female": 641139
+  },
+  {
+   "age": 27,
+   "male": 678652,
+   "female": 639433
+  },
+  {
+   "age": 28,
+   "male": 675925,
+   "female": 635496
+  },
+  {
+   "age": 29,
+   "male": 680304,
+   "female": 639363
+  },
+  {
+   "age": 30,
+   "male": 676356,
+   "female": 635149
+  },
+  {
+   "age": 31,
+   "male": 658111,
+   "female": 618098
+  },
+  {
+   "age": 32,
+   "male": 658168,
+   "female": 619840
+  },
+  {
+   "age": 33,
+   "male": 655207,
+   "female": 619611
+  },
+  {
+   "age": 34,
+   "male": 661275,
+   "female": 627949
+  },
+  {
+   "age": 35,
+   "male": 669931,
+   "female": 638107
+  },
+  {
+   "age": 36,
+   "male": 686014,
+   "female": 653193
+  },
+  {
+   "age": 37,
+   "male": 702287,
+   "female": 671238
+  },
+  {
+   "age": 38,
+   "male": 713563,
+   "female": 682507
+  },
+  {
+   "age": 39,
+   "male": 732647,
+   "female": 705871
+  },
+  {
+   "age": 40,
+   "male": 755311,
+   "female": 730205
+  },
+  {
+   "age": 41,
+   "male": 770203,
+   "female": 745963
+  },
+  {
+   "age": 42,
+   "male": 769469,
+   "female": 747820
+  },
+  {
+   "age": 43,
+   "male": 773489,
+   "female": 751088
+  },
+  {
+   "age": 44,
+   "male": 800178,
+   "female": 777308
+  },
+  {
+   "age": 45,
+   "male": 822761,
+   "female": 798567
+  },
+  {
+   "age": 46,
+   "male": 851373,
+   "female": 827621
+  },
+  {
+   "age": 47,
+   "male": 874058,
+   "female": 849916
+  },
+  {
+   "age": 48,
+   "male": 910568,
+   "female": 884759
+  },
+  {
+   "age": 49,
+   "male": 947791,
+   "female": 922348
+  },
+  {
+   "age": 50,
+   "male": 996952,
+   "female": 970450
+  },
+  {
+   "age": 51,
+   "male": 1016556,
+   "female": 995198
+  },
+  {
+   "age": 52,
+   "male": 1008234,
+   "female": 986440
+  },
+  {
+   "age": 53,
+   "male": 980389,
+   "female": 961804
+  },
+  {
+   "age": 54,
+   "male": 948047,
+   "female": 933168
+  },
+  {
+   "age": 55,
+   "male": 926136,
+   "female": 916061
+  },
+  {
+   "age": 56,
+   "male": 901039,
+   "female": 893265
+  },
+  {
+   "age": 57,
+   "male": 892365,
+   "female": 887401
+  },
+  {
+   "age": 58,
+   "male": 741084,
+   "female": 742836
+  },
+  {
+   "age": 59,
+   "male": 811829,
+   "female": 815241
+  },
+  {
+   "age": 60,
+   "male": 808150,
+   "female": 813222
+  },
+  {
+   "age": 61,
+   "male": 783341,
+   "female": 791631
+  },
+  {
+   "age": 62,
+   "male": 750915,
+   "female": 762547
+  },
+  {
+   "age": 63,
+   "male": 727034,
+   "female": 742845
+  },
+  {
+   "age": 64,
+   "male": 721070,
+   "female": 743669
+  },
+  {
+   "age": 65,
+   "male": 727250,
+   "female": 753773
+  },
+  {
+   "age": 66,
+   "male": 708018,
+   "female": 740890
+  },
+  {
+   "age": 67,
+   "male": 682650,
+   "female": 719050
+  },
+  {
+   "age": 68,
+   "male": 697107,
+   "female": 740876
+  },
+  {
+   "age": 69,
+   "male": 715045,
+   "female": 765434
+  },
+  {
+   "age": 70,
+   "male": 710066,
+   "female": 769615
+  },
+  {
+   "age": 71,
+   "male": 727786,
+   "female": 802024
+  },
+  {
+   "age": 72,
+   "male": 758912,
+   "female": 847461
+  },
+  {
+   "age": 73,
+   "male": 789981,
+   "female": 893005
+  },
+  {
+   "age": 74,
+   "male": 826162,
+   "female": 952310
+  },
+  {
+   "age": 75,
+   "male": 887422,
+   "female": 1036221
+  },
+  {
+   "age": 76,
+   "male": 875983,
+   "female": 1040748
+  },
+  {
+   "age": 77,
+   "male": 817683,
+   "female": 987185
+  },
+  {
+   "age": 78,
+   "male": 555078,
+   "female": 689041
+  },
+  {
+   "age": 79,
+   "male": 489323,
+   "female": 632669
+  },
+  {
+   "age": 80,
+   "male": 556525,
+   "female": 743347
+  },
+  {
+   "age": 81,
+   "male": 544485,
+   "female": 743944
+  },
+  {
+   "age": 82,
+   "male": 526130,
+   "female": 738074
+  },
+  {
+   "age": 83,
+   "male": 490237,
+   "female": 707973
+  },
+  {
+   "age": 84,
+   "male": 423725,
+   "female": 634879
+  },
+  {
+   "age": 85,
+   "male": 343972,
+   "female": 537062
+  },
+  {
+   "age": 86,
+   "male": 317080,
+   "female": 522230
+  },
+  {
+   "age": 87,
+   "male": 296766,
+   "female": 514367
+  },
+  {
+   "age": 88,
+   "male": 265490,
+   "female": 488000
+  },
+  {
+   "age": 89,
+   "male": 222021,
+   "female": 439568
+  },
+  {
+   "age": 90,
+   "male": 179264,
+   "female": 383918
+  },
+  {
+   "age": 91,
+   "male": 148366,
+   "female": 344373
+  },
+  {
+   "age": 92,
+   "male": 119783,
+   "female": 300917
+  },
+  {
+   "age": 93,
+   "male": 92390,
+   "female": 255138
+  },
+  {
+   "age": 94,
+   "male": 68108,
+   "female": 207619
+  },
+  {
+   "age": 95,
+   "male": 50499,
+   "female": 168790
+  },
+  {
+   "age": 96,
+   "male": 36569,
+   "female": 134574
+  },
+  {
+   "age": 97,
+   "male": 23595,
+   "female": 95230
+  },
+  {
+   "age": 98,
+   "male": 15001,
+   "female": 67827
+  },
+  {
+   "age": 99,
+   "male": 9058,
+   "female": 46790
+  },
+  {
+   "age": 100,
+   "male": 12654,
+   "female": 79719
+  }
+ ],
+ "prefectures": {
+  "01": {
+   "name": "北海道",
+   "pop": 5033161
+  },
+  "02": {
+   "name": "青森県",
+   "pop": 1160565
+  },
+  "03": {
+   "name": "岩手県",
+   "pop": 1141687
+  },
+  "04": {
+   "name": "宮城県",
+   "pop": 2243838
+  },
+  "05": {
+   "name": "秋田県",
+   "pop": 893432
+  },
+  "06": {
+   "name": "山形県",
+   "pop": 1007579
+  },
+  "07": {
+   "name": "福島県",
+   "pop": 1738585
+  },
+  "08": {
+   "name": "茨城県",
+   "pop": 2806014
+  },
+  "09": {
+   "name": "栃木県",
+   "pop": 1883362
+  },
+  "10": {
+   "name": "群馬県",
+   "pop": 1886963
+  },
+  "11": {
+   "name": "埼玉県",
+   "pop": 7329331
+  },
+  "12": {
+   "name": "千葉県",
+   "pop": 6263167
+  },
+  "13": {
+   "name": "東京都",
+   "pop": 14192752
+  },
+  "14": {
+   "name": "神奈川県",
+   "pop": 9222548
+  },
+  "15": {
+   "name": "新潟県",
+   "pop": 2093445
+  },
+  "16": {
+   "name": "富山県",
+   "pop": 995575
+  },
+  "17": {
+   "name": "石川県",
+   "pop": 1097453
+  },
+  "18": {
+   "name": "福井県",
+   "pop": 737576
+  },
+  "19": {
+   "name": "山梨県",
+   "pop": 789595
+  },
+  "20": {
+   "name": "長野県",
+   "pop": 1985130
+  },
+  "21": {
+   "name": "岐阜県",
+   "pop": 1914291
+  },
+  "22": {
+   "name": "静岡県",
+   "pop": 3520987
+  },
+  "23": {
+   "name": "愛知県",
+   "pop": 7466274
+  },
+  "24": {
+   "name": "三重県",
+   "pop": 1710198
+  },
+  "25": {
+   "name": "滋賀県",
+   "pop": 1402972
+  },
+  "26": {
+   "name": "京都府",
+   "pop": 2518048
+  },
+  "27": {
+   "name": "大阪府",
+   "pop": 8762917
+  },
+  "28": {
+   "name": "兵庫県",
+   "pop": 5331651
+  },
+  "29": {
+   "name": "奈良県",
+   "pop": 1282923
+  },
+  "30": {
+   "name": "和歌山県",
+   "pop": 877719
+  },
+  "31": {
+   "name": "鳥取県",
+   "pop": 529442
+  },
+  "32": {
+   "name": "島根県",
+   "pop": 640115
+  },
+  "33": {
+   "name": "岡山県",
+   "pop": 1830619
+  },
+  "34": {
+   "name": "広島県",
+   "pop": 2715569
+  },
+  "35": {
+   "name": "山口県",
+   "pop": 1278049
+  },
+  "36": {
+   "name": "徳島県",
+   "pop": 684141
+  },
+  "37": {
+   "name": "香川県",
+   "pop": 916504
+  },
+  "38": {
+   "name": "愛媛県",
+   "pop": 1272840
+  },
+  "39": {
+   "name": "高知県",
+   "pop": 653270
+  },
+  "40": {
+   "name": "福岡県",
+   "pop": 5092870
+  },
+  "41": {
+   "name": "佐賀県",
+   "pop": 787299
+  },
+  "42": {
+   "name": "長崎県",
+   "pop": 1249599
+  },
+  "43": {
+   "name": "熊本県",
+   "pop": 1697739
+  },
+  "44": {
+   "name": "大分県",
+   "pop": 1083702
+  },
+  "45": {
+   "name": "宮崎県",
+   "pop": 1030287
+  },
+  "46": {
+   "name": "鹿児島県",
+   "pop": 1528801
+  },
+  "47": {
+   "name": "沖縄県",
+   "pop": 1467959
+  }
+ },
+ "flows": {
+  "2023-10": {
+   "births": 62812,
+   "births_label": "D",
+   "deaths": 132279,
+   "deaths_label": "D",
+   "intl_net": 60251,
+   "intl_label": "S",
+   "internal_label": "S"
+  },
+  "2023-11": {
+   "births": 62428,
+   "births_label": "S",
+   "deaths": 133823,
+   "deaths_label": "S",
+   "intl_net": 28892,
+   "intl_label": "S",
+   "internal_label": "S"
+  },
+  "2023-12": {
+   "births": 61745,
+   "births_label": "S",
+   "deaths": 146357,
+   "deaths_label": "S",
+   "intl_net": -71258,
+   "intl_label": "S",
+   "internal_label": "S"
+  },
+  "2024-01": {
+   "births": 57827,
+   "births_label": "D",
+   "deaths": 154061,
+   "deaths_label": "D",
+   "intl_net": 58582,
+   "intl_label": "S",
+   "internal_label": "S"
+  },
+  "2024-02": {
+   "births": 54926,
+   "births_label": "D",
+   "deaths": 140388,
+   "deaths_label": "D",
+   "intl_net": -16710,
+   "intl_label": "S",
+   "internal_label": "S"
+  },
+  "2024-03": {
+   "births": 55546,
+   "births_label": "D",
+   "deaths": 144887,
+   "deaths_label": "D",
+   "intl_net": 88635,
+   "intl_label": "S",
+   "internal_label": "S"
+  },
+  "2024-04": {
+   "births": 59879,
+   "births_label": "D",
+   "deaths": 127916,
+   "deaths_label": "D",
+   "intl_net": 8078,
+   "intl_label": "S",
+   "internal_label": "S"
+  },
+  "2024-05": {
+   "births": 62612,
+   "births_label": "D",
+   "deaths": 125861,
+   "deaths_label": "D",
+   "intl_net": 102010,
+   "intl_label": "S",
+   "internal_label": "S"
+  },
+  "2024-06": {
+   "births": 58556,
+   "births_label": "D",
+   "deaths": 118078,
+   "deaths_label": "D",
+   "intl_net": 56133,
+   "intl_label": "S",
+   "internal_label": "S"
+  },
+  "2024-07": {
+   "births": 65959,
+   "births_label": "D",
+   "deaths": 128107,
+   "deaths_label": "D",
+   "intl_net": 39167,
+   "intl_label": "F",
+   "internal_label": "S"
+  },
+  "2024-08": {
+   "births": 63805,
+   "births_label": "S",
+   "deaths": 133872,
+   "deaths_label": "S",
+   "intl_net": 7142,
+   "intl_label": "F",
+   "internal_label": "S"
+  },
+  "2024-09": {
+   "births": 61057,
+   "births_label": "S",
+   "deaths": 125796,
+   "deaths_label": "S",
+   "intl_net": 48358,
+   "intl_label": "F",
+   "internal_label": "S"
+  },
+  "2024-10": {
+   "births": 63471,
+   "births_label": "S",
+   "deaths": 129712,
+   "deaths_label": "S",
+   "intl_net": 56617,
+   "intl_label": "F",
+   "internal_label": "S"
+  },
+  "2024-11": {
+   "births": 59396,
+   "births_label": "F",
+   "deaths": 135698,
+   "deaths_label": "F",
+   "intl_net": 26409,
+   "intl_label": "F",
+   "internal_label": "S"
+  },
+  "2024-12": {
+   "births": 58746,
+   "births_label": "F",
+   "deaths": 148407,
+   "deaths_label": "F",
+   "intl_net": 16714,
+   "intl_label": "F",
+   "internal_label": "F"
+  }
+ }
+}

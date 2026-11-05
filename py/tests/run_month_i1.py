@@ -10,6 +10,8 @@
 #   (§7, when the oracle dir has a force.json with a rice release) I-rel: the release case ran (one release at its month, both levers
 #         applied); I-mf3 must-fail: the glue's tonnes per kt 1000.5 in the release month from the oracle's state before it; B1 first,
 #         econ and the chronicle
+#   (I1_PERSONS=layer) the persons are py/people/layer.py's Persons, restored from the oracle's mMM_persons, in place of the stub, and
+#         every boundary's persons fields join the world's and econ's (I-1p, I-1cp); I-mf2 keeps the stub, since it hands in a supply
 #   python3 py/tests/run_month_i1.py <oracle dir> [months]
 import json
 import os
@@ -23,6 +25,9 @@ from econ.shadow import Shadow
 from world import actors as MA
 from world import integrated as IM
 from world.gdtypes import dec
+
+LAYER = os.environ.get("I1_PERSONS") == "layer"
+MODS = ("world", "econ", "persons") if LAYER else ("world", "econ")
 
 
 def unbits(node):
@@ -66,16 +71,27 @@ class Oracle:
 def compare(o, m, w, tag):
     b = int(tag[1:])
     got = IM.hashes(w)
+    mods = MODS if hasattr(w.people, "hashes") else ("world", "econ")
+    if "persons" in mods:
+        got["persons"] = w.people.hashes()
     bad = {}
-    for mod in ("world", "econ"):
+    for mod in mods:
         want = o.hashes(m, b, mod)
         bad[mod] = sorted(n for n in set(want) | set(got[mod]) if want.get(n) != got[mod].get(n))
     return bad
 
 
-def one_month(o, m0, order=None, supply_month=None):
+def persons_at(o, m0, supply_month=None):
+    if LAYER and not supply_month:
+        from people.layer import Persons
+        return Persons.from_tree(os.path.join(o.d, "m%02d_persons" % m0))
     stub = IM.PersonsStub(lambda mm: o.iface(supply_month if (supply_month and mm == m0 + 1) else mm))
     stub.month = m0
+    return stub
+
+
+def one_month(o, m0, order=None, supply_month=None):
+    stub = persons_at(o, m0, supply_month)
     w = o.start(m0, stub)
     seen = []
 
@@ -103,17 +119,19 @@ def main():
         if m0 + 1 > months:
             continue
         seen = one_month(o, m0)
-        firsts = [(t, b) for t, b in seen if b["world"] or b["econ"]]
-        k.check(not firsts and len(seen) == 5, "I-1 month %d from the oracle's month-%d state: B1-B5 world and econ equal the oracle's%s"
-                % (m0 + 1, m0, "" if not firsts else "; first at %s: world %s econ %s" % (firsts[0][0], firsts[0][1]["world"][:3], firsts[0][1]["econ"][:3])))
-    stub = IM.PersonsStub(o.iface)
+        firsts = [(t, b) for t, b in seen if any(b.get(md) for md in MODS)]
+        k.check(not firsts and len(seen) == 5, "I-1%s month %d from the oracle's month-%d state: B1-B5 %s equal the oracle's%s"
+                % ("p" if LAYER else "", m0 + 1, m0, "/".join(MODS), "" if not firsts else "; first at %s: %s" % (firsts[0][0], {md: firsts[0][1].get(md, [])[:3] for md in MODS})))
+    stub = persons_at(o, 0) if LAYER else IM.PersonsStub(o.iface)
     w = o.start(0, stub)
     sh = Shadow(w.econ.e)
     bad_c, bad_env, bad_ec, worst = [], [], [], (0.0, "")
     for m in range(1, months + 1):
         IM.advance_forced(w, month_end(m), o.force)
         got = IM.hashes(w)
-        for mod in ("world", "econ"):
+        if LAYER:
+            got["persons"] = w.people.hashes()
+        for mod in MODS:
             if got[mod] != o.hashes(m, 5, mod):
                 bad_c.append((m, mod, sorted(n for n in got[mod] if got[mod][n] != o.hashes(m, 5, mod).get(n))[:3]))
         env, want = stub.env_seen.get(m), o.iface(m)["env"]
@@ -129,7 +147,7 @@ def main():
             bad_ec.append(m)
         if bad_c and len(bad_c) > 3:
             break
-    k.check(not bad_c, "I-1c %d chained Python months: every B5 world and econ field equals the oracle's%s" % (months, "" if not bad_c else "; first %s" % (bad_c[0],)))
+    k.check(not bad_c, "I-1c%s %d chained Python months: every B5 %s field equals the oracle's%s" % ("p" if LAYER else "", months, "/".join(MODS), "" if not bad_c else "; first %s" % (bad_c[0],)))
     k.check(not bad_env, "I-env the env handed to the persons at M8 equals the oracle's bits every month: differing months %s" % bad_env)
     k.check(not bad_ec, "I-c E-c inside the integrated month every month: failing months %s; worst gap / bound %.3g at %s" % (bad_ec, worst[0], worst[1]))
     if 1 in full:

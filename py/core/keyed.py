@@ -50,6 +50,14 @@ def u(seed_v, tag, a=0, b=0, c=0):
     return float(h64(head(seed_v, tag), a, b, c) >> 11) / TWO53
 
 
+ID_MASK = (1 << 62) - 1
+
+
+def pid(seed_v, region_id, slot_year, sex, k):
+    # Person identity, keyed.gd pid: 62 bits, stable for (seed, region id, birth slot year, sex, k)
+    return mix((h64(head(seed_v, "pid"), region_id, slot_year, sex) + k * GOLD) & M64) & ID_MASK
+
+
 def below(n, seed_v, tag, a=0, b=0, c=0):
     return int(math.floor(u(seed_v, tag, a, b, c) * float(n))) if n > 0 else 0
 

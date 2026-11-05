@@ -3,7 +3,9 @@ extends SceneTree
 ## whole state S0, then steps the tiers month by month and writes each month's per-field SHA-256s (the tiers digest's terms).
 ##   ORACLE_OUT=outputs/py_oracle/<tag> ORACLE_MONTHS=13 [ORACLE_MODE=people] [ORACLE_FULL=1,12] [ORACLE_K=8] \
 ##     godot --headless --path . --script res://tools/py/oracle_dump.gd
-## ORACLE_MODE=people steps people.step instead of TR.step alone (P2a). ORACLE_FULL lists the months whose whole state is written too.
+## ORACLE_PREFS=13,47 builds the start on those prefectures only (T23_PLAN §6, the two-prefecture start of T2s-fr AMENDED).
+## ORACLE_MODE=people steps people.step instead of TR.step alone (P2a), and writes the persons' rows each month (PERSONS_PORT_PLAN
+## §2-§4): mNN.persons.sha.txt, mNN.persons.nonfinite.txt (Q-nan) and, at the ORACLE_FULL months, mNN_persons/state.json. ORACLE_FULL lists the months whose whole state is written too.
 ## ORACLE_CKPT=n writes people.to_dict() every n months (ckpt_mNN.bin, zstd); ORACLE_RESUME=<that file> continues from it, its month next
 ## Why the save and not the dump's own tree: from_dict is the restore T2s-f shows continues at the uninterrupted run's digest
 ## The state: every tr_* variable of people.gd, hh_spec, and the scalars month, seed_v, base_year, written as state.json (a typed tree)
@@ -29,6 +31,11 @@ func _init() -> void:
 	var st = MS.new()
 	st.load(2024, ["JPN"])
 	var prefs: Dictionary = CANON.load_json("res://data/modern/polity/jpn_prefectures.json")["prefectures"]
+	if OS.get_environment("ORACLE_PREFS") != "":
+		var only: Dictionary = {}
+		for c: String in OS.get_environment("ORACLE_PREFS").split(",", false):
+			only[c] = prefs[c]
+		prefs = only
 	var p = PEOPLE.new()
 	p.tiers = true
 	if OS.get_environment("ORACLE_K") != "":
@@ -50,6 +57,8 @@ func _init() -> void:
 		print("ORACLE start usec %d units %d points %d k %d" % [Time.get_ticks_usec() - t0, p.tr_units, p.tr_pt_off[p.tr_units], p.tr_k])
 		_write_state(p, out + "/m00")
 		_write_hashes(p, out + "/m00.sha.txt")
+		if people_mode:
+			_write_persons(p, out, "m00", 0 in full)
 	for m: int in range(first, months + 1):
 		var t1: int = Time.get_ticks_usec()
 		if people_mode:
@@ -70,6 +79,8 @@ func _init() -> void:
 		f.close()
 		if m in full:
 			_write_state(p, "%s/%s" % [out, tag])
+		if people_mode:
+			_write_persons(p, out, tag, m in full)
 		print("ORACLE month %d usec %d digest %s by_step %s" % [m, us, dg, JSON.stringify(tl.get("usec_by_step", {}))])
 		if ckpt > 0 and m % ckpt == 0:
 			var fw := FileAccess.open_compressed("%s/ckpt_m%03d.bin" % [out, m], FileAccess.WRITE, FileAccess.COMPRESSION_ZSTD)
@@ -224,3 +235,56 @@ func _canon(h: HashingContext, v: Variant) -> void:
 			h.update(v.to_byte_array() if typeof(v) != TYPE_PACKED_BYTE_ARRAY else v)
 		_:
 			push_error("oracle_dump: no canonical form for type %d" % typeof(v))
+
+
+## The persons' digest (PERSONS_PORT_PLAN §2): every registry row of people.fields(), the saved scalars and dictionaries, and the
+## month's records ("rec." lines, Q-rec), each hashed per field in _canon's bytes; the non-finite values with their bits (Q-nan)
+func _persons_names(p: RefCounted) -> Array:
+	var names: Array = []
+	for row: Array in p.fields():
+		names.append(String(row[0]))
+	for n: String in ["n", "month", "price_index", "wage_index", "food_plan_start", "pref_pop", "pension", "groups"]:
+		names.append(n)
+	names.sort()
+	return names
+
+
+func _write_persons(p: RefCounted, out: String, tag: String, whole: bool) -> void:
+	var lines := ""
+	var nonfinite := ""
+	for n: String in _persons_names(p):
+		var v: Variant = p.get(n)
+		var h := HashingContext.new()
+		h.start(HashingContext.HASH_SHA256)
+		_canon(h, v)
+		lines += "%s %s\n" % [n, h.finish().hex_encode()]
+		if v is PackedFloat64Array:
+			var a: PackedFloat64Array = v
+			for i: int in a.size():
+				if not is_finite(a[i]):
+					nonfinite += "%s %d %x\n" % [n, i, PackedFloat64Array([a[i]]).to_byte_array().decode_u64(0)]
+		elif v is float and not is_finite(v):
+			nonfinite += "%s -1 %x\n" % [n, PackedFloat64Array([v]).to_byte_array().decode_u64(0)]
+	for n2: String in ["decisions", "refusals", "events", "trace", "group_log"]:
+		var h2 := HashingContext.new()
+		h2.start(HashingContext.HASH_SHA256)
+		_canon(h2, p.get(n2))
+		lines += "rec.%s %s\n" % [n2, h2.finish().hex_encode()]
+	var f := FileAccess.open("%s/%s.persons.sha.txt" % [out, tag], FileAccess.WRITE)
+	f.store_string(lines)
+	f.close()
+	var f2 := FileAccess.open("%s/%s.persons.nonfinite.txt" % [out, tag], FileAccess.WRITE)
+	f2.store_string(nonfinite)
+	f2.close()
+	if whole:
+		var dir: String = "%s/%s_persons" % [out, tag]
+		DirAccess.make_dir_recursive_absolute(dir)
+		_files = 0
+		var tree := {}
+		for n3: String in _persons_names(p):
+			tree[n3] = _enc(p.get(n3), dir, n3)
+		for n4: String in ["decisions", "refusals", "events", "trace", "group_log", "pref_codes", "base_year", "seed_v", "spec"]:
+			tree[n4] = _enc(p.get(n4), dir, n4)
+		var fs := FileAccess.open(dir + "/state.json", FileAccess.WRITE)
+		fs.store_string(JSON.stringify(tree, "", false))
+		fs.close()

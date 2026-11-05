@@ -88,11 +88,7 @@ class ModernData:
         self.manifest = _json(DIR + "MANIFEST.json")
         if not isinstance(self.manifest, dict):
             return self._fail("no data/modern/MANIFEST.json")
-        allow = [x for x in os.environ.get("WORLD_MANIFEST_ALLOW", "").split(",") if x]
         for name in self.manifest["files"]:
-            if name in allow:
-                print("WORLD_MANIFEST_ALLOW: the manifest check of %s skipped (TO_PM_WORLD 4)" % name, flush=True)
-                continue
             if _sha(DIR + name) != str(self.manifest["files"][name]["sha256"]):
                 return self._fail("data/modern/%s differs from its manifest sha256" % name)
         ent = _json(DIR + "entities.json")

@@ -4,7 +4,7 @@
 
 The aim is an environment for training and evaluating AI agents that has *predictive validity*: if a world made only from pre-2025 data grows the same kinds of 2025 phenomena from the inside, it is a better place for AI to learn about, and act in, human society. The long-term aim is the whole world.
 
-> Status: **early, research code (pre-alpha).** The move of the model from GDScript to Python is nearly complete (November 2026); a frame for every country, where an AI agent can take a country's ruler seat, is being prepared. Development pauses again until January 2027. The blind 2025 comparison has **not** been run yet, and no result is claimed. The test will be pre-registered before it is run.
+> Status: **early, research code (pre-alpha).** The model's move from GDScript to Python is complete (November 2026), and a first frame for every country, where an AI agent can take a country's ruler seat, is in place with Japan as the only filled country. Development pauses again until January 2027. The blind 2025 comparison has **not** been run yet, and no result is claimed. The test will be pre-registered before it is run.
 
 ## The idea in four rules
 
@@ -17,7 +17,7 @@ The aim is an environment for training and evaluating AI agents that has *predic
 
 | Path | Contents |
 |---|---|
-| `py/` | The Python port (NumPy, optional Numba), where all new work is written. `py/core` holds the deterministic primitives; `py/tiers` the population tiers; `py/lchh` life course and households; `py/econ` the economy; `py/world` polity, laws and the world layer; `py/people` relations and groups (the persons follow). Each module reproduces the frozen GDScript reference bit for bit through recorded interfaces (SHA-256 per field per month; tests in `py/tests/`, oracle dump scripts in `tools/py/`), and `py/world/integrated.py` chains them into one month. |
+| `py/` | The Python port (NumPy, optional Numba), where all new work is written. `py/core` holds the deterministic primitives; `py/tiers` the population tiers; `py/lchh` life course and households; `py/econ` the economy; `py/world` polity, laws and the world layer; `py/people` persons, relations and groups; `py/tiers/start` builds the 2025-01 start; `py/country` is the frame for every country (a registry of 215 countries, stubs marked UNSOURCED except Japan, a ruler seat per country, and a loader that refuses sealed or later-dated inputs). Each module reproduces the frozen GDScript reference bit for bit through recorded interfaces (SHA-256 per field per month; tests in `py/tests/`, oracle dump scripts in `tools/py/`), and `py/world/integrated.py` chains them into one month. |
 | `sim/modern/` | The reference model in GDScript (Godot 4, headless): people, households, the national population tiers, economy, polity, views. Frozen as the parity oracle. |
 | `sim/api/det_math.gd`, `sim/earth_core/keyed.gd` | Deterministic maths and keyed random numbers. Every number that enters the answer goes through them, so runs are reproducible across machines (`docs/team/DET_MATH.md`). |
 | `data/modern/` | Input data for Japan at the start (2025-01): population by single age, sex and prefecture, households, labour, food, trade, banks, polity, and more, with sources. See `DATA_SOURCES.md` for terms. |
