@@ -39,7 +39,8 @@
    "note": "mirror copy (Natural Earth's host is blocked here)",
    "sha256": "239eec57ac17f100a11e2536cffc56752c318b50ae765b0918ff7aab4ce8f255",
    "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_admin_0_countries.geojson",
-   "utc": "2026-10-27T23:59:03Z"
+   "utc": "2026-10-27T23:59:03Z",
+   "published": "2022-05-13 (Natural Earth v5.1.1, data commit 9380cca8; SOURCES_D477 row entity_regions.json)"
   },
   {
    "bytes": 13232502,
@@ -48,15 +49,16 @@
    "note": "mirror copy (Natural Earth's host is blocked here)",
    "sha256": "11bc047064a5cf2db03efc2aece341e657df2dd59ad715a8221cc1575697df1b",
    "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_admin_0_countries_jpn.geojson",
-   "utc": "2026-10-27T23:59:03Z"
+   "utc": "2026-10-27T23:59:03Z",
+   "published": "2022-05-13 (Natural Earth v5.1.1, data commit 9380cca8; SOURCES_D477 row entity_regions.json)"
   }
  ],
  "files": {
   "checks.json": {
-   "bytes": 2062,
+   "bytes": 2118,
    "from": "R54_checks.csv",
    "label": "SOURCED (declared before any run)",
-   "sha256": "98d4b55331acdbe274a20c8107da7354b1796bcb570e56fbd8ea3cb928366f2e",
+   "sha256": "a61a4eb8e858bcbba432fb311ebef5f8df69afb83563175ce4542ac11676d39c",
    "tool": "tools/modern/build_checks.py"
   },
   "compute_chain.json": {
@@ -229,12 +231,12 @@
    "tool": "byte copy of research-notes R96e_compute_chain_and_dates.csv; read by tools/modern/sources_inventory.py"
   },
   "stats.json": {
-   "bytes": 719977,
-   "from": "R96c (research-notes 585a7664): World Bank WDI Database Archives version 202412 (source 57); Ember yearly long file, Wayback capture 2024-09-03 (data to 2023); WPP 2024 (published 2024-07) for population gaps; DGBAS (Taiwan) for years <= 2023; every input published <= 2024-12-31",
+   "bytes": 719850,
+   "from": "R96c (research-notes 585a7664): World Bank WDI Database Archives version 202412 (source 57); Ember yearly long file, Wayback capture 2024-09-03 (data to 2023); WPP 2024 (published 2024-07) for population gaps; IMF WEO October 2024 (published 2024-10-22; R102, research-notes 42017fd5) for Taiwan's GDP per capita and real growth, 2016-2023 (the PM's ruling, LA final: the DGBAS values were a 2026 capture's revisions); every input published <= 2024-12-31",
    "label": "SOURCED (D477 in-window build)",
    "provisional": "Japan's electricity rows (Ember via the Energy Institute, terms NOT FOUND); a government whole-country series would replace them",
-   "sha256": "f549ecdc025f86e5a301611658f852f6ffc175ab298e24788eb4bfa6ad55f72d",
-   "tool": "researcher4's copy of tools/modern/build_stats.py (an --ember 2024-09 entry, no fill from later Ember files, Taiwan's 2024 dropped); 8 values on canon_m's 0.5 tie written at the loader's value (modern 711a98df)"
+   "sha256": "ec4af811dd63dc8d2100c77620812648736222958a6fedcc0106609819554221",
+   "tool": "researcher4's copy of tools/modern/build_stats.py (an --ember 2024-09 entry, no fill from later Ember files, Taiwan's 2024 dropped); 8 values on canon_m's 0.5 tie written at the loader's value (modern 711a98df); Taiwan's 2016-2023 gdp (WEO NGDPDPC x the row's population, rounded to the whole US$ as canon_m) and gdp_real_growth (NGDP_RPCH / 100) replaced in place from R102, no other leaf changed"
   },
   "stats_v2022.json": {
    "bytes": 485837,
@@ -285,7 +287,7 @@
    "listed_as": "ember/yearly_full_release_long_format.csv",
    "matched": "gzip of the original; its content has the listed sha256 259e1095ee8ffeaf0aff37ad557916ae1823a2da13312da50ba4cec6b4574c3b",
    "path": "raw/ember_yearly_full_release_long_format.csv.gz",
-   "read_by": "build_stats.py (stats.json)",
+   "read_by": "no longer read (stats.json is R96c's build on raw/ember_long_wb20240903.csv.gz, files.stats.json and stats.json's sources; was build_stats.py (stats.json))",
    "revised": true,
    "sha256": "705afdaefbab4678810fcf503b972f6470696a0e55f952b4bc01a74baab94929",
    "vintage": "latest (2026)"
@@ -389,7 +391,7 @@
    "listed_as": "taiwan_ogdl/6800_per_capita_quarterly.xml",
    "matched": "committed with LF line ends; the original (CRLF) has the listed sha256 5c3411188c24280701d88d7013f06472116be6d5e3ca3cf424564cf1cb3acb96",
    "path": "raw/taiwan_ogdl/6800_per_capita_quarterly.xml",
-   "read_by": "build_stats.py (Taiwan GDP)",
+   "read_by": "no longer read (a 2026 capture; stats.json's Taiwan rows come from R102, IMF WEO October 2024; was build_stats.py)",
    "revised": true,
    "sha256": "2cdf5f8a8902a1da6c0f46e9a2bb589c84f10271eb090e49a039ce61ed09f9a3",
    "vintage": "latest"
@@ -401,7 +403,7 @@
    "listed_as": "taiwan_ogdl/44230_gdp_contribution_by_expenditure_year.xml",
    "matched": "committed with LF line ends; the original (CRLF) has the listed sha256 10e453d10fb6839a385e4ad2bca3a5aec10d1688bc4d8e7f4f054f5b46557ede",
    "path": "raw/taiwan_ogdl/44230_gdp_contribution_by_expenditure_year.xml",
-   "read_by": "build_stats.py (Taiwan real growth)",
+   "read_by": "no longer read (a 2026 capture; stats.json's Taiwan rows come from R102, IMF WEO October 2024; was build_stats.py)",
    "revised": true,
    "sha256": "fd1ee7024e0fe87388e55711830f78c3b126b77458e095d3bb148a43a5551890",
    "vintage": "latest"
@@ -522,6 +524,19 @@
    "sha256": "dda8448be43f8848f88e27e6bc40c2a6c8904307f658633886aa198fba607480",
    "vintage": "V202601 (extract)",
    "d477": "an edition published after 2024-12-31: not read by any input, and not to be read under D477 (the in-window edition, e.g. USGS MCS 2024, a BACI release of <= 2024-12, replaces it if it is ever read)"
+  },
+  {
+   "branch": "research-notes",
+   "commit": "42017fd5",
+   "licence": "IMF terms of use (https://www.imf.org/en/About/copyright-and-terms)",
+   "listed_as": "IMF WEO October 2024, Taiwan Province of China (WEO code 528): NGDPDPC, NGDP_RPCH; extracted from WEOOct2024all.xls",
+   "path": "docs/team/research/data/R102_weo2024oct_taiwan.csv",
+   "read_by": "stats.json (TWN gdp and gdp_real_growth, 2016-2023)",
+   "revised": false,
+   "sha256": "12a0e2273d8db8c48cb48b3dd5819a55bc6e9277009323826e3b86da8583e03d",
+   "vintage": "IMF WEO October 2024, published 2024-10-22",
+   "source_file_sha256": "46d492250b59b92e70668d2e1f4dec74ea60233a086fbe2070a70749b890ad8d",
+   "source_note": "years 1981 to 2023; the original file from its Internet Archive capture of 2024-11-10 (R102 README)"
   }
  ],
  "rules": "labels per MODERN_PLAN: SOURCED / DERIVED / THEORY / CALIBRATED; projections and dated policy events are checks, never inputs; R54 declared the hindcast checks before any run (checks.json); nothing is CALIBRATED against them"

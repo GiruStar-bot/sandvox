@@ -7,10 +7,10 @@
    "source": "D: the start rule from the model's own flows (the PM's ruling on M038b, math-reports 620e8168): the crop's monthly use, crop 6798600 t (crop_farming_jpn.json: 令和6年産 主食用, MAFF published 2024-12-10) x (1 - reserve_share 0.03, T: crop_farming_jpn.json, set in 1d15aa4f) / 12 = 549554 t, less food manufacturing's bid at capacity 2424.9 bn (311192 t); tools/modern/start_flows.py. It replaces the old crop's split (0.48528) carried onto the new crop"
   },
   "vegetables": {
-   "value": 850540.2666666666,
+   "value": 840937.975,
    "unit": "t/month",
    "label": "D",
-   "source": "野菜 国内生産 約11.0 Mt + 輸入 約2.7 Mt (食料需給表), less food manufacturing's intermediate use at the IO coefficient, / 12 (the start balanced by construction)"
+   "source": "D: the start rule from the model's own flows (the PM, TO_E 21:11 item 2): (the crop 10999400 t (crop_farming_jpn.json: 令和5年産 出荷量, MAFF published 2024-12-23) x (1 - reserve_share 0.00, T) + the year's imports 2777000 t (trading_house_jpn.json's imports_t_yr: MAFF 食料需給表 令和5年度 野菜 輸入量, published 2024-08-08; R96i)) / 12, less food manufacturing's bid at capacity (307095 t); tools/modern/start_flows.py. It replaces (11.0 + 2.7 Mt) / 12 less a bid at the pre-purge coefficient (R96i: imports 2.777 Mt)"
   },
   "wheat": {
    "value": 95924.324,

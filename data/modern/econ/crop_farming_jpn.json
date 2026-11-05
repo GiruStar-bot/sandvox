@@ -51,8 +51,8 @@
   "fertiliser": {
    "value": 0.28,
    "unit": "t/ha",
-   "label": "D",
-   "source": "肥料需要 約1.2 Mt / 耕地 4.3 Mha (MAFF 肥料をめぐる情勢 2024)"
+   "label": "T",
+   "source": "T: a declared requirement per ha, kept so the crop farmers keep bidding for fertiliser; the 約1.2 Mt demand it was derived from is in no in-window edition (MAFF 肥料をめぐる情勢 2024-12 has none; R96c, R96i (research-notes e7b5c51c): NF); the divisor 4.3 Mha matches 令和6年耕地面積 4,272,000 ha (CHECK: seen in a news item)"
   },
   "fuel": {
    "value": 0.1,

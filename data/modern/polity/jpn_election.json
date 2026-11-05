@@ -176,7 +176,7 @@
     "Reiwa": 3,
     "Sanseito": 1,
     "others": 1,
-    "note": "the half elected in 2022 that stays through 2028 (S, rounded from the 2022 result: LDP 63, Komeito 13, CDP 17, Ishin 12, DPFP 5, JCP 4, Reiwa 3, Sanseito 1, others 6; the independents folded into the nearest bloc, T)"
+    "note": "the half elected in 2022 that stays through 2028 (S, rounded from the 2022 result: LDP 63, Komeito 13, CDP 16, Ishin 12, DPFP 5, JCP 4, Reiwa 3, Sanseito 1, others 7 (SDP 1, NHK 1, independents 5); CDP's 17th seat, the 補欠 elected with them, serves to 2025, so it is not in this half (総務省 令和4年7月10日執行 参議院議員通常選挙 結果, main_content/000825825.xls, 2022-07-14; R96i (research-notes e7b5c51c)); the independents folded into the nearest bloc, T)"
    },
    "next_election": "2025-07",
    "source": "参議院 定数 248, 3年ごとに半数 124 (憲法46条, 公職選挙法)"
@@ -258,16 +258,16 @@
   "label": "2nd, CHECK ONLY: fieldwork after the 2024-01 start, never a start value (R60, PM 2026-10-29 11:45)"
  },
  "vote_share_2024_10_27_pr": {
-  "LDP": 0.266,
+  "LDP": 0.267,
   "Komeito": 0.109,
-  "CDP": 0.214,
+  "CDP": 0.212,
   "Ishin": 0.094,
   "DPFP": 0.113,
-  "Reiwa": 0.069,
+  "Reiwa": 0.070,
   "JCP": 0.062,
   "Sanseito": 0.034,
   "others": 0.039,
-  "source": "総務省 第50回衆議院議員総選挙 比例代表 得票率 (S, rounded)"
+  "source": "総務省 第50回衆議院議員総選挙 比例代表 得票率 (S, rounded; 速報結果 (5) 党派別得票数（比例代表）, main_content/000979126.xls, published 2024-10-31; R96i (research-notes e7b5c51c): LDP 26.733, CDP 21.201, Reiwa 6.975 %; others = SDP + 日本保守党 + みんなでつくる党 + 安楽死制度を考える会)"
  },
  "turnout": {
   "value": 0.5385,

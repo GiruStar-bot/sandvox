@@ -550,8 +550,8 @@
    "trend": 0.0
   },
   "host_nation_support": {
-   "value": 211.0,
-   "source": "MOF 在日米軍駐留経費負担 FY2024 約2,110億円",
+   "value": 212.4,
+   "source": "防衛省 令和6年版防衛白書 図表III-2-5-1: 同盟強靱化予算（在日米軍駐留経費負担）FY2024 2,124億円 (published 2024-07; R96i (research-notes e7b5c51c)); the 約2,110億円 it replaces was untraced",
    "label": "S (rounded)",
    "vintage": "2024",
    "trend": 0.0,

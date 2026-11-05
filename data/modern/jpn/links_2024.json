@@ -31,7 +31,7 @@
   "decided_by_counterpart": true, "profile_stage": "S3 (USA)"
  },
  "rules_of_the_outside": {
-  "wto_bound_simple_average_pct": 4.0, "ftas_in_force": ["CPTPP", "RCEP", "Japan-EU EPA", "Japan-US Trade Agreement", "Japan-UK CEPA"], "label": "S (public treaty list)",
+  "wto_bound_simple_average_pct": 4.1, "wto_bound_source": "S: WTO/ITC/UNCTAD World Tariff Profiles 2024, Japan, final bound simple average 4.1 (published 2024-07; R96i (research-notes e7b5c51c))", "ftas_in_force": ["CPTPP", "RCEP", "Japan-EU EPA", "Japan-US Trade Agreement", "Japan-UK CEPA"], "label": "S (public treaty list)",
   "decided_by_counterpart": "tariffs yes (USA, CHN, EU)", "profile_stage": "S3"
  },
  "recognition": {"recognised_states": 195, "plus_self": 196, "not_recognised": ["PRK"], "regions": ["TWN", "PSE", "HKG", "MAC"], "source": "MOFA (R53 Q6): a standing fact, unchanged since Niue's recognition, 2015-05-15; the page R53 read is a capture made after 2024 (R96e), so the value is CHECK until an in-window capture confirms it (verifyくん; the PM, TO_E 21:11 1(d))", "label": "S (CHECK)"}

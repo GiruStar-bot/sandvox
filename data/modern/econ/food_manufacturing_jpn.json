@@ -37,7 +37,7 @@
    "label": "D",
    "domestic_share": 1.0,
    "self_sufficiency": 0.8,
-   "self_sufficiency_source": "S: 野菜 自給率 79%; since S2' the whole requirement is bid at home and the trading houses import the gap (E4-2)",
+   "self_sufficiency_source": "S: 野菜 自給率 80% (食料需給表 令和5年度, published 2024-08-08; R96i (research-notes e7b5c51c); 79% was FY2022); since S2' the whole requirement is bid at home and the trading houses import the gap (E4-2)",
    "source": "soumu 産業連関表 2020 取引基本表 生産者価格 統合中分類 (modern-data raw/jpn_official/io2020_medium_000954302.xlsx), 百万円; 耕種農業->食料品 2,911,264 / 食料品 国内生産額 29,099,163; split 0.3 (T); at the commodity's start price (coef recomputed at the D477 start price, D477 purge)"
   },
   "wheat": {
@@ -45,8 +45,8 @@
    "unit": "t per bn JPY of output",
    "label": "D",
    "domestic_share": 1.0,
-   "self_sufficiency": 0.15,
-   "self_sufficiency_source": "S: 小麦 自給率 15%; since S2' the whole requirement is bid at home and the trading houses import the gap (E4-2)",
+   "self_sufficiency": 0.17,
+   "self_sufficiency_source": "S: 小麦 自給率 17% (食料需給表 令和5年度, published 2024-08-08; R96i (research-notes e7b5c51c); 15% was FY2022); since S2' the whole requirement is bid at home and the trading houses import the gap (E4-2)",
    "source": "soumu 産業連関表 2020 取引基本表 生産者価格 統合中分類 (modern-data raw/jpn_official/io2020_medium_000954302.xlsx), 百万円; 耕種農業->食料品 2,911,264 / 食料品 国内生産額 29,099,163; split 0.1 (T); at the commodity's start price"
   },
   "soybeans": {

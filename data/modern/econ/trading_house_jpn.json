@@ -60,9 +60,11 @@
    "foreign_capacity_t_month": 300000.0,
    "lead_months": 1,
    "label": "T",
-   "source": "T: fresh and frozen vegetables, average import unit value ~$0.9/kg (customs 2024, D); tariff ~3% treated as 0 (T); capacity T (imports ~2.7 Mt/yr)",
-   "start_in_transit_t": 241018.959,
-   "start_in_transit_source": "D: the model's own month-0 import need (the start rule; the PM's ruling on TO_PM 126): food manufacturing's bid at capacity 2424.9 bn (307095 t) + the held final demand (850540 t) - the crop / 12 (916617 t); tools/modern/start_flows.py. It replaces the published import flow, which ran above this need (M038)"
+   "source": "T: fresh and frozen vegetables, average import unit value ~$0.9/kg (customs 2024, D); tariff ~3% treated as 0 (T); capacity T (imports 2.777 Mt/yr, imports_t_yr)",
+   "start_in_transit_t": 231416.667,
+   "start_in_transit_source": "D: the model's own month-0 import need (the start rule; the PM's ruling on TO_PM 126): food manufacturing's bid at capacity 2424.9 bn (307095 t) + the held final demand (840938 t) - the crop / 12 (916617 t); tools/modern/start_flows.py. It replaces the published import flow, which ran above this need (M038)",
+   "imports_t_yr": 2777000.0,
+   "imports_source": "S: MAFF 食料需給表 令和5年度（概算）野菜 輸入量 2,777 千t (index-26.pdf, published 2024-08-08; R96i (research-notes e7b5c51c)); the start rule's year of imports"
   }
  }
 }

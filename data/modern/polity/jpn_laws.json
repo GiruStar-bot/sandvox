@@ -57,8 +57,8 @@
    "effects": [
     {
      "parameter": "tariff_rate_general",
-     "value": 0.025,
-     "note": "simple average applied; rice out-of-quota 341円/kg; wheat 55円/kg"
+     "value": 0.037,
+     "note": "MFN applied simple average 2023 3.7% (non-agricultural 2.4%, agricultural 12.2%), final bound 4.1% (WTO/ITC/UNCTAD World Tariff Profiles 2024, Japan, published 2024-07; R96i (research-notes e7b5c51c); the 0.025 it replaces matched neither average); rice out-of-quota 341円/kg; wheat 55円/kg (実行関税率表 2024-04-01)"
     }
    ],
    "change_needs": "enact_law",
