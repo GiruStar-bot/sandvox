@@ -6,8 +6,8 @@ reproduce (D):
   published flows: the state imports to cover the gap whatever the margin (国家貿易).
 - rice's held final demand: the crop's monthly use, crop x (1 - reserve_share) / 12, less food manufacturing's bid at capacity. The
   trading houses import no rice for the market (the MA rice goes to the state's stock), so the crop is all its market has.
-- wheat's and soybeans' held final demand: (the crop x (1 - reserve_share) + the year's imports) / 12, less food manufacturing's bid
-  (wheat's imports are the state's in transit x 12; soybeans' are the published year, imports_t_yr).
+- wheat's, soybeans' and vegetables' held final demand: (the crop x (1 - reserve_share) + the year's imports) / 12, less food
+  manufacturing's bid (wheat's imports are the state's in transit x 12; soybeans' and vegetables' are the published year, imports_t_yr).
 - the start inventory of each crop: the last harvest is the model's own crop (area x yield), sold over the node's months after the
   reserve, plus the farmers' reserve.
   python3 -I tools/modern/start_flows.py            (from the repository root; rewrites trading_house_jpn.json, final_demand_jpn.json and start_inventory_jpn.json)
@@ -60,15 +60,18 @@ def main():
                              "MAFF 食料需給表 令和5年度, published 2024-08-08)) / 12, less food manufacturing's bid at capacity (%.0f t); "
                              "tools/modern/start_flows.py. The 1.006 Mt it replaces matched no release (R96e: NF)" % (crop("wheat"), float(w["reserve_share"]), imp, bid("wheat")))
     print("wheat final demand %.0f t/month" % fd["wheat"]["value"])
-    sg = th["goods"]["soybeans"]
-    s_imp = float(sg["imports_t_yr"])
-    fd["soybeans"]["value"] = round((crop("soybeans") * (1.0 - float(cf["soybeans"]["reserve_share"])) + s_imp) / 12.0 - bid("soybeans"), 3)
-    fd["soybeans"]["label"] = "D"
-    fd["soybeans"]["source"] = ("D: the start rule from the model's own flows (the PM, TO_E 21:11 item 2): (the crop %.0f t (crop_farming_jpn.json: 令和5年産, "
-                                "MAFF published 2024-04-10) x (1 - reserve_share %.2f, T) + the year's imports %.0f t (trading_house_jpn.json's imports_t_yr: "
-                                "財務省 貿易統計 2023 確定, published 2024-11-13)) / 12, less food manufacturing's bid at capacity (%.0f t); "
-                                "tools/modern/start_flows.py. The 3.3 Mt it replaces matched no release (R96e)" % (crop("soybeans"), float(cf["soybeans"]["reserve_share"]), s_imp, bid("soybeans")))
-    print("soybeans final demand %.0f t/month" % fd["soybeans"]["value"])
+    for c, crop_ed, imp_ed, was in (("soybeans", "令和5年産, MAFF published 2024-04-10", "財務省 貿易統計 2023 確定, published 2024-11-13",
+                                     "The 3.3 Mt it replaces matched no release (R96e)"),
+                                    ("vegetables", "令和5年産 出荷量, MAFF published 2024-12-23", "MAFF 食料需給表 令和5年度 野菜 輸入量, published 2024-08-08; R96i",
+                                     "It replaces (11.0 + 2.7 Mt) / 12 less a bid at the pre-purge coefficient (R96i: imports 2.777 Mt)")):
+        s_imp = float(th["goods"][c]["imports_t_yr"])
+        r_c = float(cf[c]["reserve_share"])
+        fd[c]["value"] = round((crop(c) * (1.0 - r_c) + s_imp) / 12.0 - bid(c), 3)
+        fd[c]["label"] = "D"
+        fd[c]["source"] = ("D: the start rule from the model's own flows (the PM, TO_E 21:11 item 2): (the crop %.0f t (crop_farming_jpn.json: %s) x "
+                           "(1 - reserve_share %.2f, T) + the year's imports %.0f t (trading_house_jpn.json's imports_t_yr: %s)) / 12, less food "
+                           "manufacturing's bid at capacity (%.0f t); tools/modern/start_flows.py. %s" % (crop(c), crop_ed, r_c, s_imp, imp_ed, bid(c), was))
+        print("%s final demand %.0f t/month" % (c, fd[c]["value"]))
     inv_doc = load("start_inventory_jpn.json")
     inv = inv_doc["inventory"]
     for c, months in (("rice", 9), ("wheat", 6), ("soybeans", 10), ("vegetables", 9)):

@@ -11,6 +11,7 @@ import time
 import numpy as np
 
 from common import Kit, peak_mb
+from core import digest
 from tiers import month, state
 if os.environ.get("TIERS_NB") == "1":
     from tiers import month_nb as month
@@ -26,7 +27,7 @@ def first_diff(a, b):
         ka, kb = set(a), set(b)
         if ka != kb:
             return "keys differ: only python %s, only oracle %s" % (sorted(ka - kb, key=str)[:5], sorted(kb - ka, key=str)[:5])
-        for k in sorted(a, key=state._sort_key):
+        for k in sorted(a, key=digest._sort_key):
             r = first_diff(a[k], b[k])
             if r != "equal values":
                 return "key %r: %s" % (k, r)
@@ -130,7 +131,7 @@ def main():
         kit.check(not bad, "P2 month %d: %.1f s, digest %s, fields differing %d %s%s%s" % (m, el, dg[:16], len(bad), bad[:8], extra,
                                                                                (" (against %s, %d fields excluded: %s)" % (os.path.basename(dm), len(excl), ",".join(excl))) if excl else ""))
         with open(os.path.join(dm, "m%02d.tally.json" % m), encoding="utf-8") as f:
-            ref_tl = state._dec(json.load(f), d)
+            ref_tl = digest._dec(json.load(f), d)
         td = tally_diff(p.tr_margins.get("t22", {}), ref_tl)
         kit.check(not td, "P2c month %d: tallies differing %d %s" % (m, len(td), td[:8]))
         if bad:

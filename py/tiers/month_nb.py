@@ -6,8 +6,9 @@ import os
 
 import numpy as np
 
-from . import keyed, nbk
-from .state import Packed
+from core import keyed
+from tiers import nbk
+from core.digest import Packed
 
 _spec = importlib.util.spec_from_file_location("tiers._month_nbbase", os.path.join(os.path.dirname(__file__), "month.py"),
                                                submodule_search_locations=None)
@@ -110,7 +111,7 @@ class St(M.St):
             self.tr_age_counts = ac
 
     def field(self, k):
-        # The field as it is held; state._hash_values widens it to the oracle's kind chunk by chunk
+        # The field as it is held; core.digest._hash_values widens it to the oracle's kind chunk by chunk
         if k in CELL:
             return Packed("i64", getattr(self, k)[:len(self.tr_pt_mass) * CELL[k]])
         if k in self.kinds:
@@ -544,10 +545,10 @@ def step(p):
 def _step_rest(p):
     import time
     st = {}
-    t = [time.perf_counter()]
+    t = [time.perf_counter()]  # lint-ok: per-stage seconds into p.timing, never digested
 
     def lap(name):
-        now = time.perf_counter()
+        now = time.perf_counter()  # lint-ok: per-stage seconds into p.timing, never digested
         st[name] = st.get(name, 0.0) + now - t[0]
         t[0] = now
     w = M._t22_work(p)

@@ -1,7 +1,7 @@
 # The keyed draws: the twin of sim/earth_core/keyed.gd (splitmix64 finaliser, FNV-1a over the tag's UTF-8 bytes)
 # Why not random / numpy.random: a draw must be a pure function of its key, so a value never depends on how many came before
 import math
-from . import detmath
+from core import detmath
 
 M64 = (1 << 64) - 1
 GOLD = 0x9E3779B97F4A7C15

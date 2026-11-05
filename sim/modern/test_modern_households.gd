@@ -18,7 +18,7 @@ const PEOPLE = preload("res://sim/modern/people/people.gd")
 const HH = preload("res://sim/modern/people/households.gd")
 const MS = preload("res://sim/modern/modern_status.gd")
 const CANON = preload("res://sim/modern/canon.gd")
-const P5_DIGEST := "14d051ac165accebeffe19f58137b37a000f4c1892af8823ed88fd0e57009d3e"   # households off, seed 7, 2 x 30, 6 months: since the D477 purge (711a98df / 276929d7; 9ae891d6 before); since S-year (the persons spec on editions by 2024-01; 8ed60dd8 after SB10; 63d2f2c6 after M002 G1, 84627f4f after the review fixes 1a, 1b, 2c; eaba489f before)
+const P5_DIGEST := "4250a82647dd26afa5631f1ea0d2e382cc14e224b2399f46cd70ce41a14efb5f"   # households off, seed 7, 2 x 30, 6 months: since R96's refresh (5699f2e3..fc16477c; 14d051ac before); the D477 purge (711a98df / 276929d7; 9ae891d6 before); since S-year (the persons spec on editions by 2024-01; 8ed60dd8 after SB10; 63d2f2c6 after M002 G1, 84627f4f after the review fixes 1a, 1b, 2c; eaba489f before)
 const ALONE := {"men": {"15-24": 0.185, "25-34": 0.288, "35-44": 0.170, "65-74": 0.167, "75-84": 0.127, "85+": 0.146},
 	"women": {"15-24": 0.157, "25-34": 0.197, "35-44": 0.094, "65-74": 0.173, "75-84": 0.260, "85+": 0.256}}
 

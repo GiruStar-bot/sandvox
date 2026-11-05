@@ -1,8 +1,8 @@
 # The T2.0 primitives: the twin of sim/modern/people/tiers.gd's binomial, hypergeometric, hypergeometric_split, merge_least,
 # dep_round, _systematic (+ _largest_fix), split_holds, cap_to and largest_keyed, in the oracle's operation order
 import math
-from . import detmath, keyed
-from .gd import mini, maxi, clampi, maxf, minf
+from core import detmath, keyed
+from core.gd import mini, maxi, clampi, maxf, minf
 
 BINOM_SWITCH = 12.0
 INF = float("inf")

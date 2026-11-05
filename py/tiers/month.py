@@ -5,9 +5,9 @@ from array import array
 
 import numpy as np
 
-from . import detmath, keyed, prims
-from .gd import idiv, maxi, mini, maxf, minf, clampi, clampf
-from .state import Packed, PackedStr
+from core import detmath, keyed, prims
+from core.gd import idiv, maxi, mini, maxf, minf, clampi, clampf
+from core.digest import Packed, PackedStr
 
 BANDS = 18
 NTYPE = 6

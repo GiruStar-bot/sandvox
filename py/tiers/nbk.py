@@ -6,7 +6,7 @@
 import numpy as np
 from numba import njit
 
-from .nb import binomial, hypergeometric, hypergeometric_split, u_from, below_from
+from core.nb import binomial, hypergeometric, hypergeometric_split, u_from, below_from
 
 AGE_SLOTS = 16
 NG = 5

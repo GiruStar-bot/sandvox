@@ -8,7 +8,7 @@ from llvmlite import ir
 from numba import njit, types
 from numba.extending import intrinsic
 
-from . import detmath as dm
+from core import detmath as dm
 
 U64 = np.uint64
 

@@ -1,7 +1,7 @@
 # DetMath in Python: the twin of sim/api/det_math.gd (the same formulas, constants as bit patterns, the same operation order).
 # Started from tools/det_math/det_math_ref.py (which made test_det_math's FIXED table), with inv_normal added.
 # Why not math.exp / log / pow: they are the platform's libm (glibc, the CRT), whose last bits differ (DET_MATH.md)
-import struct, math, random
+import struct, math
 def F(b): return struct.unpack('<d', struct.pack('<q', b))[0]
 def B(x): return struct.unpack('<q', struct.pack('<d', x))[0]
 INVLN2=F(0x3FF71547652B82FE);LN2HI=F(0x3FE62E42FEE00000);LN2LO=F(0x3DEA39EF35793C76)

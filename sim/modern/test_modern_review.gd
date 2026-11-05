@@ -14,12 +14,12 @@ extends "res://tools/test/test_kit.gd"
 ## R2a the seeded shocks are keyed by tag, not String.hash(): the seeded economy (seed 7, 36 months) repeats and gives the recorded
 ##     digest (b1620d1c since R96e's fixes; 1e94d71f since the start's own-flow rule; 7c3f2137 since the D477 purge, 711a98df / 276929d7; b9318555 since the M002 batch G8; 20d3c424 before, the keyed tags since the review fix 2a), and seed 8 differs
 const EM = preload("res://sim/modern/econ/econ_month.gd")
-const SEEDED_7 := "b1620d1cf5b9aa4b18605417072fbaed2ac92c5f2ffec5d081e974374977427d"
+const SEEDED_7 := "7f417216b5a5c0cda9449e9a187e33504978332bf6ad2591303eef80c3b75195"
 ## R2b the household rake's arithmetic is DetMath's: a households-on society (seed 7, 2 x 200, 12 months) gives the recorded digest
 ##     (005e307d since R96e's fixes (the 2023-10-01 denominators); c68e21c2 since the D477 purge, 711a98df / 276929d7; 9dc03f7d since the T2.2b/c households-on move; 0ab70464: since M011's v2; f2428a8a since M010's pooled inputs; 5eec6b3b since §14.4a's deaths by health x income (R73, R74); 542a6305 before, 05c81404 since §10.9's intended children by the
 ##     wife's age; before 11e79d51 (§10.8's C3), 4447bf64 (§10.7's
 ##     B1-B3, B5), cee725bc (§10.6's A1-A5), 399a9442 (V098's A3-1, A3-2, divorce as a choice, the start's size draw)) and repeats
-const HH_12 := "005e307d71e3bb9e371dc0719be8351e3c71f8dc92befa40f5722944b046ed1d"
+const HH_12 := "30fc0e0c33ecc59fcc8369776bab6cd78bf9be23978f0c97d1b4999d8fab1e38"
 ## R2c every saved array is in the digest: after 6 months, a change to any one of the twenty arrays the review found outside it moves
 ##     the digest, and undoing it restores the digest
 const ADDED := ["weight", "hh_size", "k_in_pref", "basket", "emo_base", "pref_leisure", "pref_social", "pol_interest", "dream_blocked", "mem_head", "mem_kind", "mem_month", "met", "pressure_prev", "contact_kind", "contact_last", "belief_source", "belief_month", "cohort", "qx"]

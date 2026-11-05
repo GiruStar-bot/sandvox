@@ -6,7 +6,8 @@ first line (git blame). The purge rows already in the file (those not marked "in
 A block is a dict carrying a source-like key (source, sources, *_source, basis, vintage); its leaves are the numbers under it that no
 deeper block claims. A file with no source-like key anywhere is one row, sourced from its MANIFEST entry where it has one.
 Dates: "published YYYY-MM-DD" (or -MM) in the text wins; else the latest full or year-month date in the text; else a year alone
-(publication date CHECK, R96e); else UNDATED (R96e). A date after 2024-12-31 marks the row LA? for verifyくん."""
+(publication date CHECK, R96e); else UNDATED (R96e). A date after 2024-12-31 marks the row LA? for verifyくん. R96e's and R96i's
+researched dates (data/modern/src) replace the undated, year-only and declared rows' dates, and R96i's also the text-read ones."""
 import csv, json, os, re, subprocess, sys
 
 ROOT = os.getcwd()
@@ -182,18 +183,21 @@ def newest(bl, span):
 
 
 R96E = os.path.join(DM, "src/R96e_compute_chain_and_dates.csv")
+R96I = os.path.join(DM, "src/R96i_checks_dated.csv")
 
 
 def r96e_dates():
-    """R96e (research-notes 6fdbf51b) dated the inventory's undated and year-only rows: (file, path) -> (published, verdict, source)"""
+    """R96e (research-notes 6fdbf51b) dated the inventory's undated and year-only rows, R96i (research-notes e7b5c51c) the CHECK rows
+    R96f named, R96i's row winning where both date one: (file, path) -> (published, verdict, source, report)"""
     out = {}
-    if not os.path.exists(R96E):
-        return out
-    for r in csv.DictReader(open(R96E, encoding="utf-8")):
-        if r["part"].startswith("1") or r["verdict"] not in ("OK", "DECLARED"):
+    for path, rep in ((R96E, "R96e"), (R96I, "R96i")):
+        if not os.path.exists(path):
             continue
-        f = r["file"] if r["file"].startswith("data/modern/") else "data/modern/" + r["file"]
-        out[(f, r["path"])] = (r["published"], r["verdict"], r["source"])
+        for r in csv.DictReader(open(path, encoding="utf-8")):
+            if r.get("part", "").startswith("1") or r["verdict"] not in ("OK", "DECLARED"):
+                continue
+            f = r["file"] if r["file"].startswith("data/modern/") else "data/modern/" + r["file"]
+            out[(f, r["path"])] = (r["published"], r["verdict"], r["source"], rep)
     return out
 
 
@@ -241,9 +245,9 @@ def main():
                 elif lab[:1] == "D" or label.upper().startswith("DERIVED"):
                     act += "; basis: derived (D) from the sources in this row; set in %s" % newest(bl, line)
                 rd = dates.get(("data/modern/" + relm, path))
-                if rd and ("UNDATED" in act or "year only" in act or "declared (T)" in act):
+                if rd and ("UNDATED" in act or "year only" in act or "declared (T)" in act or (rd[3] == "R96i" and "publication CHECK" in act)):
                     pub = rd[0]
-                    act = "inventory: dated by R96e (%s): %s" % (rd[1], rd[2][:160]) + (act[act.index(";"):] if ";" in act else "")
+                    act = "inventory: dated by %s (%s): %s" % (rd[3], rd[1], rd[2][:160]) + (act[act.index(";"):] if ";" in act else "")
                 if ("data/modern/" + relm, path) in purge_paths:
                     act += "; replaced in the purge (see its row)"
                 rows.append({"file": "data/modern/" + relm, "path": path, "value": "%d numeric leaves" % n, "unit": "",
@@ -255,7 +259,7 @@ def main():
     tally = {}
     for r in rows:
         k = r["action"].split(";")[0]
-        if k.startswith("inventory: dated by R96e"):
+        if k.startswith("inventory: dated by R96"):
             k = k[:k.index(")") + 1]
         elif k.startswith("inventory: reviewed"):
             k = "inventory: reviewed, in window"

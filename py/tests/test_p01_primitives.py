@@ -9,8 +9,8 @@ import sys
 import time
 
 from common import Kit, ROOT, f_bits, i64_bytes, sha_i64
-from tiers import detmath, keyed, prims
-from tiers.gd import gd_round, maxi, mini, maxf, minf
+from core import detmath, keyed, prims
+from core.gd import gd_round, maxi, mini, maxf, minf
 
 N_KEYS = 20000
 DRAWS = 100000

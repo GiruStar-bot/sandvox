@@ -4,7 +4,7 @@
 
 The aim is an environment for training and evaluating AI agents that has *predictive validity*: if a world made only from pre-2025 data grows the same kinds of 2025 phenomena from the inside, it is a better place for AI to learn about, and act in, human society. The long-term aim is the whole world.
 
-> Status: **early, research code (pre-alpha).** Development is paused until January 2027. The blind 2025 comparison has **not** been run yet, and no result is claimed. The test will be pre-registered before it is run.
+> Status: **early, research code (pre-alpha).** The move of the model from GDScript to Python is nearly complete (November 2026); a frame for every country, where an AI agent can take a country's ruler seat, is being prepared. Development pauses again until January 2027. The blind 2025 comparison has **not** been run yet, and no result is claimed. The test will be pre-registered before it is run.
 
 ## The idea in four rules
 
@@ -17,12 +17,12 @@ The aim is an environment for training and evaluating AI agents that has *predic
 
 | Path | Contents |
 |---|---|
-| `py/` | The Python core (NumPy, optional Numba): the population "tiers" month step. It reproduces the GDScript reference bit for bit (SHA-256 parity tests in `py/tests/`). New layers are written here. |
+| `py/` | The Python port (NumPy, optional Numba), where all new work is written. `py/core` holds the deterministic primitives; `py/tiers` the population tiers; `py/lchh` life course and households; `py/econ` the economy; `py/world` polity, laws and the world layer; `py/people` relations and groups (the persons follow). Each module reproduces the frozen GDScript reference bit for bit through recorded interfaces (SHA-256 per field per month; tests in `py/tests/`, oracle dump scripts in `tools/py/`), and `py/world/integrated.py` chains them into one month. |
 | `sim/modern/` | The reference model in GDScript (Godot 4, headless): people, households, the national population tiers, economy, polity, views. Frozen as the parity oracle. |
 | `sim/api/det_math.gd`, `sim/earth_core/keyed.gd` | Deterministic maths and keyed random numbers. Every number that enters the answer goes through them, so runs are reproducible across machines (`docs/team/DET_MATH.md`). |
 | `data/modern/` | Input data for Japan at the start (2025-01): population by single age, sex and prefecture, households, labour, food, trade, banks, polity, and more, with sources. See `DATA_SOURCES.md` for terms. |
 | `tools/` | Data builders (`tools/modern/build_*.py`), long runs, and the test runner. |
-| `docs/team/` | The deterministic-maths spec (`DET_MATH.md`), first principles and test notes. The design notes, declared checks and audits are not published yet: they quote 2025 values that must stay sealed until the comparison. |
+| `docs/team/` | The deterministic-maths spec (`DET_MATH.md`), the rules for writing on the Python core (`modern/py/CORE_GUIDE.md`, checked by `tools/py/lint_core.py`), the verifier's rubric (`verify/VERIFY_RUBRIC.md`), first principles and test notes. The design notes, declared checks and audits are not published yet: they quote 2025 values that must stay sealed until the comparison. |
 
 Comments in the code refer to internal notes (decision numbers such as D477, report numbers such as R96) that are not public yet.
 
@@ -33,7 +33,10 @@ Python core (tested with Python 3.14 and NumPy 2.4):
 ```
 pip install -r py/requirements.txt
 python py/tests/test_p01_primitives.py        # deterministic maths and sampling match the reference
+python py/tests/test_lint_core.py             # the core's rules are checked, and the checker catches planted faults
 ```
+
+The module parity tests (`py/tests/run_*.py`) read oracle dumps made by `tools/py/oracle_dump_*.gd` on the reference model.
 
 Reference model (Godot 4.7, headless, Linux or Windows):
 

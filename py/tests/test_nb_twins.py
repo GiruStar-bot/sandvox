@@ -1,4 +1,4 @@
-# The Numba twins (tiers/nb.py) on P0 and P1's rows: the same SHA-256s as the GDScript oracle's (L1_GDSCRIPT_PARITY.txt), with
+# The Numba twins (core/nb.py) on P0 and P1's rows: the same SHA-256s as the GDScript oracle's (L1_GDSCRIPT_PARITY.txt), with
 # prims' samplers and DetMath swapped for the compiled ones
 #   python py/tests/test_nb_twins.py
 import time
@@ -7,7 +7,7 @@ import numpy as np
 
 import test_p01_primitives as t
 from common import Kit, f_bits, sha_i64
-from tiers import detmath, keyed, nb, prims
+from core import detmath, keyed, nb, prims
 
 
 def main():

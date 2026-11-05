@@ -1,34 +1,34 @@
 {
- "_about": "People-off baselines of the modern world by platform (ISS_AUDIT.md §0): status_run.gd -- --days 1095 (salt 0123456789abcdef0123456789abcdef). Read by test_modern_economy_link E5. A platform without a value is reported, not asserted; Windows from manager4's run at modern-core 4c740a9a (pm-notes RELAY_QUEUE, 2026-10-29), equal to Linux. A commit that moves a value says so in its message. econ_run_36: econ_run.gd -- --months 36 [--drought 12:23:0.6] [--seed N] (people off), recorded at iss-hh after the review fix 2a (keyed shock tags); Windows from manager4's run at iss-hh 4551e8a5 (pm-notes RELAY_QUEUE 2026-10-29 21:05); not read by a test yet. Moved by the M002 batch's G8 (storable goods at their clearing target, k = 1) at iss-hh: every value re-recorded on Linux; the Windows values are dropped until manager4's rerun (they were equal to Linux before G8). M002 G1 (the pensions' April revision) moved people_run again (persons on). M002 G7 (separation from the persons' mean finding rate) moved it again. The whole saving booked (SB10) moved it again. M002 G2 (no max(0, .) on the believed food rise) moved it again. M002 G3 (each register fact's own error) moved it again. S-year (the persons spec on editions published by 2024-01, ISS_SOURCE_YEARS.md) moved people_run (persons on); the people-off rows are unchanged. G7a (the separation rate's f̄ read after the month's decisions) moved people_run again. The D477 look-ahead purge (modern 711a98df, livestock back at 276929d7) moved every value: all re-recorded on Linux at 276929d7. The start's own-flow rule (tools/modern/start_flows.py: rice's final demand, soybeans' and vegetables' in-transit) moved econ_run_36, status_1095 and people_run again: all re-recorded on Linux. R96e's look-ahead fixes (modern f3d18ad8..a181cd32: compute chain, the 2023-10-01 denominators, the start rule's inventories and wheat / soybean demand, debt, the CHECK rows in hand) moved every value again: all re-recorded on Linux.",
+ "_about": "People-off baselines of the modern world by platform (ISS_AUDIT.md §0): status_run.gd -- --days 1095 (salt 0123456789abcdef0123456789abcdef). Read by test_modern_economy_link E5. A platform without a value is reported, not asserted; Windows from manager4's run at modern-core 4c740a9a (pm-notes RELAY_QUEUE, 2026-10-29), equal to Linux. A commit that moves a value says so in its message. econ_run_36: econ_run.gd -- --months 36 [--drought 12:23:0.6] [--seed N] (people off), recorded at iss-hh after the review fix 2a (keyed shock tags); Windows from manager4's run at iss-hh 4551e8a5 (pm-notes RELAY_QUEUE 2026-10-29 21:05); not read by a test yet. Moved by the M002 batch's G8 (storable goods at their clearing target, k = 1) at iss-hh: every value re-recorded on Linux; the Windows values are dropped until manager4's rerun (they were equal to Linux before G8). M002 G1 (the pensions' April revision) moved people_run again (persons on). M002 G7 (separation from the persons' mean finding rate) moved it again. The whole saving booked (SB10) moved it again. M002 G2 (no max(0, .) on the believed food rise) moved it again. M002 G3 (each register fact's own error) moved it again. S-year (the persons spec on editions published by 2024-01, ISS_SOURCE_YEARS.md) moved people_run (persons on); the people-off rows are unchanged. G7a (the separation rate's f̄ read after the month's decisions) moved people_run again. The D477 look-ahead purge (modern 711a98df, livestock back at 276929d7) moved every value: all re-recorded on Linux at 276929d7. The start's own-flow rule (tools/modern/start_flows.py: rice's final demand, soybeans' and vegetables' in-transit) moved econ_run_36, status_1095 and people_run again: all re-recorded on Linux. R96e's look-ahead fixes (modern f3d18ad8..a181cd32: compute chain, the 2023-10-01 denominators, the start rule's inventories and wheat / soybean demand, debt, the CHECK rows in hand) moved every value again: all re-recorded on Linux. R96's refresh (modern 5699f2e3, 24527360) and R96i's CHECK rows (fc16477c: the tariff, the vegetables' start rule and the levers) moved every value again: all re-recorded on Linux.",
  "status_1095": {
-  "Linux": "a971c6026a6e61e7edab04d5250a668e908dd13f67e1e1f64ba26ae0bed84a85"
+  "Linux": "53bc2ecf673d00caaa2b4460386a62d69049bbd48462eace5a7c853277e4e383"
  },
  "econ_run_36": {
   "unseeded": {
-   "Linux": "32c2968bdf78ab5d310f80e5c7eedc768a8a7f4b84f9f6846c291f5aacbdac58"
+   "Linux": "b7362945b9f99007eb60bc2231a0a72c3f8d17ec2a02672dacdfe486bcdb95e6"
   },
   "seed_7": {
-   "Linux": "b1620d1cf5b9aa4b18605417072fbaed2ac92c5f2ffec5d081e974374977427d"
+   "Linux": "7f417216b5a5c0cda9449e9a187e33504978332bf6ad2591303eef80c3b75195"
   },
   "seed_8": {
-   "Linux": "9398e0b0ec98f517a6ce4afc1e382a52ffab1b608493cc30dc7f3bc36e0e3ae7"
+   "Linux": "00da3f167572fc3fd59a8c17c3d24f9a2401f9bb90e92077261c5adfb45a08a4"
   },
   "drought_unseeded": {
-   "Linux": "94aa6d3ed323eca778af69f9a1d3d89fe1ce48382b34fb1d28d885c890652a1f"
+   "Linux": "8f570df06421dc1ce22284ac316fde2cb64345f9ed9a42ba6028490f533d43fd"
   },
   "drought_seed_7": {
-   "Linux": "462c1cf5ead5ef045b2d3516381f044235fb7f5bb6b4776fddaeab543dc4c2a8"
+   "Linux": "a5bef9b50d6bfd44d47afbaefa226fb3b33219fd9f6fc85e98e35767c35d0a54"
   },
   "drought_seed_8": {
-   "Linux": "bd843d3641f61a6707efef7696d31e16110ff0b4efae2c7944fe57b9d496f003"
+   "Linux": "07b121d74575397a71212d69aa6c5185a562350bbff75eb979e049f49eb73d39"
   }
  },
  "people_run_730_s1_n200": {
   "PEOPLE": {
-   "Linux": "962a16676397d58a9a25d10c5e5f77d3560e86dc97517a0c69745fce248be1d8"
+   "Linux": "ad64d2137127d94953df3b77087c16c3ca5c48aca1265d63219725bfd5b7f02c"
   },
   "WORLD": {
-   "Linux": "c31681abecbddc4a712f06361c99990383f14c2fc67d13b675f1dc664aa88f21"
+   "Linux": "abfd9245e0ffcd1f9e5f79a91592510e3d8e5cb330f52b88bb6cbe260604c5cd"
   }
  }
 }

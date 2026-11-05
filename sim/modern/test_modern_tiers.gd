@@ -44,8 +44,8 @@ const PEOPLE = preload("res://sim/modern/people/people.gd")
 const TR = preload("res://sim/modern/people/tiers.gd")
 const MS = preload("res://sim/modern/modern_status.gd")
 const CANON = preload("res://sim/modern/canon.gd")
-const P5_DIGEST := "14d051ac165accebeffe19f58137b37a000f4c1892af8823ed88fd0e57009d3e"
-const HH_12 := "005e307d71e3bb9e371dc0719be8351e3c71f8dc92befa40f5722944b046ed1d"
+const P5_DIGEST := "4250a82647dd26afa5631f1ea0d2e382cc14e224b2399f46cd70ce41a14efb5f"
+const HH_12 := "30fc0e0c33ecc59fcc8369776bab6cd78bf9be23978f0c97d1b4999d8fab1e38"
 const CHI2_3_99 := 11.345
 const ENV := {"inflation_month": 0.02 / 12.0, "food_price_yoy": 0.0, "unemployment_rate": 0.025, "levers": []}
 

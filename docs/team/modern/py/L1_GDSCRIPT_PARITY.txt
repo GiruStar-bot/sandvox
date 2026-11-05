@@ -1,0 +1,20 @@
+ok   unit_bridge off runs the GDScript oracle
+ok   E0 keyed raw: 20000 values, mismatches 0; sha256 gdscript 1bff6bafbd3c96268e01687905d4725148af21221153a9daf96fa9189cd1ec05 native 1bff6bafbd3c96268e01687905d4725148af21221153a9daf96fa9189cd1ec05
+ok   E0 keyed u (a UTF-8 tag): 20000 values, mismatches 0; sha256 gdscript bd4fb061be99f0989135499753dbb0c998ea12544ba9869293527c48f708604a native bd4fb061be99f0989135499753dbb0c998ea12544ba9869293527c48f708604a
+ok   E0 keyed below (n 1, 7, 1000, 2^40): 80000 values, mismatches 0; sha256 gdscript 816b2dbdbe1c7b1dd42b5d36798fa5b2e42099a456bd5d3b0ad18d2d9e62b0c6 native 816b2dbdbe1c7b1dd42b5d36798fa5b2e42099a456bd5d3b0ad18d2d9e62b0c6
+ok   E0 keyed normal: 20000 values, mismatches 0; sha256 gdscript 6ef6c38052917c6093bf65f28749dda91e74c08937b8f5efe2f99e1068b749c9 native 6ef6c38052917c6093bf65f28749dda91e74c08937b8f5efe2f99e1068b749c9
+ok   E0 inv_normal (keyed u, tails, branch edges): 20014 values, mismatches 0; sha256 gdscript 61f43b058bdb6c36c620c450da2d99295bc90af3b7087da3180b8c24efcf3151 native 61f43b058bdb6c36c620c450da2d99295bc90af3b7087da3180b8c24efcf3151
+ok   E0 DetMath.pow at (q, n) as binomial reads them: 20000 values, mismatches 0; sha256 gdscript fb726ca2043bf257ef8efc4090ac2f76c44c32b62417d53ef8c87fd47837b0ed native fb726ca2043bf257ef8efc4090ac2f76c44c32b62417d53ef8c87fd47837b0ed
+ok   E1-b DM-b grid and switch cells x 10^5 keyed u: 9500000 outputs, mismatches 0; sha256 gdscript 4eca7bb983fb8bc34088d83db2aafbf0c46ab7f51ad30f7ecd0a044b1ad47ba9 native 4eca7bb983fb8bc34088d83db2aafbf0c46ab7f51ad30f7ecd0a044b1ad47ba9
+ok   E1-b DM-b recorded BITS: 10 outputs, mismatches 0; sha256 gdscript 4fbbbadbf4b73e07a957823a6b365e006904dacf50dbb4c32142e16a0be2866f native 4fbbbadbf4b73e07a957823a6b365e006904dacf50dbb4c32142e16a0be2866f
+ok   E1-b DM-b sampler CDF boundaries at n p q >= 12: 46839 outputs, mismatches 0; sha256 gdscript 15d3d071a1fe9608f17690ab225988dfc138e6a97ec1dd1f2783f0c2f61ef1db native 15d3d071a1fe9608f17690ab225988dfc138e6a97ec1dd1f2783f0c2f61ef1db
+ok   E1-inv DM-b inversion CDF boundaries at n p q < 12: 2259 outputs, mismatches 0; sha256 gdscript 2400a01122cd37253b7502a29fe6bfe4d75f3d59ed015ea4a564eb03baf7788c native 2400a01122cd37253b7502a29fe6bfe4d75f3d59ed015ea4a564eb03baf7788c
+ok   E1-inv HG-b inversion CDF boundaries below the switch: 1016 outputs, mismatches 0; sha256 gdscript 2577a1138fcb0b019fa277996f7d1ba6b335468cf403bb8d8c845644454e62f8 native 2577a1138fcb0b019fa277996f7d1ba6b335468cf403bb8d8c845644454e62f8
+ok   E1-hg HG-a splits: 3200000 outputs, mismatches 0; sha256 gdscript 36e2f2c0675b7b59c2be6b0cca5629452055205bc4900293580ec7aa83f17a32 native 36e2f2c0675b7b59c2be6b0cca5629452055205bc4900293580ec7aa83f17a32
+ok   E1-hg HG-b cells: 30671 outputs, mismatches 0; sha256 gdscript e2af54fd72a775db72963c2af8077847a483640de5c799894908a70f9cf9e366 native e2af54fd72a775db72963c2af8077847a483640de5c799894908a70f9cf9e366
+ok   E1-c T2s-c merges: 120000 outputs, mismatches 0; sha256 gdscript 5b22a49ae2d0ce62885b22868470230f72f5f46bde1cdb206d37406264dcd79d native 5b22a49ae2d0ce62885b22868470230f72f5f46bde1cdb206d37406264dcd79d
+ok   E1-r dep_round tables: 9785 outputs, mismatches 0; sha256 gdscript 779baf44c59f0d599be812c20a9f8630cfb8099f504d3e08a5c9e521164072af native 779baf44c59f0d599be812c20a9f8630cfb8099f504d3e08a5c9e521164072af
+ok   E1-r _systematic: 19047 outputs, mismatches 0; sha256 gdscript eb30b3258d9fb02c17a06f83bb584e7db8e33ef000b405df6718fe21450cc18f native eb30b3258d9fb02c17a06f83bb584e7db8e33ef000b405df6718fe21450cc18f
+ok   E1-r split_holds: 19729 outputs, mismatches 0; sha256 gdscript fcd1fa9983266f9106dec5815564e5b6e62a6c3a5c885d3ae5c559c83aa404cb native fcd1fa9983266f9106dec5815564e5b6e62a6c3a5c885d3ae5c559c83aa404cb
+ok   E1-r cap_to: 19509 outputs, mismatches 0; sha256 gdscript f092f90824cc8f73b53b8e927f6272e51b24ca669b978aa962d0974618602ebb native f092f90824cc8f73b53b8e927f6272e51b24ca669b978aa962d0974618602ebb
+ok   E1-r largest_keyed: 19029 outputs, mismatches 0; sha256 gdscript 5056c4ccf40cd30e4ffcc79467cfacc1e670c5ee2a55d848f9c60f2a211251fe native 5056c4ccf40cd30e4ffcc79467cfacc1e670c5ee2a55d848f9c60f2a211251fe
