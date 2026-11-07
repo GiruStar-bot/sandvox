@@ -252,9 +252,22 @@ def main():
     old = cj.constants["pension_age"]
     try:
         cj.constants["pension_age"] = 66
-        p, prefectures = create.inputs()
-        ctx = {"prefectures": prefectures}
-        build.run(p, ctx, None, "06_class")
+        from tiers.start import cache as start_cache
+
+        def _build_06():
+            pp, prefs = create.inputs()
+            cc = {"prefectures": prefs}
+            build.run(pp, cc, None, "06_class")
+            return pp, cc
+
+        # The 06_class build is deterministic (~68 s); cache it keyed by all
+        # file inputs and build code (tiers/start/cache.py). The variant
+        # records the one in-memory input this test mutates. The stage
+        # hashes are still compared against the shipped oracle dumps below,
+        # so a wrong cached state fails this test exactly as a wrong build
+        # would.
+        p, ctx = start_cache.get_or_build(
+            "inputs", "06_class", _build_06, variant="pension_age=%s" % cj.constants["pension_age"])
         st = os.path.join(ROOT, "outputs", "py_oracle", "st", "06_class.sha.txt")
         ref = digest.read_hashes(st) if os.path.exists(st) else {}
         got = trace.stage_hashes(p, ctx, list(ref))

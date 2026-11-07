@@ -126,47 +126,6 @@ def load_feedback_params(params_path=None, overrides=None):
     return params
 
 
-def ensure_oracle_dumps():
-    """Generates deterministic reference dumps in outputs/py_oracle/ if missing so test_country.py can complete."""
-    ps_dir = os.path.join(ROOT_DIR, "outputs", "py_oracle", "ps", "s1_n20")
-    st_dir = os.path.join(ROOT_DIR, "outputs", "py_oracle", "st")
-    st_file = os.path.join(st_dir, "06_class.sha.txt")
-    m13_file = os.path.join(ps_dir, "m13.persons.sha.txt")
-    if os.path.exists(m13_file) and os.path.exists(st_file):
-        return
-
-    sys.path.insert(0, os.path.join(ROOT_DIR, "py", "tests"))
-    import test_persons_layer as TPL
-    from tiers.start import build, trace
-
-    os.makedirs(ps_dir, exist_ok=True)
-    os.makedirs(st_dir, exist_ok=True)
-
-    ps, env1 = TPL.start(1, 20, False)
-    names = [str(r[0]) for r in ps.p.fields()] + list(trace.PERSON_SCALARS) + ["iface.supply", "iface.summary", "iface.summary_13"]
-    for m in range(0, 14):
-        if m > 0:
-            ps.step(env1)
-        hs = TPL.month_hashes(ps, names)
-        with open(os.path.join(ps_dir, "m%02d.persons.sha.txt" % m), "w", encoding="utf-8") as f:
-            for k in sorted(hs):
-                f.write(f"{k} {hs[k]}\n")
-
-    p, prefectures = create.inputs()
-    ctx = {"prefectures": prefectures}
-    build.run(p, ctx, None, "06_class")
-    st_names = (
-        ["persons." + str(r[0]) for r in p.fields()]
-        + ["persons." + s for s in trace.PERSON_SCALARS]
-        + ["local." + k for k in sorted(ctx.keys())]
-        + [k for k in sorted(dir(p)) if k.startswith("tr_") and not callable(getattr(p, k))]
-    )
-    got = trace.stage_hashes(p, ctx, st_names)
-    with open(st_file, "w", encoding="utf-8") as f:
-        for k in sorted(got):
-            f.write(f"{k} {got[k]}\n")
-
-
 def align_initial_state_2025(st, c, co_2025):
     """
     Aligns `Status` indicators from the 2023-10 / 2024-06 snapshot in `status_2024.json` to the exact
@@ -568,7 +527,7 @@ def run_simulation(
     params_path=None,
     feedback_params=None,
 ):
-    ensure_oracle_dumps()
+    t0 = time.time()
     params = load_feedback_params(params_path=params_path, overrides=feedback_params)
     jp = params["fiscal_and_jgb"]
     rp = params["persons_replenishment"]
@@ -580,7 +539,6 @@ def run_simulation(
     )
     print(f"\n[Sandvox Engine v4] Initializing {years}-year simulation ({years * 365} days / {years * 12} months)...")
     print(f"[Architecture] {mode_label}")
-    t0 = time.time()
 
     # 1. Initialize Status (`status_2024.json` + `levers.json`) and align to `2025-01-01` (`start_2025.json`)
     st = Status()
@@ -736,6 +694,8 @@ def run_simulation(
     year_notes = []
     total_days = years * 365
     month_idx = 0
+
+    t_loop = time.time()
 
     for day in range(1, total_days + 1):
         logged_before = len(st.lever_log)
@@ -906,8 +866,9 @@ def run_simulation(
             year_mig = 0.0
             year_notes = []
 
-    elapsed = round(time.time() - t0, 2)
-    print(f"\n[Done] {years}-year endogenous simulation completed in {elapsed}s.\n")
+    t_end = time.time()
+    print(f"\n[Done] {years}-year endogenous simulation completed in {round(t_end - t0, 2)}s "
+          f"(init {round(t_loop - t0, 2)}s + simulation {round(t_end - t_loop, 2)}s).\n")
 
     print("-" * 144)
     print(f"{'Year':<5} | {'Population':<13} | {'Births':<8} | {'Deaths':<9} | {'NetMig':<8} | {'TFR':<5} | {'65+%(75+)':<11} | {'JGB10Y':<6} | {'Debt/GDP':<8} | {'BondDep':<7} | {'Discontent':<10} | {'GovSeats':<8} | {'Status / Parliamentary Events'}")
