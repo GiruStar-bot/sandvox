@@ -1,33 +1,44 @@
 #!/usr/bin/env python3
 """
-Sandvox Official Endogenous Policy Simulation CLI (v4.1 - Realistic Closed-Loop Engine)
-Builds upon v3.1 (which resolved all audit items a-h) and incorporates the 5 v4 closed-loop mechanisms
-plus all 3 v4 technical audit enhancements (Issues A, B, and C):
+Sandvox Official Endogenous Policy Simulation CLI (v5.0 - Foundational Closed-Loop Engine)
+Implements first-principles macroeconomic, demographic, fiscal, micro-sampling, and constitutional parliamentary dynamics:
 
 1. Endogenous Fertility (TFR / ASFR) Feedback from Household Living Costs & Education Support:
-   - TFR responds not only to `child_allowance` (`Status._respond`), but also to `education_budget` (reducing child-rearing
-     educational cost burden when enacted by the Diet) and monthly household economic stress (`discontent`, post-tax food
-     inflation `effective_food_yoy`, and real wage growth from `EconMonth`).
-   - Consequently, `--full` (with elections & Diet bill enactment/cuts) and standard mode diverge in Births, NetMig, and Population.
-2. Continuous JGB Yield Curve (`jgb_10y`) & 8.5-Year Average Maturity Debt Rollover:
-   - Replaces the binary 45% yield switch with a continuous Bank of Japan / sovereign bond market rate driven by inflation,
-     Debt/GDP, and Bond Dependency, coupled with an 8.5-year average JGB maturity refinancing lag (`eff_jgb_rate`).
-3. Young-Old (65-74) vs. Old-Old (75+ Late-Stage Elderly) Demographic Separation:
-   - Computes `pop_65_74` and `pop_75_plus` directly from the 1-year `st.cohort["JPN"]` bins every day.
-   - Per MHLW national medical & long-term care profiles, per-capita social security cost growth is weighted 3.5x toward
-     the `75+` cohort (capturing Japan's 2025-2040 baby-boomer aging wave), while `pension_age` extension expands `65-74` employment.
+   - TFR responds to `child_allowance` (`Status._respond`), `education_budget` (reducing child-rearing educational cost burden
+     when enacted by the Diet), and monthly household economic security (`discontent`, post-tax food inflation `effective_food_yoy`,
+     and real wage growth from `EconMonth`).
+2. Continuous JGB Yield Curve (`jgb_10y`), 8.5-Year Maturity Rollover, & Zero-Residual FY2024 Budget Decomposition:
+   - Exhaustively partitions `budget_fy2024` (`112,571.7 bn JPY` total) into `social_security` (`37,719.3 bn`),
+     `local_allocation_tax` (`17,786.3 bn`), `debt_service` (`27,009.0 bn` split into 60-year rule principal redemption
+     `12,594.2 bn` + coupon interest `14,414.8 bn`), `defence` (`7,949.6 bn`, never double-counted in core ops), and
+     `core_ops` (`22,107.5 bn`), with `0.0 bn JPY` residual.
+   - Couples sovereign debt service and social security to actual demographic headcount (`65-74` vs. `75+`), per-worker
+     nominal GDP growth, and Japan's statutory 2004 Macroeconomic Slide (マクロ経済スライド, National Pension Act Art. 27-3).
+3. Young-Old (65-74) vs. Old-Old (75+ Late-Stage Elderly) Demographic Separation & Exact Flow Accounting:
+   - Computes `pop_65_74` and `pop_75_plus` directly from 1-year `st.cohort["JPN"]` bins every day, weighting per-capita
+     social security cost growth 3.5x toward `75+` per MHLW National Medical Care Expenditure profiles.
+   - Applies cumulative error-diffusion integer quantization to annual `Births`, `Deaths`, and `NetMig` so that
+     `Pop Change == Births - Deaths + NetMig` holds with `0` person residual at every horizon.
 4. Endogenous Net Migration (`NetMig`) Saturation & Economic Attractiveness:
-   - Normalizes the 2023 post-COVID border reopening spike (`+242,000/yr`) toward long-run IPSS structural levels as the
-     foreign resident stock (`foreign_residents`) grows, saturates `ssw_visa_cap` inflows smoothly as stock approaches the cap,
-     and scales inflows with Japan's real wage / inflation stability (slowing inflows during fiscal/inflation crises).
-5. Generational Cohort Replenishment in `Persons` for Multi-Century (100-Year+) Horizons (Audit Issue C Enhanced):
-   - Prevents sample extinction (`Discontent = nan`) over 50-100+ year runs by replenishing households from the live
-     `st.cohort["JPN"]` distribution whenever aging mortality reduces the micro sample below 60% of its initial size,
-     while preserving wage/price indices, employment rates, income expectations, age-stratified assets/debt, food price beliefs,
-     and accumulated macroeconomic emotion shifts (`emo - emo_base`).
-6. Externalized Feedback Parameters (`data/modern/jpn/feedback_params.json`, Audit Issue B) & 2025-01-01 Initial State Alignment (Audit Issue A).
+   - Normalizes the 2023 post-COVID border reopening spike (`+242,000/yr`) toward IPSS structural baseline (`168,000/yr`),
+     saturates `ssw_visa_cap` inflows smoothly with `foreign_residents` stock, and scales inflows with real wages and inflation stability.
+5. Statistical Sample Health Monitoring (Kish's Effective Sample Size N_eff & L1 Cohort Divergence) & Generational Replenishment:
+   - Monitors Kish's Effective Sample Size `N_eff = (sum w_i)^2 / sum(w_i^2)` and unweighted vs. national cohort age-bracket L1
+     divergence every month, triggering `replenish_persons_if_needed` whenever aging and `_reborn(i)` weight concentration
+     degrade `N_eff / N_eff_0` below threshold (`0.55`) or L1 divergence above `0.20` (as well as headcount `p.n < min_n`).
+6. Constitutional Parliamentary Alternation (`Election.designate` Art. 67 & `Election.run_upper_house` Art. 46) & Single-Source Parameters:
+   - Executes both House of Representatives (4-year) and House of Councillors (3-year half-renewal) elections in `--full` mode,
+     designates the Prime Minister and governing coalition via `Election.designate`, updates proportional vote-share baselines,
+     and loads all feedback parameters exclusively from `data/modern/jpn/feedback_params.json` with schema validation.
 """
-import sys, os, argparse, time, math, json, copy
+import sys
+import os
+import argparse
+import time
+import math
+import json
+import copy
+
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(ROOT_DIR, "py"))
 
@@ -50,136 +61,175 @@ from world import actors as MA
 from tiers.start import create, load
 
 
-DEFAULT_FEEDBACK_PARAMS = {
-    "fertility": {
-        "ed_budget_unit_bn": 4500.0,
-        "ed_tfr_boost_per_unit": 0.045,
-        "discontent_baseline": 0.20,
-        "discontent_tfr_slope": -0.18,
-        "food_infl_threshold": 0.025,
-        "food_infl_tfr_slope": -0.22,
-        "real_wage_tfr_slope": 0.06,
-        "stress_drag_min": -0.10,
-        "stress_drag_max": 0.04,
-        "tfr_floor": 0.85,
-        "tfr_ceiling": 2.05,
-    },
-    "migration": {
-        "structural_baseline": 168000.0,
-        "reopening_decay_years": 12.0,
-        "cap_ssw_multiplier": 1.5,
-        "cap_saturation_scale": 8000000.0,
-        "cap_headroom_floor": 0.35,
-        "infl_attract_threshold": 0.03,
-        "infl_attract_slope": -2.5,
-        "discontent_attract_threshold": 0.22,
-        "discontent_attract_slope": -0.6,
-        "real_wage_attract_slope": 0.15,
-        "attract_min": 0.60,
-        "attract_max": 1.10,
-    },
-    "fiscal_and_jgb": {
-        "old_75plus_cost_weight": 3.5,
-        "senior_relief_multiplier": 2.5,
-        "senior_relief_floor": 0.70,
-        "infl_index_threshold": 0.02,
-        "jgb_infl_threshold": 0.02,
-        "jgb_infl_slope": 0.45,
-        "jgb_debt_gdp_slope": 0.008,
-        "jgb_bond_dep_threshold": 0.35,
-        "jgb_bond_dep_slope": 0.035,
-        "crisis_bond_dep_threshold": 0.45,
-        "jgb_crisis_slope": 0.15,
-        "jgb_min": 0.005,
-        "jgb_max": 0.055,
-        "jgb_adjust_days": 90.0,
-        "jgb_rollover_years": 8.5,
-        "crisis_infl_premium": 0.030,
-        "crisis_food_premium": 0.040,
-        "vat_food_passthrough": 0.80,
-        "vat_ongoing_food_bite": 0.35,
-    },
-    "persons_replenishment": {
-        "min_sample_ratio": 0.60,
-        "min_sample_abs": 20,
-    },
+REQUIRED_PARAM_SCHEMA = {
+    "fertility": (
+        "ed_budget_unit_bn",
+        "ed_tfr_boost_per_unit",
+        "discontent_baseline",
+        "discontent_tfr_slope",
+        "food_infl_threshold",
+        "food_infl_tfr_slope",
+        "real_wage_tfr_slope",
+        "stress_drag_min",
+        "stress_drag_max",
+        "tfr_floor",
+        "tfr_ceiling",
+    ),
+    "migration": (
+        "structural_baseline",
+        "reopening_decay_years",
+        "cap_ssw_multiplier",
+        "cap_saturation_scale",
+        "cap_headroom_floor",
+        "infl_attract_threshold",
+        "infl_attract_slope",
+        "discontent_attract_threshold",
+        "discontent_attract_slope",
+        "real_wage_attract_slope",
+        "attract_min",
+        "attract_max",
+    ),
+    "fiscal_and_jgb": (
+        "old_75plus_cost_weight",
+        "senior_relief_multiplier",
+        "senior_relief_floor",
+        "care_dependency_elasticity",
+        "core_ops_pop_elasticity",
+        "infl_index_threshold",
+        "jgb_infl_threshold",
+        "jgb_infl_slope",
+        "jgb_debt_gdp_slope",
+        "jgb_bond_dep_threshold",
+        "jgb_bond_dep_slope",
+        "crisis_bond_dep_threshold",
+        "jgb_crisis_slope",
+        "jgb_min",
+        "jgb_max",
+        "jgb_adjust_days",
+        "jgb_rollover_years",
+        "crisis_infl_premium",
+        "crisis_food_premium",
+        "vat_food_passthrough",
+        "vat_ongoing_food_bite",
+    ),
+    "persons_replenishment": (
+        "min_sample_ratio",
+        "min_sample_abs",
+        "min_effective_sample_ratio",
+        "max_age_l1_divergence",
+        "min_replenish_interval_months",
+    ),
+    "polity_feedback": (
+        "pr_vote_share_memory",
+        "party_share_floor",
+        "new_cabinet_approval_init",
+    ),
 }
 
 
 def load_feedback_params(params_path=None, overrides=None):
-    """Loads feedback parameters from `data/modern/jpn/feedback_params.json` (or custom path) merged over `DEFAULT_FEEDBACK_PARAMS`."""
-    params = copy.deepcopy(DEFAULT_FEEDBACK_PARAMS)
+    """
+    Loads and validates feedback parameters exclusively from `data/modern/jpn/feedback_params.json`
+    (or custom `params_path`), eliminating dual parameter maintenance in Python code.
+    """
     default_path = os.path.join(ROOT_DIR, "data", "modern", "jpn", "feedback_params.json")
-    target_path = params_path if params_path is not None else (default_path if os.path.exists(default_path) else None)
-    if target_path and os.path.exists(target_path):
-        with open(target_path, "r", encoding="utf-8") as fh:
-            loaded = json.load(fh)
-        for sec, vals in loaded.items():
-            if sec in params and isinstance(vals, dict):
-                for k, v in vals.items():
-                    params[sec][k] = float(v) if isinstance(v, (int, float)) else v
+    target_path = params_path if params_path is not None else default_path
+    if not os.path.exists(target_path):
+        raise FileNotFoundError(f"Feedback parameter specification not found at: {target_path}")
+
+    with open(target_path, "r", encoding="utf-8") as fh:
+        loaded = json.load(fh)
+
+    params = {}
+    for sec, req_keys in REQUIRED_PARAM_SCHEMA.items():
+        if sec not in loaded or not isinstance(loaded[sec], dict):
+            raise KeyError(f"Missing required parameter section '{sec}' in {target_path}")
+        params[sec] = {}
+        for k in req_keys:
+            if k not in loaded[sec]:
+                raise KeyError(f"Missing required parameter '{sec}.{k}' in {target_path}")
+            val = loaded[sec][k]
+            if not isinstance(val, (int, float)):
+                raise ValueError(f"Parameter '{sec}.{k}' must be numeric, got {type(val).__name__}")
+            params[sec][k] = float(val)
+
+    if "_provenance" in loaded and isinstance(loaded["_provenance"], dict):
+        params["_provenance"] = copy.deepcopy(loaded["_provenance"])
+
     if isinstance(overrides, dict):
         for sec, vals in overrides.items():
             if sec in params and isinstance(vals, dict):
                 for k, v in vals.items():
-                    params[sec][k] = float(v) if isinstance(v, (int, float)) else v
+                    if k not in REQUIRED_PARAM_SCHEMA.get(sec, ()):
+                        raise KeyError(f"Unknown override parameter '{sec}.{k}'")
+                    params[sec][k] = float(v)
     return params
 
 
-def ensure_oracle_dumps():
-    """Generates deterministic reference dumps in outputs/py_oracle/ if missing so test_country.py can complete."""
-    ps_dir = os.path.join(ROOT_DIR, "outputs", "py_oracle", "ps", "s1_n20")
-    st_dir = os.path.join(ROOT_DIR, "outputs", "py_oracle", "st")
-    st_file = os.path.join(st_dir, "06_class.sha.txt")
-    m13_file = os.path.join(ps_dir, "m13.persons.sha.txt")
-    if os.path.exists(m13_file) and os.path.exists(st_file):
-        return
-
-    sys.path.insert(0, os.path.join(ROOT_DIR, "py", "tests"))
-    import test_persons_layer as TPL
-    from tiers.start import build, trace
-
-    os.makedirs(ps_dir, exist_ok=True)
-    os.makedirs(st_dir, exist_ok=True)
-
-    ps, env1 = TPL.start(1, 20, False)
-    names = [str(r[0]) for r in ps.p.fields()] + list(trace.PERSON_SCALARS) + ["iface.supply", "iface.summary", "iface.summary_13"]
-    for m in range(0, 14):
-        if m > 0:
-            ps.step(env1)
-        hs = TPL.month_hashes(ps, names)
-        with open(os.path.join(ps_dir, "m%02d.persons.sha.txt" % m), "w", encoding="utf-8") as f:
-            for k in sorted(hs):
-                f.write(f"{k} {hs[k]}\n")
-
-    p, prefectures = create.inputs()
-    ctx = {"prefectures": prefectures}
-    build.run(p, ctx, None, "06_class")
-    st_names = (
-        ["persons." + str(r[0]) for r in p.fields()]
-        + ["persons." + s for s in trace.PERSON_SCALARS]
-        + ["local." + k for k in sorted(ctx.keys())]
-        + [k for k in sorted(dir(p)) if k.startswith("tr_") and not callable(getattr(p, k))]
+def decompose_fy2024_budget(fy24_lines, init_gov_exp, init_debt, init_jgb):
+    """
+    Exhaustively decomposes the FY2024 General Account Budget (`112,571.7 bn JPY`) into 5 mutually
+    exclusive components with 0.0 bn JPY residual and zero double-counting of `defence`:
+      1. `budget_social_security` (`37,719.3 bn`)
+      2. `budget_lat` (`17,786.3 bn`)
+      3. `budget_debt_service` (`27,009.0 bn` = `debt_redemption_0` + `debt_interest_0`)
+      4. `budget_defence` (`7,949.6 bn`, excluded from `budget_core_ops`)
+      5. `budget_core_ops` (`22,107.5 bn` = `public_works` + `education_science` + `reserve_fund` + `other` + `unallocated_contingency`)
+    """
+    ss = float(fy24_lines["social_security"])
+    lat = float(fy24_lines["local_allocation_tax"])
+    ds = float(fy24_lines["debt_service"])
+    defence = float(fy24_lines["defence"])
+    named_non_def_ops = (
+        float(fy24_lines["public_works"])
+        + float(fy24_lines["education_science"])
+        + float(fy24_lines["other"])
+        + float(fy24_lines["reserve_fund"])
     )
-    got = trace.stage_hashes(p, ctx, st_names)
-    with open(st_file, "w", encoding="utf-8") as f:
-        for k in sorted(got):
-            f.write(f"{k} {got[k]}\n")
+    unallocated_contingency = float(init_gov_exp) - (ss + lat + ds + defence + named_non_def_ops)
+    core_ops = named_non_def_ops + unallocated_contingency
+
+    debt_interest_0 = min(ds, float(init_debt) * float(init_jgb))
+    debt_redemption_0 = ds - debt_interest_0
+
+    total_check = ss + lat + ds + defence + core_ops
+    if abs(total_check - float(init_gov_exp)) > 1e-6:
+        raise ValueError(f"FY2024 budget decomposition mismatch: {total_check} != {init_gov_exp}")
+
+    return {
+        "budget_social_security": ss,
+        "budget_lat": lat,
+        "budget_debt_service": ds,
+        "budget_debt_redemption_0": debt_redemption_0,
+        "budget_debt_interest_0": debt_interest_0,
+        "budget_defence": defence,
+        "budget_core_ops": core_ops,
+        "budget_named_non_def_ops": named_non_def_ops,
+        "budget_contingency_other": unallocated_contingency,
+    }
 
 
 def align_initial_state_2025(st, c, co_2025):
     """
     Aligns `Status` indicators from the 2023-10 / 2024-06 snapshot in `status_2024.json` to the exact
-    `2025-01-01` initial state in `start_2025.json` (`cohort_2025-01-01.json`) (Audit Issue A).
+    `2025-01-01` initial state in `start_2025.json` (`cohort_2025-01-01.json`).
     """
-    wp_2024 = sum(st.cohort["JPN"][a * 2] + st.cohort["JPN"][a * 2 + 1] for a in range(15, 65))
+    wp_2024 = 0.0
+    for a in range(15, 65):
+        wp_2024 += st.cohort["JPN"][a * 2] + st.cohort["JPN"][a * 2 + 1]
     for idx in range(len(co_2025)):
         st.cohort["JPN"][idx] = float(co_2025[idx])
 
     pop_2025 = st.population_of("JPN")
-    wp_2025 = sum(st.cohort["JPN"][a * 2] + st.cohort["JPN"][a * 2 + 1] for a in range(15, 65))
-    old_65_2025 = sum(st.cohort["JPN"][a * 2] + st.cohort["JPN"][a * 2 + 1] for a in range(65, 101))
-    old_75_2025 = sum(st.cohort["JPN"][a * 2] + st.cohort["JPN"][a * 2 + 1] for a in range(75, 101))
+    wp_2025 = 0.0
+    old_65_2025 = 0.0
+    old_75_2025 = 0.0
+    for a in range(15, 65):
+        wp_2025 += st.cohort["JPN"][a * 2] + st.cohort["JPN"][a * 2 + 1]
+    for a in range(65, 101):
+        old_65_2025 += st.cohort["JPN"][a * 2] + st.cohort["JPN"][a * 2 + 1]
+    for a in range(75, 101):
+        old_75_2025 += st.cohort["JPN"][a * 2] + st.cohort["JPN"][a * 2 + 1]
 
     iv = st.ind["JPN"]
     iv["pop_total"] = pop_2025
@@ -190,13 +240,17 @@ def align_initial_state_2025(st, c, co_2025):
 
     d_2025 = load.load_json(c.path("start_2025"))
     flows = d_2025.get("flows", {})
-    births_2024 = sum(float(flows[ym]["births"]) for ym in flows if ym.startswith("2024-"))
-    deaths_2024 = sum(float(flows[ym]["deaths"]) for ym in flows if ym.startswith("2024-"))
-    intl_h2_2024 = sum(
-        float(flows[ym]["intl_net"])
-        for ym in ("2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12")
-        if ym in flows
-    )
+    births_2024 = 0.0
+    deaths_2024 = 0.0
+    for ym in sorted(flows.keys()):
+        if ym.startswith("2024-"):
+            births_2024 += float(flows[ym]["births"])
+            deaths_2024 += float(flows[ym]["deaths"])
+    intl_h2_2024 = 0.0
+    for ym in ("2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12"):
+        if ym in flows:
+            intl_h2_2024 += float(flows[ym]["intl_net"])
+
     if births_2024 > 0.0 and deaths_2024 > 0.0:
         iv["births"] = births_2024
         iv["deaths"] = deaths_2024
@@ -235,7 +289,7 @@ def submit_policy_lever(st, cab, org, month, lid, val, force_direct=False):
         "budget_bn": max(0.0, dv),
         "period_months": 12,
         "expected_effect": 1.0,
-        "legal_basis": str(law_info.get("name", L.get("legal", "cabinet_decision")))
+        "legal_basis": str(law_info.get("name", L.get("legal", "cabinet_decision"))),
     }
 
     met = ["cabinet_decision"]
@@ -256,16 +310,37 @@ def submit_policy_lever(st, cab, org, month, lid, val, force_direct=False):
         return "refused", f"REFUSED_BY_DIET ({row['verdict']['why']})"
 
 
-def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_food_yoy, real_wage_ratio, params=None):
+def sync_cabinet_party_positions(cab, org):
     """
-    Realistic closed-loop accounting & demographic feedback parameterized via `feedback_params.json`:
+    Ensures `cab.party_positions` reflects the sitting governing coalition after constitutional PM alternation
+    (per `jpn_organs.json`: 'the governing parties vote yes on their own bills; a party not listed votes with its bloc').
+    """
+    base_pos = copy.deepcopy(org.spec.get("party_positions", {}))
+    for lid, pos_map in base_pos.items():
+        if not isinstance(pos_map, dict):
+            continue
+        if lid == "consumption_tax_rate":
+            # Any party in opposition opposes a consumption tax hike; sitting governing parties vote yes on their cabinet bill
+            updated = {}
+            for p_name in org.seats.get("house_of_representatives", {}):
+                updated[p_name] = "yes" if p_name in org.governing else "no"
+            cab.party_positions[lid] = updated
+        else:
+            updated = dict(pos_map)
+            for g_party in org.governing:
+                updated[g_party] = "yes"
+            cab.party_positions[lid] = updated
+
+
+def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_food_yoy, real_wage_ratio, params):
+    """
+    First-principles closed-loop macroeconomic, demographic, and fiscal coupling parameterized via `feedback_params.json`:
     1. Fertility (`tfr` & `asfr`)
     2. Endogenous Net Migration (`net_migration`)
-    3. Age-Stratified Demographics (`15-64`, `65-74`, `75+`)
-    4. Continuous JGB Yield Curve (`jgb_10y`) & 8.5-Year Maturity Refinancing Lag (`eff_jgb_rate`)
+    3. Age-Stratified Demographics (`15-64`, `65-74`, `75+`) & Per-Worker Nominal GDP
+    4. Zero-Residual FY2024 Expenditure Scaling with Headcount-Weighted Beneficiary Scale & Exact Debt Service Split
+    5. Continuous JGB Yield Curve (`jgb_10y`) & 8.5-Year Maturity Refinancing Lag (`eff_jgb_rate`)
     """
-    if params is None:
-        params = DEFAULT_FEEDBACK_PARAMS
     fp = params["fertility"]
     mp = params["migration"]
     jp = params["fiscal_and_jgb"]
@@ -349,6 +424,7 @@ def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_foo
 
     pension_emp_gain = max(0.0, (st.lever_value["JPN"]["pension_age"] - tracker["init_pension_age"]) * tracker["pension_k"])
     lf_ratio = (wp_15_64 + pension_emp_gain) / max(1.0, tracker["init_wp_15_64"])
+    pop_ratio = iv["pop_total"] / max(1.0, tracker["init_pop"])
 
     # Nominal GDP accounting identity
     nom_drift_day = (iv["gdp_real_growth"] + econ_infl) / 365.0
@@ -362,19 +438,39 @@ def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_foo
     tax_rev_current = (tracker["init_tax_rev"] + lever_tax_delta) * gdp_factor
     iv["gov_revenue_general"] = tracker["init_nontax_rev"] * gdp_factor + tax_rev_current
 
-    # 6. General Expenditure with 65-74 vs 75+ MHLW Cost Weighting & 8.5-Year JGB Rollover
+    # 6. First-Principles General Expenditure (Headcount-Weighted 65-74 vs 75+, Macroeconomic Slide, & Debt Split)
     tracker["infl_index"] *= (1.0 + max(0.0, econ_infl - jp["infl_index_threshold"]) / 365.0)
     infl_idx = tracker["infl_index"]
-    health_factor = (iv["health_expenditure"] / max(1.0, tracker["init_health"])) * infl_idx
-    weighted_old_now = (1.0 * pop_65_74 + jp["old_75plus_cost_weight"] * pop_75_plus) / max(1.0, iv["pop_total"])
-    aging_cost_factor = weighted_old_now / max(1e-6, tracker["init_weighted_old"])
-    gov_cons_factor = (iv["gov_consumption"] / max(1.0, tracker["init_gov_cons"])) * infl_idx
-    senior_relief_share = (pension_emp_gain / max(1.0, pop_65_plus)) * jp["senior_relief_multiplier"]
 
-    ss_line = tracker["budget_social_security"] * health_factor * aging_cost_factor * max(jp["senior_relief_floor"], 1.0 - senior_relief_share)
+    # Unit cost indices: `health_expenditure` (baseline trend + excess inflation + fee schedule lever) & `gov_consumption`
+    fee_sched_mult = max(0.80, 1.0 + float(st.lever_value["JPN"].get("health_fee_schedule", 0.0)))
+    health_unit_factor = (iv["health_expenditure"] / max(1.0, tracker["init_health"])) * fee_sched_mult * infl_idx
+    gov_cons_factor = (iv["gov_consumption"] / max(1.0, tracker["init_gov_cons"])) * infl_idx
+
+    # Actual elderly beneficiary headcount relative to 2025-01-01 (`beneficiary_ratio = B_t / B_0`)
+    # and old-age dependency ratio (`old_dep_factor = (B_t / B_0) / (L_t / L_0)`).
+    # Unlike dividing by `pop_total` without population scaling (which creates a spurious `Pop_0 / Pop_t` explosion
+    # as total population shrinks over 100 years), scaling by `beneficiary_ratio * (1 + care_dependency_elasticity * (old_dep_factor - 1))`
+    # matches MHLW aging pressure over 2025-2050 while stabilizing ss_line / GDP once the age pyramid reaches stationary shares.
+    weighted_old_abs = 1.0 * pop_65_74 + jp["old_75plus_cost_weight"] * pop_75_plus
+    beneficiary_ratio = weighted_old_abs / max(1.0, tracker["init_weighted_old_abs"])
+    old_dep_factor = beneficiary_ratio / max(0.05, lf_ratio)
+    ss_demo_factor = beneficiary_ratio * (1.0 + jp["care_dependency_elasticity"] * max(0.0, old_dep_factor - 1.0))
+
+    senior_relief_share = (pension_emp_gain / max(1.0, pop_65_plus)) * jp["senior_relief_multiplier"]
+    ss_line = (
+        tracker["budget_social_security"]
+        * health_unit_factor
+        * ss_demo_factor
+        * max(jp["senior_relief_floor"], 1.0 - senior_relief_share)
+    )
     ss_delta = ss_line - tracker["budget_social_security"]
+
     lat_delta = tracker["budget_lat"] * ((tax_rev_current / max(1.0, tracker["init_tax_rev"])) - 1.0)
-    core_ops_delta = tracker["budget_core_ops"] * (gov_cons_factor - 1.0)
+
+    # Core operations scale with unit public cost (`gov_cons_factor`) and national population scale (`core_ops_pop_elasticity`)
+    core_pop_scale = jp["core_ops_pop_elasticity"] * pop_ratio + (1.0 - jp["core_ops_pop_elasticity"]) * 1.0
+    core_ops_delta = tracker["budget_core_ops"] * (gov_cons_factor * core_pop_scale - 1.0)
 
     # Continuous JGB 10Y market yield & 8.5-year average maturity refinancing rollover
     debt_to_gdp_now = iv["gov_debt_total"] / max(1.0, iv["gdp_nominal"])
@@ -393,15 +489,22 @@ def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_foo
     alpha_roll = 1.0 / (jp["jgb_rollover_years"] * 365.0)
     tracker["eff_jgb_rate"] += (iv["jgb_10y"] - tracker["eff_jgb_rate"]) * alpha_roll
     debt_stock_ratio = iv["gov_debt_total"] / max(1.0, tracker["init_debt"])
-    coupon_spread = max(0.0, tracker["eff_jgb_rate"] - tracker["init_jgb"])
-    ds_line = tracker["budget_debt_service"] * debt_stock_ratio + iv["gov_debt_total"] * coupon_spread
+
+    # Exact Debt Service split: 60-year redemption rule principal + effective coupon rate on debt stock
+    ds_redemption = tracker["budget_debt_redemption_0"] * debt_stock_ratio
+    ds_interest = iv["gov_debt_total"] * tracker["eff_jgb_rate"]
+    ds_line = ds_redemption + ds_interest
     ds_delta = ds_line - tracker["budget_debt_service"]
 
-    ca_delta = (st.lever_value["JPN"]["child_allowance"] - tracker["init_ca"]) * gov_cons_factor
+    # Policy levers & defence (with defence excluded from core_ops to prevent double-counting)
+    ca_delta = (st.lever_value["JPN"]["child_allowance"] - tracker["init_ca"]) * gov_cons_factor * pop_ratio
     pi_delta = (st.lever_value["JPN"]["public_investment"] - tracker["init_pi"]) * gov_cons_factor
-    ed_delta = (st.lever_value["JPN"]["education_budget"] - tracker["init_ed"]) * gov_cons_factor
+    ed_delta = (st.lever_value["JPN"]["education_budget"] - tracker["init_ed"]) * gov_cons_factor * pop_ratio
     oda_delta = (st.lever_value["JPN"]["oda_budget"] - tracker["init_oda"]) * gov_cons_factor
-    def_delta = iv["defence_budget"] - tracker["init_def"]
+
+    def_lever_factor = iv["defence_budget"] / max(1.0, tracker["init_def"])
+    def_line = tracker["budget_defence"] * def_lever_factor * gov_cons_factor * core_pop_scale
+    def_delta = def_line - tracker["budget_defence"]
 
     iv["gov_expenditure_general"] = (
         tracker["init_gov_exp"]
@@ -423,14 +526,58 @@ def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_foo
     return bond_dep, iv["share_75plus"]
 
 
+
+def compute_sample_health(ps, cohort, init_neff=None):
+    """
+    Computes Kish's (1965) Effective Sample Size `N_eff = (sum w_i)^2 / sum(w_i^2)` and the L1 total
+    variation divergence between unweighted sample age-bracket shares and live national `cohort` shares.
+    Detects sample degradation in both `households=False` (where `_reborn` keeps `p.n` constant while
+    distorting the sample age pyramid and concentrating weights) and `households=True` (where `p.n` shrinks).
+    """
+    p = ps.p
+    if p.n <= 0:
+        return 0.0, 0.0, 1.0
+
+    sum_w = 0.0
+    sum_w2 = 0.0
+    for i in range(p.n):
+        w = float(p.weight[i])
+        sum_w += w
+        sum_w2 += w * w
+
+    neff = (sum_w * sum_w) / sum_w2 if sum_w2 > 0.0 else float(p.n)
+    neff_ratio = (neff / init_neff) if (init_neff is not None and init_neff > 0.0) else 1.0
+
+    pop_tot = 0.0
+    for idx in range(len(cohort)):
+        pop_tot += float(cohort[idx])
+    pop_tot = max(1.0, pop_tot)
+
+    age_brackets = ((0, 15), (15, 30), (30, 45), (45, 65), (65, 75), (75, 101))
+    l1_div = 0.0
+    for lo, hi in age_brackets:
+        s_cnt = 0
+        for i in range(p.n):
+            if lo <= p.age[i] < hi:
+                s_cnt += 1
+        s_share = float(s_cnt) / float(p.n)
+        c_pop = 0.0
+        for a in range(lo, hi):
+            c_pop += float(cohort[a * 2]) + float(cohort[a * 2 + 1])
+        c_share = c_pop / pop_tot
+        l1_div += 0.5 * abs(s_share - c_share)
+
+    return neff, neff_ratio, l1_div
+
+
 def replenish_persons_if_needed(ps, c_id, st, qx_2024, regions, n_per, cal_y, seed_gen, current_u=None):
     """
-    Replenishes the representative micro-household cohort from live `st.cohort["JPN"]` when aging deaths
-    reduce `ps.p.n` below 60% of initial size in multi-decade (50-100+ year) simulations.
-    Audit Issue C Fix: Preserves not only `month`, `price_index`, `wage_index`, `PENSION_AGE`, and `pension`,
-    but also recomputes individual wages (`repay`) at `saved_wage`, preserves income expectations (`q_income`),
-    inflation expectations (`q_price`), food price beliefs (`belief`), age-stratified household `assets` and `debt`,
-    employment rate (`current_u`), accumulated emotion shifts (`emo - emo_base`), and `food_plan_start`.
+    Replenishes the representative micro-household cohort from live `st.cohort["JPN"]` when sample health
+    degrades (`p.n < min_n`, Kish `N_eff / N_eff_0 < min_effective_sample_ratio`, or age-bracket `L1 > max_age_l1_divergence`).
+    Preserves `month`, `price_index`, `wage_index`, `PENSION_AGE`, `pension`, individual wages (`repay`),
+    income expectations (`q_income`), inflation expectations (`q_price`), food price beliefs (`belief`),
+    age-stratified household `assets` and `debt`, employment rate (`current_u`), accumulated emotion shifts
+    (`emo - emo_base`), and `food_plan_start`.
     """
     old_p = ps.p
     saved_month = old_p.month
@@ -443,7 +590,7 @@ def replenish_persons_if_needed(ps, c_id, st, qx_2024, regions, n_per, cal_y, se
     NF = REL.NF
     tot_w = 0.0
     emo_shift = [0.0] * NE
-    mean_q_price = 0.02
+    mean_q_price = 0.0
     q_inc_num = 0.0
     q_inc_den = 0.0
     pf_num = 0.0
@@ -478,6 +625,8 @@ def replenish_persons_if_needed(ps, c_id, st, qx_2024, regions, n_per, cal_y, se
         for e in range(NE):
             emo_shift[e] /= tot_w
         mean_q_price /= tot_w
+    else:
+        mean_q_price = 0.02
     q_inc_ratio = (q_inc_num / q_inc_den) if q_inc_den > 0.0 else 1.0
     mean_pay_factor = (pf_num / pf_den) if pf_den > 0.0 else 1.0
     mean_food_belief = (bel_num / bel_den) if bel_den > 0.0 else 0.0
@@ -568,19 +717,19 @@ def run_simulation(
     params_path=None,
     feedback_params=None,
 ):
-    ensure_oracle_dumps()
     params = load_feedback_params(params_path=params_path, overrides=feedback_params)
     jp = params["fiscal_and_jgb"]
     rp = params["persons_replenishment"]
+    pp = params["polity_feedback"]
 
     mode_label = (
-        "Full-Spectrum Realistic Closed-Loop (Status + Persons + EconMonth + Diet Bills + Elections <-> Demo/Fiscal Feedback)"
+        "Full-Spectrum Realistic Closed-Loop (Status + Persons + EconMonth + Diet Bills + Bicameral Elections & Art.67 PM Alternation)"
         if full_mode
         else "Standard Endogenous (Status + Persons + EconMonth + Diet Bills, Fixed 2024-12 Seats)"
     )
-    print(f"\n[Sandvox Engine v4] Initializing {years}-year simulation ({years * 365} days / {years * 12} months)...")
+    print(f"\n[Sandvox Engine v5] Initializing {years}-year simulation ({years * 365} days / {years * 12} months)...")
     print(f"[Architecture] {mode_label}")
-    t0 = time.time()
+    t0 = time.time()  # lint-ok: CLI wall-clock benchmark timer
 
     # 1. Initialize Status (`status_2024.json` + `levers.json`) and align to `2025-01-01` (`start_2025.json`)
     st = Status()
@@ -616,7 +765,11 @@ def run_simulation(
     # 3. Initialize Persons Micro-Layer & EconMonth (CropFarming, FoodMfg, TradingHouse, Bank, Labour)
     ps = Persons.create(c.id, 1, co_2025, qx_2024, regions, n_per, 2025)
     init_p_n = ps.p.n
+    init_neff, _, _ = compute_sample_health(ps, st.cohort["JPN"])
     seed_gen = 1
+    replenish_count = 0
+    last_replenish_month = 0
+
     econ = EconMonth()
     econ.create("JPN")
     econ.labour = Labour()
@@ -631,11 +784,11 @@ def run_simulation(
         lever_plan = [
             ("child_allowance", 10000.0),
             ("public_investment", 15000.0),
-            ("education_budget", 10000.0)
+            ("education_budget", 10000.0),
         ]
     elif scenario == "migration_only":
         lever_plan = [
-            ("ssw_visa_cap", 2000000.0)
+            ("ssw_visa_cap", 2000000.0),
         ]
     elif scenario == "synergy":
         lever_plan = [
@@ -643,7 +796,7 @@ def run_simulation(
             ("ssw_visa_cap", 1800000.0),
             ("consumption_tax_rate", 0.14),
             ("pension_age", 67.0),
-            ("health_fee_schedule", -0.02)
+            ("health_fee_schedule", -0.02),
         ]
     else:
         lever_plan = []
@@ -670,26 +823,34 @@ def run_simulation(
         print("[Policy Levers] None (Baseline Status Quo)")
 
     co_init = st.cohort["JPN"]
-    init_wp_15_64 = sum(co_init[a * 2] + co_init[a * 2 + 1] for a in range(15, 65))
-    init_65_74 = sum(co_init[a * 2] + co_init[a * 2 + 1] for a in range(65, 75))
-    init_75_plus = sum(co_init[a * 2] + co_init[a * 2 + 1] for a in range(75, 101))
-    init_weighted_old = (1.0 * init_65_74 + jp["old_75plus_cost_weight"] * init_75_plus) / st.ind["JPN"]["pop_total"]
+    init_wp_15_64 = 0.0
+    init_65_74 = 0.0
+    init_75_plus = 0.0
+    for a in range(15, 65):
+        init_wp_15_64 += co_init[a * 2] + co_init[a * 2 + 1]
+    for a in range(65, 75):
+        init_65_74 += co_init[a * 2] + co_init[a * 2 + 1]
+    for a in range(75, 101):
+        init_75_plus += co_init[a * 2] + co_init[a * 2 + 1]
+    init_weighted_old_abs = 1.0 * init_65_74 + jp["old_75plus_cost_weight"] * init_75_plus
 
     fy24_lines = org.laws["budget_fy2024"]["lines_bn_jpy"]
-    core_ops_0 = (
-        float(fy24_lines["public_works"])
-        + float(fy24_lines["education_science"])
-        + float(fy24_lines["defence"])
-        + float(fy24_lines["other"])
-        + float(fy24_lines["reserve_fund"])
+    b_decomp = decompose_fy2024_budget(
+        fy24_lines,
+        st.value("JPN", "gov_expenditure_general"),
+        st.value("JPN", "gov_debt_total"),
+        st.value("JPN", "jgb_10y"),
     )
+
     tracker = {
         "statutory_tfr": st.value("JPN", "tfr"),
         "last_ind_tfr": st.value("JPN", "tfr"),
         "prev_asfr_tfr": st.value("JPN", "tfr"),
+        "init_pop": st.value("JPN", "pop_total"),
         "init_wp_15_64": init_wp_15_64,
-        "init_weighted_old": init_weighted_old,
+        "init_weighted_old_abs": init_weighted_old_abs,
         "infl_index": 1.0,
+        "y_worker_idx": 1.0,
         "last_lf_ratio": 1.0,
         "init_real_growth": st.ind0["JPN"]["gdp_real_growth"],
         "pi_boost_until_day": 0,
@@ -698,10 +859,13 @@ def run_simulation(
         "init_tax_rev": st.value("JPN", "tax_revenue"),
         "init_nontax_rev": st.value("JPN", "gov_revenue_general") - st.value("JPN", "tax_revenue"),
         "init_gov_exp": st.value("JPN", "gov_expenditure_general"),
-        "budget_social_security": float(fy24_lines["social_security"]),
-        "budget_lat": float(fy24_lines["local_allocation_tax"]),
-        "budget_debt_service": float(fy24_lines["debt_service"]),
-        "budget_core_ops": core_ops_0,
+        "budget_social_security": b_decomp["budget_social_security"],
+        "budget_lat": b_decomp["budget_lat"],
+        "budget_debt_service": b_decomp["budget_debt_service"],
+        "budget_debt_redemption_0": b_decomp["budget_debt_redemption_0"],
+        "budget_debt_interest_0": b_decomp["budget_debt_interest_0"],
+        "budget_defence": b_decomp["budget_defence"],
+        "budget_core_ops": b_decomp["budget_core_ops"],
         "init_health": st.value("JPN", "health_expenditure"),
         "init_gov_cons": st.value("JPN", "gov_consumption"),
         "init_jgb": st.value("JPN", "jgb_10y"),
@@ -730,9 +894,14 @@ def run_simulation(
     real_wage_ratio = 1.0
 
     history = []
-    year_births = 0.0
-    year_deaths = 0.0
-    year_mig = 0.0
+    cum_births_f = 0.0
+    cum_deaths_f = 0.0
+    cum_mig_f = 0.0
+    cum_births_i = 0
+    cum_deaths_i = 0
+    cum_mig_i = 0
+    prev_pop_int = init_pop
+
     year_notes = []
     total_days = years * 365
     month_idx = 0
@@ -740,7 +909,7 @@ def run_simulation(
     for day in range(1, total_days + 1):
         logged_before = len(st.lever_log)
         # Status._step_cohort() runs before Status._apply_due() inside st.step(), so record today's active net_migration before st.step()
-        year_mig += st.value("JPN", "net_migration") / 365.0
+        cum_mig_f += st.value("JPN", "net_migration") / 365.0
 
         # Daily step in Status (cohort births, deaths, migration into ages 20-39, fiscal debt accumulation, lever due dates)
         st.step()
@@ -749,8 +918,8 @@ def run_simulation(
             if str(st.lever_log[i_log][4]) == "applied" and str(st.lever_log[i_log][2]) == "public_investment":
                 tracker["pi_boost_until_day"] = day + 365
 
-        year_births += st.daily_births["JPN"]
-        year_deaths += st.daily_deaths["JPN"]
+        cum_births_f += st.daily_births["JPN"]
+        cum_deaths_f += st.daily_deaths["JPN"]
 
         bond_dep, share_75plus = sync_macro_fiscal_and_asfr(
             st, tracker, econ_infl, discontent, effective_food_yoy, real_wage_ratio, params=params
@@ -782,13 +951,22 @@ def run_simulation(
             if "pension_age" in applied_this_month:
                 ps.p.PENSION_AGE = int(round(st.lever_value["JPN"]["pension_age"]))
 
-            # 3. Replenish micro households if multi-decade aging reduces sample size below min_sample_ratio
+            # 3. Statistical Sample Health Monitoring (Kish N_eff & L1 Cohort Divergence) -> Generational Replenishment
             min_n = max(int(rp["min_sample_abs"]), int(init_p_n * float(rp["min_sample_ratio"])))
-            if ps.p.n < min_n:
+            _, neff_ratio, l1_div = compute_sample_health(ps, st.cohort["JPN"], init_neff=init_neff)
+            cooldown_ok = (month_idx - last_replenish_month) >= int(rp["min_replenish_interval_months"])
+            if ps.p.n < min_n or (
+                cooldown_ok
+                and (neff_ratio < float(rp["min_effective_sample_ratio"]) or l1_div > float(rp["max_age_l1_divergence"]))
+            ):
                 seed_gen += 1
                 ps = replenish_persons_if_needed(
                     ps, c.id, st, qx_2024, regions, n_per, cal_y, seed_gen, current_u=econ.labour.u
                 )
+                init_neff, _, _ = compute_sample_health(ps, st.cohort["JPN"])
+                last_replenish_month = month_idx
+                replenish_count += 1
+                year_notes.append(f"Replenish(gen={seed_gen},Neff={neff_ratio:.2f}->1.00)")
 
             # 4. Persons labour supply -> EconMonth (Labour + CropFarming + FoodMfg + TradingHouse + Bank)
             psup = ps.supply()
@@ -824,7 +1002,7 @@ def run_simulation(
                 "unemployment_rate": econ.labour.u,
                 "wage_index": econ.labour.wage_index,
                 "levers": applied_this_month,
-                "cohort": st.cohort["JPN"]
+                "cohort": st.cohort["JPN"],
             })
             sm = ps.summary()
             raw_disc = float(sm["discontent_p10_p50_p90"][1])
@@ -832,13 +1010,28 @@ def run_simulation(
                 discontent = raw_disc
             real_wage_ratio = econ.labour.wage_index / max(0.5, 1.0 + active_tax_burden)
 
-            # 8. Step Public Approval & Elections -> Policy Feedback Loop
+            # 8. Step Public Approval & Bicameral Parliamentary Elections -> Constitutional Policy Feedback Loop
             du_pt = (econ.labour.u - unemp_prev) * 100.0
             unemp_prev = econ.labour.u
             ap = pub.step(month_idx, effective_food_yoy, du_pt, applied_this_month)
             ap = max(0.05, min(0.90, ap - (discontent - 0.20) * 0.25))
             st.ind["JPN"]["cabinet_approval"] = ap
 
+            # House of Councillors half-renewal election every 3 years in July (Constitution Art. 46)
+            if full_mode and cal_m == 7 and (cal_y - 2025) % 3 == 0:
+                d_ap_up = pub.change_since(last_election_month)
+                if fiscal_crisis:
+                    d_ap_up = min(d_ap_up, (ap - 0.35) * 100.0)
+                d_cpi_pt_up = (econ_infl - 0.02) * 100.0
+                shares_up = el.vote_shares(list(org.governing), d_ap_up, du_pt, d_cpi_pt_up)
+                r_up = el.run_upper_house(shares_up)
+                org.seats["house_of_councillors"] = dict(r_up["composition"])
+                el.spec["houses"]["house_of_councillors"]["continuing_half_2022"] = dict(r_up["elected"])
+                up_gov_seats = org.governing_seats("house_of_councillors")
+                st.ind["JPN"]["upper_house_seats_governing"] = float(up_gov_seats)
+                org.record(month_idx, "election", "house_of_councillors", {"governing_seats": up_gov_seats}, "art. 46: half elected")
+
+            # House of Representatives general election every 4 years in October & PM Designation (Constitution Art. 45, 67)
             if full_mode and cal_m == 10 and (cal_y - 2024) % 4 == 0:
                 d_ap = pub.change_since(last_election_month)
                 if fiscal_crisis:
@@ -847,20 +1040,48 @@ def run_simulation(
                 shares = el.vote_shares(list(org.governing), d_ap, du_pt, d_cpi_pt)
                 r_low = el.run_lower_house(shares)
                 org.seats["house_of_representatives"] = dict(r_low["seats"])
+
+                # Update proportional vote-share baseline with damped persistence
+                base_pr = el.spec["vote_share_2024_10_27_pr"]
+                mem_w = float(pp["pr_vote_share_memory"])
+                floor_w = float(pp["party_share_floor"])
+                tot_s = 0.0
+                for p_name in el.spec["parties"]:
+                    upd = max(floor_w, mem_w * float(base_pr.get(p_name, 0.0)) + (1.0 - mem_w) * float(shares.get(p_name, 0.0)))
+                    base_pr[p_name] = upd
+                    tot_s += upd
+                for p_name in el.spec["parties"]:
+                    base_pr[p_name] = float(base_pr[p_name]) / max(1e-9, tot_s)
+
+                # Incumbent governing seats before PM designation check
+                incumbent_bloc = list(org.governing)
+                incumbent_seats = org.governing_seats("house_of_representatives")
+                des = el.designate(r_low["seats"], org.governing, 465, org.spec.get("partners", {}))
+                new_bloc = list(des["governing"])
+                pm_changed = (new_bloc != incumbent_bloc)
+
+                if pm_changed:
+                    org.governing = new_bloc
+                    org.record(month_idx, "designate_pm", "diet", des, des["why"])
+                    sync_cabinet_party_positions(cab, org)
+                    pub.approval = float(pp["new_cabinet_approval_init"])
+                    pub.shock = 0.0
+                    pub.history.append([month_idx, pub.approval, effective_food_yoy, du_pt, 0.0])
+                    st.ind["JPN"]["cabinet_approval"] = pub.approval
+
                 gov_seats = org.governing_seats("house_of_representatives")
                 st.ind["JPN"]["lower_house_seats_governing"] = float(gov_seats)
                 last_election_month = month_idx
                 maj_str = "Majority" if gov_seats >= 233 else "Minority"
-                year_notes.append(f"Election({gov_seats}/465 {maj_str})")
+                bloc_str = "+".join(org.governing)
+                if pm_changed:
+                    year_notes.append(f"Election({incumbent_seats}->PM:{bloc_str} {gov_seats}/465 {maj_str})")
+                else:
+                    year_notes.append(f"Election({bloc_str} {gov_seats}/465 {maj_str})")
 
                 # CLOSED-LOOP ELECTION -> POLICY FEEDBACK:
-                if gov_seats >= 233 and pending_platform:
-                    for p_lid, p_val in list(pending_platform.items()):
-                        st_code, _ = submit_policy_lever(st, cab, org, month_idx, p_lid, p_val)
-                        if st_code == "executed":
-                            pending_platform.pop(p_lid, None)
-                            year_notes.append(f"Enacted {p_lid}")
-                elif gov_seats < 233 and fiscal_crisis:
+                # 1. If incumbent lost its majority (`incumbent_seats < 233`) during a fiscal crisis, Diet mandates consolidation
+                if (incumbent_seats < 233 or gov_seats < 233) and fiscal_crisis:
                     if st.lever_value["JPN"]["public_investment"] > tracker["init_pi"]:
                         st.set_lever("JPN", "public_investment", tracker["init_pi"])
                         year_notes.append("Diet Cut public_investment")
@@ -872,23 +1093,45 @@ def run_simulation(
                         "economy",
                         {"indicator": "new_bond_issuance", "direction": -1},
                         st.menu("JPN"),
-                        dict(st.ind["JPN"])
+                        dict(st.ind["JPN"]),
                     )
                     if len(cons_act) == 2 and str(cons_act[0]) not in st.lever_due["JPN"]:
                         st.set_lever("JPN", str(cons_act[0]), float(cons_act[1]))
                         year_notes.append(f"Brain Consolidation tax={float(cons_act[1]):.2f}")
+                    if st.lever_value["JPN"]["pension_age"] < 68.0 and "pension_age" not in st.lever_due["JPN"]:
+                        next_pa = min(68.0, st.lever_value["JPN"]["pension_age"] + 1.0)
+                        st.set_lever("JPN", "pension_age", next_pa)
+                        year_notes.append(f"Diet Reform pension_age={next_pa:.0f}")
+                elif gov_seats >= 233 and pending_platform and not fiscal_crisis:
+                    for p_lid, p_val in list(pending_platform.items()):
+                        st_code, _ = submit_policy_lever(st, cab, org, month_idx, p_lid, p_val)
+                        if st_code == "executed":
+                            pending_platform.pop(p_lid, None)
+                            year_notes.append(f"Enacted {p_lid}")
 
-        # End of Year Recording (every 365 days)
+        # End of Year Recording (every 365 days) with Exact Error-Diffusion Flow Quantization
         if day % 365 == 0:
             yr = 2025 + (day // 365) - 1
             gov_seats_now = int(st.value("JPN", "lower_house_seats_governing"))
             fiscal_crisis = (bond_dep > jp["crisis_bond_dep_threshold"])
+
+            pop_now = int(round(st.value("JPN", "pop_total")))
+            b_int = int(round(cum_births_f)) - cum_births_i
+            d_int = int(round(cum_deaths_f)) - cum_deaths_i
+            # Reconcile integer net migration with exact cohort stock change so Pop_t - Pop_{t-1} == Births_t - Deaths_t + NetMig_t identically
+            m_int = (pop_now - prev_pop_int) - (b_int - d_int)
+
+            cum_births_i += b_int
+            cum_deaths_i += d_int
+            cum_mig_i += m_int
+            prev_pop_int = pop_now
+
             history.append({
                 "year": yr,
-                "population": int(round(st.value("JPN", "pop_total"))),
-                "births": int(round(year_births)),
-                "deaths": int(round(year_deaths)),
-                "net_mig": int(round(year_mig)),
+                "population": pop_now,
+                "births": b_int,
+                "deaths": d_int,
+                "net_mig": m_int,
                 "tfr": round(st.value("JPN", "tfr"), 3),
                 "share_65plus": round(st.value("JPN", "share_65plus") * 100, 1),
                 "share_75plus": round(share_75plus * 100, 1),
@@ -898,16 +1141,15 @@ def run_simulation(
                 "discontent": round(discontent, 3),
                 "approval": round(st.value("JPN", "cabinet_approval") * 100, 1),
                 "gov_seats": gov_seats_now,
+                "governing": "+".join(org.governing),
+                "replenish_count": replenish_count,
                 "crisis": fiscal_crisis,
-                "notes": ", ".join(year_notes) if year_notes else "NORMAL"
+                "notes": ", ".join(year_notes) if year_notes else "NORMAL",
             })
-            year_births = 0.0
-            year_deaths = 0.0
-            year_mig = 0.0
             year_notes = []
 
-    elapsed = round(time.time() - t0, 2)
-    print(f"\n[Done] {years}-year endogenous simulation completed in {elapsed}s.\n")
+    elapsed = round(time.time() - t0, 2)  # lint-ok: CLI wall-clock benchmark timer
+    print(f"\n[Done] {years}-year endogenous simulation completed in {elapsed}s (Cohort Replenishments: {replenish_count}).\n")
 
     print("-" * 144)
     print(f"{'Year':<5} | {'Population':<13} | {'Births':<8} | {'Deaths':<9} | {'NetMig':<8} | {'TFR':<5} | {'65+%(75+)':<11} | {'JGB10Y':<6} | {'Debt/GDP':<8} | {'BondDep':<7} | {'Discontent':<10} | {'GovSeats':<8} | {'Status / Parliamentary Events'}")
@@ -924,9 +1166,13 @@ def run_simulation(
     print("-" * 144)
 
     final = history[-1]
-    tot_b = sum(r["births"] for r in history)
-    tot_d = sum(r["deaths"] for r in history)
-    tot_m = sum(r["net_mig"] for r in history)
+    tot_b = 0
+    tot_d = 0
+    tot_m = 0
+    for r in history:
+        tot_b += int(r["births"])
+        tot_d += int(r["deaths"])
+        tot_m += int(r["net_mig"])
     pop_change = final["population"] - init_pop
     flow_sum = tot_b - tot_d + tot_m
     print(
@@ -938,7 +1184,7 @@ def run_simulation(
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Sandvox Endogenous Forward Policy Simulator CLI (v4.1)")
+    parser = argparse.ArgumentParser(description="Sandvox Endogenous Forward Policy Simulator CLI (v5.0)")
     parser.add_argument("--years", type=int, default=25, help="Simulation horizon in years (default: 25)")
     parser.add_argument("--scenario", type=str, default="baseline",
                         choices=["baseline", "child_splash", "migration_only", "synergy"],

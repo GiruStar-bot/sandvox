@@ -32,6 +32,8 @@ COPY = re.compile(r"^def (" + "|".join(CORE_NAMES) + r")\(")
 
 
 def py_files():
+    if os.path.exists(os.path.join(ROOT, "run_simulation.py")):
+        yield "run_simulation.py"
     for d, _, fs in os.walk(os.path.join(ROOT, "py")):
         rel = os.path.relpath(d, ROOT).replace(os.sep, "/")
         if rel.startswith("py/tests"):

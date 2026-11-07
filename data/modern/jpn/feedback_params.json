@@ -1,6 +1,70 @@
 {
-  "version": "v4.1",
-  "description": "Endogenous macroeconomic, demographic, and fiscal feedback parameters for Sandvox CLI (run_simulation.py)",
+  "version": "v5.0",
+  "description": "Single-source-of-truth endogenous macroeconomic, demographic, fiscal, and parliamentary feedback parameters for Sandvox CLI (run_simulation.py)",
+  "_provenance": {
+    "fertility": {
+      "ed_budget_unit_bn": "Cabinet Office 'Children Future Strategy' (こども未来戦略, 2023-12-22): ~3.6-4.5 trillion JPY annual child/education expansion benchmark unit",
+      "ed_tfr_boost_per_unit": "IPSS 16th National Fertility Survey (第16回出生動向基本調査, 2022) & Cabinet Office child-rearing educational cost-relief elasticity (~+0.045 TFR per 4.5T JPY)",
+      "discontent_baseline": "Calibrated neutral household pressure/discontent median (0.20) at initial 2025-01-01 cohort state (jpn_people_2024.json)",
+      "discontent_tfr_slope": "IPSS marriage/birth postponement sensitivity to household economic insecurity (-0.18 TFR per +1.0 median discontent shift)",
+      "food_infl_threshold": "MIC CPI food inflation reference threshold (2.5% YoY) above which real household Engel burden compresses marriage/fertility intent",
+      "food_infl_tfr_slope": "Engel coefficient & cost-of-living fertility drag (-0.22 TFR per +100% excess food inflation)",
+      "real_wage_tfr_slope": "MHLW Monthly Labour Survey (毎月勤労統計調査) real wage elasticity of marriage & first-birth hazard (+0.06)",
+      "stress_drag_min": "Lower bound (-0.10 TFR) on short-run macroeconomic cost-of-living drag (preventing unphysical TFR collapse in single shock months)",
+      "stress_drag_max": "Upper bound (+0.04 TFR) on macroeconomic real-wage tailwind",
+      "tfr_floor": "Demographic lower bound (0.85, comparable to East Asian metropolitan minimum)",
+      "tfr_ceiling": "Demographic upper bound (2.05, near replacement fertility 2.07 per IPSS 2023 projections)"
+    },
+    "migration": {
+      "structural_baseline": "IPSS Population Projections for Japan (日本の将来推計人口 令和5年推計, 2023-04): long-run medium-variant net foreign migration (~164,000-168,000 persons/year)",
+      "reopening_decay_years": "Half-life decay horizon (12.0 years) normalizing the 2022-2023 post-COVID border reopening surge (242,000/yr, MIC 2023-10) to IPSS structural baseline",
+      "cap_ssw_multiplier": "ISA (出入国在留管理庁) ratio of total working/accompanying foreign resident capacity to Specified Skilled Worker (特定技能) visa cap (1.5x)",
+      "cap_saturation_scale": "Long-horizon social/absorption infrastructure scale (8,000,000 additional foreign residents) for logistic headroom saturation",
+      "cap_headroom_floor": "Minimum replacement/renewal inflow ratio (0.35) when foreign resident stock approaches statutory visa ceiling",
+      "infl_attract_threshold": "Domestic CPI inflation threshold (3.0%) above which real purchasing power erosion reduces destination attractiveness",
+      "infl_attract_slope": "Exchange-rate/purchasing-power elasticity of net migration inflow to excess domestic inflation (-2.5)",
+      "discontent_attract_threshold": "Social discontent threshold (0.22) above which labor-market/living-cost friction dampens net inflow",
+      "discontent_attract_slope": "Sensitivity of net migration inflow to excess domestic discontent (-0.6)",
+      "real_wage_attract_slope": "Elasticity of net foreign worker inflow to real after-tax wage ratio (+0.15)",
+      "attract_min": "Minimum macroeconomic attractiveness multiplier (0.60)",
+      "attract_max": "Maximum macroeconomic attractiveness multiplier (1.10)"
+    },
+    "fiscal_and_jgb": {
+      "old_75plus_cost_weight": "MHLW National Medical Care Expenditure (令和4年度 国民医療費の概況, 2024) & Long-Term Care Insurance Report: per-capita medical + nursing expenditure ratio for ages 75+ (~940k+ JPY) vs. 65-74 (~270k-350k JPY), ~3.5x",
+      "senior_relief_multiplier": "Fiscal relief multiplier (2.5) from active 65-74 employment (pension_age extension) reducing net pension drawdown & increasing social insurance contributions",
+      "senior_relief_floor": "Maximum proportional reduction floor (0.70) on social security budget from senior employment extension",
+      "care_dependency_elasticity": "MHLW Long-Term Care & Social Security dependency elasticity (0.85): formal care & benefit utilization response to old-age dependency ratio (B_t/L_t), bounded by Macroeconomic Slide (国民年金法第27条の3) as total population shrinks",
+      "core_ops_pop_elasticity": "Share (0.55) of non-social-security core administrative & public-works maintenance expenditure scaling with national population vs. fixed sovereign overhead (0.45)",
+      "infl_index_threshold": "BoJ Price Stability Target (物価安定の目標 2.0%, 2013-01): baseline inflation already embedded in initial fiscal trend",
+      "jgb_infl_threshold": "BoJ 2.0% inflation target anchor for 10Y JGB nominal yield",
+      "jgb_infl_slope": "Fisher-effect / BoJ policy rate pass-through into 10Y JGB yield above 2% inflation (0.45)",
+      "jgb_debt_gdp_slope": "Sovereign term-premium sensitivity per +100% Debt/GDP above FY2024 baseline (+80 bps per 1.0 Debt/GDP, IMF/OECD Japan fiscal risk literature)",
+      "jgb_bond_dep_threshold": "MOF General Account bond dependency (公債依存度) normal threshold (35.0%, vs FY2024 baseline 31.5%)",
+      "jgb_bond_dep_slope": "Primary market absorption spread above 35% bond dependency (0.035)",
+      "crisis_bond_dep_threshold": "Severe fiscal stress threshold (45.0% bond dependency, comparable to FY2009/FY2020 crisis issuance peaks)",
+      "jgb_crisis_slope": "Non-linear sovereign risk premium slope when bond dependency exceeds 45% (0.15)",
+      "jgb_min": "Effective lower bound on 10Y JGB yield (0.50%)",
+      "jgb_max": "Institutional/BoJ yield-curve backstop ceiling on 10Y JGB yield (5.50%)",
+      "jgb_adjust_days": "Quarterly market yield adjustment time constant (90.0 days)",
+      "jgb_rollover_years": "MOF Debt Management Report 2024 (債務管理リポート 2024): average maturity of outstanding JGB stock (~8.5-9.2 years), governing refinancing pass-through from market yield to effective coupon rate",
+      "crisis_infl_premium": "Fiscal dominance / currency depreciation CPI inflation premium during >45% bond dependency crisis (+3.0%/yr)",
+      "crisis_food_premium": "Imported food & energy cost pass-through premium during fiscal/FX stress (+4.0%/yr)",
+      "vat_food_passthrough": "Consumption tax hike pass-through into retail food prices (0.80, accounting for reduced-rate/input-cost channels)",
+      "vat_ongoing_food_bite": "Persistent real household purchasing-power bite of higher consumption tax rate on food budget (0.35)"
+    },
+    "persons_replenishment": {
+      "min_sample_ratio": "Minimum headcount retention ratio (0.60) for household-tier mode before cohort replenishment",
+      "min_sample_abs": "Minimum absolute micro-agent count (20)",
+      "min_effective_sample_ratio": "Kish (1965) Effective Sample Size ratio threshold (N_eff / N_eff_0 = 0.55) triggering generational cohort resampling when reweighting across aging/reborn cells concentrates sample weights",
+      "max_age_l1_divergence": "Maximum L1 total variation distance (0.20) between unweighted sample age-bracket shares and live national cohort shares before resampling",
+      "min_replenish_interval_months": "Minimum generational cooldown (120 months = 10 years) between cohort replenishments"
+    },
+    "polity_feedback": {
+      "pr_vote_share_memory": "Persistence weight (0.70) on prior proportional representation baseline when updating party support after national elections (0.30 weight on realized swing)",
+      "party_share_floor": "Minimum proportional vote share floor (0.015) preserving multi-party representation across century-long horizons",
+      "new_cabinet_approval_init": "Initial cabinet approval baseline (0.42, NHK post-designation historical honeymoon average) upon constitutional Prime Minister alternation (Constitution Art. 67)"
+    }
+  },
   "fertility": {
     "ed_budget_unit_bn": 4500.0,
     "ed_tfr_boost_per_unit": 0.045,
@@ -32,6 +96,8 @@
     "old_75plus_cost_weight": 3.5,
     "senior_relief_multiplier": 2.5,
     "senior_relief_floor": 0.70,
+    "care_dependency_elasticity": 0.85,
+    "core_ops_pop_elasticity": 0.55,
     "infl_index_threshold": 0.02,
     "jgb_infl_threshold": 0.02,
     "jgb_infl_slope": 0.45,
@@ -51,6 +117,14 @@
   },
   "persons_replenishment": {
     "min_sample_ratio": 0.60,
-    "min_sample_abs": 20
+    "min_sample_abs": 20,
+    "min_effective_sample_ratio": 0.55,
+    "max_age_l1_divergence": 0.20,
+    "min_replenish_interval_months": 120
+  },
+  "polity_feedback": {
+    "pr_vote_share_memory": 0.70,
+    "party_share_floor": 0.015,
+    "new_cabinet_approval_init": 0.42
   }
 }
