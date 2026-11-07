@@ -52,16 +52,34 @@ class Cabinet:
         self.policies.append(row)
         return row
 
-    def vote_due(self, month, set_lever):
+    def vote_due(self, month, set_lever, get_lever=None):
         for b in self.bills:
             if str(b["status"]) != "submitted" or month < int(b["month"]) + SESSION_MONTHS:
                 continue
-            pos = self.party_positions.get(str(b["lever"]), {})
+            lever = str(b["lever"])
+            pos = self.party_positions.get(lever, {})
+            # Direction matters for tax levers: party_positions carries
+            # a separate "<lever>_cut" stance for bills that lower the
+            # lever (e.g. a consumption-tax cut). Before the fix round
+            # (independent review D-2) the _cut table was never read.
+            if get_lever is not None:
+                cut_pos = self.party_positions.get(lever + "_cut")
+                if cut_pos is not None and float(b["value"]) < float(get_lever(lever)):
+                    pos = cut_pos
             yes = 0
             votes = {}
             seats = self.organs.seats.get("house_of_representatives", {})
             for party in seats:
-                stance = str(pos.get(party, "yes" if party in self.organs.governing else "no"))
+                # Bills reach the Diet only through Cabinet.propose, so
+                # they are the government's own bills: governing parties
+                # support them. Before the fix, a stance recorded in
+                # party_positions (written for the party's opposition
+                # days) overrode governing status, and a governing bloc
+                # voted its own platform bills down 0-465 (D-2).
+                if party in self.organs.governing:
+                    stance = "yes"
+                else:
+                    stance = str(pos.get(party, "no"))
                 votes[party] = stance
                 if stance == "yes":
                     yes += int(seats[party])

@@ -7,6 +7,13 @@ from ..gdtypes import deep
 A_FOOD = 0.15
 B_UNEMP = 0.02
 EFFECT = {"consumption_tax_rate": -0.05, "child_allowance": 0.01, "fuel_subsidy": 0.01, "rice_stock_release": 0.005, "defence_budget_share": -0.005}
+# Direction mirror (independent review D-3): the base entries are the
+# approval effect of RAISING the lever (a consumption-tax hike hurts,
+# a bigger child allowance pleases). Applying a lever in the opposite
+# direction must flip the sign - the CLI passes "<lever>_cut" for a
+# downward application, and step() looks the id up in this same table.
+for _k in list(EFFECT.keys()):
+    EFFECT[_k + "_cut"] = -float(EFFECT[_k])
 CARRY = 0.9
 
 

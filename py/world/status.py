@@ -25,6 +25,19 @@ FAB_SHARE_PER_BN = 2.0e-6          # 1 tn JPY/yr of sustained fab support ~ +0.2
 # (semiconductor manufacturing equipment and advanced chips are roughly a
 # tenth of the lane; rounded up for the controlled-goods basket).
 CONTROLLED_EXPORT_SHARE_CHN = 0.12
+# Levers whose increase raises general-account expenditure, exactly the
+# list carried by the FY2024 budget law (data/modern/polity/
+# jpn_laws.json budget_fy2024.levers). The budget gate in check_lever
+# and the CLI's submit path both use this set: before the fix round
+# (independent review D-1) only gov_expenditure_general targets and
+# share-form levers counted as spending, so the bn-denominated budget
+# levers (semiconductor_subsidy, fuel_subsidy, public_investment, ...)
+# bypassed the reserve-fund ceiling and the Diet budget vote entirely.
+SPENDING_LEVERS = frozenset({
+    "public_investment", "child_allowance", "education_budget",
+    "oda_budget", "defence_budget_share", "semiconductor_subsidy",
+    "fuel_subsidy",
+})
 REN_SOURCES = ("solar", "wind", "hydro", "bioenergy", "other_renewable")
 # Declared (T) operational emission intensities, kg CO2 per kWh generated
 # (IPCC-consistent medians for the fuel technologies), and electricity's
@@ -148,6 +161,18 @@ class Status:
             kp = DIR + k.lower() + "/links_%d.json" % year
             self.links[k] = CANON.load_json(kp) if exists(kp) else {}
             self._init_entity(k)
+        # The sourced JPN customs surface lists EU member states
+        # individually, so the bloc lane on the JPN side is created
+        # from the EU profile's mirror lane (the CLI used to do this
+        # alone, leaving standalone Status runs without an EU lane;
+        # independent review D-4). Guarded, so the CLI's own creation
+        # is now a no-op.
+        if "JPN" in self.entities and "EU" in self.entities:
+            _jp_lanes = self.aux.get("JPN", {}).get("trade_by_partner", {})
+            _eu_mirror = self.aux.get("EU", {}).get("trade_by_partner", {}).get("JPN")
+            if _eu_mirror is not None and "EU" not in _jp_lanes:
+                _jp_lanes["EU"] = {"exports_bn_jpy": float(_eu_mirror["imports_bn_jpy"]),
+                                   "imports_bn_jpy": float(_eu_mirror["exports_bn_jpy"])}
         self.day = 0
         return ""
 
@@ -402,7 +427,7 @@ class Status:
         if self.legal_check is not None:
             met = ["cabinet_decision"]
             r0 = L.get("response", {})
-            adds_spending = str(r0.get("target", "")) == "gov_expenditure_general" or str(r0.get("form", "")) == "share"
+            adds_spending = str(r0.get("target", "")) == "gov_expenditure_general" or str(r0.get("form", "")) == "share" or lid in SPENDING_LEVERS
             dv = v - self.lever_value[k][lid]
             if not adds_spending or dv <= 0.0 or dv <= BUDGET_ROOM * gd.maxf(abs(self.lever_value[k][lid]), 1.0):
                 met.append("within_budget")
@@ -436,7 +461,7 @@ class Status:
             self.lever_value[k][lid] = v
             del due[lid]
             self._respond(k, lid, old, v)
-            self.lever_log.append([self.day, k, lid, v, "applied"])
+            self.lever_log.append([self.day, k, lid, v, "applied", old])
 
     def _respond(self, k, lid, old, v):
         L = self.levers[k]["levers"][lid]
@@ -518,6 +543,17 @@ class Status:
                 d = float(lane["exports_bn_jpy"]) * (f - 1.0)
                 lane["exports_bn_jpy"] += d
                 iv["exports_customs"] += d
+                # Keep the counterpart mirror in step even when Status
+                # runs standalone (the CLI's bilateral sync also does
+                # this monthly; independent review D-4), and record the
+                # export impulse so the CLI can transmit it to GDP the
+                # same way the tariff path does - before this fix the
+                # licence moved trade but GDP/tax/Debt-GDP never moved.
+                _cp = self.aux.get("CHN", {}).get("trade_by_partner", {}).get("JPN")
+                if type(_cp) is dict and "imports_bn_jpy" in _cp:
+                    _cp["imports_bn_jpy"] += d
+                _aux = self.aux.setdefault(k, {})
+                _aux["pending_gdp_delta_bn"] = float(_aux.get("pending_gdp_delta_bn", 0.0)) + d
 
     def to_dict(self):
         st = {"day": self.day, "ind": {}, "cohort": {}, "lever_value": {}, "lever_due": {}, "lever_log": deep(self.lever_log), "aux": deep(self.aux), "derived": deep(self.derived)}

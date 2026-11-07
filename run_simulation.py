@@ -40,7 +40,7 @@ from tiers.start.p import P
 from tiers.start.persons import age_band
 from econ.month import EconMonth
 from econ.labour import Labour
-from world.status import Status
+from world.status import Status, SPENDING_LEVERS
 from world.brain import Brain
 from world.polity.organs import Organs
 from world.polity.cabinet import Cabinet, SESSION_MONTHS
@@ -240,7 +240,7 @@ def submit_policy_lever(st, cab, org, month, lid, val, force_direct=False):
 
     met = ["cabinet_decision"]
     r0 = L.get("response", {})
-    adds_spending = str(r0.get("target", "")) == "gov_expenditure_general" or str(r0.get("form", "")) == "share"
+    adds_spending = str(r0.get("target", "")) == "gov_expenditure_general" or str(r0.get("form", "")) == "share" or lid in SPENDING_LEVERS
     if not adds_spending or dv <= 0.0 or dv <= 0.10 * max(abs(old_val), 1.0):
         met.append("within_budget")
     elif dv <= 1000.0:
@@ -285,6 +285,12 @@ def sync_bilateral_trade(st, tracker):
     jp_aux = st.aux.get("JPN", {}).get("trade_by_partner")
     if not jp_aux:
         return
+    # Export-licence impulse recorded by Status._respond (D-4 fix):
+    # transmit it to the nominal GDP level exactly like the tariff
+    # path below transmits its export delta (delta / initial GDP).
+    _pend = float(st.aux.get("JPN", {}).pop("pending_gdp_delta_bn", 0.0))
+    if _pend != 0.0:
+        tracker["last_gdp"] *= (1.0 + _pend / max(1.0, tracker["init_gdp"]))
     el = -1.5
     t_jp = float(st.lever_value["JPN"]["tariff_rate_general"])
     prev_jp = float(tracker.get("jp_tariff_prev", t_jp))
@@ -533,6 +539,14 @@ def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_foo
     pi_delta = (st.lever_value["JPN"]["public_investment"] - tracker["init_pi"]) * gov_cons_factor
     ed_delta = (st.lever_value["JPN"]["education_budget"] - tracker["init_ed"]) * gov_cons_factor
     oda_delta = (st.lever_value["JPN"]["oda_budget"] - tracker["init_oda"]) * gov_cons_factor
+    # D-1 fix (independent review): the semiconductor subsidy and the
+    # fuel subsidy are bn JPY/yr budget lines (jpn_laws budget_fy2024
+    # lists both) but never entered expenditure - a subsidy rise was
+    # fiscally free while its investment/TFP benefits accrued. Both
+    # deltas are zero at their initial values, so the baseline path is
+    # unchanged; only episodes that MOVE the levers pay for them.
+    sc_delta = (st.lever_value["JPN"]["semiconductor_subsidy"] - tracker["init_semi"]) * gov_cons_factor
+    fuel_delta = (st.lever_value["JPN"]["fuel_subsidy"] - tracker["init_fuel"]) * gov_cons_factor
     def_delta = iv["defence_budget"] - tracker["init_def"]
 
     iv["gov_expenditure_general"] = (
@@ -545,6 +559,8 @@ def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_foo
         + pi_delta
         + ed_delta
         + oda_delta
+        + sc_delta
+        + fuel_delta
         + def_delta
     )
 
@@ -575,7 +591,11 @@ def replenish_persons_if_needed(ps, c_id, st, qx_2024, regions, n_per, cal_y, se
     NF = REL.NF
     tot_w = 0.0
     emo_shift = [0.0] * NE
-    mean_q_price = 0.02
+    # D-9 fix: this accumulator must start at 0.0 - it was seeded with
+    # the 0.02 fallback value and then divided by tot_w, biasing the
+    # weighted mean (+0.02/tot_w). The fallback applies only when the
+    # panel carries no weight at all (see the tot_w check below).
+    mean_q_price = 0.0
     q_inc_num = 0.0
     q_inc_den = 0.0
     pf_num = 0.0
@@ -610,6 +630,8 @@ def replenish_persons_if_needed(ps, c_id, st, qx_2024, regions, n_per, cal_y, se
         for e in range(NE):
             emo_shift[e] /= tot_w
         mean_q_price /= tot_w
+    else:
+        mean_q_price = 0.02
     q_inc_ratio = (q_inc_num / q_inc_den) if q_inc_den > 0.0 else 1.0
     mean_pay_factor = (pf_num / pf_den) if pf_den > 0.0 else 1.0
     mean_food_belief = (bel_num / bel_den) if bel_den > 0.0 else 0.0
@@ -792,13 +814,19 @@ class ShockEngine:
                 "partner": str(s.get("partner", "USA")),
             })
         self.applied = {}
-        self._hazard_saved = None
+        self._hazard_base = None
 
     def _active(self, month_idx):
         return [s for s in self.specs if s["start_mi"] <= month_idx < s["start_mi"] + s["months"]]
 
-    def on_month(self, month_idx, st, tracker, year_notes):
-        prem = {"cpi": 0.0, "food": 0.0, "discontent": 0.0}
+    def begin_month(self, month_idx, st, tracker, year_notes):
+        """Apply/reverse shock STATE (trade lanes, GDP level, hazards,
+        migration scale) from the first day of the month (D-10 fix:
+        state changes used to land in month-END processing, so the
+        start month ran unshocked on its daily steps and the month
+        after the end kept residual hazard/migration effects).
+        Premium bookkeeping stays in on_month, which prices the month
+        that just ended."""
         active = self._active(month_idx)
         active_ids = {s["id"] for s in active}
         for sid in list(self.applied.keys()):
@@ -809,6 +837,31 @@ class ShockEngine:
                 self.applied[s["id"]] = self._activate(st, tracker, s, year_notes)
         mig = 1.0
         for s in active:
+            if s["kind"] == "pandemic":
+                mig *= s["mig_scale"]
+        tracker["mig_scale"] = mig
+
+    def _apply_hazards(self, st, extra=None):
+        # Recompute the hazard vector from the saved base times every
+        # live pandemic multiplier (D-5 fix: a single saved slot made
+        # a second overlapping pandemic's hazard a no-op, and the
+        # first reversal cleared the second's effect early).
+        if self._hazard_base is None:
+            return
+        mult = 1.0
+        for n in self.applied.values():
+            if n.get("hazard_x"):
+                mult *= (1.0 + float(n["hazard_x"]))
+        if extra is not None and extra.get("hazard_x"):
+            mult *= (1.0 + float(extra["hazard_x"]))
+        hz = st.hazard["JPN"]
+        for i in range(len(hz)):
+            hz[i] = self._hazard_base[i] * mult
+
+    def on_month(self, month_idx, st, tracker, year_notes):
+        prem = {"cpi": 0.0, "food": 0.0, "discontent": 0.0}
+        active = self._active(month_idx)
+        for s in active:
             if s["kind"] == "energy_price":
                 prem["cpi"] += ENERGY_CPI_PASS_PER_PCT * s["mag"]
             elif s["kind"] == "food_price":
@@ -817,8 +870,6 @@ class ShockEngine:
                 prem["discontent"] += 0.03
             elif s["kind"] == "pandemic":
                 prem["discontent"] += 0.05
-                mig *= s["mig_scale"]
-        tracker["mig_scale"] = mig
         st.shock_active = [
             {"kind": s["kind"], "mag": s["mag"],
              "until_year": 2025 + (s["start_mi"] + s["months"] - 2) // 12,
@@ -832,11 +883,15 @@ class ShockEngine:
         note = {"kind": s["kind"], "gdp_frac": 0.0, "lane_delta": 0.0, "imp_delta": 0.0}
         year_notes.append(f"Shock {s['kind']}")
         if s["kind"] == "energy_price":
-            d_imp = iv["imports_customs"] * ENERGY_IMPORT_SHARE * s["mag"] / 100.0
-            iv["imports_customs"] += d_imp
+            # Multiplicative form (D-5): the reversal divides by the
+            # recorded factor, so changes that landed meanwhile (a
+            # tariff response on imports) are not undone by mistake.
+            f = 1.0 + ENERGY_IMPORT_SHARE * s["mag"] / 100.0
+            d_imp = iv["imports_customs"] * (f - 1.0)
+            iv["imports_customs"] *= f
             frac = -d_imp / max(1.0, tracker["init_gdp"])
             tracker["last_gdp"] *= (1.0 + frac)
-            note.update({"imp_delta": d_imp, "gdp_frac": frac})
+            note.update({"imp_factor": f, "gdp_frac": frac})
         elif s["kind"] == "disaster":
             frac = -s["mag"] / 100.0
             tracker["last_gdp"] *= (1.0 + frac)
@@ -846,40 +901,52 @@ class ShockEngine:
             lane_key = LANE_KEYS.get(partner)
             if lane_key and st.has(partner):
                 lane = st.aux["JPN"]["trade_by_partner"][lane_key]
-                d = -float(lane["exports_bn_jpy"]) * s["mag"] / 100.0
+                f = 1.0 - s["mag"] / 100.0
+                d = float(lane["exports_bn_jpy"]) * (f - 1.0)
                 lane["exports_bn_jpy"] += d
                 iv["exports_customs"] += d
                 frac = d / max(1.0, tracker["init_gdp"])
                 tracker["last_gdp"] *= (1.0 + frac)
-                note.update({"lane_delta": d, "gdp_frac": frac, "lane_key": lane_key, "partner": partner})
+                note.update({"lane_factor": f, "gdp_frac": frac, "lane_key": lane_key, "partner": partner})
         elif s["kind"] == "pandemic":
             frac = -s["mag"] / 100.0
             tracker["last_gdp"] *= (1.0 + frac)
             note["gdp_frac"] = frac
-            if s["hazard_x"] > 0.0 and self._hazard_saved is None:
-                self._hazard_saved = list(st.hazard["JPN"])
-                hz = st.hazard["JPN"]
-                for i in range(len(hz)):
-                    hz[i] = hz[i] * (1.0 + s["hazard_x"])
-                note["hazard"] = True
+            if s["hazard_x"] > 0.0:
+                if self._hazard_base is None:
+                    self._hazard_base = list(st.hazard["JPN"])
+                note["hazard_x"] = s["hazard_x"]
+                self._apply_hazards(st, extra=note)
         return note
 
     def _reverse(self, st, tracker, note):
         if note.get("permanent"):
             return
         iv = st.ind["JPN"]
-        if note.get("imp_delta"):
-            iv["imports_customs"] -= note["imp_delta"]
-        if note.get("lane_delta"):
-            st.aux["JPN"]["trade_by_partner"][note.get("lane_key", "USA")]["exports_bn_jpy"] -= note["lane_delta"]
-            iv["exports_customs"] -= note["lane_delta"]
+        if note.get("imp_factor"):
+            iv["imports_customs"] /= note["imp_factor"]
+        if note.get("lane_factor"):
+            # Divide the CURRENT lane by the recorded factor (D-5):
+            # whatever else scaled the lane meanwhile (a counterpart
+            # tariff, an export licence) stays scaled; only the
+            # shock's own factor comes back out. The old additive
+            # reversal left a permanent +1,440.8 bn distortion in the
+            # reviewer's tariff-overlap reproduction.
+            lane = st.aux["JPN"]["trade_by_partner"][note.get("lane_key", "USA")]
+            cur = float(lane["exports_bn_jpy"])
+            restored = cur / note["lane_factor"]
+            lane["exports_bn_jpy"] = restored
+            iv["exports_customs"] += (restored - cur)
         if note.get("gdp_frac"):
             tracker["last_gdp"] /= (1.0 + note["gdp_frac"])
-        if note.get("hazard") and self._hazard_saved is not None:
-            hz = st.hazard["JPN"]
-            for i in range(len(hz)):
-                hz[i] = self._hazard_saved[i]
-            self._hazard_saved = None
+        if note.get("hazard_x"):
+            if any(n.get("hazard_x") for n in self.applied.values()):
+                self._apply_hazards(st)
+            elif self._hazard_base is not None:
+                hz = st.hazard["JPN"]
+                for i in range(len(hz)):
+                    hz[i] = self._hazard_base[i]
+                self._hazard_base = None
 
 
 
@@ -1150,7 +1217,21 @@ def run_simulation(
                 st.set_lever("USA", lid[4:], float(val))
                 lever_logs_init.append(f"{lid}={val} -> FOREIGN_ACT (counterpart decision)")
             continue
-        status_code, msg = submit_policy_lever(st, cab, org, 0, lid, val, force_direct=coalition_pass)
+        # Scenario/custom lever plans are the counterfactual's initial
+        # conditions, not proposals made inside the run: a preset
+        # budget line (pass_budget law + SPENDING_LEVERS) is therefore
+        # set directly. Its fiscal COST is charged in full by the
+        # fiscal sync (D-1 wiring) - what is waived is only the Diet
+        # budget procedure, which would otherwise refuse every large
+        # preset under the 2024 minority composition (governing 215 of
+        # 465) and silently change the scenarios' meaning. Proposals
+        # arising INSIDE the run (agent acts, party platforms, the
+        # brain) still face the full gate, reserve ceiling included.
+        _law0 = org.law_for_lever(lid)
+        _preset_budget = lid in SPENDING_LEVERS and str(_law0.get("needs", "")) == "pass_budget"
+        status_code, msg = submit_policy_lever(st, cab, org, 0, lid, val, force_direct=coalition_pass or _preset_budget)
+        if _preset_budget and not coalition_pass:
+            msg += " [preset condition: budget procedure waived, cost charged]"
         lever_logs_init.append(f"{lid}={val} -> {msg}")
         if status_code in ("bill", "refused"):
             pending_platform[lid] = float(val)
@@ -1224,6 +1305,7 @@ def run_simulation(
         "lf_window": [],
         "init_fab": st.value("JPN", "fab_capacity_share"),
         "init_semi": st.lever_value["JPN"]["semiconductor_subsidy"],
+        "init_fuel": st.lever_value["JPN"]["fuel_subsidy"],
         "init_ed": st.lever_value["JPN"]["education_budget"],
         "init_oda": st.lever_value["JPN"]["oda_budget"],
         "us_tariff_prev": 0.0,
@@ -1265,6 +1347,9 @@ def run_simulation(
     month_idx = 0
 
     for day in range(1, total_days + 1):
+        # Shock state changes land at the START of their month (D-10).
+        if shock_engine is not None and (day == 1 or MA.is_month_end(day - 1)):
+            shock_engine.begin_month(month_idx + 1, st, tracker, year_notes)
         logged_before = len(st.lever_log)
         # Status._step_cohort() runs before Status._apply_due() inside st.step(), so record today's active net_migration before st.step()
         year_mig += st.value("JPN", "net_migration") / 365.0
@@ -1293,7 +1378,8 @@ def run_simulation(
 
             # 1. Diet votes on pending bills after 5-month parliamentary session (`Cabinet.vote_due`)
             bills_before = {b["id"]: b["status"] for b in cab.bills}
-            cab.vote_due(month_idx, lambda l_id, v_val: st.set_lever("JPN", l_id, v_val))
+            cab.vote_due(month_idx, lambda l_id, v_val: st.set_lever("JPN", l_id, v_val),
+                         get_lever=lambda l_id: float(st.lever_value["JPN"].get(l_id, 0.0)))
             for b in cab.bills:
                 if bills_before.get(b["id"]) == "submitted" and b["status"] != "submitted":
                     if b["status"] == "enacted":
@@ -1302,12 +1388,21 @@ def run_simulation(
                     elif b["status"] == "rejected":
                         year_notes.append(f"Diet Rejected {b['lever']}")
 
-            # 2. Collect levers whose lead_days completed this month
-            applied_this_month = [
-                str(st.lever_log[i][2])
-                for i in range(0, len(st.lever_log))
-                if str(st.lever_log[i][4]) == "applied" and int(st.lever_log[i][0]) > day - 31
-            ]
+            # 2. Collect levers whose lead_days completed this month.
+            # lever_log "applied" rows are [day, k, lid, new, "applied",
+            # old]; the Public approval channel also gets a
+            # direction-aware copy (D-3): a downward application is
+            # passed as "<lid>_cut", whose mirrored approval effect
+            # Public's EFFECT table carries. Persons keep the raw ids.
+            applied_this_month = []
+            pub_applied = []
+            for i in range(0, len(st.lever_log)):
+                _e = st.lever_log[i]
+                if str(_e[4]) == "applied" and int(_e[0]) > day - 31:
+                    _lid = str(_e[2])
+                    applied_this_month.append(_lid)
+                    _dv = (float(_e[3]) - float(_e[5])) if len(_e) > 5 else 0.0
+                    pub_applied.append(_lid + "_cut" if _dv < 0.0 else _lid)
             if "pension_age" in applied_this_month:
                 ps.p.PENSION_AGE = int(round(st.lever_value["JPN"]["pension_age"]))
 
@@ -1374,9 +1469,13 @@ def run_simulation(
             # trims the inflation the demographic/fiscal layer sees.
             econ_infl += -MONETARY_CPI_PASS * (st.ind["JPN"]["policy_rate"] - NEUTRAL_POLICY_RATE)
             if "consumption_tax_rate" in applied_this_month:
+                # Sign-aware (independent review D-3): a hike passes
+                # into prices, and a CUT must pass through the other
+                # way - the old max(0, ...) clamps made a cut pure
+                # revenue loss with no price relief at all.
                 tax_jump = st.lever_value["JPN"]["consumption_tax_rate"] - 0.10
-                econ_infl += max(0.0, tax_jump)
-                food_yoy += max(0.0, tax_jump * jp["vat_food_passthrough"])
+                econ_infl += tax_jump
+                food_yoy += tax_jump * jp["vat_food_passthrough"]
 
             fuel_sub_val = st.lever_value["JPN"].get("fuel_subsidy", 0.0)
             if fuel_sub_val > 0.0:
@@ -1389,7 +1488,9 @@ def run_simulation(
                 econ_infl += shock_prem["cpi"]
                 food_yoy += shock_prem["food"]
 
-            active_tax_burden = max(0.0, st.lever_value["JPN"]["consumption_tax_rate"] - 0.10)
+            # Signed (D-3): above 10% this is the ongoing burden; below
+            # 10% it is an ongoing relief on food prices and real wages.
+            active_tax_burden = st.lever_value["JPN"]["consumption_tax_rate"] - 0.10
             effective_food_yoy = food_yoy + (active_tax_burden * jp["vat_ongoing_food_bite"])
             st.ind["JPN"]["cpi_inflation"] = econ_infl
 
@@ -1416,7 +1517,7 @@ def run_simulation(
             # 8. Step Public Approval & Elections -> Policy Feedback Loop
             du_pt = (econ.labour.u - unemp_prev) * 100.0
             unemp_prev = econ.labour.u
-            ap = pub.step(month_idx, effective_food_yoy, du_pt, applied_this_month)
+            ap = pub.step(month_idx, effective_food_yoy, du_pt, pub_applied)
             ap = max(0.05, min(0.90, ap - (discontent - 0.20) * 0.25))
             # Distribution channel (Roadmap P6): approval also answers to
             # the tail - the worst-decile economic-security deficit -
@@ -1464,7 +1565,12 @@ def run_simulation(
                     st.lever_value["JPN"]["call_election"] = 0.0
                     year_notes.append("Election Called")
                 maj_str = "Majority" if gov_seats >= 233 else "Minority"
-                year_notes.append(f"Election({gov_seats}/465 {maj_str})")
+                _out_seats = gov_seats
+                # The Election note itself is appended AFTER government
+                # formation (D-7 fix): it used to record the outgoing
+                # bloc's seats here while the year row's GovSeats
+                # column carried the new government's, contradicting
+                # each other in the same row.
 
                 # Government formation (axis K): the winner's
                 # platform becomes the pending agenda (party items
@@ -1493,6 +1599,8 @@ def run_simulation(
                             "shares": {p: round(float(shares.get(p, 0.0)), 4) for p in shares},
                             "seats": {p: int(_seats_now.get(p, 0)) for p in _seats_now}}
 
+                year_notes.append(f"Election({_out_seats}/465 -> {'+'.join(org.governing)} {gov_seats}/465 {'Majority' if gov_seats >= 233 else 'Minority'})")
+
                 # CLOSED-LOOP ELECTION -> POLICY FEEDBACK:
                 if gov_seats >= 233 and pending_platform:
                     for p_lid, p_val in list(pending_platform.items()):
@@ -1500,9 +1608,14 @@ def run_simulation(
                         if st_code == "executed":
                             pending_platform.pop(p_lid, None)
                             year_notes.append(f"Enacted {p_lid}")
-                elif gov_seats < 233 and pending_platform and _minority_agenda:
+                elif gov_seats < 233 and pending_platform and _minority_agenda and not fiscal_crisis:
                     # A minority platform government enacts compromise
-                    # (halfway) versions of its agenda.
+                    # (halfway) versions of its agenda. The fiscal-crisis
+                    # condition is excluded here on purpose (D-7 fix):
+                    # _minority_agenda is true for EVERY minority
+                    # platform government, so without it the crisis
+                    # consolidation branch below was unreachable dead
+                    # code since axis K.
                     for p_lid, p_val in list(pending_platform.items()):
                         _half = float(st.lever_value["JPN"].get(p_lid, p_val)) + 0.5 * (float(p_val) - float(st.lever_value["JPN"].get(p_lid, p_val)))
                         st_code, _ = submit_policy_lever(st, cab, org, month_idx, p_lid, _half)

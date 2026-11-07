@@ -39,19 +39,28 @@ def main():
     k.check(abs(ye[2030]["obs"]["row"]["policy_rate"] - ye[2030]["obs"]["indicators"]["policy_rate"] * 100) < 0.01,
             "H the year row carries the same policy rate as the indicator")
 
-    saved = (RS.JGB_POLICY_PASS, RS.MONETARY_CPI_PASS)
+    saved = (RS.JGB_POLICY_PASS, RS.MONETARY_CPI_PASS, RS.FX_DIFF_SENS)
     RS.JGB_POLICY_PASS = 0.0
     RS.MONETARY_CPI_PASS = 0.0
+    RS.FX_DIFF_SENS = 0.0
     try:
         ab = agent_env.run_episode(agent_env.null_policy, years=10, scenario="baseline")
+        ab25 = agent_env.run_episode(agent_env.null_policy, years=25, scenario="baseline")
     finally:
-        RS.JGB_POLICY_PASS, RS.MONETARY_CPI_PASS = saved
+        RS.JGB_POLICY_PASS, RS.MONETARY_CPI_PASS, RS.FX_DIFF_SENS = saved
     k.check(ep["final"]["debt_gdp"] > ab["final"]["debt_gdp"] + 1.0,
             "H transmission bites: live monetary bridges raise 10y Debt/GDP (%.1f vs ablated %.1f)"
             % (ep["final"]["debt_gdp"], ab["final"]["debt_gdp"]))
-    k.check(ab["final"]["population"] > ep["final"]["population"],
-            "H ablation sanity: with the bridges off, the pre-P2.5 trajectory returns (pop %d > %d)"
-            % (ab["final"]["population"], ep["final"]["population"]))
+    # Snapshot assertion (strengthened in the D-6 fix round: this used
+    # to be a bare inequality while its text claimed the pre-P2.5
+    # trajectory "returns"). With all three bridges off, the 25y run
+    # reproduces the bridges-off snapshot at the current head exactly
+    # (pop 100,764,751, Debt/GDP 282.6 - the value carries axes I/J/K/G
+    # and the fix round, which is the point of a snapshot: any drift
+    # in the ablated state fails loudly instead of passing silently).
+    k.check(ab25["final"]["population"] == 100764751 and abs(ab25["final"]["debt_gdp"] - 282.6) < 0.05,
+            "H ablation snapshot: bridges off reproduces the recorded bridges-off 25y state exactly (pop %d, debt %.1f)"
+            % (ab25["final"]["population"], ab25["final"]["debt_gdp"]))
 
     k.finish()
 

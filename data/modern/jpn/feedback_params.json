@@ -103,8 +103,8 @@
     },
     "migration": {
       "structural_baseline": {
-        "label": "S",
-        "basis": "anchored to Japan's recent net-migration scale (ISA / MIC population estimates: mid-2010s to 2020s net inflow roughly 150-250k/yr); rounded anchor"
+        "label": "T",
+        "basis": "anchored to Japan's recent net-migration scale (ISA / MIC population estimates: mid-2010s to 2020s net inflow roughly 150-250k/yr); rounded anchor. Label corrected to T (review D-8): a point picked inside a published range is a tuning anchor, not a sourced value"
       },
       "reopening_decay_years": {
         "label": "T",

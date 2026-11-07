@@ -47,14 +47,22 @@ def main():
     s = agent_env.run_episode(agent_env.null_policy, years=7, scenario="baseline", full_mode=True, shocks=shock)
     el2 = s["steps"][-1]["obs"]["election"]
     lv2 = s["steps"][-1]["obs"]["levers"]
-    # Note: the new government's consumption-tax cut was REJECTED by
-    # the Diet's fiscal procedure in the stressed post-shock state,
-    # while its spending and regulatory items passed - platforms
-    # propose, the existing bill path disposes.
+    # Corrected (independent review D-2): this note used to say the
+    # new government's consumption-tax cut was "REJECTED by the
+    # Diet's fiscal procedure in the stressed post-shock state".
+    # There is no fiscal procedure in Cabinet.vote_due - the cut was
+    # voted down 0-465 because governing parties were scored by
+    # their stale opposition-era party_positions and the
+    # "<lever>_cut" stance table was never read. With vote_due fixed
+    # (governing parties support their own cabinet's bills; the _cut
+    # table is honoured), the CDP-led government ENACTS its platform:
+    # consumption tax 0.05 and corporate tax 0.28 by 2030.
     k.check(el2.get("government") == "CDP+DPFP+Reiwa"
-            and abs(lv2["energy_mix_target_renewables"] - 0.40) < 1e-6 and lv2["child_allowance"] == 6000.0,
-            "K a popularity collapse changes the government AND its policies (gov %s, renewables %.2f, child allowance %.0f)"
-            % (el2.get("government"), lv2["energy_mix_target_renewables"], lv2["child_allowance"]))
+            and abs(lv2["energy_mix_target_renewables"] - 0.40) < 1e-6 and lv2["child_allowance"] == 6000.0
+            and abs(lv2["consumption_tax_rate"] - 0.05) < 1e-6 and abs(lv2["corporate_tax_rate"] - 0.28) < 1e-6,
+            "K a popularity collapse changes the government AND its policies (gov %s, renewables %.2f, child allowance %.0f, consumption tax %.2f, corporate tax %.3f)"
+            % (el2.get("government"), lv2["energy_mix_target_renewables"], lv2["child_allowance"],
+               lv2["consumption_tax_rate"], lv2["corporate_tax_rate"]))
 
     std = agent_env.run_episode(agent_env.null_policy, years=3, scenario="baseline")
     k.check(std["steps"][-1]["obs"]["election"] == {},

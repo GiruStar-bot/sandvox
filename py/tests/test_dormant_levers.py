@@ -99,22 +99,26 @@ def main():
 
     base = agent_env.run_episode(agent_env.null_policy, years=10, scenario="baseline")
     def_ep = agent_env.run_episode(defence, years=10, scenario="baseline")
-    # The act raises the debt stock and bond dependence at every year
-    # (asserted). The Debt/GDP RATIO is not asserted: since track G
-    # carried the full FY2024 spend, the defence run's higher bond
-    # dependence crosses the 45% CRISIS threshold inside this horizon
-    # (2033: 45.3% vs the null run's 44.6% in 2034), the crisis
-    # inflation premium inflates nominal GDP, and the ratio inverts
-    # at the endpoint (254.0 -> 252.7) while the debt stock is higher
-    # (1,823.5 -> 1,869.1 tn). The ratio assertion held at P1-J states
-    # only because neither run crossed CRISIS within 10 years.
-    b_fin = [s for s in base["steps"] if s["phase"] == "year_end"][-1]["obs"]
-    d_fin = [s for s in def_ep["steps"] if s["phase"] == "year_end"][-1]["obs"]
-    k.check(d_fin["indicators"]["gov_debt_total"] > b_fin["indicators"]["gov_debt_total"]
-            and d_fin["row"]["bond_dep"] > b_fin["row"]["bond_dep"],
-            "P1 defence act raises the debt stock and bond dependence vs null episode (debt %.1f -> %.1f tn, bond dep %.1f -> %.1f)"
-            % (b_fin["indicators"]["gov_debt_total"] / 1000.0, d_fin["indicators"]["gov_debt_total"] / 1000.0,
-               b_fin["row"]["bond_dep"], d_fin["row"]["bond_dep"]))
+    # Per-year assertion (strengthened in the D-6 fix round: this
+    # comment used to claim "at every year" while the code checked
+    # only the endpoint). Measured cadence: the act is submitted at
+    # YE2025, the share reaches 0.02 during 2026, bond dependence is
+    # higher from 2026 on, and the debt STOCK is higher from 2027 on
+    # (the defence delta enters the fiscal sync with a lag). The
+    # Debt/GDP RATIO is still not asserted: since track G carried the
+    # full FY2024 spend, the defence run's higher bond dependence
+    # crosses the 45% CRISIS threshold inside this horizon (2033:
+    # 45.3% vs the null run's 44.6% in 2034), the crisis inflation
+    # premium inflates nominal GDP, and the ratio inverts at the
+    # endpoint (254.0 -> 252.7) while the debt stock is higher
+    # (1,823.5 -> 1,869.1 tn). The ratio assertion held at P1-J
+    # states only because neither run crossed CRISIS within 10 years.
+    b_yrs = {s["year"]: s["obs"] for s in base["steps"] if s["phase"] == "year_end"}
+    d_yrs = {s["year"]: s["obs"] for s in def_ep["steps"] if s["phase"] == "year_end"}
+    k.check(all(d_yrs[y]["row"]["bond_dep"] > b_yrs[y]["row"]["bond_dep"] for y in b_yrs if y >= 2026)
+            and all(d_yrs[y]["indicators"]["gov_debt_total"] > b_yrs[y]["indicators"]["gov_debt_total"] for y in b_yrs if y >= 2027),
+            "P1 defence act raises bond dependence every year from 2026 and the debt stock every year from 2027 (final debt %.1f -> %.1f tn)"
+            % (b_yrs[2034]["indicators"]["gov_debt_total"] / 1000.0, d_yrs[2034]["indicators"]["gov_debt_total"] / 1000.0))
 
     # CLI level: a corporate tax act goes to a Diet vote and the outcome is
     # recorded (this engine's minority Diet rejects it; the chain is what
