@@ -20,6 +20,11 @@ YEAR_DAYS = 365.0
 # physical units rather than shares (see data/modern/jpn/levers.json).
 NUCLEAR_SHARE_PER_REACTOR = 0.006  # one ~1 GW reactor at ~70% CF ~ 6 TWh/yr of ~1,000 TWh
 FAB_SHARE_PER_BN = 2.0e-6          # 1 tn JPY/yr of sustained fab support ~ +0.2 pt of world share
+
+# Declared (T): the share of exports to China subject to export licensing
+# (semiconductor manufacturing equipment and advanced chips are roughly a
+# tenth of the lane; rounded up for the controlled-goods basket).
+CONTROLLED_EXPORT_SHARE_CHN = 0.12
 REN_SOURCES = ("solar", "wind", "hydro", "bioenergy", "other_renewable")
 # Declared (T) operational emission intensities, kg CO2 per kWh generated
 # (IPCC-consistent medians for the fuel technologies), and electricity's
@@ -499,6 +504,20 @@ class Status:
             mix = self.aux.get(k, {}).get(target)
             if type(mix) is dict:
                 _add_nuclear(mix, dv * NUCLEAR_SHARE_PER_REACTOR)
+        elif form == "licence":
+            # Export licensing (外為法): the lever value is the denied
+            # share (0..1) of the controlled part of exports to the
+            # designated counterpart (CHN, the controlled destination
+            # for semiconductor equipment). The controlled share of the
+            # lane is a declared constant; the response is applied to
+            # the lane and to exports_customs in (v/prev) form.
+            lane = self.aux.get(k, {}).get(target, {}).get("CHINA")
+            if type(lane) is dict and "exports_customs" in iv:
+                prev = v - dv
+                f = (1.0 - CONTROLLED_EXPORT_SHARE_CHN * v) / max(1e-9, 1.0 - CONTROLLED_EXPORT_SHARE_CHN * prev)
+                d = float(lane["exports_bn_jpy"]) * (f - 1.0)
+                lane["exports_bn_jpy"] += d
+                iv["exports_customs"] += d
 
     def to_dict(self):
         st = {"day": self.day, "ind": {}, "cohort": {}, "lever_value": {}, "lever_due": {}, "lever_log": deep(self.lever_log), "aux": deep(self.aux), "derived": deep(self.derived)}

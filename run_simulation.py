@@ -256,50 +256,63 @@ def submit_policy_lever(st, cab, org, month, lid, val, force_direct=False):
         return "refused", f"REFUSED_BY_DIET ({row['verdict']['why']})"
 
 
-def sync_bilateral_trade(st, tracker):
-    """Two-way trade on the JPN-USA lane (Roadmap P2, blueprint stage S3).
+COUNTERPARTS = ("USA", "CHN", "EU")
+# The JPN-side customs lane key for each counterpart entity (the sourced
+# trade_by_partner dict uses customs names; the EU lane is created at
+# runtime from the EU profile's mirror lane - see run_simulation).
+LANE_KEYS = {"USA": "USA", "CHN": "CHINA", "EU": "EU"}
 
-    The U.S. tariff on Japan (a counterpart lever, set directly on the USA
-    entity) scales Japan's exports to the U.S. by the sourced -1.5 import
+
+def sync_bilateral_trade(st, tracker):
+    """Two-way trade on every loaded counterpart lane (Roadmap P2/P5,
+    blueprint stage S3).
+
+    A counterpart's tariff on Japan (its own lever, set directly on its
+    entity) scales Japan's exports to it by the sourced -1.5 import
     demand elasticity (Kee, Nicita & Olarreaga 2008, the same source as
-    JPN's tariff spec), applied to the (1 + t) factor because the U.S.
-    lever is a delta over a zero additional-tariff baseline. The export
-    delta moves exports_customs and shifts the nominal GDP level by the
-    net-export impulse (delta / initial GDP), which the fiscal sync then
-    carries forward. Japan's general tariff moves the U.S. lane's imports
-    with the same (v/old) elasticity form Status._respond applies to
-    total imports; imports_customs is NOT adjusted here, because that
-    response already moved the total. The mirror lane on the USA entity
-    is rewritten from the JPN lane every call: Japan's exports to the
-    U.S. are the U.S.'s imports from Japan, exactly (cross-border
-    identity). With no tariff changes the factors are 1 and nothing moves.
+    JPN's tariff spec), applied to the (1 + t) factor because the
+    counterpart lever is a delta over a zero additional-tariff baseline.
+    The export delta moves exports_customs and shifts the nominal GDP
+    level by the net-export impulse (delta / initial GDP), which the
+    fiscal sync then carries forward. Japan's general tariff moves each
+    lane's imports with the same (v/old) elasticity form Status._respond
+    applies to total imports; imports_customs is NOT adjusted here,
+    because that response already moved the total. Each mirror lane is
+    rewritten from the JPN lane every call: Japan's exports to X are
+    X's imports from Japan, exactly (cross-border identity). With no
+    tariff changes the factors are 1 and nothing moves.
     """
-    if not st.has("USA"):
-        return
     jp_aux = st.aux.get("JPN", {}).get("trade_by_partner")
-    us_aux = st.aux.get("USA", {}).get("trade_by_partner")
-    if not jp_aux or not us_aux or "USA" not in jp_aux or "JPN" not in us_aux:
+    if not jp_aux:
         return
-    lane = jp_aux["USA"]
-    mirror = us_aux["JPN"]
     el = -1.5
-    t_us = float(st.lever_value.get("USA", {}).get("tariff_on_jpn", 0.0))
-    prev_us = float(tracker.get("us_tariff_prev", 0.0))
-    if t_us != prev_us:
-        f = ((1.0 + t_us) / (1.0 + prev_us)) ** el
-        old_exp = float(lane["exports_bn_jpy"])
-        lane["exports_bn_jpy"] = old_exp * f
-        d_net = float(lane["exports_bn_jpy"]) - old_exp
-        st.ind["JPN"]["exports_customs"] += d_net
-        tracker["last_gdp"] *= (1.0 + d_net / max(1.0, tracker["init_gdp"]))
-        tracker["us_tariff_prev"] = t_us
     t_jp = float(st.lever_value["JPN"]["tariff_rate_general"])
     prev_jp = float(tracker.get("jp_tariff_prev", t_jp))
-    if t_jp != prev_jp and prev_jp > 0.0 and t_jp > 0.0:
-        lane["imports_bn_jpy"] = float(lane["imports_bn_jpy"]) * ((t_jp / prev_jp) ** el)
+    jp_changed = t_jp != prev_jp and prev_jp > 0.0 and t_jp > 0.0
+    for code in COUNTERPARTS:
+        if not st.has(code):
+            continue
+        cp_aux = st.aux.get(code, {}).get("trade_by_partner")
+        lane = jp_aux.get(LANE_KEYS[code])
+        if not cp_aux or "JPN" not in cp_aux or lane is None:
+            continue
+        mirror = cp_aux["JPN"]
+        t_cp = float(st.lever_value.get(code, {}).get("tariff_on_jpn", 0.0))
+        prev_cp = float(tracker.get(f"cp_tariff_prev_{code}", 0.0))
+        if t_cp != prev_cp:
+            f = ((1.0 + t_cp) / (1.0 + prev_cp)) ** el
+            old_exp = float(lane["exports_bn_jpy"])
+            lane["exports_bn_jpy"] = old_exp * f
+            d_net = float(lane["exports_bn_jpy"]) - old_exp
+            st.ind["JPN"]["exports_customs"] += d_net
+            tracker["last_gdp"] *= (1.0 + d_net / max(1.0, tracker["init_gdp"]))
+            tracker[f"cp_tariff_prev_{code}"] = t_cp
+        if jp_changed:
+            lane["imports_bn_jpy"] = float(lane["imports_bn_jpy"]) * ((t_jp / prev_jp) ** el)
+        mirror["imports_bn_jpy"] = lane["exports_bn_jpy"]
+        mirror["exports_bn_jpy"] = lane["imports_bn_jpy"]
+    if jp_changed:
         tracker["jp_tariff_prev"] = t_jp
-    mirror["imports_bn_jpy"] = lane["exports_bn_jpy"]
-    mirror["exports_bn_jpy"] = lane["imports_bn_jpy"]
 
 
 def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_food_yoy, real_wage_ratio, params=None):
@@ -373,6 +386,24 @@ def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_foo
     iv["net_migration"] = (base_structural_mig + ssw_command_delta * cap_headroom) * econ_attract
     if tracker.get("mig_scale", 1.0) != 1.0:
         iv["net_migration"] *= tracker["mig_scale"]
+
+    # Origin composition of the flow (Roadmap P5): residents shares are
+    # the Immigration Services Agency's 2024-06 stock (links_2024 people
+    # block, rounded). The structural part of the flow follows the stock
+    # shares; the SSW-driven part is attributed to the SSW-sending
+    # origins (VNM/PHL/IDN/NPL), so the visa lever moves the composition,
+    # not only the total. The parts sum exactly to net_migration.
+    _scale = float(tracker.get("mig_scale", 1.0))
+    _ssw_flow = ssw_command_delta * cap_headroom * econ_attract * _scale
+    _struct_flow = base_structural_mig * econ_attract * _scale
+    _ssw_group = sum(ORIGIN_SHARES[o] for o in SSW_ORIGINS)
+    _origins = {}
+    for _o, _s in ORIGIN_SHARES.items():
+        _f = _struct_flow * _s
+        if _o in SSW_ORIGINS:
+            _f += _ssw_flow * (_s / _ssw_group)
+        _origins[_o] = {"residents_share": _s, "annual_flow": _f}
+    st.aux.setdefault("JPN", {})["migration_by_origin"] = _origins
 
     # 3. Decay year-1 public_investment fiscal multiplier after 365 days (per levers.json ESRI source)
     if tracker["pi_boost_until_day"] > 0 and st.day == tracker["pi_boost_until_day"]:
@@ -611,6 +642,14 @@ ENERGY_IMPORT_SHARE = 0.22         # mineral fuels' share of imports (MOF 2023, 
 ENERGY_CPI_PASS_PER_PCT = 0.00015  # +50% energy import prices ~ +0.75pt CPI while active (partial pass-through)
 
 
+# Foreign-resident stock shares by origin (Immigration Services Agency,
+# 在留外国人統計 2024-06, via links_2024 people block; rounded, sums to 1)
+# and the SSW-sending origins among them.
+ORIGIN_SHARES = {"CHN": 0.229, "VNM": 0.167, "KOR": 0.114, "PHL": 0.090,
+                 "NPL": 0.065, "BRA": 0.059, "IDN": 0.042, "OTHER": 0.234}
+SSW_ORIGINS = ("VNM", "PHL", "IDN", "NPL")
+
+
 class ShockEngine:
     """Deterministic scheduled shocks (blueprint stage S4).
 
@@ -647,6 +686,7 @@ class ShockEngine:
                 "mag": float(s.get("mag", 0.0)),
                 "hazard_x": float(s.get("hazard_x", 0.0)),
                 "mig_scale": float(s.get("mig_scale", 1.0)),
+                "partner": str(s.get("partner", "USA")),
             })
         self.applied = {}
         self._hazard_saved = None
@@ -699,14 +739,16 @@ class ShockEngine:
             tracker["last_gdp"] *= (1.0 + frac)
             note.update({"gdp_frac": frac, "permanent": True})
         elif s["kind"] == "foreign_recession":
-            if st.has("USA"):
-                lane = st.aux["JPN"]["trade_by_partner"]["USA"]
+            partner = s.get("partner", "USA")
+            lane_key = LANE_KEYS.get(partner)
+            if lane_key and st.has(partner):
+                lane = st.aux["JPN"]["trade_by_partner"][lane_key]
                 d = -float(lane["exports_bn_jpy"]) * s["mag"] / 100.0
                 lane["exports_bn_jpy"] += d
                 iv["exports_customs"] += d
                 frac = d / max(1.0, tracker["init_gdp"])
                 tracker["last_gdp"] *= (1.0 + frac)
-                note.update({"lane_delta": d, "gdp_frac": frac})
+                note.update({"lane_delta": d, "gdp_frac": frac, "lane_key": lane_key, "partner": partner})
         elif s["kind"] == "pandemic":
             frac = -s["mag"] / 100.0
             tracker["last_gdp"] *= (1.0 + frac)
@@ -726,8 +768,7 @@ class ShockEngine:
         if note.get("imp_delta"):
             iv["imports_customs"] -= note["imp_delta"]
         if note.get("lane_delta"):
-            if st.has("USA"):
-                st.aux["JPN"]["trade_by_partner"]["USA"]["exports_bn_jpy"] -= note["lane_delta"]
+            st.aux["JPN"]["trade_by_partner"][note.get("lane_key", "USA")]["exports_bn_jpy"] -= note["lane_delta"]
             iv["exports_customs"] -= note["lane_delta"]
         if note.get("gdp_frac"):
             tracker["last_gdp"] /= (1.0 + note["gdp_frac"])
@@ -756,14 +797,17 @@ def _policy_obs(st, year, phase, row):
         "shocks_active": list(getattr(st, "shock_active", [])),
         "row": row,
     }
-    if st.has("USA"):
-        obs["counterpart"] = {
-            "USA": {
-                "indicators": dict(st.ind["USA"]),
-                "levers": dict(st.lever_value["USA"]),
-                "trade_by_partner": {p: dict(v) for p, v in st.aux.get("USA", {}).get("trade_by_partner", {}).items()},
+    obs["migration_by_origin"] = {o: dict(v) for o, v in st.aux.get("JPN", {}).get("migration_by_origin", {}).items()}
+    cps = {}
+    for _code in COUNTERPARTS:
+        if st.has(_code):
+            cps[_code] = {
+                "indicators": dict(st.ind[_code]),
+                "levers": dict(st.lever_value[_code]),
+                "trade_by_partner": {p: dict(v) for p, v in st.aux.get(_code, {}).get("trade_by_partner", {}).items()},
             }
-        }
+    if cps:
+        obs["counterpart"] = cps
     return obs
 
 
@@ -773,14 +817,15 @@ def _submit_policy_acts(st, cab, org, month, acts, pending_platform):
     election majority can enact them exactly as with scenario levers."""
     results = []
     for lid, val in acts:
-        if lid.startswith("USA:"):
-            if st.has("USA"):
-                st.set_lever("USA", lid[4:], float(val))
+        _head = lid.split(":", 1)[0]
+        if ":" in lid and _head in COUNTERPARTS:
+            if st.has(_head):
+                st.set_lever(_head, lid[len(_head) + 1:], float(val))
                 results.append({"lever": lid, "value": float(val), "status": "executed",
                                 "message": "FOREIGN_ACT (counterpart decision, no Diet path)"})
             else:
                 results.append({"lever": lid, "value": float(val), "status": "rejected",
-                                "message": "counterpart USA not loaded"})
+                                "message": f"counterpart {_head} not loaded"})
             continue
         code, msg = submit_policy_lever(st, cab, org, month, lid, float(val))
         if code in ("bill", "refused"):
@@ -816,6 +861,8 @@ def run_simulation(
     feedback_params=None,
     policy_fn=None,
     usa_tariff=None,
+    chn_tariff=None,
+    eu_tariff=None,
     shocks=None,
 ):
     ensure_oracle_dumps()
@@ -835,7 +882,17 @@ def run_simulation(
 
     # 1. Initialize Status (`status_2024.json` + `levers.json`) and align to `2025-01-01` (`start_2025.json`)
     st = Status()
-    err = st.load(2024, ["JPN", "USA"])
+    err = st.load(2024, ["JPN", "USA", "CHN", "EU"])
+    # The sourced JPN customs surface lists EU member states individually,
+    # so the bloc lane on the JPN side is created here from the EU
+    # profile's (declared-estimate) mirror lane; the bilateral sync then
+    # maintains it like every other lane.
+    if st.has("EU"):
+        _jp_lanes = st.aux.get("JPN", {}).get("trade_by_partner", {})
+        _eu_mirror = st.aux.get("EU", {}).get("trade_by_partner", {}).get("JPN")
+        if _eu_mirror is not None and "EU" not in _jp_lanes:
+            _jp_lanes["EU"] = {"exports_bn_jpy": float(_eu_mirror["imports_bn_jpy"]),
+                               "imports_bn_jpy": float(_eu_mirror["exports_bn_jpy"])}
     if err != "":
         raise RuntimeError(err)
 
@@ -925,9 +982,10 @@ def run_simulation(
     else:
         print("[Policy Levers] None (Baseline Status Quo)")
 
-    if usa_tariff is not None and st.has("USA"):
-        st.set_lever("USA", "tariff_on_jpn", float(usa_tariff))
-        print(f"[Counterpart] USA tariff_on_jpn={float(usa_tariff)} (additional, over the 2024 baseline)")
+    for _code, _tv in (("USA", usa_tariff), ("CHN", chn_tariff), ("EU", eu_tariff)):
+        if _tv is not None and st.has(_code):
+            st.set_lever(_code, "tariff_on_jpn", float(_tv))
+            print(f"[Counterpart] {_code} tariff_on_jpn={float(_tv)} (additional, over the 2024 baseline)")
 
     if policy_fn is not None:
         _policy_call(policy_fn, st, cab, org, 0, 2025, "initial", None, pending_platform)
@@ -1235,6 +1293,8 @@ def main():
     parser.add_argument("--n-per", type=int, default=2, help="Representative persons per prefecture (default: 2)")
     parser.add_argument("--params-file", type=str, default=None, help="Path to custom feedback_params.json override")
     parser.add_argument("--usa-tariff", type=float, default=None, help="Additional U.S. tariff on Japan (share, over the 2024 baseline)")
+    parser.add_argument("--chn-tariff", type=float, default=None, help="Additional Chinese tariff on Japan (share, over the 2024 baseline)")
+    parser.add_argument("--eu-tariff", type=float, default=None, help="Additional EU tariff on Japan (share, over the 2024 baseline)")
     parser.add_argument("--shocks-file", type=str, default=None, help="JSON file with a shock schedule (list of {kind, start [year, month], months, mag, ...})")
 
     args = parser.parse_args()
@@ -1246,6 +1306,8 @@ def main():
         coalition_pass=args.coalition,
         params_path=args.params_file,
         usa_tariff=args.usa_tariff,
+        chn_tariff=args.chn_tariff,
+        eu_tariff=args.eu_tariff,
         shocks=(json.load(open(args.shocks_file)) if args.shocks_file else None),
     )
 

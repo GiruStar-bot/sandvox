@@ -1,0 +1,600 @@
+{
+ "entity": "CHN",
+ "year": 2024,
+ "note": "S3 counterpart profile (Roadmap P5): a deliberately small macro core for the bilateral lane with Japan, mirroring the USA profile's shape. The cohort age distribution is a declared smooth model (T) scaled to the sourced NBS total. The Japan trade lane follows the mirror convention: values are Japan's customs record (MOF) seen from the other side, and the bilateral sync rewrites the mirror from the JPN lane so the identity holds exactly.",
+ "indicators": {
+  "pop_total": {
+   "value": 1408280000,
+   "source": "National Bureau of Statistics of China: year-end population 2024, 1,408.28M",
+   "label": "S",
+   "trend": 0.0,
+   "unit": "persons"
+  },
+  "births": {
+   "value": 9540000,
+   "source": "NBS: births 2024, 9.54M",
+   "label": "S",
+   "trend": 0.0,
+   "unit": "persons/yr"
+  },
+  "deaths": {
+   "value": 10930000,
+   "source": "NBS: deaths 2024, 10.93M",
+   "label": "S",
+   "trend": 0.0,
+   "unit": "persons/yr"
+  },
+  "tfr": {
+   "value": 1.0,
+   "source": "T (declared estimate): no official TFR is published for 2024; academic/official-media estimates cluster near 1.0",
+   "label": "T",
+   "trend": 0.0
+  },
+  "net_migration": {
+   "value": -300000,
+   "source": "T (declared estimate): China runs a small net emigration balance; order-of-magnitude placeholder",
+   "label": "T",
+   "trend": 0.0,
+   "unit": "persons/yr"
+  },
+  "gdp_nominal_bn_usd": {
+   "value": 18940.0,
+   "source": "NBS: GDP 2024 RMB 134,908.4bn, converted at the 2024 average rate (~7.12 CNY/USD), rounded",
+   "label": "S (rounded)",
+   "trend": 0.0,
+   "unit": "bn USD"
+  },
+  "gdp_real_growth": {
+   "value": 0.05,
+   "source": "NBS: real GDP growth 2024 +5.0%",
+   "label": "S",
+   "trend": 0.0
+  },
+  "cpi_inflation": {
+   "value": 0.002,
+   "source": "NBS: CPI 2024 +0.2%",
+   "label": "S",
+   "trend": 0.0
+  },
+  "policy_rate": {
+   "value": 0.031,
+   "source": "PBoC: 1-year loan prime rate (LPR), December 2024, 3.1%",
+   "label": "S",
+   "trend": 0.0
+  },
+  "unemployment_rate": {
+   "value": 0.051,
+   "source": "NBS: surveyed urban unemployment rate, 2024 average 5.1%",
+   "label": "S",
+   "trend": 0.0
+  },
+  "fx_cny_usd": {
+   "value": 7.3,
+   "source": "CNY per USD, end-2024, rounded",
+   "label": "S (rounded)",
+   "trend": 0.0
+  },
+  "trade_by_partner": {
+   "value": {
+    "JPN": {
+     "exports_bn_jpy": 24424.2,
+     "imports_bn_jpy": 17763.9
+    }
+   },
+   "source": "Mirror of the JPN profile's CHINA customs lane (MOF trade statistics, CY2023 final): China's exports to Japan are Japan's imports from China",
+   "label": "S",
+   "trend": 0.0
+  }
+ },
+ "cohort": {
+  "unit_persons": 1000,
+  "source": "T (declared model): smooth age distribution (same shape as the USA profile) scaled to the sourced population total; it gives the counterpart demographic presence, it is not a demographic estimate.",
+  "ages": [
+   {
+    "age": 0,
+    "male": 9507,
+    "female": 9060
+   },
+   {
+    "age": 1,
+    "male": 9461,
+    "female": 9051
+   },
+   {
+    "age": 2,
+    "male": 9416,
+    "female": 9039
+   },
+   {
+    "age": 3,
+    "male": 9370,
+    "female": 9031
+   },
+   {
+    "age": 4,
+    "male": 9325,
+    "female": 9018
+   },
+   {
+    "age": 5,
+    "male": 9875,
+    "female": 9581
+   },
+   {
+    "age": 6,
+    "male": 9826,
+    "female": 9569
+   },
+   {
+    "age": 7,
+    "male": 9780,
+    "female": 9561
+   },
+   {
+    "age": 8,
+    "male": 9731,
+    "female": 9548
+   },
+   {
+    "age": 9,
+    "male": 9685,
+    "female": 9536
+   },
+   {
+    "age": 10,
+    "male": 9639,
+    "female": 9523
+   },
+   {
+    "age": 11,
+    "male": 9590,
+    "female": 9511
+   },
+   {
+    "age": 12,
+    "male": 9544,
+    "female": 9499
+   },
+   {
+    "age": 13,
+    "male": 9499,
+    "female": 9486
+   },
+   {
+    "age": 14,
+    "male": 9449,
+    "female": 9474
+   },
+   {
+    "age": 15,
+    "male": 9403,
+    "female": 9461
+   },
+   {
+    "age": 16,
+    "male": 9358,
+    "female": 9449
+   },
+   {
+    "age": 17,
+    "male": 9312,
+    "female": 9437
+   },
+   {
+    "age": 18,
+    "male": 9267,
+    "female": 9420
+   },
+   {
+    "age": 19,
+    "male": 9217,
+    "female": 9408
+   },
+   {
+    "age": 20,
+    "male": 9172,
+    "female": 9395
+   },
+   {
+    "age": 21,
+    "male": 9126,
+    "female": 9383
+   },
+   {
+    "age": 22,
+    "male": 9080,
+    "female": 9370
+   },
+   {
+    "age": 23,
+    "male": 9035,
+    "female": 9354
+   },
+   {
+    "age": 24,
+    "male": 8989,
+    "female": 9341
+   },
+   {
+    "age": 25,
+    "male": 8944,
+    "female": 9329
+   },
+   {
+    "age": 26,
+    "male": 8898,
+    "female": 9312
+   },
+   {
+    "age": 27,
+    "male": 8853,
+    "female": 9300
+   },
+   {
+    "age": 28,
+    "male": 8807,
+    "female": 9287
+   },
+   {
+    "age": 29,
+    "male": 8762,
+    "female": 9271
+   },
+   {
+    "age": 30,
+    "male": 8716,
+    "female": 9258
+   },
+   {
+    "age": 31,
+    "male": 8675,
+    "female": 9242
+   },
+   {
+    "age": 32,
+    "male": 8629,
+    "female": 9230
+   },
+   {
+    "age": 33,
+    "male": 8584,
+    "female": 9213
+   },
+   {
+    "age": 34,
+    "male": 8538,
+    "female": 9201
+   },
+   {
+    "age": 35,
+    "male": 8497,
+    "female": 9184
+   },
+   {
+    "age": 36,
+    "male": 8451,
+    "female": 9167
+   },
+   {
+    "age": 37,
+    "male": 8406,
+    "female": 9155
+   },
+   {
+    "age": 38,
+    "male": 8364,
+    "female": 9138
+   },
+   {
+    "age": 39,
+    "male": 8319,
+    "female": 9126
+   },
+   {
+    "age": 40,
+    "male": 8273,
+    "female": 9109
+   },
+   {
+    "age": 41,
+    "male": 8232,
+    "female": 9093
+   },
+   {
+    "age": 42,
+    "male": 8186,
+    "female": 9076
+   },
+   {
+    "age": 43,
+    "male": 8145,
+    "female": 9064
+   },
+   {
+    "age": 44,
+    "male": 8099,
+    "female": 9047
+   },
+   {
+    "age": 45,
+    "male": 8058,
+    "female": 9031
+   },
+   {
+    "age": 46,
+    "male": 8012,
+    "female": 9014
+   },
+   {
+    "age": 47,
+    "male": 7971,
+    "female": 8998
+   },
+   {
+    "age": 48,
+    "male": 7925,
+    "female": 8981
+   },
+   {
+    "age": 49,
+    "male": 7884,
+    "female": 8965
+   },
+   {
+    "age": 50,
+    "male": 7842,
+    "female": 8948
+   },
+   {
+    "age": 51,
+    "male": 7797,
+    "female": 8931
+   },
+   {
+    "age": 52,
+    "male": 7755,
+    "female": 8915
+   },
+   {
+    "age": 53,
+    "male": 7714,
+    "female": 8898
+   },
+   {
+    "age": 54,
+    "male": 7673,
+    "female": 8882
+   },
+   {
+    "age": 55,
+    "male": 7627,
+    "female": 8865
+   },
+   {
+    "age": 56,
+    "male": 7586,
+    "female": 8849
+   },
+   {
+    "age": 57,
+    "male": 7544,
+    "female": 8832
+   },
+   {
+    "age": 58,
+    "male": 7503,
+    "female": 8815
+   },
+   {
+    "age": 59,
+    "male": 7461,
+    "female": 8795
+   },
+   {
+    "age": 60,
+    "male": 7420,
+    "female": 8778
+   },
+   {
+    "age": 61,
+    "male": 7379,
+    "female": 8762
+   },
+   {
+    "age": 62,
+    "male": 7337,
+    "female": 8745
+   },
+   {
+    "age": 63,
+    "male": 7296,
+    "female": 8724
+   },
+   {
+    "age": 64,
+    "male": 7254,
+    "female": 8708
+   },
+   {
+    "age": 65,
+    "male": 7213,
+    "female": 8691
+   },
+   {
+    "age": 66,
+    "male": 7172,
+    "female": 8671
+   },
+   {
+    "age": 67,
+    "male": 7130,
+    "female": 8654
+   },
+   {
+    "age": 68,
+    "male": 7089,
+    "female": 8637
+   },
+   {
+    "age": 69,
+    "male": 7047,
+    "female": 8617
+   },
+   {
+    "age": 70,
+    "male": 7006,
+    "female": 8600
+   },
+   {
+    "age": 71,
+    "male": 6965,
+    "female": 8579
+   },
+   {
+    "age": 72,
+    "male": 6927,
+    "female": 8563
+   },
+   {
+    "age": 73,
+    "male": 6199,
+    "female": 7689
+   },
+   {
+    "age": 74,
+    "male": 5544,
+    "female": 6907
+   },
+   {
+    "age": 75,
+    "male": 4960,
+    "female": 6203
+   },
+   {
+    "age": 76,
+    "male": 4439,
+    "female": 5569
+   },
+   {
+    "age": 77,
+    "male": 3971,
+    "female": 5002
+   },
+   {
+    "age": 78,
+    "male": 3553,
+    "female": 4493
+   },
+   {
+    "age": 79,
+    "male": 3180,
+    "female": 4033
+   },
+   {
+    "age": 80,
+    "male": 2845,
+    "female": 3623
+   },
+   {
+    "age": 81,
+    "male": 2546,
+    "female": 3250
+   },
+   {
+    "age": 82,
+    "male": 2277,
+    "female": 2919
+   },
+   {
+    "age": 83,
+    "male": 2037,
+    "female": 2621
+   },
+   {
+    "age": 84,
+    "male": 1822,
+    "female": 2356
+   },
+   {
+    "age": 85,
+    "male": 1631,
+    "female": 2116
+   },
+   {
+    "age": 86,
+    "male": 1458,
+    "female": 1896
+   },
+   {
+    "age": 87,
+    "male": 1304,
+    "female": 1706
+   },
+   {
+    "age": 88,
+    "male": 1168,
+    "female": 1532
+   },
+   {
+    "age": 89,
+    "male": 1043,
+    "female": 1375
+   },
+   {
+    "age": 90,
+    "male": 936,
+    "female": 1234
+   },
+   {
+    "age": 91,
+    "male": 836,
+    "female": 1106
+   },
+   {
+    "age": 92,
+    "male": 749,
+    "female": 994
+   },
+   {
+    "age": 93,
+    "male": 671,
+    "female": 894
+   },
+   {
+    "age": 94,
+    "male": 596,
+    "female": 803
+   },
+   {
+    "age": 95,
+    "male": 534,
+    "female": 720
+   },
+   {
+    "age": 96,
+    "male": 480,
+    "female": 646
+   },
+   {
+    "age": 97,
+    "male": 426,
+    "female": 580
+   },
+   {
+    "age": 98,
+    "male": 381,
+    "female": 522
+   },
+   {
+    "age": 99,
+    "male": 344,
+    "female": 468
+   },
+   {
+    "age": 100,
+    "male": 306,
+    "female": 418
+   }
+  ]
+ }
+}

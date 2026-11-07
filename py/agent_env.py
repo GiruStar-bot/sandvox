@@ -66,7 +66,8 @@ class SandvoxEnv:
     """
 
     def __init__(self, years=25, scenario="baseline", full_mode=False, n_per=2,
-                 coalition_pass=False, params_path=None, usa_tariff=None, shocks=None):
+                 coalition_pass=False, params_path=None, usa_tariff=None, shocks=None,
+                 chn_tariff=None, eu_tariff=None):
         self.years = years
         self.scenario = scenario
         self.full_mode = full_mode
@@ -74,6 +75,8 @@ class SandvoxEnv:
         self.coalition_pass = coalition_pass
         self.params_path = params_path
         self.usa_tariff = usa_tariff
+        self.chn_tariff = chn_tariff
+        self.eu_tariff = eu_tariff
         self.shocks = shocks
 
     def run(self, policy, quiet=True):
@@ -89,6 +92,8 @@ class SandvoxEnv:
             coalition_pass=self.coalition_pass,
             params_path=self.params_path,
             usa_tariff=self.usa_tariff,
+            chn_tariff=self.chn_tariff,
+            eu_tariff=self.eu_tariff,
             shocks=self.shocks,
             policy_fn=bridge,
         )
