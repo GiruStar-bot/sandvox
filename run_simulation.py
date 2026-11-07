@@ -1181,6 +1181,11 @@ def run_simulation(
         + float(fy24_lines["defence"])
         + float(fy24_lines["other"])
         + float(fy24_lines["reserve_fund"])
+        # Hygiene track G: the FY2024 lines previously summed to
+        # 108,571.7 of the 112,571.7 bn total; the missing 4,000.0 bn
+        # (unitemized official categories) is now an explicit line in
+        # jpn_laws.json and belongs in core operations.
+        + float(fy24_lines.get("unitemized", 0.0))
     )
     tracker = {
         "statutory_tfr": st.value("JPN", "tfr"),
