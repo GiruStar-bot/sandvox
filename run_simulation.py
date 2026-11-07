@@ -371,6 +371,8 @@ def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_foo
         ),
     )
     iv["net_migration"] = (base_structural_mig + ssw_command_delta * cap_headroom) * econ_attract
+    if tracker.get("mig_scale", 1.0) != 1.0:
+        iv["net_migration"] *= tracker["mig_scale"]
 
     # 3. Decay year-1 public_investment fiscal multiplier after 365 days (per levers.json ESRI source)
     if tracker["pi_boost_until_day"] > 0 and st.day == tracker["pi_boost_until_day"]:
@@ -604,6 +606,138 @@ def replenish_persons_if_needed(ps, c_id, st, qx_2024, regions, n_per, cal_y, se
     return ps_new
 
 
+# Declared (T) shock transmission constants (Roadmap P4, blueprint S4).
+ENERGY_IMPORT_SHARE = 0.22         # mineral fuels' share of imports (MOF 2023, rounded)
+ENERGY_CPI_PASS_PER_PCT = 0.00015  # +50% energy import prices ~ +0.75pt CPI while active (partial pass-through)
+
+
+class ShockEngine:
+    """Deterministic scheduled shocks (blueprint stage S4).
+
+    A schedule is data: a list of {"kind", "start": [year, month],
+    "months": duration, "mag": magnitude} specs, with kind-specific
+    fields ("hazard_x", "mig_scale" for pandemics). The same schedule
+    always produces the same episode - reproducibility is a property of
+    the schedule, so seeded libraries sample schedules (see
+    agent_env.random_shock_schedule) rather than sampling inside the
+    engine. Kinds and transmissions (all magnitudes in percent):
+
+    - energy_price: import prices +mag%. CPI pass-through premium while
+      active; the energy import bill rises at activation and the GDP
+      level takes the terms-of-trade loss; both reverse at expiry.
+    - food_price: food prices +mag%. A food-inflation premium while
+      active (flows into discontent, approval, Persons' food demand).
+    - disaster: a one-off GDP level loss of mag% (capital destruction,
+      NOT reversed) plus a discontent premium while active.
+    - foreign_recession: exports to the USA fall mag% (via the P2 lane;
+      activation/expiry symmetric, GDP follows the net-export impulse).
+    - pandemic: GDP level -mag% (reversed at expiry in this version),
+      mortality hazard x (1 + hazard_x) while active, net migration
+      scaled by mig_scale while active, discontent premium.
+    """
+
+    def __init__(self, schedule):
+        self.specs = []
+        for i, s in enumerate(schedule or []):
+            y, m = s["start"]
+            self.specs.append({
+                "id": i, "kind": str(s["kind"]),
+                "start_mi": (int(y) - 2025) * 12 + int(m),
+                "months": int(s.get("months", 12)),
+                "mag": float(s.get("mag", 0.0)),
+                "hazard_x": float(s.get("hazard_x", 0.0)),
+                "mig_scale": float(s.get("mig_scale", 1.0)),
+            })
+        self.applied = {}
+        self._hazard_saved = None
+
+    def _active(self, month_idx):
+        return [s for s in self.specs if s["start_mi"] <= month_idx < s["start_mi"] + s["months"]]
+
+    def on_month(self, month_idx, st, tracker, year_notes):
+        prem = {"cpi": 0.0, "food": 0.0, "discontent": 0.0}
+        active = self._active(month_idx)
+        active_ids = {s["id"] for s in active}
+        for sid in list(self.applied.keys()):
+            if sid not in active_ids:
+                self._reverse(st, tracker, self.applied.pop(sid))
+        for s in active:
+            if s["id"] not in self.applied:
+                self.applied[s["id"]] = self._activate(st, tracker, s, year_notes)
+        mig = 1.0
+        for s in active:
+            if s["kind"] == "energy_price":
+                prem["cpi"] += ENERGY_CPI_PASS_PER_PCT * s["mag"]
+            elif s["kind"] == "food_price":
+                prem["food"] += s["mag"] / 100.0
+            elif s["kind"] == "disaster":
+                prem["discontent"] += 0.03
+            elif s["kind"] == "pandemic":
+                prem["discontent"] += 0.05
+                mig *= s["mig_scale"]
+        tracker["mig_scale"] = mig
+        st.shock_active = [
+            {"kind": s["kind"], "mag": s["mag"],
+             "until_year": 2025 + (s["start_mi"] + s["months"] - 2) // 12,
+             "until_month": (s["start_mi"] + s["months"] - 2) % 12 + 1}
+            for s in active
+        ]
+        return prem
+
+    def _activate(self, st, tracker, s, year_notes):
+        iv = st.ind["JPN"]
+        note = {"kind": s["kind"], "gdp_frac": 0.0, "lane_delta": 0.0, "imp_delta": 0.0}
+        year_notes.append(f"Shock {s['kind']}")
+        if s["kind"] == "energy_price":
+            d_imp = iv["imports_customs"] * ENERGY_IMPORT_SHARE * s["mag"] / 100.0
+            iv["imports_customs"] += d_imp
+            frac = -d_imp / max(1.0, tracker["init_gdp"])
+            tracker["last_gdp"] *= (1.0 + frac)
+            note.update({"imp_delta": d_imp, "gdp_frac": frac})
+        elif s["kind"] == "disaster":
+            frac = -s["mag"] / 100.0
+            tracker["last_gdp"] *= (1.0 + frac)
+            note.update({"gdp_frac": frac, "permanent": True})
+        elif s["kind"] == "foreign_recession":
+            if st.has("USA"):
+                lane = st.aux["JPN"]["trade_by_partner"]["USA"]
+                d = -float(lane["exports_bn_jpy"]) * s["mag"] / 100.0
+                lane["exports_bn_jpy"] += d
+                iv["exports_customs"] += d
+                frac = d / max(1.0, tracker["init_gdp"])
+                tracker["last_gdp"] *= (1.0 + frac)
+                note.update({"lane_delta": d, "gdp_frac": frac})
+        elif s["kind"] == "pandemic":
+            frac = -s["mag"] / 100.0
+            tracker["last_gdp"] *= (1.0 + frac)
+            note["gdp_frac"] = frac
+            if s["hazard_x"] > 0.0 and self._hazard_saved is None:
+                self._hazard_saved = list(st.hazard["JPN"])
+                hz = st.hazard["JPN"]
+                for i in range(len(hz)):
+                    hz[i] = hz[i] * (1.0 + s["hazard_x"])
+                note["hazard"] = True
+        return note
+
+    def _reverse(self, st, tracker, note):
+        if note.get("permanent"):
+            return
+        iv = st.ind["JPN"]
+        if note.get("imp_delta"):
+            iv["imports_customs"] -= note["imp_delta"]
+        if note.get("lane_delta"):
+            if st.has("USA"):
+                st.aux["JPN"]["trade_by_partner"]["USA"]["exports_bn_jpy"] -= note["lane_delta"]
+            iv["exports_customs"] -= note["lane_delta"]
+        if note.get("gdp_frac"):
+            tracker["last_gdp"] /= (1.0 + note["gdp_frac"])
+        if note.get("hazard") and self._hazard_saved is not None:
+            hz = st.hazard["JPN"]
+            for i in range(len(hz)):
+                hz[i] = self._hazard_saved[i]
+            self._hazard_saved = None
+
+
 def _policy_obs(st, year, phase, row):
     """Observation for an external policy (agent) hook: the full indicator
     state, current lever values and bounds, and the last yearly summary row.
@@ -619,6 +753,7 @@ def _policy_obs(st, year, phase, row):
             for lid, L in levers_def.items()
         },
         "trade_by_partner": {p: dict(v) for p, v in st.aux.get("JPN", {}).get("trade_by_partner", {}).items()},
+        "shocks_active": list(getattr(st, "shock_active", [])),
         "row": row,
     }
     if st.has("USA"):
@@ -681,9 +816,11 @@ def run_simulation(
     feedback_params=None,
     policy_fn=None,
     usa_tariff=None,
+    shocks=None,
 ):
     ensure_oracle_dumps()
     params = load_feedback_params(params_path=params_path, overrides=feedback_params)
+    shock_engine = ShockEngine(shocks) if shocks else None
     jp = params["fiscal_and_jgb"]
     rp = params["persons_replenishment"]
 
@@ -948,6 +1085,12 @@ def run_simulation(
                 fuel_k = float(st.levers["JPN"]["levers"]["fuel_subsidy"]["response"].get("k", 0.0))
                 econ_infl += fuel_k * fuel_sub_val / 100.0
 
+            shock_prem = None
+            if shock_engine is not None:
+                shock_prem = shock_engine.on_month(month_idx, st, tracker, year_notes)
+                econ_infl += shock_prem["cpi"]
+                food_yoy += shock_prem["food"]
+
             active_tax_burden = max(0.0, st.lever_value["JPN"]["consumption_tax_rate"] - 0.10)
             effective_food_yoy = food_yoy + (active_tax_burden * jp["vat_ongoing_food_bite"])
             st.ind["JPN"]["cpi_inflation"] = econ_infl
@@ -965,6 +1108,8 @@ def run_simulation(
             raw_disc = float(sm["discontent_p10_p50_p90"][1])
             if not math.isnan(raw_disc):
                 discontent = raw_disc
+            if shock_prem is not None and shock_prem["discontent"]:
+                discontent = min(1.0, discontent + shock_prem["discontent"])
             real_wage_ratio = econ.labour.wage_index / max(0.5, 1.0 + active_tax_burden)
 
             # 8. Step Public Approval & Elections -> Policy Feedback Loop
@@ -1090,6 +1235,7 @@ def main():
     parser.add_argument("--n-per", type=int, default=2, help="Representative persons per prefecture (default: 2)")
     parser.add_argument("--params-file", type=str, default=None, help="Path to custom feedback_params.json override")
     parser.add_argument("--usa-tariff", type=float, default=None, help="Additional U.S. tariff on Japan (share, over the 2024 baseline)")
+    parser.add_argument("--shocks-file", type=str, default=None, help="JSON file with a shock schedule (list of {kind, start [year, month], months, mag, ...})")
 
     args = parser.parse_args()
     run_simulation(
@@ -1100,6 +1246,7 @@ def main():
         coalition_pass=args.coalition,
         params_path=args.params_file,
         usa_tariff=args.usa_tariff,
+        shocks=(json.load(open(args.shocks_file)) if args.shocks_file else None),
     )
 
 

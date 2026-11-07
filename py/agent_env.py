@@ -66,13 +66,15 @@ class SandvoxEnv:
     """
 
     def __init__(self, years=25, scenario="baseline", full_mode=False, n_per=2,
-                 coalition_pass=False, params_path=None):
+                 coalition_pass=False, params_path=None, usa_tariff=None, shocks=None):
         self.years = years
         self.scenario = scenario
         self.full_mode = full_mode
         self.n_per = n_per
         self.coalition_pass = coalition_pass
         self.params_path = params_path
+        self.usa_tariff = usa_tariff
+        self.shocks = shocks
 
     def run(self, policy, quiet=True):
         """Run one episode. Returns {"history", "steps", "final"} where
@@ -86,6 +88,8 @@ class SandvoxEnv:
             n_per=self.n_per,
             coalition_pass=self.coalition_pass,
             params_path=self.params_path,
+            usa_tariff=self.usa_tariff,
+            shocks=self.shocks,
             policy_fn=bridge,
         )
         if quiet:
@@ -98,3 +102,36 @@ class SandvoxEnv:
 
 def run_episode(policy, **env_kwargs):
     return SandvoxEnv(**env_kwargs).run(policy)
+
+
+def random_shock_schedule(seed, years=25, prob=0.22):
+    """A seeded shock library (Roadmap P4): sample a deterministic shock
+    schedule for one episode. The engine itself never samples - a schedule
+    is data, and the same (seed, years, prob) always yields the same one,
+    so episodes are exactly reproducible while varying across seeds.
+    Magnitude ranges are declared training choices, not estimates."""
+    import random  # lint-ok: keyed Random(seed) draws only - the seeded schedule library
+
+    rng = random.Random(seed)
+    menu = [
+        ("energy_price", 20.0, 80.0, 6, 18),
+        ("food_price", 10.0, 40.0, 6, 24),
+        ("disaster", 0.5, 3.0, 12, 12),
+        ("foreign_recession", 10.0, 30.0, 9, 24),
+        ("pandemic", 2.0, 5.0, 12, 30),
+    ]
+    out = []
+    for y in range(years):
+        if rng.random() < prob:
+            kind, lo, hi, mlo, mhi = menu[rng.randrange(len(menu))]
+            spec = {
+                "kind": kind,
+                "start": [2025 + y, rng.randrange(1, 13)],
+                "months": rng.randrange(mlo, mhi + 1),
+                "mag": round(rng.uniform(lo, hi), 2),
+            }
+            if kind == "pandemic":
+                spec["hazard_x"] = 0.3
+                spec["mig_scale"] = 0.2
+            out.append(spec)
+    return out
