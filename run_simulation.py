@@ -660,6 +660,10 @@ MONETARY_CPI_PASS = 0.25   # annual CPI trim per unit of policy rate held above 
 NEUTRAL_POLICY_RATE = 0.01  # nominal neutral: 2% inflation target less ~1% real neutral, rounded
 FX_DIFF_SENS = 8.0         # yen appreciation (share) per unit of JPN-US rate-differential widening
 
+# Distribution + panel constants (Roadmap P6), declared (T).
+REPLENISH_INTERVAL_YEARS = 10  # panel re-anchoring cadence (see the call site)
+DIST_STRESS_SLOPE = 0.15       # approval loss per unit of tail-deficit widening over its initial level
+
 
 class ShockEngine:
     """Deterministic scheduled shocks (blueprint stage S4).
@@ -790,6 +794,24 @@ class ShockEngine:
             self._hazard_saved = None
 
 
+
+def _distribution_block(st):
+    """Household-layer distribution surface (Roadmap P6): income and
+    discontent spreads plus the worst-decile economic-security deficit
+    that the approval channel reads."""
+    sm = getattr(st, "persons_summary", None)
+    if not sm:
+        return {}
+    inc = sm["real_income_p10_p50_p90"]
+    dis = sm["discontent_p10_p50_p90"]
+    return {
+        "income_p10": inc[0], "income_p50": inc[1], "income_p90": inc[2],
+        "income_p90_p10": (inc[2] / inc[0]) if inc[0] else None,
+        "discontent_p10": dis[0], "discontent_p90": dis[2],
+        "deficit_p90": sm["economic_security_deficit_p10_p50_p90"][2],
+    }
+
+
 def _policy_obs(st, year, phase, row):
     """Observation for an external policy (agent) hook: the full indicator
     state, current lever values and bounds, and the last yearly summary row.
@@ -806,6 +828,8 @@ def _policy_obs(st, year, phase, row):
         },
         "trade_by_partner": {p: dict(v) for p, v in st.aux.get("JPN", {}).get("trade_by_partner", {}).items()},
         "shocks_active": list(getattr(st, "shock_active", [])),
+        "replenishments": int(getattr(st, "replenish_fires", 0)),
+        "distribution": _distribution_block(st),
         "row": row,
     }
     obs["migration_by_origin"] = {o: dict(v) for o, v in st.aux.get("JPN", {}).get("migration_by_origin", {}).items()}
@@ -936,6 +960,8 @@ def run_simulation(
     ps = Persons.create(c.id, 1, co_2025, qx_2024, regions, n_per, 2025)
     init_p_n = ps.p.n
     seed_gen = 1
+    last_replenish_y = 2025
+    replenish_fires = 0
     econ = EconMonth()
     econ.create("JPN")
     econ.labour = Labour()
@@ -1121,13 +1147,32 @@ def run_simulation(
             if "pension_age" in applied_this_month:
                 ps.p.PENSION_AGE = int(round(st.lever_value["JPN"]["pension_age"]))
 
-            # 3. Replenish micro households if multi-decade aging reduces sample size below min_sample_ratio
+            # 3. Replenish micro households. The original trigger (panel
+            # n below 60% of initial) can never fire: the household layer
+            # is self-renewing and n is structurally constant (measured
+            # n=94 over 100 years in the v4.1 audit), so the Issue-C
+            # preservation code was dead. The trigger is redesigned
+            # (Roadmap P6): fire on the n condition OR on a fixed
+            # re-anchoring cadence - the panel's state is anchored to
+            # its creation year, so every REPLENISH_INTERVAL_YEARS the
+            # panel is resampled from the live cohort while the
+            # function preserves the macro state (price/wage indices,
+            # pension, emotion shifts, assets by age band).
             min_n = max(int(rp["min_sample_abs"]), int(init_p_n * float(rp["min_sample_ratio"])))
-            if ps.p.n < min_n:
+            if ps.p.n < min_n or (cal_y - last_replenish_y) >= REPLENISH_INTERVAL_YEARS:
                 seed_gen += 1
                 ps = replenish_persons_if_needed(
                     ps, c.id, st, qx_2024, regions, n_per, cal_y, seed_gen, current_u=econ.labour.u
                 )
+                last_replenish_y = cal_y
+                replenish_fires += 1
+                st.replenish_fires = replenish_fires
+                # Re-anchor the distribution channel's reference to the
+                # fresh panel: the channel measures within-panel
+                # deterioration, and a resample discontinuity (the new
+                # panel's tail sits at a different level) is not a
+                # deterioration of anyone's life.
+                tracker["init_deficit_p90"] = float(ps.summary()["economic_security_deficit_p10_p50_p90"][2])
 
             # 4. Persons labour supply -> EconMonth (Labour + CropFarming + FoodMfg + TradingHouse + Bank)
             psup = ps.supply()
@@ -1194,6 +1239,9 @@ def run_simulation(
                 "cohort": st.cohort["JPN"]
             })
             sm = ps.summary()
+            st.persons_summary = sm
+            if tracker.get("init_deficit_p90") is None:
+                tracker["init_deficit_p90"] = float(sm["economic_security_deficit_p10_p50_p90"][2])
             raw_disc = float(sm["discontent_p10_p50_p90"][1])
             if not math.isnan(raw_disc):
                 discontent = raw_disc
@@ -1206,6 +1254,11 @@ def run_simulation(
             unemp_prev = econ.labour.u
             ap = pub.step(month_idx, effective_food_yoy, du_pt, applied_this_month)
             ap = max(0.05, min(0.90, ap - (discontent - 0.20) * 0.25))
+            # Distribution channel (Roadmap P6): approval also answers to
+            # the tail - the worst-decile economic-security deficit -
+            # not only to median discontent.
+            _deficit_p90 = float(sm["economic_security_deficit_p10_p50_p90"][2])
+            ap = max(0.05, min(0.90, ap - DIST_STRESS_SLOPE * max(0.0, _deficit_p90 - float(tracker.get("init_deficit_p90", _deficit_p90)))))
             st.ind["JPN"]["cabinet_approval"] = ap
 
             call_due = st.lever_value["JPN"].get("call_election", 0.0) >= 0.5
@@ -1267,6 +1320,8 @@ def run_simulation(
                 "share_75plus": round(share_75plus * 100, 1),
                 "jgb_10y": round(st.value("JPN", "jgb_10y") * 100, 2),
                 "policy_rate": round(st.value("JPN", "policy_rate") * 100, 3),
+                "replenishments": replenish_fires,
+                "deficit_p90": (round(float(st.persons_summary["economic_security_deficit_p10_p50_p90"][2]), 3) if getattr(st, "persons_summary", None) else None),
                 "debt_gdp": round(st.value("JPN", "debt_to_gdp") * 100, 1),
                 "bond_dep": round(bond_dep * 100, 1),
                 "discontent": round(discontent, 3),
