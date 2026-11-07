@@ -1,0 +1,56 @@
+{
+  "version": "v4.1",
+  "description": "Endogenous macroeconomic, demographic, and fiscal feedback parameters for Sandvox CLI (run_simulation.py)",
+  "fertility": {
+    "ed_budget_unit_bn": 4500.0,
+    "ed_tfr_boost_per_unit": 0.045,
+    "discontent_baseline": 0.20,
+    "discontent_tfr_slope": -0.18,
+    "food_infl_threshold": 0.025,
+    "food_infl_tfr_slope": -0.22,
+    "real_wage_tfr_slope": 0.06,
+    "stress_drag_min": -0.10,
+    "stress_drag_max": 0.04,
+    "tfr_floor": 0.85,
+    "tfr_ceiling": 2.05
+  },
+  "migration": {
+    "structural_baseline": 168000.0,
+    "reopening_decay_years": 12.0,
+    "cap_ssw_multiplier": 1.5,
+    "cap_saturation_scale": 8000000.0,
+    "cap_headroom_floor": 0.35,
+    "infl_attract_threshold": 0.03,
+    "infl_attract_slope": -2.5,
+    "discontent_attract_threshold": 0.22,
+    "discontent_attract_slope": -0.6,
+    "real_wage_attract_slope": 0.15,
+    "attract_min": 0.60,
+    "attract_max": 1.10
+  },
+  "fiscal_and_jgb": {
+    "old_75plus_cost_weight": 3.5,
+    "senior_relief_multiplier": 2.5,
+    "senior_relief_floor": 0.70,
+    "infl_index_threshold": 0.02,
+    "jgb_infl_threshold": 0.02,
+    "jgb_infl_slope": 0.45,
+    "jgb_debt_gdp_slope": 0.008,
+    "jgb_bond_dep_threshold": 0.35,
+    "jgb_bond_dep_slope": 0.035,
+    "crisis_bond_dep_threshold": 0.45,
+    "jgb_crisis_slope": 0.15,
+    "jgb_min": 0.005,
+    "jgb_max": 0.055,
+    "jgb_adjust_days": 90.0,
+    "jgb_rollover_years": 8.5,
+    "crisis_infl_premium": 0.030,
+    "crisis_food_premium": 0.040,
+    "vat_food_passthrough": 0.80,
+    "vat_ongoing_food_bite": 0.35
+  },
+  "persons_replenishment": {
+    "min_sample_ratio": 0.60,
+    "min_sample_abs": 20
+  }
+}
