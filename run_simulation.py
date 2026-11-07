@@ -500,6 +500,11 @@ def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_foo
     ss_line = tracker["budget_social_security"] * health_factor * aging_cost_factor * max(jp["senior_relief_floor"], 1.0 - senior_relief_share)
     ss_delta = ss_line - tracker["budget_social_security"]
     lat_delta = tracker["budget_lat"] * ((tax_rev_current / max(1.0, tracker["init_tax_rev"])) - 1.0)
+    # Local finance (axis J): the allocation tax also follows regional
+    # fiscal stress - depopulating, aging regions carry rising fixed
+    # per-capita costs, and the transfer formula protects them (annual
+    # steps, as the year-end stress update lands).
+    lat_delta += tracker["budget_lat"] * LAT_STRESS_PASS * max(0.0, tracker.get("local_stress", 0.0) - tracker.get("init_local_stress", 0.0))
     core_ops_delta = tracker["budget_core_ops"] * (gov_cons_factor - 1.0)
 
     # Continuous JGB 10Y market yield & 8.5-year average maturity refinancing rollover
@@ -697,6 +702,29 @@ ORIGIN_SHARES = {"CHN": 0.229, "VNM": 0.167, "KOR": 0.114, "PHL": 0.090,
                  "NPL": 0.065, "BRA": 0.059, "IDN": 0.042, "OTHER": 0.234}
 SSW_ORIGINS = ("VNM", "PHL", "IDN", "NPL")
 
+# Regional decomposition (Roadmap axis J). The Persons layer carries
+# prefectures, but the CLI ran national aggregates only; this layer
+# decomposes the national population into the 8 standard regions and
+# evolves it with the model's own flows. pop_share: MIC population
+# estimates, Oct 2024, rounded (sums to 1.004; normalized at init).
+# aged: 65+ share, census-based, T-rounded. net_mig: annual
+# inter-regional net migration rate (internal-migration report
+# pattern, T). foreign: foreign-resident distribution (ISA 2024,
+# rounded).
+REGIONS = {
+    "hokkaido": {"pop_share": 0.041, "aged": 0.335, "net_mig": -0.0010, "foreign": 0.018},
+    "tohoku": {"pop_share": 0.067, "aged": 0.355, "net_mig": -0.0022, "foreign": 0.026},
+    "kanto": {"pop_share": 0.353, "aged": 0.265, "net_mig": 0.0018, "foreign": 0.385},
+    "chubu": {"pop_share": 0.167, "aged": 0.305, "net_mig": -0.0002, "foreign": 0.225},
+    "kinki": {"pop_share": 0.177, "aged": 0.295, "net_mig": 0.0002, "foreign": 0.180},
+    "chugoku": {"pop_share": 0.057, "aged": 0.340, "net_mig": -0.0013, "foreign": 0.045},
+    "shikoku": {"pop_share": 0.029, "aged": 0.355, "net_mig": -0.0018, "foreign": 0.021},
+    "kyushu": {"pop_share": 0.113, "aged": 0.305, "net_mig": -0.0003, "foreign": 0.100},
+}
+REGION_FLOW_CYCLE = 6.0           # concentration accelerates when unemployment is below its initial level (T)
+REGION_AGING_FROM_DECLINE = 0.15  # extra aged-share points per unit of regional population loss (T)
+LAT_STRESS_PASS = 1.5             # local allocation tax uplift per unit of local fiscal stress over its initial level (T)
+
 
 # Monetary transmission constants (Roadmap P2.5, axis H), all declared (T).
 # The central bank itself already exists: EconMonth's Bank follows a
@@ -893,6 +921,15 @@ def _policy_obs(st, year, phase, row):
         "row": row,
     }
     obs["migration_by_origin"] = {o: dict(v) for o, v in st.aux.get("JPN", {}).get("migration_by_origin", {}).items()}
+    obs["regions"] = {r: dict(v) for r, v in st.aux.get("JPN", {}).get("regions", {}).items()}
+    if not obs["regions"]:
+        # Pre-loop (initial) observations precede the tracker's first
+        # write; synthesize the start distribution from the table.
+        _ss = sum(d["pop_share"] for d in REGIONS.values())
+        _pt = st.value("JPN", "pop_total")
+        obs["regions"] = {r: {"pop": int(round(d["pop_share"] / _ss * _pt)),
+                              "share": round(d["pop_share"] / _ss, 4), "aged": d["aged"]}
+                          for r, d in REGIONS.items()}
     cps = {}
     for _code in COUNTERPARTS:
         if st.has(_code):
@@ -1148,7 +1185,17 @@ def run_simulation(
         "ssw_k": float(st.levers["JPN"]["levers"]["ssw_visa_cap"]["response"]["k"]),
         "init_mig": st.value("JPN", "net_migration"),
         "init_foreign": st.value("JPN", "foreign_residents"),
+        "init_unemp": st.value("JPN", "unemployment_rate"),
+        "region_pop": {r: d["pop_share"] / sum(x["pop_share"] for x in REGIONS.values()) * st.value("JPN", "pop_total") for r, d in REGIONS.items()},
+        "region_aged": {r: d["aged"] for r, d in REGIONS.items()},
+        "local_stress": sum((d["pop_share"] / sum(x["pop_share"] for x in REGIONS.values())) * max(0.0, d["aged"] - 0.29) for d in REGIONS.values()),
+        "init_local_stress": sum((d["pop_share"] / sum(x["pop_share"] for x in REGIONS.values())) * max(0.0, d["aged"] - 0.29) for d in REGIONS.values()),
     }
+    st.aux.setdefault("JPN", {})["regions"] = {
+        r: {"pop": int(round(tracker["region_pop"][r])),
+            "share": round(tracker["region_pop"][r] / max(1.0, st.value("JPN", "pop_total")), 4),
+            "aged": tracker["region_aged"][r]}
+        for r in REGIONS}
 
     unemp_prev = st.value("JPN", "unemployment_rate")
     last_election_month = 0
@@ -1372,6 +1419,43 @@ def run_simulation(
         # End of Year Recording (every 365 days)
         if day % 365 == 0:
             yr = 2025 + (day // 365) - 1
+            # Regional decomposition update (axis J): allocate the
+            # year's national flows to the regions. Births follow a
+            # youth weight, deaths an aging weight; international
+            # migrants follow the foreign-resident distribution;
+            # inter-regional flows follow each region's net rate,
+            # scaled by the jobs cycle and demeaned so they sum to
+            # zero exactly. The layer is then rescaled to the national
+            # population, so the decomposition is exact by construction.
+            _rp = tracker["region_pop"]
+            _ra = tracker["region_aged"]
+            _tot = sum(_rp.values())
+            # Vital weights shaped to the observed crude-rate ratios
+            # (Kanto vs Tohoku births ~1.25x, deaths ~0.75x).
+            _bw = {r: _rp[r] * max(0.02, 0.16 - 0.22 * _ra[r]) for r in _rp}
+            _dw = {r: _rp[r] * (0.02 + 0.95 * _ra[r]) for r in _rp}
+            _bs = max(1.0, sum(_bw.values()))
+            _ds = max(1.0, sum(_dw.values()))
+            _cyc = max(0.3, min(1.6, 1.0 - REGION_FLOW_CYCLE * (st.value("JPN", "unemployment_rate") - tracker["init_unemp"])))
+            _flows = {r: REGIONS[r]["net_mig"] * _cyc * _rp[r] for r in _rp}
+            _fmean = sum(_flows.values()) / max(1.0, _tot)
+            for r in _rp:
+                _flows[r] -= _fmean * _rp[r]
+            for r in _rp:
+                _new = (_rp[r] + year_births * _bw[r] / _bs - year_deaths * _dw[r] / _ds
+                        + year_mig * REGIONS[r]["foreign"] + _flows[r])
+                _growth = _new / max(1.0, _rp[r]) - 1.0
+                _ra[r] = max(0.15, min(0.55, _ra[r] + 0.002 + REGION_AGING_FROM_DECLINE * max(0.0, -_growth)))
+                _rp[r] = max(0.0, _new)
+            _target = st.value("JPN", "pop_total")
+            _rs = max(1.0, sum(_rp.values()))
+            for r in _rp:
+                _rp[r] *= _target / _rs
+            st.aux.setdefault("JPN", {})["regions"] = {
+                r: {"pop": int(round(_rp[r])), "share": round(_rp[r] / max(1.0, _target), 4), "aged": round(_ra[r], 4)}
+                for r in _rp}
+            _local_stress = sum(_rp[r] * max(0.0, _ra[r] - 0.29) for r in _rp) / max(1.0, _target)
+            tracker["local_stress"] = _local_stress
             gov_seats_now = int(st.value("JPN", "lower_house_seats_governing"))
             fiscal_crisis = (bond_dep > jp["crisis_bond_dep_threshold"])
             history.append({
@@ -1388,6 +1472,8 @@ def run_simulation(
                 "replenishments": replenish_fires,
                 "real_growth": round(st.value("JPN", "gdp_real_growth") * 100, 2),
                 "capital_tn": round(tracker["capital_stock"] / 1000.0, 1),
+                "kanto_share": round(100.0 * tracker["region_pop"]["kanto"] / max(1.0, st.value("JPN", "pop_total")), 1),
+                "local_stress": round(_local_stress * 100, 2),
                 "deficit_p90": (round(float(st.persons_summary["economic_security_deficit_p10_p50_p90"][2]), 3) if getattr(st, "persons_summary", None) else None),
                 "debt_gdp": round(st.value("JPN", "debt_to_gdp") * 100, 1),
                 "bond_dep": round(bond_dep * 100, 1),
