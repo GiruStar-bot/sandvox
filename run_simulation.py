@@ -922,6 +922,7 @@ def _policy_obs(st, year, phase, row):
     }
     obs["migration_by_origin"] = {o: dict(v) for o, v in st.aux.get("JPN", {}).get("migration_by_origin", {}).items()}
     obs["regions"] = {r: dict(v) for r, v in st.aux.get("JPN", {}).get("regions", {}).items()}
+    obs["election"] = dict(st.aux.get("JPN", {}).get("election", {}))
     if not obs["regions"]:
         # Pre-loop (initial) observations precede the tracker's first
         # write; synthesize the start distribution from the table.
@@ -941,6 +942,49 @@ def _policy_obs(st, year, phase, row):
     if cps:
         obs["counterpart"] = cps
     return obs
+
+
+_PLATFORMS_CACHE = None
+
+
+def _load_platforms():
+    """Party platforms + coalition order + demographic tilts (axis K)."""
+    global _PLATFORMS_CACHE
+    if _PLATFORMS_CACHE is None:
+        try:
+            _pp = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                               "data", "modern", "polity", "jpn_platforms.json")
+            with open(_pp, encoding="utf-8") as _fh:
+                _PLATFORMS_CACHE = json.load(_fh)
+        except Exception:
+            _PLATFORMS_CACHE = {}
+    return _PLATFORMS_CACHE
+
+
+def _form_government(seats, plat):
+    """Largest platform-carrying party leads; partners join in its
+    declared coalition order until the bloc holds a majority (or the
+    list runs out - a minority government). The merged agenda lets
+    the senior partner win lever conflicts."""
+    platforms = plat.get("platforms", {})
+    order = plat.get("coalition_order", {})
+    cands = sorted((p for p in platforms if int(seats.get(p, 0)) > 0),
+                   key=lambda p: -int(seats.get(p, 0)))
+    if not cands:
+        return [], {}
+    senior = cands[0]
+    bloc = [senior]
+    total = int(seats.get(senior, 0))
+    for partner in order.get(senior, []):
+        if total >= 233:
+            break
+        if partner in platforms and int(seats.get(partner, 0)) > 0:
+            bloc.append(partner)
+            total += int(seats.get(partner, 0))
+    agenda = {}
+    for p in reversed(bloc):
+        agenda.update(platforms[p].get("levers", {}))
+    return bloc, agenda
 
 
 def _submit_policy_acts(st, cab, org, month, acts, pending_platform):
@@ -1186,8 +1230,11 @@ def run_simulation(
         "init_mig": st.value("JPN", "net_migration"),
         "init_foreign": st.value("JPN", "foreign_residents"),
         "init_unemp": st.value("JPN", "unemployment_rate"),
+        "init_share65": st.value("JPN", "share_65plus"),
+        "ap_last_election": st.value("JPN", "cabinet_approval"),
         "region_pop": {r: d["pop_share"] / sum(x["pop_share"] for x in REGIONS.values()) * st.value("JPN", "pop_total") for r, d in REGIONS.items()},
         "region_aged": {r: d["aged"] for r, d in REGIONS.items()},
+        "init_kanto_share": (REGIONS["kanto"]["pop_share"] / sum(x["pop_share"] for x in REGIONS.values())),
         "local_stress": sum((d["pop_share"] / sum(x["pop_share"] for x in REGIONS.values())) * max(0.0, d["aged"] - 0.29) for d in REGIONS.values()),
         "init_local_stress": sum((d["pop_share"] / sum(x["pop_share"] for x in REGIONS.values())) * max(0.0, d["aged"] - 0.29) for d in REGIONS.values()),
     }
@@ -1375,11 +1422,34 @@ def run_simulation(
 
             call_due = st.lever_value["JPN"].get("call_election", 0.0) >= 0.5
             if full_mode and ((cal_m == 10 and (cal_y - 2024) % 4 == 0) or call_due):
-                d_ap = pub.change_since(last_election_month)
+                # Approval change since the previous election, as a
+                # fraction. (Found in axis K: the old call,
+                # pub.change_since(last_election_month), passed month
+                # 0 for the first election; history starts at month 1,
+                # so it always returned 0.0 and the first election
+                # ignored approval entirely - identical seats with or
+                # without a popularity collapse.)
+                d_ap = float(ap) - float(tracker["ap_last_election"])
+                tracker["ap_last_election"] = float(ap)
                 if fiscal_crisis:
                     d_ap = min(d_ap, (ap - 0.35) * 100.0)
                 d_cpi_pt = (econ_infl - 0.02) * 100.0
                 shares = el.vote_shares(list(org.governing), d_ap, du_pt, d_cpi_pt)
+                # Demographic tilts (axis K): electorate composition
+                # moves party shares - aging favours incumbent-
+                # conservative and pensioner parties, Kanto growth
+                # favours reform parties (declared, T).
+                _tilts = _load_platforms().get("demographic_tilts", {})
+                if _tilts:
+                    _d_age = (st.value("JPN", "share_65plus") - tracker["init_share65"]) * 100.0
+                    _d_kan = (tracker["region_pop"]["kanto"] / max(1.0, st.value("JPN", "pop_total")) - tracker["init_kanto_share"]) * 100.0
+                    for _p in shares:
+                        shares[_p] = max(0.001, shares[_p]
+                                         + _tilts.get("per_point_aging", {}).get(_p, 0.0) * _d_age
+                                         + _tilts.get("per_point_kanto", {}).get(_p, 0.0) * _d_kan)
+                    _ssum = sum(shares.values())
+                    for _p in shares:
+                        shares[_p] /= _ssum
                 r_low = el.run_lower_house(shares)
                 org.seats["house_of_representatives"] = dict(r_low["seats"])
                 gov_seats = org.governing_seats("house_of_representatives")
@@ -1391,6 +1461,33 @@ def run_simulation(
                 maj_str = "Majority" if gov_seats >= 233 else "Minority"
                 year_notes.append(f"Election({gov_seats}/465 {maj_str})")
 
+                # Government formation (axis K): the winner's
+                # platform becomes the pending agenda (party items
+                # override agent-pending items on conflict), and the
+                # governing bloc itself is re-formed - before this,
+                # org.governing never changed hands.
+                _plat = _load_platforms()
+                _minority_agenda = False
+                if _plat:
+                    _seats_now = org.seats["house_of_representatives"]
+                    _bloc, _agenda = _form_government(_seats_now, _plat)
+                    if _bloc:
+                        if list(org.governing) != _bloc:
+                            year_notes.append("Government: " + "+".join(_bloc))
+                        org.governing = list(_bloc)
+                        gov_seats = sum(int(_seats_now.get(p, 0)) for p in _bloc)
+                        st.ind["JPN"]["lower_house_seats_governing"] = float(gov_seats)
+                        maj_str = "Majority" if gov_seats >= 233 else "Minority"
+                        _minority_agenda = gov_seats < 233
+                        for _lid, _val in _agenda.items():
+                            if abs(float(_val) - float(st.lever_value["JPN"].get(_lid, _val))) > 1e-9:
+                                pending_platform[_lid] = float(_val)
+                        st.aux.setdefault("JPN", {})["election"] = {
+                            "year": cal_y, "government": "+".join(_bloc),
+                            "majority": gov_seats >= 233,
+                            "shares": {p: round(float(shares.get(p, 0.0)), 4) for p in shares},
+                            "seats": {p: int(_seats_now.get(p, 0)) for p in _seats_now}}
+
                 # CLOSED-LOOP ELECTION -> POLICY FEEDBACK:
                 if gov_seats >= 233 and pending_platform:
                     for p_lid, p_val in list(pending_platform.items()):
@@ -1398,6 +1495,15 @@ def run_simulation(
                         if st_code == "executed":
                             pending_platform.pop(p_lid, None)
                             year_notes.append(f"Enacted {p_lid}")
+                elif gov_seats < 233 and pending_platform and _minority_agenda:
+                    # A minority platform government enacts compromise
+                    # (halfway) versions of its agenda.
+                    for p_lid, p_val in list(pending_platform.items()):
+                        _half = float(st.lever_value["JPN"].get(p_lid, p_val)) + 0.5 * (float(p_val) - float(st.lever_value["JPN"].get(p_lid, p_val)))
+                        st_code, _ = submit_policy_lever(st, cab, org, month_idx, p_lid, _half)
+                        if st_code == "executed":
+                            pending_platform.pop(p_lid, None)
+                            year_notes.append(f"Enacted(partial) {p_lid}")
                 elif gov_seats < 233 and fiscal_crisis:
                     if st.lever_value["JPN"]["public_investment"] > tracker["init_pi"]:
                         st.set_lever("JPN", "public_investment", tracker["init_pi"])
@@ -1473,6 +1579,7 @@ def run_simulation(
                 "real_growth": round(st.value("JPN", "gdp_real_growth") * 100, 2),
                 "capital_tn": round(tracker["capital_stock"] / 1000.0, 1),
                 "kanto_share": round(100.0 * tracker["region_pop"]["kanto"] / max(1.0, st.value("JPN", "pop_total")), 1),
+                "government": "+".join(org.governing),
                 "local_stress": round(_local_stress * 100, 2),
                 "deficit_p90": (round(float(st.persons_summary["economic_security_deficit_p10_p50_p90"][2]), 3) if getattr(st, "persons_summary", None) else None),
                 "debt_gdp": round(st.value("JPN", "debt_to_gdp") * 100, 1),
