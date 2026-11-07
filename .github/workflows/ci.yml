@@ -1,0 +1,37 @@
+name: Sandvox Determinism & Verification Suite
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install NumPy
+        run: python -m pip install --upgrade pip numpy
+
+      - name: Run R6 Core Determinism Linter
+        run: python3 py/tests/test_lint_core.py
+
+      - name: Run IEEE-754 qNaN Bit-Pattern Verification
+        run: python3 py/tests/test_qnan.py
+
+      - name: Run 15-Month Cohort Aging & Residual Verification
+        run: python3 py/tests/test_age_d.py
+
+      - name: Run Country Frame, D477 Seal, & Oracle Parity Suite
+        run: python3 py/tests/test_country.py
+
+      - name: Run Endogenous Policy Simulation CLI Suite (v5.0)
+        run: python3 py/tests/test_simulation_cli.py

@@ -106,9 +106,16 @@ def main():
     moved = [dict(r) for r in rows]
     moved[0]["published"] = "2025-01-02"
     late2, _ = country.seal_check(j, moved)
-    k.check(not late and len(late2) == 1, "F-seal %d SOURCES rows, none after the cut-off 2024-12-31 (CHECK ONLY excepted); a row moved to "
-            "2025-01-02 is caught (%d)" % (len(rows), len(late2)))
-    print("info F-seal undated rows (no ISO date in published): %d of %d" % (len(undated), len(rows)))
+    undated_probe = [dict(rows[0], published="", source="", label="S", action="")]
+    _, undated2 = country.seal_check(j, undated_probe)
+    laws_fy24 = json.load(open(os.path.join(ROOT, "data", "modern", "polity", "jpn_laws.json"), encoding="utf-8"))["laws"]["budget_fy2024"]["lines_bn_jpy"]
+    fy24_sum = sum(float(v) for k_l, v in laws_fy24.items() if k_l != "total")
+    fy24_ok = abs(fy24_sum - float(laws_fy24["total"])) < 1e-6
+    k.check(not late and not undated and len(late2) == 1 and len(undated2) == 1 and fy24_ok,
+            "F-seal %d SOURCES rows, none after the cut-off 2024-12-31 (CHECK ONLY excepted) and 0 unexcused undated rows; "
+            "a row moved to 2025-01-02 (%d) or stripped of its date (%d) is caught; budget_fy2024 lines sum to %.1f bn JPY" % (
+                len(rows), len(late2), len(undated2), fy24_sum))
+    print("info F-seal unexcused undated rows (no ISO date and not THEORY/DECLARED): %d of %d" % (len(undated), len(rows)))
     bypass = country.Country(dict(json.load(open(os.path.join(ROOT, "data", "modern", "stub", "country.json"), encoding="utf-8")), id="ZZZ",
                                   name_en="bypass"))
     bypass.files = dict(bypass.files, status="res://data/modern/checks.json")

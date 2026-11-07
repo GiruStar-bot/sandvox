@@ -61,10 +61,11 @@ def load(cid="JPN"):
         c = Country(m)
         for f in c.files.values():
             refuse_sealed(f, c.id)
-        late, _ = seal_check(c, sources_of(c))
-        if late:
-            raise ValueError("country %s: %d SOURCES rows of its files are dated after its cut-off %s, e.g. %s %s" % (
-                c.id, len(late), c.cutoff, late[0].get("file", ""), late[0].get("path", "")))
+        late, undated = seal_check(c, sources_of(c))
+        if late or undated:
+            bad = late[0] if late else undated[0]
+            raise ValueError("country %s: %d late and %d unexcused undated SOURCES rows of its files (cut-off %s), e.g. %s %s" % (
+                c.id, len(late), len(undated), c.cutoff, bad.get("file", ""), bad.get("path", "")))
         _cache[cid] = c
     return _cache[cid]
 
@@ -99,19 +100,34 @@ def sources_of(c):
 
 
 def first_date(text):
-    # The edition a SOURCES row used: the first ISO date (YYYY-MM or YYYY-MM-DD) in its published text, by the inventory's convention
-    # (later dates there are re-estimates or captures named beside it). Why not the latest date: the text names editions not used
-    m = re.search(r"(20\d\d)-(\d\d)(?:-(\d\d))?", text)
-    return None if m is None else "%s-%s-%s" % (m.group(1), m.group(2), m.group(3) or "01")
+    # The edition a SOURCES row used: the first ISO date (YYYY-MM or YYYY-MM-DD, 18xx-20xx) or standalone year (YYYY) in its published text
+    m = re.search(r"((?:18|19|20)\d\d)-(\d\d)(?:-(\d\d))?", text)
+    if m is not None:
+        return "%s-%s-%s" % (m.group(1), m.group(2), m.group(3) or "01")
+    m_y = re.search(r"\b((?:18|19|20)\d\d)\b", text)
+    return None if m_y is None else "%s-12-31" % m_y.group(1)
+
+
+def is_declared_or_derived(r):
+    lbl = r.get("label", "").strip()
+    act = r.get("action", "").strip()
+    if "(DECLARED)" in act or "THEORY" in lbl.upper() or "DECLARED" in lbl.upper():
+        return True
+    if lbl.startswith("T") or lbl.startswith("D") or "D from" in lbl or "§12.5 F6" in lbl:
+        return True
+    return False
 
 
 def seal_check(c, rows):
-    # F-seal (FRAME_PLAN §2): the rows whose edition is after the country's cut-off and not labelled CHECK, and the undated rows
+    # F-seal (FRAME_PLAN §2): the rows whose edition is after the country's cut-off and not labelled CHECK, and the unexcused undated rows
     late, undated = [], []
     for r in rows:
         d = first_date(r.get("published", ""))
+        if d is None and not is_declared_or_derived(r):
+            d = first_date(r.get("source", ""))
         if d is None:
-            undated.append(r)
+            if not is_declared_or_derived(r):
+                undated.append(r)
         elif d > c.cutoff and "CHECK" not in (r.get("label", "") + r.get("action", "")).upper():
             late.append(r)
     return late, undated

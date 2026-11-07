@@ -522,6 +522,9 @@ def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_foo
     iv["new_bond_issuance"] = max(0.0, iv["gov_expenditure_general"] - iv["gov_revenue_general"])
     bond_dep = iv["new_bond_issuance"] / max(1.0, iv["gov_expenditure_general"])
     tracker["last_bond_dep"] = bond_dep
+    tracker["last_ds_redemption"] = ds_redemption
+    tracker["last_ds_interest"] = ds_interest
+    tracker["last_primary_deficit"] = (iv["gov_expenditure_general"] - ds_line) - iv["gov_revenue_general"]
     iv["debt_to_gdp"] = debt_to_gdp_now
     return bond_dep, iv["share_75plus"]
 
@@ -873,6 +876,12 @@ def run_simulation(
         "init_debt": st.value("JPN", "gov_debt_total"),
         "init_debt_gdp": st.value("JPN", "debt_to_gdp"),
         "last_bond_dep": st.value("JPN", "new_bond_issuance") / max(1.0, st.value("JPN", "gov_expenditure_general")),
+        "last_ds_redemption": b_decomp["budget_debt_redemption_0"],
+        "last_ds_interest": b_decomp["budget_debt_interest_0"],
+        "last_primary_deficit": (
+            (st.value("JPN", "gov_expenditure_general") - b_decomp["budget_debt_service"])
+            - st.value("JPN", "gov_revenue_general")
+        ),
         "init_def": st.value("JPN", "defence_budget"),
         "init_ca": st.lever_value["JPN"]["child_allowance"],
         "init_pi": st.lever_value["JPN"]["public_investment"],
@@ -901,6 +910,7 @@ def run_simulation(
     cum_deaths_i = 0
     cum_mig_i = 0
     prev_pop_int = init_pop
+    cum_sfc_debt_delta = 0.0
 
     year_notes = []
     total_days = years * 365
@@ -908,8 +918,12 @@ def run_simulation(
 
     for day in range(1, total_days + 1):
         logged_before = len(st.lever_log)
-        # Status._step_cohort() runs before Status._apply_due() inside st.step(), so record today's active net_migration before st.step()
+        # Status._step_cohort() and Status._step_identities() run before Status._apply_due() inside st.step(),
+        # so record today's active net_migration and exact SFC fiscal deficit (primary_deficit + debt_redemption + debt_interest) before st.step()
         cum_mig_f += st.value("JPN", "net_migration") / 365.0
+        cum_sfc_debt_delta += (
+            tracker["last_primary_deficit"] + tracker["last_ds_redemption"] + tracker["last_ds_interest"]
+        ) / 365.0
 
         # Daily step in Status (cohort births, deaths, migration into ages 20-39, fiscal debt accumulation, lever due dates)
         st.step()
@@ -968,10 +982,29 @@ def run_simulation(
                 replenish_count += 1
                 year_notes.append(f"Replenish(gen={seed_gen},Neff={neff_ratio:.2f}->1.00)")
 
-            # 4. Persons labour supply -> EconMonth (Labour + CropFarming + FoodMfg + TradingHouse + Bank)
+            # 4. Persons labour supply & household consumption demand -> EconMonth (Labour + CropFarming + FoodMfg + TradingHouse + Bank)
             psup = ps.supply()
             econ.labour.receive(float(psup["search_share"]), float(psup["wage_demand_share"]), psup["scales"])
             econ.step()
+
+            # Close the economy-wide (non-food 98.3% employment share, M002 G9) Okun gap from per-capita household consumption & GDP growth
+            hh_cons_scale = float(psup["scales"].get("food_products", 1.0))
+            pop_ratio_now = st.value("JPN", "pop_total") / max(1.0, tracker["init_pop"])
+            hh_cons_per_cap = hh_cons_scale / max(0.15, pop_ratio_now)
+            fiscal_crisis = (bond_dep > jp["crisis_bond_dep_threshold"])
+            food_emp_share = float(econ.labour.spec["sector_employment_share"]["food_manufacturing"]["value"])
+            non_food_share = max(0.0, 1.0 - food_emp_share)
+            macro_cap_gap = non_food_share * (
+                0.25 * (hh_cons_per_cap - 1.0)
+                + 1.2 * (st.value("JPN", "gdp_real_growth") - tracker["init_real_growth"])
+                - (0.015 if fiscal_crisis else 0.0)
+            )
+            rho_u = econ.labour._p("rho")
+            okun_k = econ.labour._p("okun_k")
+            econ.labour.u = max(
+                econ.labour._p("u_min"),
+                min(econ.labour._p("u_max"), econ.labour.u - (1.0 - rho_u) * okun_k * macro_cap_gap),
+            )
 
             # 5. Update Status labour indicators from EconMonth
             st.ind["JPN"]["unemployment_rate"] = econ.labour.u
@@ -982,7 +1015,6 @@ def run_simulation(
             # 6. Endogenous Inflation & Fiscal Risk Premium
             econ_infl = float(econ.world.env.get("inflation", 0.02))
             food_yoy = float(econ.world.env.get("food_price_yoy", 0.0))
-            fiscal_crisis = (bond_dep > jp["crisis_bond_dep_threshold"])
             if fiscal_crisis:
                 econ_infl += jp["crisis_infl_premium"]
                 food_yoy += jp["crisis_food_premium"]
@@ -1109,7 +1141,7 @@ def run_simulation(
                             pending_platform.pop(p_lid, None)
                             year_notes.append(f"Enacted {p_lid}")
 
-        # End of Year Recording (every 365 days) with Exact Error-Diffusion Flow Quantization
+        # End of Year Recording (every 365 days) with Exact Error-Diffusion Flow Quantization & SFC Debt Verification
         if day % 365 == 0:
             yr = 2025 + (day // 365) - 1
             gov_seats_now = int(st.value("JPN", "lower_house_seats_governing"))
@@ -1126,6 +1158,9 @@ def run_simulation(
             cum_mig_i += m_int
             prev_pop_int = pop_now
 
+            actual_debt_delta = st.value("JPN", "gov_debt_total") - tracker["init_debt"]
+            sfc_debt_residual = actual_debt_delta - cum_sfc_debt_delta
+
             history.append({
                 "year": yr,
                 "population": pop_now,
@@ -1138,6 +1173,11 @@ def run_simulation(
                 "jgb_10y": round(st.value("JPN", "jgb_10y") * 100, 2),
                 "debt_gdp": round(st.value("JPN", "debt_to_gdp") * 100, 1),
                 "bond_dep": round(bond_dep * 100, 1),
+                "unemp_rate": round(econ.labour.u * 100, 3),
+                "primary_deficit_bn": round(tracker["last_primary_deficit"], 2),
+                "debt_interest_bn": round(tracker["last_ds_interest"], 2),
+                "debt_redemption_bn": round(tracker["last_ds_redemption"], 2),
+                "sfc_debt_residual_bn": sfc_debt_residual,
                 "discontent": round(discontent, 3),
                 "approval": round(st.value("JPN", "cabinet_approval") * 100, 1),
                 "gov_seats": gov_seats_now,

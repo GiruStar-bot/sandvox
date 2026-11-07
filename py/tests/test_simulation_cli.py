@@ -73,8 +73,8 @@ def main():
         + b_dec["budget_core_ops"]
     )
     ds_split_sum = b_dec["budget_debt_redemption_0"] + b_dec["budget_debt_interest_0"]
-    def_excluded = abs(b_dec["budget_named_non_def_ops"] - (6082.8 + 5405.4 + 5619.3 + 1000.0)) < 1e-6
-    contingency_exact = abs(b_dec["budget_contingency_other"] - 4000.0) < 1e-6
+    def_excluded = abs(b_dec["budget_named_non_def_ops"] - (6082.8 + 5405.4 + 9619.3 + 1000.0)) < 1e-6
+    contingency_exact = abs(b_dec["budget_contingency_other"] - 0.0) < 1e-6
     k.check(
         abs(total_sum - 112571.7) < 1e-6
         and abs(ds_split_sum - 27009.0) < 1e-6
@@ -147,6 +147,25 @@ def main():
     k.check(
         alternated and yr_2028["gov_seats"] > 0,
         f"CLI-polity constitutional PM alternation (Art. 67) executed in 2028 election: governing={yr_2028['governing']} ({yr_2028['gov_seats']}/465)",
+    )
+
+    # 7. CLI-sfc: Stock-Flow-Consistent debt accumulation, actuarial mortality identity, and Persons->EconMonth labour response
+    from core import detmath as DM
+    from tiers.start import create
+    from world.status import Status
+
+    st_m = Status()
+    st_m.load(2024, ["JPN"])
+    p_m, _ = create.inputs_2025("JPN", seed=1)
+    max_qx_diff = max(
+        abs((1.0 - DM.exp(365.0 * DM.log(1.0 - st_m.hazard["JPN"][i]))) - p_m.qx[i])
+        for i in range(len(p_m.qx))
+    )
+    sfc_exact = all(abs(r["sfc_debt_residual_bn"]) < 1e-6 for r in h1) and all(abs(r["sfc_debt_residual_bn"]) < 1e-6 for r in h_pol)
+    labour_endogenous = (h1[0]["unemp_rate"] != h_pol[0]["unemp_rate"] or h1[-1]["unemp_rate"] != h_pol[-1]["unemp_rate"])
+    k.check(
+        max_qx_diff < 1e-12 and sfc_exact and labour_endogenous,
+        f"CLI-sfc exact Stock-Flow-Consistent debt accumulation (residual < 1e-6 bn), micro-macro mortality identity (max diff {max_qx_diff:.2e}), and endogenous labour market response",
     )
 
     k.finish()
