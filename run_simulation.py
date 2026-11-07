@@ -429,6 +429,53 @@ def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_foo
     pension_emp_gain = max(0.0, (st.lever_value["JPN"]["pension_age"] - tracker["init_pension_age"]) * tracker["pension_k"])
     lf_ratio = (wp_15_64 + pension_emp_gain) / max(1.0, tracker["init_wp_15_64"])
 
+    # Long-run growth engine (axis I): potential growth from capital
+    # accumulation and TFP replaces the frozen initial print. Labour
+    # still enters through the lf_ratio scaling below. The public
+    # investment lever keeps its sourced first-year demand multiplier
+    # (the pi_boost window), and now also builds the capital stock;
+    # the semiconductor subsidy invests and lifts TFP via fab share.
+    if GROWTH_ENGINE:
+        _pi_delta = st.lever_value["JPN"]["public_investment"] - tracker["init_pi"]
+        _semi_delta = st.lever_value["JPN"]["semiconductor_subsidy"] - tracker["init_semi"]
+        # The capital stock is a real (constant-price) quantity: deflate
+        # the nominal investment flows by the cumulative price index, or
+        # inflation alone would fake capital deepening. The drift this
+        # feeds is per-worker productivity growth (the LF level scaling
+        # sits below), so the Solow term is capital deepening per
+        # worker: alpha * (g_K - g_L).
+        tracker["price_level"] *= (1.0 + econ_infl / 365.0)
+        _invest_real = (INVEST_SHARE * iv["gdp_nominal"] + _pi_delta + _semi_delta) / tracker["price_level"]
+        _g_k = _invest_real / max(1.0, tracker["capital_stock"]) - DEPRECIATION
+        tracker["capital_stock"] += (_invest_real - DEPRECIATION * tracker["capital_stock"]) / 365.0
+        # The labour term compares 30-day means a full year apart.
+        # This engine settles the year's working-age change in one
+        # annual step on the rollover day (measured: -0.53% on day
+        # 365, smooth within the year), so any shorter difference -
+        # daily or monthly - annualizes the step into a fictitious
+        # collapse; only the year-over-year comparison reads the true
+        # rate. In the first year the term is 0 (the ratio is smooth
+        # within the year and barely moves).
+        _win = tracker["lf_window"]
+        _win.append(lf_ratio)
+        if len(_win) > 395:
+            _win.pop(0)
+        if len(_win) >= 395:
+            _recent = sum(_win[-30:]) / 30.0
+            _past = sum(_win[-395:-365]) / 30.0
+            _g_l = _recent / max(1e-9, _past) - 1.0
+        else:
+            _g_l = 0.0
+        _g_l = max(-0.03, min(0.02, _g_l))
+        _tfp = TFP_BASE + FAB_TFP_COEF * (iv["fab_capacity_share"] - tracker["init_fab"])
+        _g_pot = max(-0.02, min(0.04, _tfp + CAPITAL_ALPHA * (_g_k - _g_l)))
+        tracker["tfp_growth"] = _tfp
+        tracker["potential_growth"] = _g_pot
+        _boost = 0.0
+        if tracker["pi_boost_until_day"] > st.day and _pi_delta > 0.0:
+            _boost = 1.1 * _pi_delta / max(1.0, iv["gdp_nominal"])
+        iv["gdp_real_growth"] = _g_pot + _boost
+
     # Nominal GDP accounting identity
     nom_drift_day = (iv["gdp_real_growth"] + econ_infl) / 365.0
     iv["gdp_nominal"] = tracker["last_gdp"] * (1.0 + nom_drift_day) * (lf_ratio / tracker["last_lf_ratio"])
@@ -663,6 +710,19 @@ FX_DIFF_SENS = 8.0         # yen appreciation (share) per unit of JPN-US rate-di
 # Distribution + panel constants (Roadmap P6), declared (T).
 REPLENISH_INTERVAL_YEARS = 10  # panel re-anchoring cadence (see the call site)
 DIST_STRESS_SLOPE = 0.15       # approval loss per unit of tail-deficit widening over its initial level
+
+# Long-run growth engine (Roadmap axis I), declared constants.
+# The legacy model froze real growth at the initial print (2023's
+# +1.7%, a single strong year) for every horizon. The engine below
+# replaces it with capital accumulation + TFP; GROWTH_ENGINE=False
+# restores the legacy path exactly (the ablation switch).
+GROWTH_ENGINE = True
+INVEST_SHARE = 0.25          # gross fixed capital formation share of GDP (SNA, rounded, S)
+CAPITAL_OUTPUT_RATIO = 3.3   # capital stock / GDP (Cabinet Office stock estimates, T)
+DEPRECIATION = 0.065         # per year (T: consumption of fixed capital ~21.5% of GDP / K/Y)
+CAPITAL_ALPHA = 0.35         # capital share in the growth account (T, standard)
+TFP_BASE = 0.004             # baseline TFP growth (T: Japan's 2010s-20s experience)
+FAB_TFP_COEF = 0.02          # TFP growth bonus per unit of fab-capacity share gained (T)
 
 
 class ShockEngine:
@@ -1073,6 +1133,11 @@ def run_simulation(
         "init_def": st.value("JPN", "defence_budget"),
         "init_ca": st.lever_value["JPN"]["child_allowance"],
         "init_pi": st.lever_value["JPN"]["public_investment"],
+        "capital_stock": CAPITAL_OUTPUT_RATIO * st.value("JPN", "gdp_nominal"),
+        "price_level": 1.0,
+        "lf_window": [],
+        "init_fab": st.value("JPN", "fab_capacity_share"),
+        "init_semi": st.lever_value["JPN"]["semiconductor_subsidy"],
         "init_ed": st.lever_value["JPN"]["education_budget"],
         "init_oda": st.lever_value["JPN"]["oda_budget"],
         "us_tariff_prev": 0.0,
@@ -1321,6 +1386,8 @@ def run_simulation(
                 "jgb_10y": round(st.value("JPN", "jgb_10y") * 100, 2),
                 "policy_rate": round(st.value("JPN", "policy_rate") * 100, 3),
                 "replenishments": replenish_fires,
+                "real_growth": round(st.value("JPN", "gdp_real_growth") * 100, 2),
+                "capital_tn": round(tracker["capital_stock"] / 1000.0, 1),
                 "deficit_p90": (round(float(st.persons_summary["economic_security_deficit_p10_p50_p90"][2]), 3) if getattr(st, "persons_summary", None) else None),
                 "debt_gdp": round(st.value("JPN", "debt_to_gdp") * 100, 1),
                 "bond_dep": round(bond_dep * 100, 1),
