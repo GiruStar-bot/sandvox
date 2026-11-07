@@ -17,10 +17,19 @@
 # election majority can enact. Nothing about the engine changes when no
 # policy is attached: policy_fn=None reproduces the CLI exactly.
 #
-# Reward is deliberately NOT defined here. What counts as a good outcome
-# (population, fiscal sustainability, welfare, a composite) is a values
-# decision for the environment's owner; the episode record carries the full
-# trajectory so any reward function can be computed from it afterwards.
+# There is NO reward here, by design (user decision 2026-11-07,
+# ROADMAP_V3): the environment never scores the policy. The design is
+# examination-style - a third party sets a challenge, the examinee
+# answers with a policy proposal, and the third party evaluates the
+# answer externally. The environment's duties are presenting the
+# situation, accepting proposals, and simulating their consequences
+# faithfully and fast; the input/output formats for that loop live in
+# py/eval_interface.py. Keeping every value judgement outside the
+# environment also removes the internal-reward Goodhart channel by
+# construction.
+#
+# feedback_params= forwards parameter overrides to the engine (the
+# domain-randomization surface used by py/episode_runner.py).
 import contextlib
 import io
 import os
@@ -67,7 +76,7 @@ class SandvoxEnv:
 
     def __init__(self, years=25, scenario="baseline", full_mode=False, n_per=2,
                  coalition_pass=False, params_path=None, usa_tariff=None, shocks=None,
-                 chn_tariff=None, eu_tariff=None):
+                 chn_tariff=None, eu_tariff=None, feedback_params=None):
         self.years = years
         self.scenario = scenario
         self.full_mode = full_mode
@@ -78,6 +87,7 @@ class SandvoxEnv:
         self.chn_tariff = chn_tariff
         self.eu_tariff = eu_tariff
         self.shocks = shocks
+        self.feedback_params = feedback_params
 
     def run(self, policy, quiet=True):
         """Run one episode. Returns {"history", "steps", "final"} where
@@ -95,6 +105,7 @@ class SandvoxEnv:
             chn_tariff=self.chn_tariff,
             eu_tariff=self.eu_tariff,
             shocks=self.shocks,
+            feedback_params=self.feedback_params,
             policy_fn=bridge,
         )
         if quiet:
