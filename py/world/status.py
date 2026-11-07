@@ -161,18 +161,34 @@ class Status:
             kp = DIR + k.lower() + "/links_%d.json" % year
             self.links[k] = CANON.load_json(kp) if exists(kp) else {}
             self._init_entity(k)
-        # The sourced JPN customs surface lists EU member states
-        # individually, so the bloc lane on the JPN side is created
-        # from the EU profile's mirror lane (the CLI used to do this
-        # alone, leaving standalone Status runs without an EU lane;
-        # independent review D-4). Guarded, so the CLI's own creation
-        # is now a no-op.
-        if "JPN" in self.entities and "EU" in self.entities:
-            _jp_lanes = self.aux.get("JPN", {}).get("trade_by_partner", {})
-            _eu_mirror = self.aux.get("EU", {}).get("trade_by_partner", {}).get("JPN")
-            if _eu_mirror is not None and "EU" not in _jp_lanes:
-                _jp_lanes["EU"] = {"exports_bn_jpy": float(_eu_mirror["imports_bn_jpy"]),
-                                   "imports_bn_jpy": float(_eu_mirror["exports_bn_jpy"])}
+        # Complete one-sided trade lanes from the partner's mirror:
+        # a profile may declare a lane for a partner whose own
+        # profile omits the return lane (the sourced JPN customs
+        # surface lists EU member states individually, so the bloc
+        # lane exists only in the EU profile's mirror; the CLI used
+        # to create it alone, leaving standalone Status runs without
+        # it - independent review D-4). A home side counts as already
+        # carrying the lane when a lane keyed by the partner code
+        # exists, or when some lane's values already mirror the
+        # partner's lane for the home country (profiles key lanes by
+        # code or by name - "CHINA" vs "CHN" - the mirror values are
+        # the identity that tells them apart). Guarded per pair, so
+        # the CLI's own creation is now a no-op.
+        for _home in list(self.entities):
+            _lanes = self.aux.get(_home, {}).get("trade_by_partner", {})
+            for _partner in list(self.entities):
+                if _partner == _home or _partner in _lanes:
+                    continue
+                _mirror = self.aux.get(_partner, {}).get("trade_by_partner", {}).get(_home)
+                if type(_mirror) is not dict:
+                    continue
+                _represented = any(
+                    float(_l.get("exports_bn_jpy", -1.0)) == float(_mirror.get("imports_bn_jpy", -2.0))
+                    and float(_l.get("imports_bn_jpy", -1.0)) == float(_mirror.get("exports_bn_jpy", -2.0))
+                    for _l in _lanes.values() if type(_l) is dict)
+                if not _represented:
+                    _lanes[_partner] = {"exports_bn_jpy": float(_mirror["imports_bn_jpy"]),
+                                        "imports_bn_jpy": float(_mirror["exports_bn_jpy"])}
         self.day = 0
         return ""
 
@@ -549,9 +565,15 @@ class Status:
                 # export impulse so the CLI can transmit it to GDP the
                 # same way the tariff path does - before this fix the
                 # licence moved trade but GDP/tax/Debt-GDP never moved.
-                _cp = self.aux.get("CHN", {}).get("trade_by_partner", {}).get("JPN")
-                if type(_cp) is dict and "imports_bn_jpy" in _cp:
-                    _cp["imports_bn_jpy"] += d
+                _pre = float(lane["exports_bn_jpy"]) - d
+                for _e in self.entities:
+                    if _e == k:
+                        continue
+                    _cp = self.aux.get(_e, {}).get("trade_by_partner", {}).get(k)
+                    if type(_cp) is dict and "imports_bn_jpy" in _cp \
+                            and abs(float(_cp["imports_bn_jpy"]) - _pre) < 1e-6:
+                        _cp["imports_bn_jpy"] += d
+                        break
                 _aux = self.aux.setdefault(k, {})
                 _aux["pending_gdp_delta_bn"] = float(_aux.get("pending_gdp_delta_bn", 0.0)) + d
 
