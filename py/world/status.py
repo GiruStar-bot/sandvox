@@ -21,6 +21,25 @@ YEAR_DAYS = 365.0
 NUCLEAR_SHARE_PER_REACTOR = 0.006  # one ~1 GW reactor at ~70% CF ~ 6 TWh/yr of ~1,000 TWh
 FAB_SHARE_PER_BN = 2.0e-6          # 1 tn JPY/yr of sustained fab support ~ +0.2 pt of world share
 REN_SOURCES = ("solar", "wind", "hydro", "bioenergy", "other_renewable")
+# Declared (T) operational emission intensities, kg CO2 per kWh generated
+# (IPCC-consistent medians for the fuel technologies), and electricity's
+# share of primary energy supply, for the derived energy indicators.
+EMISSION_INTENSITY = {"coal": 0.90, "gas": 0.45, "oil": 0.70}
+ELEC_PRIMARY_SHARE = 0.45
+
+
+def _mix_emission_factor(mix):
+    e = 0.0
+    for s, inten in EMISSION_INTENSITY.items():
+        e += float(mix.get(s, 0.0)) * inten
+    return e
+
+
+def _mix_domestic(mix):
+    d = float(mix.get("nuclear", 0.0))
+    for s in REN_SOURCES:
+        d += float(mix.get(s, 0.0))
+    return d
 FOSSIL_SOURCES = ("coal", "gas", "oil")
 
 
@@ -89,6 +108,7 @@ class Status:
         self.ind = {}
         self.ind0 = {}
         self.aux = {}
+        self.derived = {}
         self.trend = {}
         self.cohort = {}
         self.qx = {}
@@ -204,6 +224,15 @@ class Status:
             for age in range(15, 50):
                 f[age] = tfr * w[age] / sw
         self.asfr[k] = f
+        mix0 = self.aux.get(k, {}).get("electricity_by_source")
+        if mix0 is not None and "ghg_emissions" in iv and "electricity_generation_twh" in iv:
+            elec_ghg0 = float(iv["electricity_generation_twh"]) * _mix_emission_factor(mix0)
+            self.derived[k] = {
+                "ghg_non_elec": float(iv["ghg_emissions"]) - elec_ghg0,
+                "ghg_sink": float(iv["ghg_emissions"]) - float(iv.get("ghg_net", iv["ghg_emissions"])),
+                "dom0": _mix_domestic(mix0),
+                "ss0": float(iv.get("energy_self_sufficiency", 0.0)),
+            }
         self.lever_value[k] = {}
         self.lever_due[k] = {}
         for lid in self.levers[k].get("levers", {}):
@@ -321,6 +350,17 @@ class Status:
             iv["defence_share_gdp"] = iv["defence_budget"] / iv["gdp_nominal"]
         if "physicians" in iv and "pop_total" in iv:
             iv["physicians_per_100k"] = iv["physicians"] / iv["pop_total"] * 100000.0
+        d = self.derived.get(k)
+        if d is not None:
+            mix = self.aux.get(k, {}).get("electricity_by_source")
+            if mix is not None and "electricity_generation_twh" in iv:
+                ghg = d["ghg_non_elec"] + float(iv["electricity_generation_twh"]) * _mix_emission_factor(mix)
+                iv["ghg_emissions"] = ghg
+                if "ghg_net" in iv:
+                    iv["ghg_net"] = ghg - d["ghg_sink"]
+                if "energy_self_sufficiency" in iv:
+                    iv["energy_self_sufficiency"] = gd.minf(1.0, gd.maxf(0.0,
+                        d["ss0"] + ELEC_PRIMARY_SHARE * (_mix_domestic(mix) - d["dom0"])))
 
     def _step_held(self, k):
         iv = self.ind[k]
@@ -435,6 +475,11 @@ class Status:
                 iv[target] = v * iv["gdp_nominal"]
                 if lg is not None and key in lg.sh:
                     lg.start(key, iv[target])
+        elif form == "share_of_spending":
+            y = iv[target] * kk * dv
+            iv[target] += y
+            if lg is not None:
+                lg.add(key, y, iv[target])
         elif form == "multiplier_pt":
             # k is declared in percentage points per unit of lever change.
             y = kk * dv / 100.0
@@ -456,7 +501,7 @@ class Status:
                 _add_nuclear(mix, dv * NUCLEAR_SHARE_PER_REACTOR)
 
     def to_dict(self):
-        st = {"day": self.day, "ind": {}, "cohort": {}, "lever_value": {}, "lever_due": {}, "lever_log": deep(self.lever_log), "aux": deep(self.aux)}
+        st = {"day": self.day, "ind": {}, "cohort": {}, "lever_value": {}, "lever_due": {}, "lever_log": deep(self.lever_log), "aux": deep(self.aux), "derived": deep(self.derived)}
         for k in self.entities:
             iv = self.ind[k]
             names = PStr(sorted(iv.keys()))
@@ -482,3 +527,4 @@ class Status:
             self.lever_due[k] = deep(st["lever_due"][k])
         self.lever_log = deep(st["lever_log"])
         self.aux = deep(st.get("aux", {}))
+        self.derived = deep(st.get("derived", {}))
