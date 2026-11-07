@@ -34,7 +34,10 @@ secrets/
 
 # 走らせた結果の置き場（T023）。実行の記録は SANDVOX_RUNS_DIR（tools/run/runs_dir.gd）に出す。
 # 既にコミット済みの outputs/ の下は追跡されたまま（.gitignore は追跡済みに効かない）。新しい物は git add -f で明示して足す
-/outputs/
+/outputs/*
+# 例外: Python 移植の自己オラクル（tools/py/make_oracle.py が生成、py/tests/test_country.py が読む）は追跡する
+!/outputs/py_oracle/
+!/outputs/py_oracle/**
 transcripts/
 *.transcript.jsonl
 frames.bin

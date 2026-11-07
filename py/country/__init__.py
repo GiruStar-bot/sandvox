@@ -106,12 +106,17 @@ def first_date(text):
 
 
 def seal_check(c, rows):
-    # F-seal (FRAME_PLAN §2): the rows whose edition is after the country's cut-off and not labelled CHECK, and the undated rows
+    # F-seal (FRAME_PLAN §2): the rows whose edition is after the country's cut-off and not excepted, and the undated rows.
+    # Two exception classes, both declared in the row's own label/action so the inventory stays self-describing:
+    # CHECK - the source is consulted only to check, never an input; EXCEPTION - a declared post-cutoff publication
+    # of pre-cutoff reference data that is not an input to the sealed comparison (the counterpart profiles, review
+    # D-8). Anything else after the cut-off is late.
     late, undated = [], []
     for r in rows:
         d = first_date(r.get("published", ""))
         if d is None:
             undated.append(r)
-        elif d > c.cutoff and "CHECK" not in (r.get("label", "") + r.get("action", "")).upper():
+        elif d > c.cutoff and "CHECK" not in (r.get("label", "") + r.get("action", "")).upper() \
+                and "EXCEPTION" not in (r.get("label", "") + r.get("action", "")).upper():
             late.append(r)
     return late, undated
