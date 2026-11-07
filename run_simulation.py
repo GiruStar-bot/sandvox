@@ -463,6 +463,7 @@ def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_foo
         + jp["jgb_debt_gdp_slope"] * max(0.0, debt_to_gdp_now - tracker["init_debt_gdp"])
         + jp["jgb_bond_dep_slope"] * max(0.0, tracker["last_bond_dep"] - jp["jgb_bond_dep_threshold"])
     )
+    target_jgb += JGB_POLICY_PASS * (iv["policy_rate"] - tracker["init_policy_rate"])
     if tracker["last_bond_dep"] > jp["crisis_bond_dep_threshold"]:
         target_jgb += jp["jgb_crisis_slope"] * (tracker["last_bond_dep"] - jp["crisis_bond_dep_threshold"])
     target_jgb = min(jp["jgb_max"], max(jp["jgb_min"], target_jgb))
@@ -648,6 +649,16 @@ ENERGY_CPI_PASS_PER_PCT = 0.00015  # +50% energy import prices ~ +0.75pt CPI whi
 ORIGIN_SHARES = {"CHN": 0.229, "VNM": 0.167, "KOR": 0.114, "PHL": 0.090,
                  "NPL": 0.065, "BRA": 0.059, "IDN": 0.042, "OTHER": 0.234}
 SSW_ORIGINS = ("VNM", "PHL", "IDN", "NPL")
+
+
+# Monetary transmission constants (Roadmap P2.5, axis H), all declared (T).
+# The central bank itself already exists: EconMonth's Bank follows a
+# published path, then a Taylor-type rule (py/econ/actors.py). What was
+# missing is every bridge from its rate to the rest of the model.
+JGB_POLICY_PASS = 0.6      # 10y yield shift per unit of policy-rate shift (expectations + term premium)
+MONETARY_CPI_PASS = 0.25   # annual CPI trim per unit of policy rate held above neutral
+NEUTRAL_POLICY_RATE = 0.01  # nominal neutral: 2% inflation target less ~1% real neutral, rounded
+FX_DIFF_SENS = 8.0         # yen appreciation (share) per unit of JPN-US rate-differential widening
 
 
 class ShockEngine:
@@ -1026,6 +1037,9 @@ def run_simulation(
         "init_health": st.value("JPN", "health_expenditure"),
         "init_gov_cons": st.value("JPN", "gov_consumption"),
         "init_jgb": st.value("JPN", "jgb_10y"),
+        "init_policy_rate": st.value("JPN", "policy_rate"),
+        "fx_prev_jpn_rate": st.value("JPN", "policy_rate"),
+        "fx_prev_usa_rate": (st.value("USA", "policy_rate") if st.has("USA") else 0.045),
         "eff_jgb_rate": st.value("JPN", "jgb_10y"),
         "init_debt": st.value("JPN", "gov_debt_total"),
         "init_debt_gdp": st.value("JPN", "debt_to_gdp"),
@@ -1120,6 +1134,20 @@ def run_simulation(
             econ.labour.receive(float(psup["search_share"]), float(psup["wage_demand_share"]), psup["scales"])
             econ.step()
 
+            # 4b. Central bank (axis H): publish the EconMonth Bank's
+            # policy rate (path, then its Taylor-type rule) as the JPN
+            # policy_rate indicator, and let the yen respond to the
+            # JPN-US differential. The rate was previously invisible:
+            # it moved inside EconMonth and reached nothing else.
+            if econ.bank is not None:
+                st.ind["JPN"]["policy_rate"] = float(econ.bank.policy_rate)
+            _usa_rate = float(st.ind["USA"]["policy_rate"]) if st.has("USA") else 0.045
+            _d_diff = (st.ind["JPN"]["policy_rate"] - tracker["fx_prev_jpn_rate"]) - (_usa_rate - tracker["fx_prev_usa_rate"])
+            if _d_diff != 0.0:
+                st.ind["JPN"]["fx_jpy_usd"] *= (1.0 - FX_DIFF_SENS * _d_diff)
+                tracker["fx_prev_jpn_rate"] = st.ind["JPN"]["policy_rate"]
+                tracker["fx_prev_usa_rate"] = _usa_rate
+
             # 5. Update Status labour indicators from EconMonth
             st.ind["JPN"]["unemployment_rate"] = econ.labour.u
             lf = st.value("JPN", "employed") + st.value("JPN", "unemployed")
@@ -1133,6 +1161,9 @@ def run_simulation(
             if fiscal_crisis:
                 econ_infl += jp["crisis_infl_premium"]
                 food_yoy += jp["crisis_food_premium"]
+            # Monetary stance (axis H): a policy rate held above neutral
+            # trims the inflation the demographic/fiscal layer sees.
+            econ_infl += -MONETARY_CPI_PASS * (st.ind["JPN"]["policy_rate"] - NEUTRAL_POLICY_RATE)
             if "consumption_tax_rate" in applied_this_month:
                 tax_jump = st.lever_value["JPN"]["consumption_tax_rate"] - 0.10
                 econ_infl += max(0.0, tax_jump)
@@ -1235,6 +1266,7 @@ def run_simulation(
                 "share_65plus": round(st.value("JPN", "share_65plus") * 100, 1),
                 "share_75plus": round(share_75plus * 100, 1),
                 "jgb_10y": round(st.value("JPN", "jgb_10y") * 100, 2),
+                "policy_rate": round(st.value("JPN", "policy_rate") * 100, 3),
                 "debt_gdp": round(st.value("JPN", "debt_to_gdp") * 100, 1),
                 "bond_dep": round(bond_dep * 100, 1),
                 "discontent": round(discontent, 3),
