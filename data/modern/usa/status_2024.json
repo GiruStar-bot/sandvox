@@ -1,0 +1,612 @@
+{
+ "entity": "USA",
+ "year": 2024,
+ "note": "S3 counterpart profile (Roadmap P2): a deliberately small macro core for the bilateral lane with Japan - population/demography for the engine's cohort step, macro prices for context, and the mirrored customs trade lane. The cohort age distribution is a declared smooth model (T) scaled to the sourced Census total; it gives the counterpart demographic presence, it is not a demographic estimate.",
+ "indicators": {
+  "pop_total": {
+   "value": 340110988,
+   "source": "U.S. Census Bureau, national population estimate for Jan 1, 2025 (Vintage 2024 release, published 2024-12-19)",
+   "label": "S",
+   "unit": "persons",
+   "trend": 0.0
+  },
+  "births": {
+   "value": 3630000,
+   "source": "CDC/NCHS, U.S. births 2024 (provisional, rounded)",
+   "label": "S (rounded)",
+   "unit": "persons/yr",
+   "trend": 0.0
+  },
+  "deaths": {
+   "value": 3090000,
+   "source": "CDC/NCHS, U.S. deaths 2024 (provisional, rounded)",
+   "label": "S (rounded)",
+   "unit": "persons/yr",
+   "trend": 0.0
+  },
+  "tfr": {
+   "value": 1.62,
+   "source": "CDC/NCHS, U.S. total fertility rate 2024 (provisional)",
+   "label": "S (rounded)",
+   "trend": 0.0
+  },
+  "net_migration": {
+   "value": 2800000,
+   "source": "U.S. Census Bureau Vintage 2024: net international migration 2023-07..2024-07 ~2.8M (rounded)",
+   "label": "S (rounded)",
+   "unit": "persons/yr",
+   "trend": 0.0
+  },
+  "gdp_nominal_bn_usd": {
+   "value": 29774.0,
+   "source": "BEA, U.S. nominal GDP 2024 (advance/annual, published 2025-01-30)",
+   "label": "S",
+   "unit": "bn USD",
+   "trend": 0.0
+  },
+  "gdp_real_growth": {
+   "value": 0.028,
+   "source": "BEA, U.S. real GDP growth 2024 +2.8%",
+   "label": "S",
+   "trend": 0.0
+  },
+  "cpi_inflation": {
+   "value": 0.029,
+   "source": "BLS, CPI-U U.S. city average, 2024 annual +2.9%",
+   "label": "S",
+   "trend": 0.0
+  },
+  "policy_rate": {
+   "value": 0.045,
+   "source": "Federal Reserve, federal funds target range upper bound after the 2024-12-18 FOMC (4.25-4.50%)",
+   "label": "S",
+   "trend": 0.0
+  },
+  "unemployment_rate": {
+   "value": 0.041,
+   "source": "BLS, U.S. unemployment rate 2024-12 (4.1%)",
+   "label": "S",
+   "trend": 0.0
+  },
+  "fx_jpy_usd": {
+   "value": 151.61,
+   "source": "mirror of the JPN profile's fx_jpy_usd (same pair, same vintage)",
+   "label": "S",
+   "trend": 0.0
+  },
+  "forces_in_japan": {
+   "value": 54000,
+   "source": "USFJ public figure ~54,000 (mirror of the JPN profile's us_forces_in_japan)",
+   "label": "S (rounded)",
+   "trend": 0.0
+  },
+  "host_nation_support_from_jpn": {
+   "value": 212.4,
+   "source": "mirror of the JPN profile's host_nation_support (MOD FY2024 alliance resilience budget), bn JPY",
+   "label": "S",
+   "unit": "bn JPY",
+   "trend": 0.0
+  },
+  "trade_by_partner": {
+   "value": {
+    "JPN": {
+     "exports_bn_jpy": 11555.4,
+     "imports_bn_jpy": 20260.2
+    }
+   },
+   "source": "mirror of the JPN profile's trade_by_partner USA lane (MOF customs CY2023, via jpn/links_2024.json): U.S. exports to Japan = Japan's imports from the U.S.; U.S. imports from Japan = Japan's exports to the U.S.",
+   "label": "S"
+  }
+ },
+ "cohort": {
+  "unit_persons": 1000,
+  "source": "T (declared model): smooth age distribution scaled to the Census total above; sex split 51.2% male at birth declining with age",
+  "ages": [
+   {
+    "age": 0,
+    "male": 2296,
+    "female": 2188
+   },
+   {
+    "age": 1,
+    "male": 2285,
+    "female": 2186
+   },
+   {
+    "age": 2,
+    "male": 2274,
+    "female": 2183
+   },
+   {
+    "age": 3,
+    "male": 2263,
+    "female": 2181
+   },
+   {
+    "age": 4,
+    "male": 2252,
+    "female": 2178
+   },
+   {
+    "age": 5,
+    "male": 2385,
+    "female": 2314
+   },
+   {
+    "age": 6,
+    "male": 2373,
+    "female": 2311
+   },
+   {
+    "age": 7,
+    "male": 2362,
+    "female": 2309
+   },
+   {
+    "age": 8,
+    "male": 2350,
+    "female": 2306
+   },
+   {
+    "age": 9,
+    "male": 2339,
+    "female": 2303
+   },
+   {
+    "age": 10,
+    "male": 2328,
+    "female": 2300
+   },
+   {
+    "age": 11,
+    "male": 2316,
+    "female": 2297
+   },
+   {
+    "age": 12,
+    "male": 2305,
+    "female": 2294
+   },
+   {
+    "age": 13,
+    "male": 2294,
+    "female": 2291
+   },
+   {
+    "age": 14,
+    "male": 2282,
+    "female": 2288
+   },
+   {
+    "age": 15,
+    "male": 2271,
+    "female": 2285
+   },
+   {
+    "age": 16,
+    "male": 2260,
+    "female": 2282
+   },
+   {
+    "age": 17,
+    "male": 2249,
+    "female": 2279
+   },
+   {
+    "age": 18,
+    "male": 2238,
+    "female": 2275
+   },
+   {
+    "age": 19,
+    "male": 2226,
+    "female": 2272
+   },
+   {
+    "age": 20,
+    "male": 2215,
+    "female": 2269
+   },
+   {
+    "age": 21,
+    "male": 2204,
+    "female": 2266
+   },
+   {
+    "age": 22,
+    "male": 2193,
+    "female": 2263
+   },
+   {
+    "age": 23,
+    "male": 2182,
+    "female": 2259
+   },
+   {
+    "age": 24,
+    "male": 2171,
+    "female": 2256
+   },
+   {
+    "age": 25,
+    "male": 2160,
+    "female": 2253
+   },
+   {
+    "age": 26,
+    "male": 2149,
+    "female": 2249
+   },
+   {
+    "age": 27,
+    "male": 2138,
+    "female": 2246
+   },
+   {
+    "age": 28,
+    "male": 2127,
+    "female": 2243
+   },
+   {
+    "age": 29,
+    "male": 2116,
+    "female": 2239
+   },
+   {
+    "age": 30,
+    "male": 2105,
+    "female": 2236
+   },
+   {
+    "age": 31,
+    "male": 2095,
+    "female": 2232
+   },
+   {
+    "age": 32,
+    "male": 2084,
+    "female": 2229
+   },
+   {
+    "age": 33,
+    "male": 2073,
+    "female": 2225
+   },
+   {
+    "age": 34,
+    "male": 2062,
+    "female": 2222
+   },
+   {
+    "age": 35,
+    "male": 2052,
+    "female": 2218
+   },
+   {
+    "age": 36,
+    "male": 2041,
+    "female": 2214
+   },
+   {
+    "age": 37,
+    "male": 2030,
+    "female": 2211
+   },
+   {
+    "age": 38,
+    "male": 2020,
+    "female": 2207
+   },
+   {
+    "age": 39,
+    "male": 2009,
+    "female": 2204
+   },
+   {
+    "age": 40,
+    "male": 1998,
+    "female": 2200
+   },
+   {
+    "age": 41,
+    "male": 1988,
+    "female": 2196
+   },
+   {
+    "age": 42,
+    "male": 1977,
+    "female": 2192
+   },
+   {
+    "age": 43,
+    "male": 1967,
+    "female": 2189
+   },
+   {
+    "age": 44,
+    "male": 1956,
+    "female": 2185
+   },
+   {
+    "age": 45,
+    "male": 1946,
+    "female": 2181
+   },
+   {
+    "age": 46,
+    "male": 1935,
+    "female": 2177
+   },
+   {
+    "age": 47,
+    "male": 1925,
+    "female": 2173
+   },
+   {
+    "age": 48,
+    "male": 1914,
+    "female": 2169
+   },
+   {
+    "age": 49,
+    "male": 1904,
+    "female": 2165
+   },
+   {
+    "age": 50,
+    "male": 1894,
+    "female": 2161
+   },
+   {
+    "age": 51,
+    "male": 1883,
+    "female": 2157
+   },
+   {
+    "age": 52,
+    "male": 1873,
+    "female": 2153
+   },
+   {
+    "age": 53,
+    "male": 1863,
+    "female": 2149
+   },
+   {
+    "age": 54,
+    "male": 1853,
+    "female": 2145
+   },
+   {
+    "age": 55,
+    "male": 1842,
+    "female": 2141
+   },
+   {
+    "age": 56,
+    "male": 1832,
+    "female": 2137
+   },
+   {
+    "age": 57,
+    "male": 1822,
+    "female": 2133
+   },
+   {
+    "age": 58,
+    "male": 1812,
+    "female": 2129
+   },
+   {
+    "age": 59,
+    "male": 1802,
+    "female": 2124
+   },
+   {
+    "age": 60,
+    "male": 1792,
+    "female": 2120
+   },
+   {
+    "age": 61,
+    "male": 1782,
+    "female": 2116
+   },
+   {
+    "age": 62,
+    "male": 1772,
+    "female": 2112
+   },
+   {
+    "age": 63,
+    "male": 1762,
+    "female": 2107
+   },
+   {
+    "age": 64,
+    "male": 1752,
+    "female": 2103
+   },
+   {
+    "age": 65,
+    "male": 1742,
+    "female": 2099
+   },
+   {
+    "age": 66,
+    "male": 1732,
+    "female": 2094
+   },
+   {
+    "age": 67,
+    "male": 1722,
+    "female": 2090
+   },
+   {
+    "age": 68,
+    "male": 1712,
+    "female": 2086
+   },
+   {
+    "age": 69,
+    "male": 1702,
+    "female": 2081
+   },
+   {
+    "age": 70,
+    "male": 1692,
+    "female": 2077
+   },
+   {
+    "age": 71,
+    "male": 1682,
+    "female": 2072
+   },
+   {
+    "age": 72,
+    "male": 1673,
+    "female": 2068
+   },
+   {
+    "age": 73,
+    "male": 1497,
+    "female": 1857
+   },
+   {
+    "age": 74,
+    "male": 1339,
+    "female": 1668
+   },
+   {
+    "age": 75,
+    "male": 1198,
+    "female": 1498
+   },
+   {
+    "age": 76,
+    "male": 1072,
+    "female": 1345
+   },
+   {
+    "age": 77,
+    "male": 959,
+    "female": 1208
+   },
+   {
+    "age": 78,
+    "male": 858,
+    "female": 1085
+   },
+   {
+    "age": 79,
+    "male": 768,
+    "female": 974
+   },
+   {
+    "age": 80,
+    "male": 687,
+    "female": 875
+   },
+   {
+    "age": 81,
+    "male": 615,
+    "female": 785
+   },
+   {
+    "age": 82,
+    "male": 550,
+    "female": 705
+   },
+   {
+    "age": 83,
+    "male": 492,
+    "female": 633
+   },
+   {
+    "age": 84,
+    "male": 440,
+    "female": 569
+   },
+   {
+    "age": 85,
+    "male": 394,
+    "female": 511
+   },
+   {
+    "age": 86,
+    "male": 352,
+    "female": 458
+   },
+   {
+    "age": 87,
+    "male": 315,
+    "female": 412
+   },
+   {
+    "age": 88,
+    "male": 282,
+    "female": 370
+   },
+   {
+    "age": 89,
+    "male": 252,
+    "female": 332
+   },
+   {
+    "age": 90,
+    "male": 226,
+    "female": 298
+   },
+   {
+    "age": 91,
+    "male": 202,
+    "female": 267
+   },
+   {
+    "age": 92,
+    "male": 181,
+    "female": 240
+   },
+   {
+    "age": 93,
+    "male": 162,
+    "female": 216
+   },
+   {
+    "age": 94,
+    "male": 144,
+    "female": 194
+   },
+   {
+    "age": 95,
+    "male": 129,
+    "female": 174
+   },
+   {
+    "age": 96,
+    "male": 116,
+    "female": 156
+   },
+   {
+    "age": 97,
+    "male": 103,
+    "female": 140
+   },
+   {
+    "age": 98,
+    "male": 92,
+    "female": 126
+   },
+   {
+    "age": 99,
+    "male": 83,
+    "female": 113
+   },
+   {
+    "age": 100,
+    "male": 74,
+    "female": 101
+   }
+  ]
+ }
+}

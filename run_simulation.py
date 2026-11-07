@@ -256,6 +256,52 @@ def submit_policy_lever(st, cab, org, month, lid, val, force_direct=False):
         return "refused", f"REFUSED_BY_DIET ({row['verdict']['why']})"
 
 
+def sync_bilateral_trade(st, tracker):
+    """Two-way trade on the JPN-USA lane (Roadmap P2, blueprint stage S3).
+
+    The U.S. tariff on Japan (a counterpart lever, set directly on the USA
+    entity) scales Japan's exports to the U.S. by the sourced -1.5 import
+    demand elasticity (Kee, Nicita & Olarreaga 2008, the same source as
+    JPN's tariff spec), applied to the (1 + t) factor because the U.S.
+    lever is a delta over a zero additional-tariff baseline. The export
+    delta moves exports_customs and shifts the nominal GDP level by the
+    net-export impulse (delta / initial GDP), which the fiscal sync then
+    carries forward. Japan's general tariff moves the U.S. lane's imports
+    with the same (v/old) elasticity form Status._respond applies to
+    total imports; imports_customs is NOT adjusted here, because that
+    response already moved the total. The mirror lane on the USA entity
+    is rewritten from the JPN lane every call: Japan's exports to the
+    U.S. are the U.S.'s imports from Japan, exactly (cross-border
+    identity). With no tariff changes the factors are 1 and nothing moves.
+    """
+    if not st.has("USA"):
+        return
+    jp_aux = st.aux.get("JPN", {}).get("trade_by_partner")
+    us_aux = st.aux.get("USA", {}).get("trade_by_partner")
+    if not jp_aux or not us_aux or "USA" not in jp_aux or "JPN" not in us_aux:
+        return
+    lane = jp_aux["USA"]
+    mirror = us_aux["JPN"]
+    el = -1.5
+    t_us = float(st.lever_value.get("USA", {}).get("tariff_on_jpn", 0.0))
+    prev_us = float(tracker.get("us_tariff_prev", 0.0))
+    if t_us != prev_us:
+        f = ((1.0 + t_us) / (1.0 + prev_us)) ** el
+        old_exp = float(lane["exports_bn_jpy"])
+        lane["exports_bn_jpy"] = old_exp * f
+        d_net = float(lane["exports_bn_jpy"]) - old_exp
+        st.ind["JPN"]["exports_customs"] += d_net
+        tracker["last_gdp"] *= (1.0 + d_net / max(1.0, tracker["init_gdp"]))
+        tracker["us_tariff_prev"] = t_us
+    t_jp = float(st.lever_value["JPN"]["tariff_rate_general"])
+    prev_jp = float(tracker.get("jp_tariff_prev", t_jp))
+    if t_jp != prev_jp and prev_jp > 0.0 and t_jp > 0.0:
+        lane["imports_bn_jpy"] = float(lane["imports_bn_jpy"]) * ((t_jp / prev_jp) ** el)
+        tracker["jp_tariff_prev"] = t_jp
+    mirror["imports_bn_jpy"] = lane["exports_bn_jpy"]
+    mirror["exports_bn_jpy"] = lane["imports_bn_jpy"]
+
+
 def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_food_yoy, real_wage_ratio, params=None):
     """
     Realistic closed-loop accounting & demographic feedback parameterized via `feedback_params.json`:
@@ -563,7 +609,7 @@ def _policy_obs(st, year, phase, row):
     state, current lever values and bounds, and the last yearly summary row.
     Plain data only (dicts/lists/numbers), safe to serialise."""
     levers_def = st.levers["JPN"]["levers"]
-    return {
+    obs = {
         "year": year,
         "phase": phase,
         "indicators": dict(st.ind["JPN"]),
@@ -572,8 +618,18 @@ def _policy_obs(st, year, phase, row):
             lid: {"min": L.get("min"), "max": L.get("max"), "unit": L.get("unit"), "status": L.get("status")}
             for lid, L in levers_def.items()
         },
+        "trade_by_partner": {p: dict(v) for p, v in st.aux.get("JPN", {}).get("trade_by_partner", {}).items()},
         "row": row,
     }
+    if st.has("USA"):
+        obs["counterpart"] = {
+            "USA": {
+                "indicators": dict(st.ind["USA"]),
+                "levers": dict(st.lever_value["USA"]),
+                "trade_by_partner": {p: dict(v) for p, v in st.aux.get("USA", {}).get("trade_by_partner", {}).items()},
+            }
+        }
+    return obs
 
 
 def _submit_policy_acts(st, cab, org, month, acts, pending_platform):
@@ -582,6 +638,15 @@ def _submit_policy_acts(st, cab, org, month, acts, pending_platform):
     election majority can enact them exactly as with scenario levers."""
     results = []
     for lid, val in acts:
+        if lid.startswith("USA:"):
+            if st.has("USA"):
+                st.set_lever("USA", lid[4:], float(val))
+                results.append({"lever": lid, "value": float(val), "status": "executed",
+                                "message": "FOREIGN_ACT (counterpart decision, no Diet path)"})
+            else:
+                results.append({"lever": lid, "value": float(val), "status": "rejected",
+                                "message": "counterpart USA not loaded"})
+            continue
         code, msg = submit_policy_lever(st, cab, org, month, lid, float(val))
         if code in ("bill", "refused"):
             pending_platform[lid] = float(val)
@@ -615,6 +680,7 @@ def run_simulation(
     params_path=None,
     feedback_params=None,
     policy_fn=None,
+    usa_tariff=None,
 ):
     ensure_oracle_dumps()
     params = load_feedback_params(params_path=params_path, overrides=feedback_params)
@@ -632,7 +698,7 @@ def run_simulation(
 
     # 1. Initialize Status (`status_2024.json` + `levers.json`) and align to `2025-01-01` (`start_2025.json`)
     st = Status()
-    err = st.load(2024, ["JPN"])
+    err = st.load(2024, ["JPN", "USA"])
     if err != "":
         raise RuntimeError(err)
 
@@ -707,6 +773,11 @@ def run_simulation(
     pending_platform = {}
     lever_logs_init = []
     for lid, val in lever_plan:
+        if lid.startswith("USA:"):
+            if st.has("USA"):
+                st.set_lever("USA", lid[4:], float(val))
+                lever_logs_init.append(f"{lid}={val} -> FOREIGN_ACT (counterpart decision)")
+            continue
         status_code, msg = submit_policy_lever(st, cab, org, 0, lid, val, force_direct=coalition_pass)
         lever_logs_init.append(f"{lid}={val} -> {msg}")
         if status_code in ("bill", "refused"):
@@ -716,6 +787,10 @@ def run_simulation(
         print("[Policy Levers] " + " | ".join(lever_logs_init))
     else:
         print("[Policy Levers] None (Baseline Status Quo)")
+
+    if usa_tariff is not None and st.has("USA"):
+        st.set_lever("USA", "tariff_on_jpn", float(usa_tariff))
+        print(f"[Counterpart] USA tariff_on_jpn={float(usa_tariff)} (additional, over the 2024 baseline)")
 
     if policy_fn is not None:
         _policy_call(policy_fn, st, cab, org, 0, 2025, "initial", None, pending_platform)
@@ -765,6 +840,8 @@ def run_simulation(
         "init_pi": st.lever_value["JPN"]["public_investment"],
         "init_ed": st.lever_value["JPN"]["education_budget"],
         "init_oda": st.lever_value["JPN"]["oda_budget"],
+        "us_tariff_prev": 0.0,
+        "jp_tariff_prev": float(st.lever_value["JPN"]["tariff_rate_general"]),
         "init_pension_age": st.lever_value["JPN"]["pension_age"],
         "pension_k": float(st.levers["JPN"]["levers"]["pension_age"]["response"]["k"]),
         "init_ssw": st.lever_value["JPN"]["ssw_visa_cap"],
@@ -802,6 +879,8 @@ def run_simulation(
 
         year_births += st.daily_births["JPN"]
         year_deaths += st.daily_deaths["JPN"]
+
+        sync_bilateral_trade(st, tracker)
 
         bond_dep, share_75plus = sync_macro_fiscal_and_asfr(
             st, tracker, econ_infl, discontent, effective_food_yoy, real_wage_ratio, params=params
@@ -1010,6 +1089,7 @@ def main():
     parser.add_argument("--coalition", action="store_true", help="Assume cross-party coalition agreement from day 0")
     parser.add_argument("--n-per", type=int, default=2, help="Representative persons per prefecture (default: 2)")
     parser.add_argument("--params-file", type=str, default=None, help="Path to custom feedback_params.json override")
+    parser.add_argument("--usa-tariff", type=float, default=None, help="Additional U.S. tariff on Japan (share, over the 2024 baseline)")
 
     args = parser.parse_args()
     run_simulation(
@@ -1019,6 +1099,7 @@ def main():
         n_per=args.n_per,
         coalition_pass=args.coalition,
         params_path=args.params_file,
+        usa_tariff=args.usa_tariff,
     )
 
 
