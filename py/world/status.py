@@ -16,6 +16,64 @@ RESERVE_FUND_BN = 1000.0
 SEXES = 2
 YEAR_DAYS = 365.0
 
+# Declared (T) conversions for lever responses whose sourced specs give
+# physical units rather than shares (see data/modern/jpn/levers.json).
+NUCLEAR_SHARE_PER_REACTOR = 0.006  # one ~1 GW reactor at ~70% CF ~ 6 TWh/yr of ~1,000 TWh
+FAB_SHARE_PER_BN = 2.0e-6          # 1 tn JPY/yr of sustained fab support ~ +0.2 pt of world share
+REN_SOURCES = ("solar", "wind", "hydro", "bioenergy", "other_renewable")
+FOSSIL_SOURCES = ("coal", "gas", "oil")
+
+
+def _shift_mix(mix, target_ren):
+    """Move an electricity mix dict toward a renewable share, taking the
+    difference from (or returning it to) fossil sources pro-rata."""
+    ren = sum(float(mix.get(s, 0.0)) for s in REN_SOURCES)
+    fos = sum(float(mix.get(s, 0.0)) for s in FOSSIL_SOURCES)
+    shift = float(target_ren) - ren
+    if abs(shift) < 1e-12:
+        return
+    if shift > 0.0:
+        take = gd.minf(shift, fos)
+        if fos > 0.0:
+            for s in FOSSIL_SOURCES:
+                mix[s] = float(mix.get(s, 0.0)) * (fos - take) / fos
+        if ren > 1e-12:
+            for s in REN_SOURCES:
+                mix[s] = float(mix.get(s, 0.0)) * (ren + take) / ren
+        else:
+            mix["solar"] = float(mix.get("solar", 0.0)) + take
+    else:
+        give = gd.minf(-shift, ren)
+        if ren > 0.0:
+            for s in REN_SOURCES:
+                mix[s] = float(mix.get(s, 0.0)) * (ren - give) / ren
+        if fos > 1e-12:
+            for s in FOSSIL_SOURCES:
+                mix[s] = float(mix.get(s, 0.0)) * (fos + give) / fos
+        else:
+            mix["gas"] = float(mix.get("gas", 0.0)) + give
+
+
+def _add_nuclear(mix, dshare):
+    """Add (or retire) nuclear share in an electricity mix dict, balanced
+    against fossil sources pro-rata."""
+    fos = sum(float(mix.get(s, 0.0)) for s in FOSSIL_SOURCES)
+    nuc = float(mix.get("nuclear", 0.0))
+    if dshare > 0.0:
+        take = gd.minf(dshare, fos)
+        if fos > 0.0:
+            for s in FOSSIL_SOURCES:
+                mix[s] = float(mix.get(s, 0.0)) * (fos - take) / fos
+        mix["nuclear"] = nuc + take
+    elif dshare < 0.0:
+        cut = gd.minf(-dshare, nuc)
+        mix["nuclear"] = nuc - cut
+        if fos > 1e-12:
+            for s in FOSSIL_SOURCES:
+                mix[s] = float(mix.get(s, 0.0)) * (fos + cut) / fos
+        else:
+            mix["gas"] = float(mix.get("gas", 0.0)) + cut
+
 
 class Status:
     def __init__(self):
@@ -30,6 +88,7 @@ class Status:
         self.day = 0
         self.ind = {}
         self.ind0 = {}
+        self.aux = {}
         self.trend = {}
         self.cohort = {}
         self.qx = {}
@@ -77,6 +136,8 @@ class Status:
             if "value" in row and type(row["value"]) in (float, int):
                 iv[id_] = float(row["value"])
                 tr[id_] = float(row.get("trend", 0.0))
+            elif "value" in row and type(row["value"]) is dict:
+                self.aux.setdefault(k, {})[id_] = deep(row["value"])
         self.ind[k] = iv
         self.ind0[k] = dict(iv)
         self.trend[k] = tr
@@ -337,7 +398,9 @@ class Status:
         r = L.get("response", {})
         target = str(r.get("target", ""))
         iv = self.ind[k]
-        if target == "" or target not in iv:
+        if target == "":
+            return
+        if target not in iv and target not in self.aux.get(k, {}):
             return
         kk = float(r.get("k", 0.0))
         dv = v - old
@@ -372,9 +435,28 @@ class Status:
                 iv[target] = v * iv["gdp_nominal"]
                 if lg is not None and key in lg.sh:
                     lg.start(key, iv[target])
+        elif form == "multiplier_pt":
+            # k is declared in percentage points per unit of lever change.
+            y = kk * dv / 100.0
+            iv[target] += y
+            if lg is not None:
+                lg.add(key, y, iv[target])
+        elif form == "fab_spending":
+            y = FAB_SHARE_PER_BN * dv
+            iv[target] = gd.minf(1.0, gd.maxf(0.0, iv[target] + y))
+            if lg is not None:
+                lg.add(key, y, iv[target])
+        elif form == "build_plan":
+            mix = self.aux.get(k, {}).get(target)
+            if type(mix) is dict:
+                _shift_mix(mix, v)
+        elif form == "build":
+            mix = self.aux.get(k, {}).get(target)
+            if type(mix) is dict:
+                _add_nuclear(mix, dv * NUCLEAR_SHARE_PER_REACTOR)
 
     def to_dict(self):
-        st = {"day": self.day, "ind": {}, "cohort": {}, "lever_value": {}, "lever_due": {}, "lever_log": deep(self.lever_log)}
+        st = {"day": self.day, "ind": {}, "cohort": {}, "lever_value": {}, "lever_due": {}, "lever_log": deep(self.lever_log), "aux": deep(self.aux)}
         for k in self.entities:
             iv = self.ind[k]
             names = PStr(sorted(iv.keys()))
@@ -399,3 +481,4 @@ class Status:
             self.lever_value[k] = dict(st["lever_value"][k])
             self.lever_due[k] = deep(st["lever_due"][k])
         self.lever_log = deep(st["lever_log"])
+        self.aux = deep(st.get("aux", {}))

@@ -864,6 +864,11 @@ def run_simulation(
                 econ_infl += max(0.0, tax_jump)
                 food_yoy += max(0.0, tax_jump * jp["vat_food_passthrough"])
 
+            fuel_sub_val = st.lever_value["JPN"].get("fuel_subsidy", 0.0)
+            if fuel_sub_val > 0.0:
+                fuel_k = float(st.levers["JPN"]["levers"]["fuel_subsidy"]["response"].get("k", 0.0))
+                econ_infl += fuel_k * fuel_sub_val / 100.0
+
             active_tax_burden = max(0.0, st.lever_value["JPN"]["consumption_tax_rate"] - 0.10)
             effective_food_yoy = food_yoy + (active_tax_burden * jp["vat_ongoing_food_bite"])
             st.ind["JPN"]["cpi_inflation"] = econ_infl
@@ -890,7 +895,8 @@ def run_simulation(
             ap = max(0.05, min(0.90, ap - (discontent - 0.20) * 0.25))
             st.ind["JPN"]["cabinet_approval"] = ap
 
-            if full_mode and cal_m == 10 and (cal_y - 2024) % 4 == 0:
+            call_due = st.lever_value["JPN"].get("call_election", 0.0) >= 0.5
+            if full_mode and ((cal_m == 10 and (cal_y - 2024) % 4 == 0) or call_due):
                 d_ap = pub.change_since(last_election_month)
                 if fiscal_crisis:
                     d_ap = min(d_ap, (ap - 0.35) * 100.0)
@@ -901,6 +907,9 @@ def run_simulation(
                 gov_seats = org.governing_seats("house_of_representatives")
                 st.ind["JPN"]["lower_house_seats_governing"] = float(gov_seats)
                 last_election_month = month_idx
+                if call_due:
+                    st.lever_value["JPN"]["call_election"] = 0.0
+                    year_notes.append("Election Called")
                 maj_str = "Majority" if gov_seats >= 233 else "Minority"
                 year_notes.append(f"Election({gov_seats}/465 {maj_str})")
 
