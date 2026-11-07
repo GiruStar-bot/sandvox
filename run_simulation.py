@@ -558,6 +558,53 @@ def replenish_persons_if_needed(ps, c_id, st, qx_2024, regions, n_per, cal_y, se
     return ps_new
 
 
+def _policy_obs(st, year, phase, row):
+    """Observation for an external policy (agent) hook: the full indicator
+    state, current lever values and bounds, and the last yearly summary row.
+    Plain data only (dicts/lists/numbers), safe to serialise."""
+    levers_def = st.levers["JPN"]["levers"]
+    return {
+        "year": year,
+        "phase": phase,
+        "indicators": dict(st.ind["JPN"]),
+        "levers": dict(st.lever_value["JPN"]),
+        "lever_bounds": {
+            lid: {"min": L.get("min"), "max": L.get("max"), "unit": L.get("unit"), "status": L.get("status")}
+            for lid, L in levers_def.items()
+        },
+        "row": row,
+    }
+
+
+def _submit_policy_acts(st, cab, org, month, acts, pending_platform):
+    """Submit agent lever acts through the same Cabinet/Diet path as the
+    scenario lever plan. Bill/refused acts join pending_platform, so a later
+    election majority can enact them exactly as with scenario levers."""
+    results = []
+    for lid, val in acts:
+        code, msg = submit_policy_lever(st, cab, org, month, lid, float(val))
+        if code in ("bill", "refused"):
+            pending_platform[lid] = float(val)
+        results.append({"lever": lid, "value": float(val), "status": code, "message": msg})
+    return results
+
+
+def _policy_call(policy_fn, st, cab, org, month, year, phase, row, pending_platform):
+    obs = _policy_obs(st, year, phase, row)
+    acts = policy_fn(obs) or []
+    if isinstance(acts, dict):
+        acts = list(acts.items())
+    acts = [(str(lid), float(val)) for lid, val in acts]
+    if not acts:
+        return
+    results = _submit_policy_acts(st, cab, org, month, acts, pending_platform)
+    print("[Agent Policy %s] %s" % (year, " | ".join(
+        "%s=%s -> %s" % (r["lever"], r["value"], r["status"].upper()) for r in results)))
+    report = getattr(policy_fn, "report", None)
+    if callable(report):
+        report(year, phase, results)
+
+
 def run_simulation(
     years=25,
     scenario="baseline",
@@ -567,6 +614,7 @@ def run_simulation(
     coalition_pass=False,
     params_path=None,
     feedback_params=None,
+    policy_fn=None,
 ):
     ensure_oracle_dumps()
     params = load_feedback_params(params_path=params_path, overrides=feedback_params)
@@ -668,6 +716,9 @@ def run_simulation(
         print("[Policy Levers] " + " | ".join(lever_logs_init))
     else:
         print("[Policy Levers] None (Baseline Status Quo)")
+
+    if policy_fn is not None:
+        _policy_call(policy_fn, st, cab, org, 0, 2025, "initial", None, pending_platform)
 
     co_init = st.cohort["JPN"]
     init_wp_15_64 = sum(co_init[a * 2] + co_init[a * 2 + 1] for a in range(15, 65))
@@ -901,6 +952,9 @@ def run_simulation(
                 "crisis": fiscal_crisis,
                 "notes": ", ".join(year_notes) if year_notes else "NORMAL"
             })
+            if policy_fn is not None:
+                _policy_call(policy_fn, st, cab, org, month_idx, cal_y, "year_end", history[-1], pending_platform)
+
             year_births = 0.0
             year_deaths = 0.0
             year_mig = 0.0
