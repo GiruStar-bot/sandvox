@@ -40,7 +40,7 @@ from tiers.start.p import P
 from tiers.start.persons import age_band
 from econ.month import EconMonth
 from econ.labour import Labour
-from world.status import Status
+from world.status import Status, SPENDING_LEVERS
 from world.brain import Brain
 from world.polity.organs import Organs
 from world.polity.cabinet import Cabinet, SESSION_MONTHS
@@ -240,7 +240,7 @@ def submit_policy_lever(st, cab, org, month, lid, val, force_direct=False):
 
     met = ["cabinet_decision"]
     r0 = L.get("response", {})
-    adds_spending = str(r0.get("target", "")) == "gov_expenditure_general" or str(r0.get("form", "")) == "share"
+    adds_spending = str(r0.get("target", "")) == "gov_expenditure_general" or str(r0.get("form", "")) == "share" or lid in SPENDING_LEVERS
     if not adds_spending or dv <= 0.0 or dv <= 0.10 * max(abs(old_val), 1.0):
         met.append("within_budget")
     elif dv <= 1000.0:
@@ -254,6 +254,71 @@ def submit_policy_lever(st, cab, org, month, lid, val, force_direct=False):
         return "bill", f"BILL_SUBMITTED ({pol['legal_basis']} -> Diet vote in {SESSION_MONTHS}m)"
     else:
         return "refused", f"REFUSED_BY_DIET ({row['verdict']['why']})"
+
+
+COUNTERPARTS = ("USA", "CHN", "EU")
+# The JPN-side customs lane key for each counterpart entity (the sourced
+# trade_by_partner dict uses customs names; the EU lane is created at
+# runtime from the EU profile's mirror lane - see run_simulation).
+LANE_KEYS = {"USA": "USA", "CHN": "CHINA", "EU": "EU"}
+
+
+def sync_bilateral_trade(st, tracker):
+    """Two-way trade on every loaded counterpart lane (Roadmap P2/P5,
+    blueprint stage S3).
+
+    A counterpart's tariff on Japan (its own lever, set directly on its
+    entity) scales Japan's exports to it by the sourced -1.5 import
+    demand elasticity (Kee, Nicita & Olarreaga 2008, the same source as
+    JPN's tariff spec), applied to the (1 + t) factor because the
+    counterpart lever is a delta over a zero additional-tariff baseline.
+    The export delta moves exports_customs and shifts the nominal GDP
+    level by the net-export impulse (delta / initial GDP), which the
+    fiscal sync then carries forward. Japan's general tariff moves each
+    lane's imports with the same (v/old) elasticity form Status._respond
+    applies to total imports; imports_customs is NOT adjusted here,
+    because that response already moved the total. Each mirror lane is
+    rewritten from the JPN lane every call: Japan's exports to X are
+    X's imports from Japan, exactly (cross-border identity). With no
+    tariff changes the factors are 1 and nothing moves.
+    """
+    jp_aux = st.aux.get("JPN", {}).get("trade_by_partner")
+    if not jp_aux:
+        return
+    # Export-licence impulse recorded by Status._respond (D-4 fix):
+    # transmit it to the nominal GDP level exactly like the tariff
+    # path below transmits its export delta (delta / initial GDP).
+    _pend = float(st.aux.get("JPN", {}).pop("pending_gdp_delta_bn", 0.0))
+    if _pend != 0.0:
+        tracker["last_gdp"] *= (1.0 + _pend / max(1.0, tracker["init_gdp"]))
+    el = -1.5
+    t_jp = float(st.lever_value["JPN"]["tariff_rate_general"])
+    prev_jp = float(tracker.get("jp_tariff_prev", t_jp))
+    jp_changed = t_jp != prev_jp and prev_jp > 0.0 and t_jp > 0.0
+    for code in COUNTERPARTS:
+        if not st.has(code):
+            continue
+        cp_aux = st.aux.get(code, {}).get("trade_by_partner")
+        lane = jp_aux.get(LANE_KEYS[code])
+        if not cp_aux or "JPN" not in cp_aux or lane is None:
+            continue
+        mirror = cp_aux["JPN"]
+        t_cp = float(st.lever_value.get(code, {}).get("tariff_on_jpn", 0.0))
+        prev_cp = float(tracker.get(f"cp_tariff_prev_{code}", 0.0))
+        if t_cp != prev_cp:
+            f = ((1.0 + t_cp) / (1.0 + prev_cp)) ** el
+            old_exp = float(lane["exports_bn_jpy"])
+            lane["exports_bn_jpy"] = old_exp * f
+            d_net = float(lane["exports_bn_jpy"]) - old_exp
+            st.ind["JPN"]["exports_customs"] += d_net
+            tracker["last_gdp"] *= (1.0 + d_net / max(1.0, tracker["init_gdp"]))
+            tracker[f"cp_tariff_prev_{code}"] = t_cp
+        if jp_changed:
+            lane["imports_bn_jpy"] = float(lane["imports_bn_jpy"]) * ((t_jp / prev_jp) ** el)
+        mirror["imports_bn_jpy"] = lane["exports_bn_jpy"]
+        mirror["exports_bn_jpy"] = lane["imports_bn_jpy"]
+    if jp_changed:
+        tracker["jp_tariff_prev"] = t_jp
 
 
 def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_food_yoy, real_wage_ratio, params=None):
@@ -325,6 +390,26 @@ def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_foo
         ),
     )
     iv["net_migration"] = (base_structural_mig + ssw_command_delta * cap_headroom) * econ_attract
+    if tracker.get("mig_scale", 1.0) != 1.0:
+        iv["net_migration"] *= tracker["mig_scale"]
+
+    # Origin composition of the flow (Roadmap P5): residents shares are
+    # the Immigration Services Agency's 2024-06 stock (links_2024 people
+    # block, rounded). The structural part of the flow follows the stock
+    # shares; the SSW-driven part is attributed to the SSW-sending
+    # origins (VNM/PHL/IDN/NPL), so the visa lever moves the composition,
+    # not only the total. The parts sum exactly to net_migration.
+    _scale = float(tracker.get("mig_scale", 1.0))
+    _ssw_flow = ssw_command_delta * cap_headroom * econ_attract * _scale
+    _struct_flow = base_structural_mig * econ_attract * _scale
+    _ssw_group = sum(ORIGIN_SHARES[o] for o in SSW_ORIGINS)
+    _origins = {}
+    for _o, _s in ORIGIN_SHARES.items():
+        _f = _struct_flow * _s
+        if _o in SSW_ORIGINS:
+            _f += _ssw_flow * (_s / _ssw_group)
+        _origins[_o] = {"residents_share": _s, "annual_flow": _f}
+    st.aux.setdefault("JPN", {})["migration_by_origin"] = _origins
 
     # 3. Decay year-1 public_investment fiscal multiplier after 365 days (per levers.json ESRI source)
     if tracker["pi_boost_until_day"] > 0 and st.day == tracker["pi_boost_until_day"]:
@@ -350,6 +435,53 @@ def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_foo
     pension_emp_gain = max(0.0, (st.lever_value["JPN"]["pension_age"] - tracker["init_pension_age"]) * tracker["pension_k"])
     lf_ratio = (wp_15_64 + pension_emp_gain) / max(1.0, tracker["init_wp_15_64"])
 
+    # Long-run growth engine (axis I): potential growth from capital
+    # accumulation and TFP replaces the frozen initial print. Labour
+    # still enters through the lf_ratio scaling below. The public
+    # investment lever keeps its sourced first-year demand multiplier
+    # (the pi_boost window), and now also builds the capital stock;
+    # the semiconductor subsidy invests and lifts TFP via fab share.
+    if GROWTH_ENGINE:
+        _pi_delta = st.lever_value["JPN"]["public_investment"] - tracker["init_pi"]
+        _semi_delta = st.lever_value["JPN"]["semiconductor_subsidy"] - tracker["init_semi"]
+        # The capital stock is a real (constant-price) quantity: deflate
+        # the nominal investment flows by the cumulative price index, or
+        # inflation alone would fake capital deepening. The drift this
+        # feeds is per-worker productivity growth (the LF level scaling
+        # sits below), so the Solow term is capital deepening per
+        # worker: alpha * (g_K - g_L).
+        tracker["price_level"] *= (1.0 + econ_infl / 365.0)
+        _invest_real = (INVEST_SHARE * iv["gdp_nominal"] + _pi_delta + _semi_delta) / tracker["price_level"]
+        _g_k = _invest_real / max(1.0, tracker["capital_stock"]) - DEPRECIATION
+        tracker["capital_stock"] += (_invest_real - DEPRECIATION * tracker["capital_stock"]) / 365.0
+        # The labour term compares 30-day means a full year apart.
+        # This engine settles the year's working-age change in one
+        # annual step on the rollover day (measured: -0.53% on day
+        # 365, smooth within the year), so any shorter difference -
+        # daily or monthly - annualizes the step into a fictitious
+        # collapse; only the year-over-year comparison reads the true
+        # rate. In the first year the term is 0 (the ratio is smooth
+        # within the year and barely moves).
+        _win = tracker["lf_window"]
+        _win.append(lf_ratio)
+        if len(_win) > 395:
+            _win.pop(0)
+        if len(_win) >= 395:
+            _recent = sum(_win[-30:]) / 30.0
+            _past = sum(_win[-395:-365]) / 30.0
+            _g_l = _recent / max(1e-9, _past) - 1.0
+        else:
+            _g_l = 0.0
+        _g_l = max(-0.03, min(0.02, _g_l))
+        _tfp = TFP_BASE + FAB_TFP_COEF * (iv["fab_capacity_share"] - tracker["init_fab"])
+        _g_pot = max(-0.02, min(0.04, _tfp + CAPITAL_ALPHA * (_g_k - _g_l)))
+        tracker["tfp_growth"] = _tfp
+        tracker["potential_growth"] = _g_pot
+        _boost = 0.0
+        if tracker["pi_boost_until_day"] > st.day and _pi_delta > 0.0:
+            _boost = 1.1 * _pi_delta / max(1.0, iv["gdp_nominal"])
+        iv["gdp_real_growth"] = _g_pot + _boost
+
     # Nominal GDP accounting identity
     nom_drift_day = (iv["gdp_real_growth"] + econ_infl) / 365.0
     iv["gdp_nominal"] = tracker["last_gdp"] * (1.0 + nom_drift_day) * (lf_ratio / tracker["last_lf_ratio"])
@@ -374,6 +506,11 @@ def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_foo
     ss_line = tracker["budget_social_security"] * health_factor * aging_cost_factor * max(jp["senior_relief_floor"], 1.0 - senior_relief_share)
     ss_delta = ss_line - tracker["budget_social_security"]
     lat_delta = tracker["budget_lat"] * ((tax_rev_current / max(1.0, tracker["init_tax_rev"])) - 1.0)
+    # Local finance (axis J): the allocation tax also follows regional
+    # fiscal stress - depopulating, aging regions carry rising fixed
+    # per-capita costs, and the transfer formula protects them (annual
+    # steps, as the year-end stress update lands).
+    lat_delta += tracker["budget_lat"] * LAT_STRESS_PASS * max(0.0, tracker.get("local_stress", 0.0) - tracker.get("init_local_stress", 0.0))
     core_ops_delta = tracker["budget_core_ops"] * (gov_cons_factor - 1.0)
 
     # Continuous JGB 10Y market yield & 8.5-year average maturity refinancing rollover
@@ -384,6 +521,7 @@ def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_foo
         + jp["jgb_debt_gdp_slope"] * max(0.0, debt_to_gdp_now - tracker["init_debt_gdp"])
         + jp["jgb_bond_dep_slope"] * max(0.0, tracker["last_bond_dep"] - jp["jgb_bond_dep_threshold"])
     )
+    target_jgb += JGB_POLICY_PASS * (iv["policy_rate"] - tracker["init_policy_rate"])
     if tracker["last_bond_dep"] > jp["crisis_bond_dep_threshold"]:
         target_jgb += jp["jgb_crisis_slope"] * (tracker["last_bond_dep"] - jp["crisis_bond_dep_threshold"])
     target_jgb = min(jp["jgb_max"], max(jp["jgb_min"], target_jgb))
@@ -401,6 +539,14 @@ def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_foo
     pi_delta = (st.lever_value["JPN"]["public_investment"] - tracker["init_pi"]) * gov_cons_factor
     ed_delta = (st.lever_value["JPN"]["education_budget"] - tracker["init_ed"]) * gov_cons_factor
     oda_delta = (st.lever_value["JPN"]["oda_budget"] - tracker["init_oda"]) * gov_cons_factor
+    # D-1 fix (independent review): the semiconductor subsidy and the
+    # fuel subsidy are bn JPY/yr budget lines (jpn_laws budget_fy2024
+    # lists both) but never entered expenditure - a subsidy rise was
+    # fiscally free while its investment/TFP benefits accrued. Both
+    # deltas are zero at their initial values, so the baseline path is
+    # unchanged; only episodes that MOVE the levers pay for them.
+    sc_delta = (st.lever_value["JPN"]["semiconductor_subsidy"] - tracker["init_semi"]) * gov_cons_factor
+    fuel_delta = (st.lever_value["JPN"]["fuel_subsidy"] - tracker["init_fuel"]) * gov_cons_factor
     def_delta = iv["defence_budget"] - tracker["init_def"]
 
     iv["gov_expenditure_general"] = (
@@ -413,6 +559,8 @@ def sync_macro_fiscal_and_asfr(st, tracker, econ_infl, discontent, effective_foo
         + pi_delta
         + ed_delta
         + oda_delta
+        + sc_delta
+        + fuel_delta
         + def_delta
     )
 
@@ -443,7 +591,11 @@ def replenish_persons_if_needed(ps, c_id, st, qx_2024, regions, n_per, cal_y, se
     NF = REL.NF
     tot_w = 0.0
     emo_shift = [0.0] * NE
-    mean_q_price = 0.02
+    # D-9 fix: this accumulator must start at 0.0 - it was seeded with
+    # the 0.02 fallback value and then divided by tot_w, biasing the
+    # weighted mean (+0.02/tot_w). The fallback applies only when the
+    # panel carries no weight at all (see the tot_w check below).
+    mean_q_price = 0.0
     q_inc_num = 0.0
     q_inc_den = 0.0
     pf_num = 0.0
@@ -478,6 +630,8 @@ def replenish_persons_if_needed(ps, c_id, st, qx_2024, regions, n_per, cal_y, se
         for e in range(NE):
             emo_shift[e] /= tot_w
         mean_q_price /= tot_w
+    else:
+        mean_q_price = 0.02
     q_inc_ratio = (q_inc_num / q_inc_den) if q_inc_den > 0.0 else 1.0
     mean_pay_factor = (pf_num / pf_den) if pf_den > 0.0 else 1.0
     mean_food_belief = (bel_num / bel_den) if bel_den > 0.0 else 0.0
@@ -558,6 +712,387 @@ def replenish_persons_if_needed(ps, c_id, st, qx_2024, regions, n_per, cal_y, se
     return ps_new
 
 
+# Declared (T) shock transmission constants (Roadmap P4, blueprint S4).
+ENERGY_IMPORT_SHARE = 0.22         # mineral fuels' share of imports (MOF 2023, rounded)
+ENERGY_CPI_PASS_PER_PCT = 0.00015  # +50% energy import prices ~ +0.75pt CPI while active (partial pass-through)
+
+
+# Foreign-resident stock shares by origin (Immigration Services Agency,
+# 在留外国人統計 2024-06, via links_2024 people block; rounded, sums to 1)
+# and the SSW-sending origins among them.
+ORIGIN_SHARES = {"CHN": 0.229, "VNM": 0.167, "KOR": 0.114, "PHL": 0.090,
+                 "NPL": 0.065, "BRA": 0.059, "IDN": 0.042, "OTHER": 0.234}
+SSW_ORIGINS = ("VNM", "PHL", "IDN", "NPL")
+
+# Regional decomposition (Roadmap axis J). The Persons layer carries
+# prefectures, but the CLI ran national aggregates only; this layer
+# decomposes the national population into the 8 standard regions and
+# evolves it with the model's own flows. pop_share: MIC population
+# estimates, Oct 2024, rounded (sums to 1.004; normalized at init).
+# aged: 65+ share, census-based, T-rounded. net_mig: annual
+# inter-regional net migration rate (internal-migration report
+# pattern, T). foreign: foreign-resident distribution (ISA 2024,
+# rounded).
+REGIONS = {
+    "hokkaido": {"pop_share": 0.041, "aged": 0.335, "net_mig": -0.0010, "foreign": 0.018},
+    "tohoku": {"pop_share": 0.067, "aged": 0.355, "net_mig": -0.0022, "foreign": 0.026},
+    "kanto": {"pop_share": 0.353, "aged": 0.265, "net_mig": 0.0018, "foreign": 0.385},
+    "chubu": {"pop_share": 0.167, "aged": 0.305, "net_mig": -0.0002, "foreign": 0.225},
+    "kinki": {"pop_share": 0.177, "aged": 0.295, "net_mig": 0.0002, "foreign": 0.180},
+    "chugoku": {"pop_share": 0.057, "aged": 0.340, "net_mig": -0.0013, "foreign": 0.045},
+    "shikoku": {"pop_share": 0.029, "aged": 0.355, "net_mig": -0.0018, "foreign": 0.021},
+    "kyushu": {"pop_share": 0.113, "aged": 0.305, "net_mig": -0.0003, "foreign": 0.100},
+}
+REGION_FLOW_CYCLE = 6.0           # concentration accelerates when unemployment is below its initial level (T)
+REGION_AGING_FROM_DECLINE = 0.15  # extra aged-share points per unit of regional population loss (T)
+LAT_STRESS_PASS = 1.5             # local allocation tax uplift per unit of local fiscal stress over its initial level (T)
+
+
+# Monetary transmission constants (Roadmap P2.5, axis H), all declared (T).
+# The central bank itself already exists: EconMonth's Bank follows a
+# published path, then a Taylor-type rule (py/econ/actors.py). What was
+# missing is every bridge from its rate to the rest of the model.
+JGB_POLICY_PASS = 0.6      # 10y yield shift per unit of policy-rate shift (expectations + term premium)
+MONETARY_CPI_PASS = 0.25   # annual CPI trim per unit of policy rate held above neutral
+NEUTRAL_POLICY_RATE = 0.01  # nominal neutral: 2% inflation target less ~1% real neutral, rounded
+FX_DIFF_SENS = 8.0         # yen appreciation (share) per unit of JPN-US rate-differential widening
+
+# Distribution + panel constants (Roadmap P6), declared (T).
+REPLENISH_INTERVAL_YEARS = 10  # panel re-anchoring cadence (see the call site)
+DIST_STRESS_SLOPE = 0.15       # approval loss per unit of tail-deficit widening over its initial level
+
+# Long-run growth engine (Roadmap axis I), declared constants.
+# The legacy model froze real growth at the initial print (2023's
+# +1.7%, a single strong year) for every horizon. The engine below
+# replaces it with capital accumulation + TFP; GROWTH_ENGINE=False
+# restores the legacy path exactly (the ablation switch).
+GROWTH_ENGINE = True
+INVEST_SHARE = 0.25          # gross fixed capital formation share of GDP (SNA, rounded, S)
+CAPITAL_OUTPUT_RATIO = 3.3   # capital stock / GDP (Cabinet Office stock estimates, T)
+DEPRECIATION = 0.065         # per year (T: consumption of fixed capital ~21.5% of GDP / K/Y)
+CAPITAL_ALPHA = 0.35         # capital share in the growth account (T, standard)
+TFP_BASE = 0.004             # baseline TFP growth (T: Japan's 2010s-20s experience)
+FAB_TFP_COEF = 0.02          # TFP growth bonus per unit of fab-capacity share gained (T)
+
+
+class ShockEngine:
+    """Deterministic scheduled shocks (blueprint stage S4).
+
+    A schedule is data: a list of {"kind", "start": [year, month],
+    "months": duration, "mag": magnitude} specs, with kind-specific
+    fields ("hazard_x", "mig_scale" for pandemics). The same schedule
+    always produces the same episode - reproducibility is a property of
+    the schedule, so seeded libraries sample schedules (see
+    agent_env.random_shock_schedule) rather than sampling inside the
+    engine. Kinds and transmissions (all magnitudes in percent):
+
+    - energy_price: import prices +mag%. CPI pass-through premium while
+      active; the energy import bill rises at activation and the GDP
+      level takes the terms-of-trade loss; both reverse at expiry.
+    - food_price: food prices +mag%. A food-inflation premium while
+      active (flows into discontent, approval, Persons' food demand).
+    - disaster: a one-off GDP level loss of mag% (capital destruction,
+      NOT reversed) plus a discontent premium while active.
+    - foreign_recession: exports to the USA fall mag% (via the P2 lane;
+      activation/expiry symmetric, GDP follows the net-export impulse).
+    - pandemic: GDP level -mag% (reversed at expiry in this version),
+      mortality hazard x (1 + hazard_x) while active, net migration
+      scaled by mig_scale while active, discontent premium.
+    """
+
+    def __init__(self, schedule):
+        self.specs = []
+        for i, s in enumerate(schedule or []):
+            y, m = s["start"]
+            self.specs.append({
+                "id": i, "kind": str(s["kind"]),
+                "start_mi": (int(y) - 2025) * 12 + int(m),
+                "months": int(s.get("months", 12)),
+                "mag": float(s.get("mag", 0.0)),
+                "hazard_x": float(s.get("hazard_x", 0.0)),
+                "mig_scale": float(s.get("mig_scale", 1.0)),
+                "partner": str(s.get("partner", "USA")),
+            })
+        self.applied = {}
+        self._hazard_base = None
+
+    def _active(self, month_idx):
+        return [s for s in self.specs if s["start_mi"] <= month_idx < s["start_mi"] + s["months"]]
+
+    def begin_month(self, month_idx, st, tracker, year_notes):
+        """Apply/reverse shock STATE (trade lanes, GDP level, hazards,
+        migration scale) from the first day of the month (D-10 fix:
+        state changes used to land in month-END processing, so the
+        start month ran unshocked on its daily steps and the month
+        after the end kept residual hazard/migration effects).
+        Premium bookkeeping stays in on_month, which prices the month
+        that just ended."""
+        active = self._active(month_idx)
+        active_ids = {s["id"] for s in active}
+        for sid in list(self.applied.keys()):
+            if sid not in active_ids:
+                self._reverse(st, tracker, self.applied.pop(sid))
+        for s in active:
+            if s["id"] not in self.applied:
+                self.applied[s["id"]] = self._activate(st, tracker, s, year_notes)
+        mig = 1.0
+        for s in active:
+            if s["kind"] == "pandemic":
+                mig *= s["mig_scale"]
+        tracker["mig_scale"] = mig
+
+    def _apply_hazards(self, st, extra=None):
+        # Recompute the hazard vector from the saved base times every
+        # live pandemic multiplier (D-5 fix: a single saved slot made
+        # a second overlapping pandemic's hazard a no-op, and the
+        # first reversal cleared the second's effect early).
+        if self._hazard_base is None:
+            return
+        mult = 1.0
+        for n in self.applied.values():
+            if n.get("hazard_x"):
+                mult *= (1.0 + float(n["hazard_x"]))
+        if extra is not None and extra.get("hazard_x"):
+            mult *= (1.0 + float(extra["hazard_x"]))
+        hz = st.hazard["JPN"]
+        for i in range(len(hz)):
+            hz[i] = self._hazard_base[i] * mult
+
+    def on_month(self, month_idx, st, tracker, year_notes):
+        prem = {"cpi": 0.0, "food": 0.0, "discontent": 0.0}
+        active = self._active(month_idx)
+        for s in active:
+            if s["kind"] == "energy_price":
+                prem["cpi"] += ENERGY_CPI_PASS_PER_PCT * s["mag"]
+            elif s["kind"] == "food_price":
+                prem["food"] += s["mag"] / 100.0
+            elif s["kind"] == "disaster":
+                prem["discontent"] += 0.03
+            elif s["kind"] == "pandemic":
+                prem["discontent"] += 0.05
+        st.shock_active = [
+            {"kind": s["kind"], "mag": s["mag"],
+             "until_year": 2025 + (s["start_mi"] + s["months"] - 2) // 12,
+             "until_month": (s["start_mi"] + s["months"] - 2) % 12 + 1}
+            for s in active
+        ]
+        return prem
+
+    def _activate(self, st, tracker, s, year_notes):
+        iv = st.ind["JPN"]
+        note = {"kind": s["kind"], "gdp_frac": 0.0, "lane_delta": 0.0, "imp_delta": 0.0}
+        year_notes.append(f"Shock {s['kind']}")
+        if s["kind"] == "energy_price":
+            # Multiplicative form (D-5): the reversal divides by the
+            # recorded factor, so changes that landed meanwhile (a
+            # tariff response on imports) are not undone by mistake.
+            f = 1.0 + ENERGY_IMPORT_SHARE * s["mag"] / 100.0
+            d_imp = iv["imports_customs"] * (f - 1.0)
+            iv["imports_customs"] *= f
+            frac = -d_imp / max(1.0, tracker["init_gdp"])
+            tracker["last_gdp"] *= (1.0 + frac)
+            note.update({"imp_factor": f, "gdp_frac": frac})
+        elif s["kind"] == "disaster":
+            frac = -s["mag"] / 100.0
+            tracker["last_gdp"] *= (1.0 + frac)
+            note.update({"gdp_frac": frac, "permanent": True})
+        elif s["kind"] == "foreign_recession":
+            partner = s.get("partner", "USA")
+            lane_key = LANE_KEYS.get(partner)
+            if lane_key and st.has(partner):
+                lane = st.aux["JPN"]["trade_by_partner"][lane_key]
+                f = 1.0 - s["mag"] / 100.0
+                d = float(lane["exports_bn_jpy"]) * (f - 1.0)
+                lane["exports_bn_jpy"] += d
+                iv["exports_customs"] += d
+                frac = d / max(1.0, tracker["init_gdp"])
+                tracker["last_gdp"] *= (1.0 + frac)
+                note.update({"lane_factor": f, "gdp_frac": frac, "lane_key": lane_key, "partner": partner})
+        elif s["kind"] == "pandemic":
+            frac = -s["mag"] / 100.0
+            tracker["last_gdp"] *= (1.0 + frac)
+            note["gdp_frac"] = frac
+            if s["hazard_x"] > 0.0:
+                if self._hazard_base is None:
+                    self._hazard_base = list(st.hazard["JPN"])
+                note["hazard_x"] = s["hazard_x"]
+                self._apply_hazards(st, extra=note)
+        return note
+
+    def _reverse(self, st, tracker, note):
+        if note.get("permanent"):
+            return
+        iv = st.ind["JPN"]
+        if note.get("imp_factor"):
+            iv["imports_customs"] /= note["imp_factor"]
+        if note.get("lane_factor"):
+            # Divide the CURRENT lane by the recorded factor (D-5):
+            # whatever else scaled the lane meanwhile (a counterpart
+            # tariff, an export licence) stays scaled; only the
+            # shock's own factor comes back out. The old additive
+            # reversal left a permanent +1,440.8 bn distortion in the
+            # reviewer's tariff-overlap reproduction.
+            lane = st.aux["JPN"]["trade_by_partner"][note.get("lane_key", "USA")]
+            cur = float(lane["exports_bn_jpy"])
+            restored = cur / note["lane_factor"]
+            lane["exports_bn_jpy"] = restored
+            iv["exports_customs"] += (restored - cur)
+        if note.get("gdp_frac"):
+            tracker["last_gdp"] /= (1.0 + note["gdp_frac"])
+        if note.get("hazard_x"):
+            if any(n.get("hazard_x") for n in self.applied.values()):
+                self._apply_hazards(st)
+            elif self._hazard_base is not None:
+                hz = st.hazard["JPN"]
+                for i in range(len(hz)):
+                    hz[i] = self._hazard_base[i]
+                self._hazard_base = None
+
+
+
+def _distribution_block(st):
+    """Household-layer distribution surface (Roadmap P6): income and
+    discontent spreads plus the worst-decile economic-security deficit
+    that the approval channel reads."""
+    sm = getattr(st, "persons_summary", None)
+    if not sm:
+        return {}
+    inc = sm["real_income_p10_p50_p90"]
+    dis = sm["discontent_p10_p50_p90"]
+    return {
+        "income_p10": inc[0], "income_p50": inc[1], "income_p90": inc[2],
+        "income_p90_p10": (inc[2] / inc[0]) if inc[0] else None,
+        "discontent_p10": dis[0], "discontent_p90": dis[2],
+        "deficit_p90": sm["economic_security_deficit_p10_p50_p90"][2],
+    }
+
+
+def _policy_obs(st, year, phase, row):
+    """Observation for an external policy (agent) hook: the full indicator
+    state, current lever values and bounds, and the last yearly summary row.
+    Plain data only (dicts/lists/numbers), safe to serialise."""
+    levers_def = st.levers["JPN"]["levers"]
+    obs = {
+        "year": year,
+        "phase": phase,
+        "indicators": dict(st.ind["JPN"]),
+        "levers": dict(st.lever_value["JPN"]),
+        "lever_bounds": {
+            lid: {"min": L.get("min"), "max": L.get("max"), "unit": L.get("unit"), "status": L.get("status")}
+            for lid, L in levers_def.items()
+        },
+        "trade_by_partner": {p: dict(v) for p, v in st.aux.get("JPN", {}).get("trade_by_partner", {}).items()},
+        "shocks_active": list(getattr(st, "shock_active", [])),
+        "replenishments": int(getattr(st, "replenish_fires", 0)),
+        "distribution": _distribution_block(st),
+        "row": row,
+    }
+    obs["migration_by_origin"] = {o: dict(v) for o, v in st.aux.get("JPN", {}).get("migration_by_origin", {}).items()}
+    obs["regions"] = {r: dict(v) for r, v in st.aux.get("JPN", {}).get("regions", {}).items()}
+    obs["election"] = dict(st.aux.get("JPN", {}).get("election", {}))
+    if not obs["regions"]:
+        # Pre-loop (initial) observations precede the tracker's first
+        # write; synthesize the start distribution from the table.
+        _ss = sum(d["pop_share"] for d in REGIONS.values())
+        _pt = st.value("JPN", "pop_total")
+        obs["regions"] = {r: {"pop": int(round(d["pop_share"] / _ss * _pt)),
+                              "share": round(d["pop_share"] / _ss, 4), "aged": d["aged"]}
+                          for r, d in REGIONS.items()}
+    cps = {}
+    for _code in COUNTERPARTS:
+        if st.has(_code):
+            cps[_code] = {
+                "indicators": dict(st.ind[_code]),
+                "levers": dict(st.lever_value[_code]),
+                "trade_by_partner": {p: dict(v) for p, v in st.aux.get(_code, {}).get("trade_by_partner", {}).items()},
+            }
+    if cps:
+        obs["counterpart"] = cps
+    return obs
+
+
+_PLATFORMS_CACHE = None
+
+
+def _load_platforms():
+    """Party platforms + coalition order + demographic tilts (axis K)."""
+    global _PLATFORMS_CACHE
+    if _PLATFORMS_CACHE is None:
+        try:
+            _pp = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                               "data", "modern", "polity", "jpn_platforms.json")
+            with open(_pp, encoding="utf-8") as _fh:
+                _PLATFORMS_CACHE = json.load(_fh)
+        except Exception:
+            _PLATFORMS_CACHE = {}
+    return _PLATFORMS_CACHE
+
+
+def _form_government(seats, plat):
+    """Largest platform-carrying party leads; partners join in its
+    declared coalition order until the bloc holds a majority (or the
+    list runs out - a minority government). The merged agenda lets
+    the senior partner win lever conflicts."""
+    platforms = plat.get("platforms", {})
+    order = plat.get("coalition_order", {})
+    cands = sorted((p for p in platforms if int(seats.get(p, 0)) > 0),
+                   key=lambda p: -int(seats.get(p, 0)))
+    if not cands:
+        return [], {}
+    senior = cands[0]
+    bloc = [senior]
+    total = int(seats.get(senior, 0))
+    for partner in order.get(senior, []):
+        if total >= 233:
+            break
+        if partner in platforms and int(seats.get(partner, 0)) > 0:
+            bloc.append(partner)
+            total += int(seats.get(partner, 0))
+    agenda = {}
+    for p in reversed(bloc):
+        agenda.update(platforms[p].get("levers", {}))
+    return bloc, agenda
+
+
+def _submit_policy_acts(st, cab, org, month, acts, pending_platform):
+    """Submit agent lever acts through the same Cabinet/Diet path as the
+    scenario lever plan. Bill/refused acts join pending_platform, so a later
+    election majority can enact them exactly as with scenario levers."""
+    results = []
+    for lid, val in acts:
+        _head = lid.split(":", 1)[0]
+        if ":" in lid and _head in COUNTERPARTS:
+            if st.has(_head):
+                st.set_lever(_head, lid[len(_head) + 1:], float(val))
+                results.append({"lever": lid, "value": float(val), "status": "executed",
+                                "message": "FOREIGN_ACT (counterpart decision, no Diet path)"})
+            else:
+                results.append({"lever": lid, "value": float(val), "status": "rejected",
+                                "message": f"counterpart {_head} not loaded"})
+            continue
+        code, msg = submit_policy_lever(st, cab, org, month, lid, float(val))
+        if code in ("bill", "refused"):
+            pending_platform[lid] = float(val)
+        results.append({"lever": lid, "value": float(val), "status": code, "message": msg})
+    return results
+
+
+def _policy_call(policy_fn, st, cab, org, month, year, phase, row, pending_platform):
+    obs = _policy_obs(st, year, phase, row)
+    acts = policy_fn(obs) or []
+    if isinstance(acts, dict):
+        acts = list(acts.items())
+    acts = [(str(lid), float(val)) for lid, val in acts]
+    if not acts:
+        return
+    results = _submit_policy_acts(st, cab, org, month, acts, pending_platform)
+    print("[Agent Policy %s] %s" % (year, " | ".join(
+        "%s=%s -> %s" % (r["lever"], r["value"], r["status"].upper()) for r in results)))
+    report = getattr(policy_fn, "report", None)
+    if callable(report):
+        report(year, phase, results)
+
+
 def run_simulation(
     years=25,
     scenario="baseline",
@@ -567,9 +1102,15 @@ def run_simulation(
     coalition_pass=False,
     params_path=None,
     feedback_params=None,
+    policy_fn=None,
+    usa_tariff=None,
+    chn_tariff=None,
+    eu_tariff=None,
+    shocks=None,
 ):
     ensure_oracle_dumps()
     params = load_feedback_params(params_path=params_path, overrides=feedback_params)
+    shock_engine = ShockEngine(shocks) if shocks else None
     jp = params["fiscal_and_jgb"]
     rp = params["persons_replenishment"]
 
@@ -584,7 +1125,17 @@ def run_simulation(
 
     # 1. Initialize Status (`status_2024.json` + `levers.json`) and align to `2025-01-01` (`start_2025.json`)
     st = Status()
-    err = st.load(2024, ["JPN"])
+    err = st.load(2024, ["JPN", "USA", "CHN", "EU"])
+    # The sourced JPN customs surface lists EU member states individually,
+    # so the bloc lane on the JPN side is created here from the EU
+    # profile's (declared-estimate) mirror lane; the bilateral sync then
+    # maintains it like every other lane.
+    if st.has("EU"):
+        _jp_lanes = st.aux.get("JPN", {}).get("trade_by_partner", {})
+        _eu_mirror = st.aux.get("EU", {}).get("trade_by_partner", {}).get("JPN")
+        if _eu_mirror is not None and "EU" not in _jp_lanes:
+            _jp_lanes["EU"] = {"exports_bn_jpy": float(_eu_mirror["imports_bn_jpy"]),
+                               "imports_bn_jpy": float(_eu_mirror["exports_bn_jpy"])}
     if err != "":
         raise RuntimeError(err)
 
@@ -617,6 +1168,8 @@ def run_simulation(
     ps = Persons.create(c.id, 1, co_2025, qx_2024, regions, n_per, 2025)
     init_p_n = ps.p.n
     seed_gen = 1
+    last_replenish_y = 2025
+    replenish_fires = 0
     econ = EconMonth()
     econ.create("JPN")
     econ.labour = Labour()
@@ -659,7 +1212,26 @@ def run_simulation(
     pending_platform = {}
     lever_logs_init = []
     for lid, val in lever_plan:
-        status_code, msg = submit_policy_lever(st, cab, org, 0, lid, val, force_direct=coalition_pass)
+        if lid.startswith("USA:"):
+            if st.has("USA"):
+                st.set_lever("USA", lid[4:], float(val))
+                lever_logs_init.append(f"{lid}={val} -> FOREIGN_ACT (counterpart decision)")
+            continue
+        # Scenario/custom lever plans are the counterfactual's initial
+        # conditions, not proposals made inside the run: a preset
+        # budget line (pass_budget law + SPENDING_LEVERS) is therefore
+        # set directly. Its fiscal COST is charged in full by the
+        # fiscal sync (D-1 wiring) - what is waived is only the Diet
+        # budget procedure, which would otherwise refuse every large
+        # preset under the 2024 minority composition (governing 215 of
+        # 465) and silently change the scenarios' meaning. Proposals
+        # arising INSIDE the run (agent acts, party platforms, the
+        # brain) still face the full gate, reserve ceiling included.
+        _law0 = org.law_for_lever(lid)
+        _preset_budget = lid in SPENDING_LEVERS and str(_law0.get("needs", "")) == "pass_budget"
+        status_code, msg = submit_policy_lever(st, cab, org, 0, lid, val, force_direct=coalition_pass or _preset_budget)
+        if _preset_budget and not coalition_pass:
+            msg += " [preset condition: budget procedure waived, cost charged]"
         lever_logs_init.append(f"{lid}={val} -> {msg}")
         if status_code in ("bill", "refused"):
             pending_platform[lid] = float(val)
@@ -668,6 +1240,14 @@ def run_simulation(
         print("[Policy Levers] " + " | ".join(lever_logs_init))
     else:
         print("[Policy Levers] None (Baseline Status Quo)")
+
+    for _code, _tv in (("USA", usa_tariff), ("CHN", chn_tariff), ("EU", eu_tariff)):
+        if _tv is not None and st.has(_code):
+            st.set_lever(_code, "tariff_on_jpn", float(_tv))
+            print(f"[Counterpart] {_code} tariff_on_jpn={float(_tv)} (additional, over the 2024 baseline)")
+
+    if policy_fn is not None:
+        _policy_call(policy_fn, st, cab, org, 0, 2025, "initial", None, pending_platform)
 
     co_init = st.cohort["JPN"]
     init_wp_15_64 = sum(co_init[a * 2] + co_init[a * 2 + 1] for a in range(15, 65))
@@ -682,6 +1262,11 @@ def run_simulation(
         + float(fy24_lines["defence"])
         + float(fy24_lines["other"])
         + float(fy24_lines["reserve_fund"])
+        # Hygiene track G: the FY2024 lines previously summed to
+        # 108,571.7 of the 112,571.7 bn total; the missing 4,000.0 bn
+        # (unitemized official categories) is now an explicit line in
+        # jpn_laws.json and belongs in core operations.
+        + float(fy24_lines.get("unitemized", 0.0))
     )
     tracker = {
         "statutory_tfr": st.value("JPN", "tfr"),
@@ -705,6 +1290,9 @@ def run_simulation(
         "init_health": st.value("JPN", "health_expenditure"),
         "init_gov_cons": st.value("JPN", "gov_consumption"),
         "init_jgb": st.value("JPN", "jgb_10y"),
+        "init_policy_rate": st.value("JPN", "policy_rate"),
+        "fx_prev_jpn_rate": st.value("JPN", "policy_rate"),
+        "fx_prev_usa_rate": (st.value("USA", "policy_rate") if st.has("USA") else 0.045),
         "eff_jgb_rate": st.value("JPN", "jgb_10y"),
         "init_debt": st.value("JPN", "gov_debt_total"),
         "init_debt_gdp": st.value("JPN", "debt_to_gdp"),
@@ -712,15 +1300,36 @@ def run_simulation(
         "init_def": st.value("JPN", "defence_budget"),
         "init_ca": st.lever_value["JPN"]["child_allowance"],
         "init_pi": st.lever_value["JPN"]["public_investment"],
+        "capital_stock": CAPITAL_OUTPUT_RATIO * st.value("JPN", "gdp_nominal"),
+        "price_level": 1.0,
+        "lf_window": [],
+        "init_fab": st.value("JPN", "fab_capacity_share"),
+        "init_semi": st.lever_value["JPN"]["semiconductor_subsidy"],
+        "init_fuel": st.lever_value["JPN"]["fuel_subsidy"],
         "init_ed": st.lever_value["JPN"]["education_budget"],
         "init_oda": st.lever_value["JPN"]["oda_budget"],
+        "us_tariff_prev": 0.0,
+        "jp_tariff_prev": float(st.lever_value["JPN"]["tariff_rate_general"]),
         "init_pension_age": st.lever_value["JPN"]["pension_age"],
         "pension_k": float(st.levers["JPN"]["levers"]["pension_age"]["response"]["k"]),
         "init_ssw": st.lever_value["JPN"]["ssw_visa_cap"],
         "ssw_k": float(st.levers["JPN"]["levers"]["ssw_visa_cap"]["response"]["k"]),
         "init_mig": st.value("JPN", "net_migration"),
         "init_foreign": st.value("JPN", "foreign_residents"),
+        "init_unemp": st.value("JPN", "unemployment_rate"),
+        "init_share65": st.value("JPN", "share_65plus"),
+        "ap_last_election": st.value("JPN", "cabinet_approval"),
+        "region_pop": {r: d["pop_share"] / sum(x["pop_share"] for x in REGIONS.values()) * st.value("JPN", "pop_total") for r, d in REGIONS.items()},
+        "region_aged": {r: d["aged"] for r, d in REGIONS.items()},
+        "init_kanto_share": (REGIONS["kanto"]["pop_share"] / sum(x["pop_share"] for x in REGIONS.values())),
+        "local_stress": sum((d["pop_share"] / sum(x["pop_share"] for x in REGIONS.values())) * max(0.0, d["aged"] - 0.29) for d in REGIONS.values()),
+        "init_local_stress": sum((d["pop_share"] / sum(x["pop_share"] for x in REGIONS.values())) * max(0.0, d["aged"] - 0.29) for d in REGIONS.values()),
     }
+    st.aux.setdefault("JPN", {})["regions"] = {
+        r: {"pop": int(round(tracker["region_pop"][r])),
+            "share": round(tracker["region_pop"][r] / max(1.0, st.value("JPN", "pop_total")), 4),
+            "aged": tracker["region_aged"][r]}
+        for r in REGIONS}
 
     unemp_prev = st.value("JPN", "unemployment_rate")
     last_election_month = 0
@@ -738,6 +1347,9 @@ def run_simulation(
     month_idx = 0
 
     for day in range(1, total_days + 1):
+        # Shock state changes land at the START of their month (D-10).
+        if shock_engine is not None and (day == 1 or MA.is_month_end(day - 1)):
+            shock_engine.begin_month(month_idx + 1, st, tracker, year_notes)
         logged_before = len(st.lever_log)
         # Status._step_cohort() runs before Status._apply_due() inside st.step(), so record today's active net_migration before st.step()
         year_mig += st.value("JPN", "net_migration") / 365.0
@@ -752,6 +1364,8 @@ def run_simulation(
         year_births += st.daily_births["JPN"]
         year_deaths += st.daily_deaths["JPN"]
 
+        sync_bilateral_trade(st, tracker)
+
         bond_dep, share_75plus = sync_macro_fiscal_and_asfr(
             st, tracker, econ_infl, discontent, effective_food_yoy, real_wage_ratio, params=params
         )
@@ -764,7 +1378,8 @@ def run_simulation(
 
             # 1. Diet votes on pending bills after 5-month parliamentary session (`Cabinet.vote_due`)
             bills_before = {b["id"]: b["status"] for b in cab.bills}
-            cab.vote_due(month_idx, lambda l_id, v_val: st.set_lever("JPN", l_id, v_val))
+            cab.vote_due(month_idx, lambda l_id, v_val: st.set_lever("JPN", l_id, v_val),
+                         get_lever=lambda l_id: float(st.lever_value["JPN"].get(l_id, 0.0)))
             for b in cab.bills:
                 if bills_before.get(b["id"]) == "submitted" and b["status"] != "submitted":
                     if b["status"] == "enacted":
@@ -773,27 +1388,69 @@ def run_simulation(
                     elif b["status"] == "rejected":
                         year_notes.append(f"Diet Rejected {b['lever']}")
 
-            # 2. Collect levers whose lead_days completed this month
-            applied_this_month = [
-                str(st.lever_log[i][2])
-                for i in range(0, len(st.lever_log))
-                if str(st.lever_log[i][4]) == "applied" and int(st.lever_log[i][0]) > day - 31
-            ]
+            # 2. Collect levers whose lead_days completed this month.
+            # lever_log "applied" rows are [day, k, lid, new, "applied",
+            # old]; the Public approval channel also gets a
+            # direction-aware copy (D-3): a downward application is
+            # passed as "<lid>_cut", whose mirrored approval effect
+            # Public's EFFECT table carries. Persons keep the raw ids.
+            applied_this_month = []
+            pub_applied = []
+            for i in range(0, len(st.lever_log)):
+                _e = st.lever_log[i]
+                if str(_e[4]) == "applied" and int(_e[0]) > day - 31:
+                    _lid = str(_e[2])
+                    applied_this_month.append(_lid)
+                    _dv = (float(_e[3]) - float(_e[5])) if len(_e) > 5 else 0.0
+                    pub_applied.append(_lid + "_cut" if _dv < 0.0 else _lid)
             if "pension_age" in applied_this_month:
                 ps.p.PENSION_AGE = int(round(st.lever_value["JPN"]["pension_age"]))
 
-            # 3. Replenish micro households if multi-decade aging reduces sample size below min_sample_ratio
+            # 3. Replenish micro households. The original trigger (panel
+            # n below 60% of initial) can never fire: the household layer
+            # is self-renewing and n is structurally constant (measured
+            # n=94 over 100 years in the v4.1 audit), so the Issue-C
+            # preservation code was dead. The trigger is redesigned
+            # (Roadmap P6): fire on the n condition OR on a fixed
+            # re-anchoring cadence - the panel's state is anchored to
+            # its creation year, so every REPLENISH_INTERVAL_YEARS the
+            # panel is resampled from the live cohort while the
+            # function preserves the macro state (price/wage indices,
+            # pension, emotion shifts, assets by age band).
             min_n = max(int(rp["min_sample_abs"]), int(init_p_n * float(rp["min_sample_ratio"])))
-            if ps.p.n < min_n:
+            if ps.p.n < min_n or (cal_y - last_replenish_y) >= REPLENISH_INTERVAL_YEARS:
                 seed_gen += 1
                 ps = replenish_persons_if_needed(
                     ps, c.id, st, qx_2024, regions, n_per, cal_y, seed_gen, current_u=econ.labour.u
                 )
+                last_replenish_y = cal_y
+                replenish_fires += 1
+                st.replenish_fires = replenish_fires
+                # Re-anchor the distribution channel's reference to the
+                # fresh panel: the channel measures within-panel
+                # deterioration, and a resample discontinuity (the new
+                # panel's tail sits at a different level) is not a
+                # deterioration of anyone's life.
+                tracker["init_deficit_p90"] = float(ps.summary()["economic_security_deficit_p10_p50_p90"][2])
 
             # 4. Persons labour supply -> EconMonth (Labour + CropFarming + FoodMfg + TradingHouse + Bank)
             psup = ps.supply()
             econ.labour.receive(float(psup["search_share"]), float(psup["wage_demand_share"]), psup["scales"])
             econ.step()
+
+            # 4b. Central bank (axis H): publish the EconMonth Bank's
+            # policy rate (path, then its Taylor-type rule) as the JPN
+            # policy_rate indicator, and let the yen respond to the
+            # JPN-US differential. The rate was previously invisible:
+            # it moved inside EconMonth and reached nothing else.
+            if econ.bank is not None:
+                st.ind["JPN"]["policy_rate"] = float(econ.bank.policy_rate)
+            _usa_rate = float(st.ind["USA"]["policy_rate"]) if st.has("USA") else 0.045
+            _d_diff = (st.ind["JPN"]["policy_rate"] - tracker["fx_prev_jpn_rate"]) - (_usa_rate - tracker["fx_prev_usa_rate"])
+            if _d_diff != 0.0:
+                st.ind["JPN"]["fx_jpy_usd"] *= (1.0 - FX_DIFF_SENS * _d_diff)
+                tracker["fx_prev_jpn_rate"] = st.ind["JPN"]["policy_rate"]
+                tracker["fx_prev_usa_rate"] = _usa_rate
 
             # 5. Update Status labour indicators from EconMonth
             st.ind["JPN"]["unemployment_rate"] = econ.labour.u
@@ -808,12 +1465,32 @@ def run_simulation(
             if fiscal_crisis:
                 econ_infl += jp["crisis_infl_premium"]
                 food_yoy += jp["crisis_food_premium"]
+            # Monetary stance (axis H): a policy rate held above neutral
+            # trims the inflation the demographic/fiscal layer sees.
+            econ_infl += -MONETARY_CPI_PASS * (st.ind["JPN"]["policy_rate"] - NEUTRAL_POLICY_RATE)
             if "consumption_tax_rate" in applied_this_month:
+                # Sign-aware (independent review D-3): a hike passes
+                # into prices, and a CUT must pass through the other
+                # way - the old max(0, ...) clamps made a cut pure
+                # revenue loss with no price relief at all.
                 tax_jump = st.lever_value["JPN"]["consumption_tax_rate"] - 0.10
-                econ_infl += max(0.0, tax_jump)
-                food_yoy += max(0.0, tax_jump * jp["vat_food_passthrough"])
+                econ_infl += tax_jump
+                food_yoy += tax_jump * jp["vat_food_passthrough"]
 
-            active_tax_burden = max(0.0, st.lever_value["JPN"]["consumption_tax_rate"] - 0.10)
+            fuel_sub_val = st.lever_value["JPN"].get("fuel_subsidy", 0.0)
+            if fuel_sub_val > 0.0:
+                fuel_k = float(st.levers["JPN"]["levers"]["fuel_subsidy"]["response"].get("k", 0.0))
+                econ_infl += fuel_k * fuel_sub_val / 100.0
+
+            shock_prem = None
+            if shock_engine is not None:
+                shock_prem = shock_engine.on_month(month_idx, st, tracker, year_notes)
+                econ_infl += shock_prem["cpi"]
+                food_yoy += shock_prem["food"]
+
+            # Signed (D-3): above 10% this is the ongoing burden; below
+            # 10% it is an ongoing relief on food prices and real wages.
+            active_tax_burden = st.lever_value["JPN"]["consumption_tax_rate"] - 0.10
             effective_food_yoy = food_yoy + (active_tax_burden * jp["vat_ongoing_food_bite"])
             st.ind["JPN"]["cpi_inflation"] = econ_infl
 
@@ -827,31 +1504,102 @@ def run_simulation(
                 "cohort": st.cohort["JPN"]
             })
             sm = ps.summary()
+            st.persons_summary = sm
+            if tracker.get("init_deficit_p90") is None:
+                tracker["init_deficit_p90"] = float(sm["economic_security_deficit_p10_p50_p90"][2])
             raw_disc = float(sm["discontent_p10_p50_p90"][1])
             if not math.isnan(raw_disc):
                 discontent = raw_disc
+            if shock_prem is not None and shock_prem["discontent"]:
+                discontent = min(1.0, discontent + shock_prem["discontent"])
             real_wage_ratio = econ.labour.wage_index / max(0.5, 1.0 + active_tax_burden)
 
             # 8. Step Public Approval & Elections -> Policy Feedback Loop
             du_pt = (econ.labour.u - unemp_prev) * 100.0
             unemp_prev = econ.labour.u
-            ap = pub.step(month_idx, effective_food_yoy, du_pt, applied_this_month)
+            ap = pub.step(month_idx, effective_food_yoy, du_pt, pub_applied)
             ap = max(0.05, min(0.90, ap - (discontent - 0.20) * 0.25))
+            # Distribution channel (Roadmap P6): approval also answers to
+            # the tail - the worst-decile economic-security deficit -
+            # not only to median discontent.
+            _deficit_p90 = float(sm["economic_security_deficit_p10_p50_p90"][2])
+            ap = max(0.05, min(0.90, ap - DIST_STRESS_SLOPE * max(0.0, _deficit_p90 - float(tracker.get("init_deficit_p90", _deficit_p90)))))
             st.ind["JPN"]["cabinet_approval"] = ap
 
-            if full_mode and cal_m == 10 and (cal_y - 2024) % 4 == 0:
-                d_ap = pub.change_since(last_election_month)
+            call_due = st.lever_value["JPN"].get("call_election", 0.0) >= 0.5
+            if full_mode and ((cal_m == 10 and (cal_y - 2024) % 4 == 0) or call_due):
+                # Approval change since the previous election, as a
+                # fraction. (Found in axis K: the old call,
+                # pub.change_since(last_election_month), passed month
+                # 0 for the first election; history starts at month 1,
+                # so it always returned 0.0 and the first election
+                # ignored approval entirely - identical seats with or
+                # without a popularity collapse.)
+                d_ap = float(ap) - float(tracker["ap_last_election"])
+                tracker["ap_last_election"] = float(ap)
                 if fiscal_crisis:
                     d_ap = min(d_ap, (ap - 0.35) * 100.0)
                 d_cpi_pt = (econ_infl - 0.02) * 100.0
                 shares = el.vote_shares(list(org.governing), d_ap, du_pt, d_cpi_pt)
+                # Demographic tilts (axis K): electorate composition
+                # moves party shares - aging favours incumbent-
+                # conservative and pensioner parties, Kanto growth
+                # favours reform parties (declared, T).
+                _tilts = _load_platforms().get("demographic_tilts", {})
+                if _tilts:
+                    _d_age = (st.value("JPN", "share_65plus") - tracker["init_share65"]) * 100.0
+                    _d_kan = (tracker["region_pop"]["kanto"] / max(1.0, st.value("JPN", "pop_total")) - tracker["init_kanto_share"]) * 100.0
+                    for _p in shares:
+                        shares[_p] = max(0.001, shares[_p]
+                                         + _tilts.get("per_point_aging", {}).get(_p, 0.0) * _d_age
+                                         + _tilts.get("per_point_kanto", {}).get(_p, 0.0) * _d_kan)
+                    _ssum = sum(shares.values())
+                    for _p in shares:
+                        shares[_p] /= _ssum
                 r_low = el.run_lower_house(shares)
                 org.seats["house_of_representatives"] = dict(r_low["seats"])
                 gov_seats = org.governing_seats("house_of_representatives")
                 st.ind["JPN"]["lower_house_seats_governing"] = float(gov_seats)
                 last_election_month = month_idx
+                if call_due:
+                    st.lever_value["JPN"]["call_election"] = 0.0
+                    year_notes.append("Election Called")
                 maj_str = "Majority" if gov_seats >= 233 else "Minority"
-                year_notes.append(f"Election({gov_seats}/465 {maj_str})")
+                _out_seats = gov_seats
+                # The Election note itself is appended AFTER government
+                # formation (D-7 fix): it used to record the outgoing
+                # bloc's seats here while the year row's GovSeats
+                # column carried the new government's, contradicting
+                # each other in the same row.
+
+                # Government formation (axis K): the winner's
+                # platform becomes the pending agenda (party items
+                # override agent-pending items on conflict), and the
+                # governing bloc itself is re-formed - before this,
+                # org.governing never changed hands.
+                _plat = _load_platforms()
+                _minority_agenda = False
+                if _plat:
+                    _seats_now = org.seats["house_of_representatives"]
+                    _bloc, _agenda = _form_government(_seats_now, _plat)
+                    if _bloc:
+                        if list(org.governing) != _bloc:
+                            year_notes.append("Government: " + "+".join(_bloc))
+                        org.governing = list(_bloc)
+                        gov_seats = sum(int(_seats_now.get(p, 0)) for p in _bloc)
+                        st.ind["JPN"]["lower_house_seats_governing"] = float(gov_seats)
+                        maj_str = "Majority" if gov_seats >= 233 else "Minority"
+                        _minority_agenda = gov_seats < 233
+                        for _lid, _val in _agenda.items():
+                            if abs(float(_val) - float(st.lever_value["JPN"].get(_lid, _val))) > 1e-9:
+                                pending_platform[_lid] = float(_val)
+                        st.aux.setdefault("JPN", {})["election"] = {
+                            "year": cal_y, "government": "+".join(_bloc),
+                            "majority": gov_seats >= 233,
+                            "shares": {p: round(float(shares.get(p, 0.0)), 4) for p in shares},
+                            "seats": {p: int(_seats_now.get(p, 0)) for p in _seats_now}}
+
+                year_notes.append(f"Election({_out_seats}/465 -> {'+'.join(org.governing)} {gov_seats}/465 {'Majority' if gov_seats >= 233 else 'Minority'})")
 
                 # CLOSED-LOOP ELECTION -> POLICY FEEDBACK:
                 if gov_seats >= 233 and pending_platform:
@@ -860,6 +1608,20 @@ def run_simulation(
                         if st_code == "executed":
                             pending_platform.pop(p_lid, None)
                             year_notes.append(f"Enacted {p_lid}")
+                elif gov_seats < 233 and pending_platform and _minority_agenda and not fiscal_crisis:
+                    # A minority platform government enacts compromise
+                    # (halfway) versions of its agenda. The fiscal-crisis
+                    # condition is excluded here on purpose (D-7 fix):
+                    # _minority_agenda is true for EVERY minority
+                    # platform government, so without it the crisis
+                    # consolidation branch below was unreachable dead
+                    # code since axis K.
+                    for p_lid, p_val in list(pending_platform.items()):
+                        _half = float(st.lever_value["JPN"].get(p_lid, p_val)) + 0.5 * (float(p_val) - float(st.lever_value["JPN"].get(p_lid, p_val)))
+                        st_code, _ = submit_policy_lever(st, cab, org, month_idx, p_lid, _half)
+                        if st_code == "executed":
+                            pending_platform.pop(p_lid, None)
+                            year_notes.append(f"Enacted(partial) {p_lid}")
                 elif gov_seats < 233 and fiscal_crisis:
                     if st.lever_value["JPN"]["public_investment"] > tracker["init_pi"]:
                         st.set_lever("JPN", "public_investment", tracker["init_pi"])
@@ -881,6 +1643,43 @@ def run_simulation(
         # End of Year Recording (every 365 days)
         if day % 365 == 0:
             yr = 2025 + (day // 365) - 1
+            # Regional decomposition update (axis J): allocate the
+            # year's national flows to the regions. Births follow a
+            # youth weight, deaths an aging weight; international
+            # migrants follow the foreign-resident distribution;
+            # inter-regional flows follow each region's net rate,
+            # scaled by the jobs cycle and demeaned so they sum to
+            # zero exactly. The layer is then rescaled to the national
+            # population, so the decomposition is exact by construction.
+            _rp = tracker["region_pop"]
+            _ra = tracker["region_aged"]
+            _tot = sum(_rp.values())
+            # Vital weights shaped to the observed crude-rate ratios
+            # (Kanto vs Tohoku births ~1.25x, deaths ~0.75x).
+            _bw = {r: _rp[r] * max(0.02, 0.16 - 0.22 * _ra[r]) for r in _rp}
+            _dw = {r: _rp[r] * (0.02 + 0.95 * _ra[r]) for r in _rp}
+            _bs = max(1.0, sum(_bw.values()))
+            _ds = max(1.0, sum(_dw.values()))
+            _cyc = max(0.3, min(1.6, 1.0 - REGION_FLOW_CYCLE * (st.value("JPN", "unemployment_rate") - tracker["init_unemp"])))
+            _flows = {r: REGIONS[r]["net_mig"] * _cyc * _rp[r] for r in _rp}
+            _fmean = sum(_flows.values()) / max(1.0, _tot)
+            for r in _rp:
+                _flows[r] -= _fmean * _rp[r]
+            for r in _rp:
+                _new = (_rp[r] + year_births * _bw[r] / _bs - year_deaths * _dw[r] / _ds
+                        + year_mig * REGIONS[r]["foreign"] + _flows[r])
+                _growth = _new / max(1.0, _rp[r]) - 1.0
+                _ra[r] = max(0.15, min(0.55, _ra[r] + 0.002 + REGION_AGING_FROM_DECLINE * max(0.0, -_growth)))
+                _rp[r] = max(0.0, _new)
+            _target = st.value("JPN", "pop_total")
+            _rs = max(1.0, sum(_rp.values()))
+            for r in _rp:
+                _rp[r] *= _target / _rs
+            st.aux.setdefault("JPN", {})["regions"] = {
+                r: {"pop": int(round(_rp[r])), "share": round(_rp[r] / max(1.0, _target), 4), "aged": round(_ra[r], 4)}
+                for r in _rp}
+            _local_stress = sum(_rp[r] * max(0.0, _ra[r] - 0.29) for r in _rp) / max(1.0, _target)
+            tracker["local_stress"] = _local_stress
             gov_seats_now = int(st.value("JPN", "lower_house_seats_governing"))
             fiscal_crisis = (bond_dep > jp["crisis_bond_dep_threshold"])
             history.append({
@@ -893,6 +1692,14 @@ def run_simulation(
                 "share_65plus": round(st.value("JPN", "share_65plus") * 100, 1),
                 "share_75plus": round(share_75plus * 100, 1),
                 "jgb_10y": round(st.value("JPN", "jgb_10y") * 100, 2),
+                "policy_rate": round(st.value("JPN", "policy_rate") * 100, 3),
+                "replenishments": replenish_fires,
+                "real_growth": round(st.value("JPN", "gdp_real_growth") * 100, 2),
+                "capital_tn": round(tracker["capital_stock"] / 1000.0, 1),
+                "kanto_share": round(100.0 * tracker["region_pop"]["kanto"] / max(1.0, st.value("JPN", "pop_total")), 1),
+                "government": "+".join(org.governing),
+                "local_stress": round(_local_stress * 100, 2),
+                "deficit_p90": (round(float(st.persons_summary["economic_security_deficit_p10_p50_p90"][2]), 3) if getattr(st, "persons_summary", None) else None),
                 "debt_gdp": round(st.value("JPN", "debt_to_gdp") * 100, 1),
                 "bond_dep": round(bond_dep * 100, 1),
                 "discontent": round(discontent, 3),
@@ -901,6 +1708,9 @@ def run_simulation(
                 "crisis": fiscal_crisis,
                 "notes": ", ".join(year_notes) if year_notes else "NORMAL"
             })
+            if policy_fn is not None:
+                _policy_call(policy_fn, st, cab, org, month_idx, cal_y, "year_end", history[-1], pending_platform)
+
             year_births = 0.0
             year_deaths = 0.0
             year_mig = 0.0
@@ -947,6 +1757,10 @@ def main():
     parser.add_argument("--coalition", action="store_true", help="Assume cross-party coalition agreement from day 0")
     parser.add_argument("--n-per", type=int, default=2, help="Representative persons per prefecture (default: 2)")
     parser.add_argument("--params-file", type=str, default=None, help="Path to custom feedback_params.json override")
+    parser.add_argument("--usa-tariff", type=float, default=None, help="Additional U.S. tariff on Japan (share, over the 2024 baseline)")
+    parser.add_argument("--chn-tariff", type=float, default=None, help="Additional Chinese tariff on Japan (share, over the 2024 baseline)")
+    parser.add_argument("--eu-tariff", type=float, default=None, help="Additional EU tariff on Japan (share, over the 2024 baseline)")
+    parser.add_argument("--shocks-file", type=str, default=None, help="JSON file with a shock schedule (list of {kind, start [year, month], months, mag, ...})")
 
     args = parser.parse_args()
     run_simulation(
@@ -956,6 +1770,10 @@ def main():
         n_per=args.n_per,
         coalition_pass=args.coalition,
         params_path=args.params_file,
+        usa_tariff=args.usa_tariff,
+        chn_tariff=args.chn_tariff,
+        eu_tariff=args.eu_tariff,
+        shocks=(json.load(open(args.shocks_file)) if args.shocks_file else None),
     )
 
 

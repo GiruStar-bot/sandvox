@@ -4,12 +4,12 @@
   "fertility": {
     "ed_budget_unit_bn": 4500.0,
     "ed_tfr_boost_per_unit": 0.045,
-    "discontent_baseline": 0.20,
+    "discontent_baseline": 0.2,
     "discontent_tfr_slope": -0.18,
     "food_infl_threshold": 0.025,
     "food_infl_tfr_slope": -0.22,
     "real_wage_tfr_slope": 0.06,
-    "stress_drag_min": -0.10,
+    "stress_drag_min": -0.1,
     "stress_drag_max": 0.04,
     "tfr_floor": 0.85,
     "tfr_ceiling": 2.05
@@ -25,13 +25,13 @@
     "discontent_attract_threshold": 0.22,
     "discontent_attract_slope": -0.6,
     "real_wage_attract_slope": 0.15,
-    "attract_min": 0.60,
-    "attract_max": 1.10
+    "attract_min": 0.6,
+    "attract_max": 1.1
   },
   "fiscal_and_jgb": {
     "old_75plus_cost_weight": 3.5,
     "senior_relief_multiplier": 2.5,
-    "senior_relief_floor": 0.70,
+    "senior_relief_floor": 0.7,
     "infl_index_threshold": 0.02,
     "jgb_infl_threshold": 0.02,
     "jgb_infl_slope": 0.45,
@@ -44,13 +44,200 @@
     "jgb_max": 0.055,
     "jgb_adjust_days": 90.0,
     "jgb_rollover_years": 8.5,
-    "crisis_infl_premium": 0.030,
-    "crisis_food_premium": 0.040,
-    "vat_food_passthrough": 0.80,
+    "crisis_infl_premium": 0.03,
+    "crisis_food_premium": 0.04,
+    "vat_food_passthrough": 0.8,
     "vat_ongoing_food_bite": 0.35
   },
   "persons_replenishment": {
-    "min_sample_ratio": 0.60,
+    "min_sample_ratio": 0.6,
     "min_sample_abs": 20
+  },
+  "_provenance": {
+    "_note": "Provenance for every feedback parameter (hygiene track G). Labels: S = anchored to a published figure or institution; T = calibrated tuning constant (a modelling assumption, no external source); internal = a definition or design threshold of this model itself. The loader ignores this section.",
+    "fertility": {
+      "ed_budget_unit_bn": {
+        "label": "T",
+        "basis": "normalization unit: the TFR boost is quoted per this much education-budget delta (calibration choice)"
+      },
+      "ed_tfr_boost_per_unit": {
+        "label": "T",
+        "basis": "calibrated elasticity of TFR to education support"
+      },
+      "discontent_baseline": {
+        "label": "internal",
+        "basis": "the CLI's neutral discontent anchor (0.20), shared with the approval and stress channels"
+      },
+      "discontent_tfr_slope": {
+        "label": "T",
+        "basis": "calibrated; sign follows the household-stress/fertility literature, magnitude tuned in the v4 calibration"
+      },
+      "food_infl_threshold": {
+        "label": "T",
+        "basis": "food-inflation level above which the fertility drag binds (calibration)"
+      },
+      "food_infl_tfr_slope": {
+        "label": "T",
+        "basis": "calibrated fertility drag per unit of excess food inflation"
+      },
+      "real_wage_tfr_slope": {
+        "label": "T",
+        "basis": "calibrated fertility response to real-wage growth"
+      },
+      "stress_drag_min": {
+        "label": "T",
+        "basis": "clamp on the total fertility stress drag"
+      },
+      "stress_drag_max": {
+        "label": "T",
+        "basis": "clamp on the total fertility stress boost"
+      },
+      "tfr_floor": {
+        "label": "T",
+        "basis": "plausibility bound (below any recorded national TFR)"
+      },
+      "tfr_ceiling": {
+        "label": "T",
+        "basis": "plausibility bound (around replacement level)"
+      }
+    },
+    "migration": {
+      "structural_baseline": {
+        "label": "T",
+        "basis": "anchored to Japan's recent net-migration scale (ISA / MIC population estimates: mid-2010s to 2020s net inflow roughly 150-250k/yr); rounded anchor. Label corrected to T (review D-8): a point picked inside a published range is a tuning anchor, not a sourced value"
+      },
+      "reopening_decay_years": {
+        "label": "T",
+        "basis": "calibrated horizon over which the post-reopening migration surge decays"
+      },
+      "cap_ssw_multiplier": {
+        "label": "T",
+        "basis": "calibrated pass-through from the SSW visa cap to total inflow capacity"
+      },
+      "cap_saturation_scale": {
+        "label": "T",
+        "basis": "calibrated saturation scale of the capacity response"
+      },
+      "cap_headroom_floor": {
+        "label": "T",
+        "basis": "calibrated minimum headroom of the migration capacity term"
+      },
+      "infl_attract_threshold": {
+        "label": "T",
+        "basis": "inflation level above which Japan's attractiveness to migrants decays"
+      },
+      "infl_attract_slope": {
+        "label": "T",
+        "basis": "calibrated attractiveness decay per unit of excess inflation"
+      },
+      "discontent_attract_threshold": {
+        "label": "T",
+        "basis": "discontent level above which attractiveness decays"
+      },
+      "discontent_attract_slope": {
+        "label": "T",
+        "basis": "calibrated attractiveness decay per unit of excess discontent"
+      },
+      "real_wage_attract_slope": {
+        "label": "T",
+        "basis": "calibrated attractiveness response to real-wage growth"
+      },
+      "attract_min": {
+        "label": "T",
+        "basis": "clamp on the attractiveness multiplier"
+      },
+      "attract_max": {
+        "label": "T",
+        "basis": "clamp on the attractiveness multiplier"
+      }
+    },
+    "fiscal_and_jgb": {
+      "old_75plus_cost_weight": {
+        "label": "S",
+        "basis": "MHLW national medical and long-term-care cost profiles: per-capita cost at 75+ is roughly 3.5x the 65-74 band (the model's documented basis since v4)"
+      },
+      "senior_relief_multiplier": {
+        "label": "T",
+        "basis": "calibrated strength of the pension-age employment relief on social-security cost growth"
+      },
+      "senior_relief_floor": {
+        "label": "T",
+        "basis": "clamp on the senior-relief factor"
+      },
+      "infl_index_threshold": {
+        "label": "S",
+        "basis": "the Bank of Japan's 2% price-stability target: only excess inflation compounds into the budget index"
+      },
+      "jgb_infl_threshold": {
+        "label": "S",
+        "basis": "the Bank of Japan's 2% price-stability target: the yield responds to inflation above it"
+      },
+      "jgb_infl_slope": {
+        "label": "T",
+        "basis": "calibrated 10y-yield response per unit of excess inflation"
+      },
+      "jgb_debt_gdp_slope": {
+        "label": "T",
+        "basis": "calibrated 10y-yield response per unit of debt/GDP above its initial level"
+      },
+      "jgb_bond_dep_threshold": {
+        "label": "T",
+        "basis": "bond-dependence level above which the yield premium binds (calibration)"
+      },
+      "jgb_bond_dep_slope": {
+        "label": "T",
+        "basis": "calibrated yield premium per unit of excess bond dependence"
+      },
+      "crisis_bond_dep_threshold": {
+        "label": "internal",
+        "basis": "the model's CRISIS definition: bond dependence above 45% (endogenous crisis rule since v2)"
+      },
+      "jgb_crisis_slope": {
+        "label": "T",
+        "basis": "calibrated additional yield slope inside CRISIS"
+      },
+      "jgb_min": {
+        "label": "T",
+        "basis": "yield floor (plausibility bound)"
+      },
+      "jgb_max": {
+        "label": "T",
+        "basis": "yield cap (plausibility bound)"
+      },
+      "jgb_adjust_days": {
+        "label": "T",
+        "basis": "quarterly yield adjustment cadence (modelling choice)"
+      },
+      "jgb_rollover_years": {
+        "label": "S",
+        "basis": "average remaining maturity of outstanding JGBs, about 8.5-9 years (MOF debt-management publications, FY2024)"
+      },
+      "crisis_infl_premium": {
+        "label": "T",
+        "basis": "calibrated inflation premium added inside CRISIS"
+      },
+      "crisis_food_premium": {
+        "label": "T",
+        "basis": "calibrated food-price premium added inside CRISIS"
+      },
+      "vat_food_passthrough": {
+        "label": "T",
+        "basis": "calibrated pass-through of consumption-tax changes to food prices"
+      },
+      "vat_ongoing_food_bite": {
+        "label": "T",
+        "basis": "calibrated ongoing share of the tax bite on household food costs"
+      }
+    },
+    "persons_replenishment": {
+      "min_sample_ratio": {
+        "label": "internal",
+        "basis": "design threshold: replenish when the panel falls below this share of its initial size (with the P6 cadence trigger, since the household layer self-renews and the ratio alone never fires)"
+      },
+      "min_sample_abs": {
+        "label": "internal",
+        "basis": "design threshold: absolute floor for the panel size trigger"
+      }
+    }
   }
 }

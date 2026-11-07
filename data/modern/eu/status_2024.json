@@ -1,0 +1,600 @@
+{
+ "entity": "EU",
+ "year": 2024,
+ "note": "S3 counterpart profile (Roadmap P5): the European Union (EU27) as a single bloc counterpart, mirroring the USA profile's shape. The Japan trade lane is a declared bloc estimate (T): Japan's customs record lists member states individually (Germany and France appear in the top-20 surface), so the bloc lane is set at the Comext order of magnitude - roughly EUR 67bn of EU exports to Japan and EUR 73bn of imports from Japan at ~163 JPY/EUR - and the bilateral sync rewrites the mirror from the JPN-side lane so the identity holds exactly. The cohort age distribution is a declared smooth model (T) scaled to the sourced Eurostat total.",
+ "indicators": {
+  "pop_total": {
+   "value": 450400000,
+   "source": "Eurostat: EU27 population on 1 January 2025, ~450.4M, rounded",
+   "label": "S (rounded)",
+   "trend": 0.0,
+   "unit": "persons"
+  },
+  "births": {
+   "value": 3600000,
+   "source": "T (declared estimate): Eurostat recorded 3.67M EU births in 2023 on a declining trend",
+   "label": "T",
+   "trend": 0.0,
+   "unit": "persons/yr"
+  },
+  "deaths": {
+   "value": 4900000,
+   "source": "T (declared estimate): Eurostat EU deaths run near 4.9M/yr in recent years",
+   "label": "T",
+   "trend": 0.0,
+   "unit": "persons/yr"
+  },
+  "tfr": {
+   "value": 1.38,
+   "source": "T (declared estimate): Eurostat EU TFR was 1.46 in 2022 and falling; 2023-24 estimates cluster near 1.4",
+   "label": "T",
+   "trend": 0.0
+  },
+  "net_migration": {
+   "value": 1900000,
+   "source": "T (declared estimate): Eurostat EU27 net migration was ~1.9M in 2023 (elevated post-2022)",
+   "label": "T",
+   "trend": 0.0,
+   "unit": "persons/yr"
+  },
+  "gdp_nominal_bn_usd": {
+   "value": 19420.0,
+   "source": "Eurostat/IMF: EU27 GDP 2024 ~EUR 17.9tn, ~USD 19.4tn, rounded",
+   "label": "S (rounded)",
+   "trend": 0.0,
+   "unit": "bn USD"
+  },
+  "gdp_real_growth": {
+   "value": 0.01,
+   "source": "Eurostat: EU real GDP growth 2024 ~+1.0%, rounded",
+   "label": "S (rounded)",
+   "trend": 0.0
+  },
+  "cpi_inflation": {
+   "value": 0.024,
+   "source": "Eurostat: EU HICP annual inflation 2024 +2.4%",
+   "label": "S",
+   "trend": 0.0
+  },
+  "policy_rate": {
+   "value": 0.03,
+   "source": "ECB: deposit facility rate after the 2024-12-12 cut, 3.00%",
+   "label": "S",
+   "trend": 0.0
+  },
+  "unemployment_rate": {
+   "value": 0.059,
+   "source": "Eurostat: EU unemployment rate, 2024 average 5.9%",
+   "label": "S",
+   "trend": 0.0
+  },
+  "fx_eur_usd": {
+   "value": 1.04,
+   "source": "EUR per USD rate (USD per EUR), end-2024 ~1.04, rounded",
+   "label": "S (rounded)",
+   "trend": 0.0
+  },
+  "trade_by_partner": {
+   "value": {
+    "JPN": {
+     "exports_bn_jpy": 10900.0,
+     "imports_bn_jpy": 11900.0
+    }
+   },
+   "source": "T (declared bloc estimate, see the profile note): EU exports to Japan ~EUR 67bn and imports from Japan ~EUR 73bn (Comext order of magnitude) at ~163 JPY/EUR, rounded; from this profile's perspective exports_bn_jpy is the EU's exports to Japan",
+   "label": "T",
+   "trend": 0.0
+  }
+ },
+ "cohort": {
+  "unit_persons": 1000,
+  "source": "T (declared model): smooth age distribution (same shape as the USA profile) scaled to the sourced population total; it gives the counterpart demographic presence, it is not a demographic estimate.",
+  "ages": [
+   {
+    "age": 0,
+    "male": 3041,
+    "female": 2898
+   },
+   {
+    "age": 1,
+    "male": 3026,
+    "female": 2895
+   },
+   {
+    "age": 2,
+    "male": 3011,
+    "female": 2891
+   },
+   {
+    "age": 3,
+    "male": 2997,
+    "female": 2888
+   },
+   {
+    "age": 4,
+    "male": 2982,
+    "female": 2884
+   },
+   {
+    "age": 5,
+    "male": 3158,
+    "female": 3064
+   },
+   {
+    "age": 6,
+    "male": 3143,
+    "female": 3060
+   },
+   {
+    "age": 7,
+    "male": 3128,
+    "female": 3058
+   },
+   {
+    "age": 8,
+    "male": 3112,
+    "female": 3054
+   },
+   {
+    "age": 9,
+    "male": 3097,
+    "female": 3050
+   },
+   {
+    "age": 10,
+    "male": 3083,
+    "female": 3046
+   },
+   {
+    "age": 11,
+    "male": 3067,
+    "female": 3042
+   },
+   {
+    "age": 12,
+    "male": 3052,
+    "female": 3038
+   },
+   {
+    "age": 13,
+    "male": 3038,
+    "female": 3034
+   },
+   {
+    "age": 14,
+    "male": 3022,
+    "female": 3030
+   },
+   {
+    "age": 15,
+    "male": 3007,
+    "female": 3026
+   },
+   {
+    "age": 16,
+    "male": 2993,
+    "female": 3022
+   },
+   {
+    "age": 17,
+    "male": 2978,
+    "female": 3018
+   },
+   {
+    "age": 18,
+    "male": 2964,
+    "female": 3013
+   },
+   {
+    "age": 19,
+    "male": 2948,
+    "female": 3009
+   },
+   {
+    "age": 20,
+    "male": 2933,
+    "female": 3005
+   },
+   {
+    "age": 21,
+    "male": 2919,
+    "female": 3001
+   },
+   {
+    "age": 22,
+    "male": 2904,
+    "female": 2997
+   },
+   {
+    "age": 23,
+    "male": 2890,
+    "female": 2992
+   },
+   {
+    "age": 24,
+    "male": 2875,
+    "female": 2988
+   },
+   {
+    "age": 25,
+    "male": 2860,
+    "female": 2984
+   },
+   {
+    "age": 26,
+    "male": 2846,
+    "female": 2978
+   },
+   {
+    "age": 27,
+    "male": 2831,
+    "female": 2974
+   },
+   {
+    "age": 28,
+    "male": 2817,
+    "female": 2970
+   },
+   {
+    "age": 29,
+    "male": 2802,
+    "female": 2965
+   },
+   {
+    "age": 30,
+    "male": 2788,
+    "female": 2961
+   },
+   {
+    "age": 31,
+    "male": 2774,
+    "female": 2956
+   },
+   {
+    "age": 32,
+    "male": 2760,
+    "female": 2952
+   },
+   {
+    "age": 33,
+    "male": 2745,
+    "female": 2947
+   },
+   {
+    "age": 34,
+    "male": 2731,
+    "female": 2943
+   },
+   {
+    "age": 35,
+    "male": 2717,
+    "female": 2937
+   },
+   {
+    "age": 36,
+    "male": 2703,
+    "female": 2932
+   },
+   {
+    "age": 37,
+    "male": 2688,
+    "female": 2928
+   },
+   {
+    "age": 38,
+    "male": 2675,
+    "female": 2923
+   },
+   {
+    "age": 39,
+    "male": 2660,
+    "female": 2919
+   },
+   {
+    "age": 40,
+    "male": 2646,
+    "female": 2913
+   },
+   {
+    "age": 41,
+    "male": 2633,
+    "female": 2908
+   },
+   {
+    "age": 42,
+    "male": 2618,
+    "female": 2903
+   },
+   {
+    "age": 43,
+    "male": 2605,
+    "female": 2899
+   },
+   {
+    "age": 44,
+    "male": 2590,
+    "female": 2894
+   },
+   {
+    "age": 45,
+    "male": 2577,
+    "female": 2888
+   },
+   {
+    "age": 46,
+    "male": 2562,
+    "female": 2883
+   },
+   {
+    "age": 47,
+    "male": 2549,
+    "female": 2878
+   },
+   {
+    "age": 48,
+    "male": 2535,
+    "female": 2872
+   },
+   {
+    "age": 49,
+    "male": 2521,
+    "female": 2867
+   },
+   {
+    "age": 50,
+    "male": 2508,
+    "female": 2862
+   },
+   {
+    "age": 51,
+    "male": 2494,
+    "female": 2856
+   },
+   {
+    "age": 52,
+    "male": 2480,
+    "female": 2851
+   },
+   {
+    "age": 53,
+    "male": 2467,
+    "female": 2846
+   },
+   {
+    "age": 54,
+    "male": 2454,
+    "female": 2841
+   },
+   {
+    "age": 55,
+    "male": 2439,
+    "female": 2835
+   },
+   {
+    "age": 56,
+    "male": 2426,
+    "female": 2830
+   },
+   {
+    "age": 57,
+    "male": 2413,
+    "female": 2825
+   },
+   {
+    "age": 58,
+    "male": 2400,
+    "female": 2819
+   },
+   {
+    "age": 59,
+    "male": 2386,
+    "female": 2813
+   },
+   {
+    "age": 60,
+    "male": 2373,
+    "female": 2807
+   },
+   {
+    "age": 61,
+    "male": 2360,
+    "female": 2802
+   },
+   {
+    "age": 62,
+    "male": 2347,
+    "female": 2797
+   },
+   {
+    "age": 63,
+    "male": 2333,
+    "female": 2790
+   },
+   {
+    "age": 64,
+    "male": 2320,
+    "female": 2785
+   },
+   {
+    "age": 65,
+    "male": 2307,
+    "female": 2780
+   },
+   {
+    "age": 66,
+    "male": 2294,
+    "female": 2773
+   },
+   {
+    "age": 67,
+    "male": 2280,
+    "female": 2768
+   },
+   {
+    "age": 68,
+    "male": 2267,
+    "female": 2762
+   },
+   {
+    "age": 69,
+    "male": 2254,
+    "female": 2756
+   },
+   {
+    "age": 70,
+    "male": 2241,
+    "female": 2751
+   },
+   {
+    "age": 71,
+    "male": 2227,
+    "female": 2744
+   },
+   {
+    "age": 72,
+    "male": 2216,
+    "female": 2739
+   },
+   {
+    "age": 73,
+    "male": 1982,
+    "female": 2459
+   },
+   {
+    "age": 74,
+    "male": 1773,
+    "female": 2209
+   },
+   {
+    "age": 75,
+    "male": 1586,
+    "female": 1984
+   },
+   {
+    "age": 76,
+    "male": 1420,
+    "female": 1781
+   },
+   {
+    "age": 77,
+    "male": 1270,
+    "female": 1600
+   },
+   {
+    "age": 78,
+    "male": 1136,
+    "female": 1437
+   },
+   {
+    "age": 79,
+    "male": 1017,
+    "female": 1290
+   },
+   {
+    "age": 80,
+    "male": 910,
+    "female": 1159
+   },
+   {
+    "age": 81,
+    "male": 814,
+    "female": 1040
+   },
+   {
+    "age": 82,
+    "male": 728,
+    "female": 934
+   },
+   {
+    "age": 83,
+    "male": 652,
+    "female": 838
+   },
+   {
+    "age": 84,
+    "male": 583,
+    "female": 754
+   },
+   {
+    "age": 85,
+    "male": 522,
+    "female": 677
+   },
+   {
+    "age": 86,
+    "male": 466,
+    "female": 607
+   },
+   {
+    "age": 87,
+    "male": 417,
+    "female": 546
+   },
+   {
+    "age": 88,
+    "male": 373,
+    "female": 490
+   },
+   {
+    "age": 89,
+    "male": 334,
+    "female": 440
+   },
+   {
+    "age": 90,
+    "male": 299,
+    "female": 395
+   },
+   {
+    "age": 91,
+    "male": 268,
+    "female": 354
+   },
+   {
+    "age": 92,
+    "male": 240,
+    "female": 318
+   },
+   {
+    "age": 93,
+    "male": 215,
+    "female": 286
+   },
+   {
+    "age": 94,
+    "male": 191,
+    "female": 257
+   },
+   {
+    "age": 95,
+    "male": 171,
+    "female": 230
+   },
+   {
+    "age": 96,
+    "male": 154,
+    "female": 207
+   },
+   {
+    "age": 97,
+    "male": 136,
+    "female": 185
+   },
+   {
+    "age": 98,
+    "male": 122,
+    "female": 167
+   },
+   {
+    "age": 99,
+    "male": 110,
+    "female": 150
+   },
+   {
+    "age": 100,
+    "male": 98,
+    "female": 134
+   }
+  ]
+ }
+}

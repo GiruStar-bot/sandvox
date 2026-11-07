@@ -16,6 +16,101 @@ RESERVE_FUND_BN = 1000.0
 SEXES = 2
 YEAR_DAYS = 365.0
 
+# Declared (T) conversions for lever responses whose sourced specs give
+# physical units rather than shares (see data/modern/jpn/levers.json).
+NUCLEAR_SHARE_PER_REACTOR = 0.006  # one ~1 GW reactor at ~70% CF ~ 6 TWh/yr of ~1,000 TWh
+FAB_SHARE_PER_BN = 2.0e-6          # 1 tn JPY/yr of sustained fab support ~ +0.2 pt of world share
+
+# Declared (T): the share of exports to China subject to export licensing
+# (semiconductor manufacturing equipment and advanced chips are roughly a
+# tenth of the lane; rounded up for the controlled-goods basket).
+CONTROLLED_EXPORT_SHARE_CHN = 0.12
+# Levers whose increase raises general-account expenditure, exactly the
+# list carried by the FY2024 budget law (data/modern/polity/
+# jpn_laws.json budget_fy2024.levers). The budget gate in check_lever
+# and the CLI's submit path both use this set: before the fix round
+# (independent review D-1) only gov_expenditure_general targets and
+# share-form levers counted as spending, so the bn-denominated budget
+# levers (semiconductor_subsidy, fuel_subsidy, public_investment, ...)
+# bypassed the reserve-fund ceiling and the Diet budget vote entirely.
+SPENDING_LEVERS = frozenset({
+    "public_investment", "child_allowance", "education_budget",
+    "oda_budget", "defence_budget_share", "semiconductor_subsidy",
+    "fuel_subsidy",
+})
+REN_SOURCES = ("solar", "wind", "hydro", "bioenergy", "other_renewable")
+# Declared (T) operational emission intensities, kg CO2 per kWh generated
+# (IPCC-consistent medians for the fuel technologies), and electricity's
+# share of primary energy supply, for the derived energy indicators.
+EMISSION_INTENSITY = {"coal": 0.90, "gas": 0.45, "oil": 0.70}
+ELEC_PRIMARY_SHARE = 0.45
+
+
+def _mix_emission_factor(mix):
+    e = 0.0
+    for s, inten in EMISSION_INTENSITY.items():
+        e += float(mix.get(s, 0.0)) * inten
+    return e
+
+
+def _mix_domestic(mix):
+    d = float(mix.get("nuclear", 0.0))
+    for s in REN_SOURCES:
+        d += float(mix.get(s, 0.0))
+    return d
+FOSSIL_SOURCES = ("coal", "gas", "oil")
+
+
+def _shift_mix(mix, target_ren):
+    """Move an electricity mix dict toward a renewable share, taking the
+    difference from (or returning it to) fossil sources pro-rata."""
+    ren = sum(float(mix.get(s, 0.0)) for s in REN_SOURCES)
+    fos = sum(float(mix.get(s, 0.0)) for s in FOSSIL_SOURCES)
+    shift = float(target_ren) - ren
+    if abs(shift) < 1e-12:
+        return
+    if shift > 0.0:
+        take = gd.minf(shift, fos)
+        if fos > 0.0:
+            for s in FOSSIL_SOURCES:
+                mix[s] = float(mix.get(s, 0.0)) * (fos - take) / fos
+        if ren > 1e-12:
+            for s in REN_SOURCES:
+                mix[s] = float(mix.get(s, 0.0)) * (ren + take) / ren
+        else:
+            mix["solar"] = float(mix.get("solar", 0.0)) + take
+    else:
+        give = gd.minf(-shift, ren)
+        if ren > 0.0:
+            for s in REN_SOURCES:
+                mix[s] = float(mix.get(s, 0.0)) * (ren - give) / ren
+        if fos > 1e-12:
+            for s in FOSSIL_SOURCES:
+                mix[s] = float(mix.get(s, 0.0)) * (fos + give) / fos
+        else:
+            mix["gas"] = float(mix.get("gas", 0.0)) + give
+
+
+def _add_nuclear(mix, dshare):
+    """Add (or retire) nuclear share in an electricity mix dict, balanced
+    against fossil sources pro-rata."""
+    fos = sum(float(mix.get(s, 0.0)) for s in FOSSIL_SOURCES)
+    nuc = float(mix.get("nuclear", 0.0))
+    if dshare > 0.0:
+        take = gd.minf(dshare, fos)
+        if fos > 0.0:
+            for s in FOSSIL_SOURCES:
+                mix[s] = float(mix.get(s, 0.0)) * (fos - take) / fos
+        mix["nuclear"] = nuc + take
+    elif dshare < 0.0:
+        cut = gd.minf(-dshare, nuc)
+        mix["nuclear"] = nuc - cut
+        if fos > 1e-12:
+            for s in FOSSIL_SOURCES:
+                mix[s] = float(mix.get(s, 0.0)) * (fos + cut) / fos
+        else:
+            mix["gas"] = float(mix.get("gas", 0.0)) + cut
+
 
 class Status:
     def __init__(self):
@@ -30,6 +125,8 @@ class Status:
         self.day = 0
         self.ind = {}
         self.ind0 = {}
+        self.aux = {}
+        self.derived = {}
         self.trend = {}
         self.cohort = {}
         self.qx = {}
@@ -64,6 +161,18 @@ class Status:
             kp = DIR + k.lower() + "/links_%d.json" % year
             self.links[k] = CANON.load_json(kp) if exists(kp) else {}
             self._init_entity(k)
+        # The sourced JPN customs surface lists EU member states
+        # individually, so the bloc lane on the JPN side is created
+        # from the EU profile's mirror lane (the CLI used to do this
+        # alone, leaving standalone Status runs without an EU lane;
+        # independent review D-4). Guarded, so the CLI's own creation
+        # is now a no-op.
+        if "JPN" in self.entities and "EU" in self.entities:
+            _jp_lanes = self.aux.get("JPN", {}).get("trade_by_partner", {})
+            _eu_mirror = self.aux.get("EU", {}).get("trade_by_partner", {}).get("JPN")
+            if _eu_mirror is not None and "EU" not in _jp_lanes:
+                _jp_lanes["EU"] = {"exports_bn_jpy": float(_eu_mirror["imports_bn_jpy"]),
+                                   "imports_bn_jpy": float(_eu_mirror["exports_bn_jpy"])}
         self.day = 0
         return ""
 
@@ -77,6 +186,8 @@ class Status:
             if "value" in row and type(row["value"]) in (float, int):
                 iv[id_] = float(row["value"])
                 tr[id_] = float(row.get("trend", 0.0))
+            elif "value" in row and type(row["value"]) is dict:
+                self.aux.setdefault(k, {})[id_] = deep(row["value"])
         self.ind[k] = iv
         self.ind0[k] = dict(iv)
         self.trend[k] = tr
@@ -143,6 +254,15 @@ class Status:
             for age in range(15, 50):
                 f[age] = tfr * w[age] / sw
         self.asfr[k] = f
+        mix0 = self.aux.get(k, {}).get("electricity_by_source")
+        if mix0 is not None and "ghg_emissions" in iv and "electricity_generation_twh" in iv:
+            elec_ghg0 = float(iv["electricity_generation_twh"]) * _mix_emission_factor(mix0)
+            self.derived[k] = {
+                "ghg_non_elec": float(iv["ghg_emissions"]) - elec_ghg0,
+                "ghg_sink": float(iv["ghg_emissions"]) - float(iv.get("ghg_net", iv["ghg_emissions"])),
+                "dom0": _mix_domestic(mix0),
+                "ss0": float(iv.get("energy_self_sufficiency", 0.0)),
+            }
         self.lever_value[k] = {}
         self.lever_due[k] = {}
         for lid in self.levers[k].get("levers", {}):
@@ -260,6 +380,17 @@ class Status:
             iv["defence_share_gdp"] = iv["defence_budget"] / iv["gdp_nominal"]
         if "physicians" in iv and "pop_total" in iv:
             iv["physicians_per_100k"] = iv["physicians"] / iv["pop_total"] * 100000.0
+        d = self.derived.get(k)
+        if d is not None:
+            mix = self.aux.get(k, {}).get("electricity_by_source")
+            if mix is not None and "electricity_generation_twh" in iv:
+                ghg = d["ghg_non_elec"] + float(iv["electricity_generation_twh"]) * _mix_emission_factor(mix)
+                iv["ghg_emissions"] = ghg
+                if "ghg_net" in iv:
+                    iv["ghg_net"] = ghg - d["ghg_sink"]
+                if "energy_self_sufficiency" in iv:
+                    iv["energy_self_sufficiency"] = gd.minf(1.0, gd.maxf(0.0,
+                        d["ss0"] + ELEC_PRIMARY_SHARE * (_mix_domestic(mix) - d["dom0"])))
 
     def _step_held(self, k):
         iv = self.ind[k]
@@ -296,7 +427,7 @@ class Status:
         if self.legal_check is not None:
             met = ["cabinet_decision"]
             r0 = L.get("response", {})
-            adds_spending = str(r0.get("target", "")) == "gov_expenditure_general" or str(r0.get("form", "")) == "share"
+            adds_spending = str(r0.get("target", "")) == "gov_expenditure_general" or str(r0.get("form", "")) == "share" or lid in SPENDING_LEVERS
             dv = v - self.lever_value[k][lid]
             if not adds_spending or dv <= 0.0 or dv <= BUDGET_ROOM * gd.maxf(abs(self.lever_value[k][lid]), 1.0):
                 met.append("within_budget")
@@ -330,14 +461,16 @@ class Status:
             self.lever_value[k][lid] = v
             del due[lid]
             self._respond(k, lid, old, v)
-            self.lever_log.append([self.day, k, lid, v, "applied"])
+            self.lever_log.append([self.day, k, lid, v, "applied", old])
 
     def _respond(self, k, lid, old, v):
         L = self.levers[k]["levers"][lid]
         r = L.get("response", {})
         target = str(r.get("target", ""))
         iv = self.ind[k]
-        if target == "" or target not in iv:
+        if target == "":
+            return
+        if target not in iv and target not in self.aux.get(k, {}):
             return
         kk = float(r.get("k", 0.0))
         dv = v - old
@@ -372,9 +505,58 @@ class Status:
                 iv[target] = v * iv["gdp_nominal"]
                 if lg is not None and key in lg.sh:
                     lg.start(key, iv[target])
+        elif form == "share_of_spending":
+            y = iv[target] * kk * dv
+            iv[target] += y
+            if lg is not None:
+                lg.add(key, y, iv[target])
+        elif form == "multiplier_pt":
+            # k is declared in percentage points per unit of lever change.
+            y = kk * dv / 100.0
+            iv[target] += y
+            if lg is not None:
+                lg.add(key, y, iv[target])
+        elif form == "fab_spending":
+            y = FAB_SHARE_PER_BN * dv
+            iv[target] = gd.minf(1.0, gd.maxf(0.0, iv[target] + y))
+            if lg is not None:
+                lg.add(key, y, iv[target])
+        elif form == "build_plan":
+            mix = self.aux.get(k, {}).get(target)
+            if type(mix) is dict:
+                _shift_mix(mix, v)
+        elif form == "build":
+            mix = self.aux.get(k, {}).get(target)
+            if type(mix) is dict:
+                _add_nuclear(mix, dv * NUCLEAR_SHARE_PER_REACTOR)
+        elif form == "licence":
+            # Export licensing (外為法): the lever value is the denied
+            # share (0..1) of the controlled part of exports to the
+            # designated counterpart (CHN, the controlled destination
+            # for semiconductor equipment). The controlled share of the
+            # lane is a declared constant; the response is applied to
+            # the lane and to exports_customs in (v/prev) form.
+            lane = self.aux.get(k, {}).get(target, {}).get("CHINA")
+            if type(lane) is dict and "exports_customs" in iv:
+                prev = v - dv
+                f = (1.0 - CONTROLLED_EXPORT_SHARE_CHN * v) / max(1e-9, 1.0 - CONTROLLED_EXPORT_SHARE_CHN * prev)
+                d = float(lane["exports_bn_jpy"]) * (f - 1.0)
+                lane["exports_bn_jpy"] += d
+                iv["exports_customs"] += d
+                # Keep the counterpart mirror in step even when Status
+                # runs standalone (the CLI's bilateral sync also does
+                # this monthly; independent review D-4), and record the
+                # export impulse so the CLI can transmit it to GDP the
+                # same way the tariff path does - before this fix the
+                # licence moved trade but GDP/tax/Debt-GDP never moved.
+                _cp = self.aux.get("CHN", {}).get("trade_by_partner", {}).get("JPN")
+                if type(_cp) is dict and "imports_bn_jpy" in _cp:
+                    _cp["imports_bn_jpy"] += d
+                _aux = self.aux.setdefault(k, {})
+                _aux["pending_gdp_delta_bn"] = float(_aux.get("pending_gdp_delta_bn", 0.0)) + d
 
     def to_dict(self):
-        st = {"day": self.day, "ind": {}, "cohort": {}, "lever_value": {}, "lever_due": {}, "lever_log": deep(self.lever_log)}
+        st = {"day": self.day, "ind": {}, "cohort": {}, "lever_value": {}, "lever_due": {}, "lever_log": deep(self.lever_log), "aux": deep(self.aux), "derived": deep(self.derived)}
         for k in self.entities:
             iv = self.ind[k]
             names = PStr(sorted(iv.keys()))
@@ -399,3 +581,5 @@ class Status:
             self.lever_value[k] = dict(st["lever_value"][k])
             self.lever_due[k] = deep(st["lever_due"][k])
         self.lever_log = deep(st["lever_log"])
+        self.aux = deep(st.get("aux", {}))
+        self.derived = deep(st.get("derived", {}))

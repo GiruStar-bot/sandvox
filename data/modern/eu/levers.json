@@ -1,0 +1,23 @@
+{
+ "entity": "EU",
+ "levers": {
+  "tariff_on_jpn": {
+   "current": 0.0,
+   "lead_days": 90,
+   "legal": "EU common commercial policy (Commission implementing regulations under the Union Customs Code); modelled as an additional tariff over the 2024 baseline",
+   "max": 0.6,
+   "min": 0.0,
+   "response": {
+    "form": "bilateral",
+    "k": -1.5,
+    "label": "S",
+    "source": "Kee, Nicita & Olarreaga 2008: median import demand elasticity about -1.5 (same source as JPN's tariff_rate_general)",
+    "target": "trade_by_partner",
+    "unit": "import demand elasticity"
+   },
+   "status": "foreign",
+   "unit": "share"
+  }
+ },
+ "note": "S3 counterpart levers (Roadmap P5). A counterpart lever is the foreign government's own decision: it is set directly on the EU entity (no Japanese Cabinet/Diet path) and its effect is applied by the bilateral trade sync in run_simulation.py, not by a scalar Status response."
+}
